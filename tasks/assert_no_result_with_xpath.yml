@@ -1,0 +1,17 @@
+---
+- name: "Checks if connecters have allowTrace set to true"
+  command: >
+    xpath  -e {{ item.xpath }} {{ item.xmlfile }}
+  register: res
+  changed_when: false
+
+- name: "TODO"
+  debug:
+    msg: "{{ res }}"
+
+- name: "TODO"
+  assert:
+    that:
+      - res.failed == false
+      - res.rc == 0
+        #      - res.stdout == ""
