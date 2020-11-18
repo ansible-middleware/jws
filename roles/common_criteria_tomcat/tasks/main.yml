@@ -1,0 +1,46 @@
+- name: "Ensures required dependencies are installed"
+  yum:
+    name: "{{ item }}"
+  loop:
+    - perl-XML-XPath
+
+- name: "Checks that CATALINA_HOME has been defined."
+  assert:
+    that:
+      - tomcat.home is defined
+      - tomcat.home != ""
+
+- name: "Checks that {{ tomcat.home }} is a directory and exists"
+  stat:
+    path: "{{ tomcat.home }}"
+  register: tomcat_home_dir
+
+- fail:
+    msg: "Provided CATALINA_HOME does not exists: {{ tomcat.home }}."
+  when: not tomcat_home_dir.stat.exists
+
+- fail:
+    msg: "Provided CATALINA_HOME is not a directory: {{ tomcat.home }}."
+  when: not tomcat_home_dir.stat.isdir
+
+- name: "Check that file's owner, group and mode are in compliance."
+  include_tasks: tasks/checks_conf_files.yml
+  loop:
+    - { path: "{{ tomcat.home }}/{{ tomcat.conf.properties }}", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
+    - { path: "{{ tomcat.home }}/{{ tomcat.conf.policy }}", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
+    - { path: "{{ tomcat.home }}/{{ tomcat.conf.logging }}", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
+    - { path: "{{ tomcat.home }}/conf/tomcat-users.xml", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
+    - { path: "{{ tomcat.home }}/conf/jaspic-providers.xml", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
+    - { path: "{{ tomcat.home }}/conf/server.xml", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
+    - { path: "{{ tomcat.home }}/conf/web.xml", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
+    - { path: "{{ tomcat.home }}/conf", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
+    - { path: "{{ tomcat.home }}/temp", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
+    - { path: "{{ tomcat.home }}/logs", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
+
+- name: "Checks server's configuration"
+  include_tasks: tasks/assert_no_result_with_xpath.yml
+  loop:
+    - { xpath: "//Connector[@allowTrace='true']", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector SHOULD set allowTrace attribute to 'false'", success: "Trace settings are in compliance with Common Criteria recommendations" }
+    - { xpath: "//Server[@port=8005]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Shutdown port should be randomized", success: "Shutdown port has been randomized." }
+    - { xpath: "//Connector[@SSLEnabled=false]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connectors are not all using SSL", success: "Connectors are all using SSL" }
+    #- { xpath: "//Connector[@scheme!='https']", xmlfile: "{{ tomcat.home }}/conf/server.xml" }
