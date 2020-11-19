@@ -40,7 +40,8 @@
 - name: "Checks server's configuration"
   include_tasks: tasks/assert_no_result_with_xpath.yml
   loop:
-    - { xpath: "//Connector[@allowTrace='true']", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector SHOULD set allowTrace attribute to 'false'", success: "Trace settings are in compliance with Common Criteria recommendations" }
-    - { xpath: "//Server[@port=8005]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Shutdown port should be randomized", success: "Shutdown port has been randomized." }
-    - { xpath: "//Connector[@SSLEnabled=false]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connectors are not all using SSL", success: "Connectors are all using SSL" }
-    #- { xpath: "//Connector[@scheme!='https']", xmlfile: "{{ tomcat.home }}/conf/server.xml" }
+    - { xpath: "//Connector[not(@allowTrace)or(@allowTrace='true')]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector SHOULD set allowTrace attribute to 'false'", success: "Trace settings are in compliance with Common Criteria recommendations" }
+    - { xpath: "//Server[not(@port)or(port=8005)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Shutdown port should be randomized", success: "Shutdown port has been randomized." }
+    - { xpath: "//Connector[not(@SSLEnabled)or(@SSLEnabled=false)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connectors are not all using SSL", success: "Connectors are all using SSL" }
+    - { xpath: "//Connector[not(@scheme)or(@scheme=http)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "The Connector scheme attribute SHOULD be defined and set to 'https'", success: "Connecter's schemes are in compliance with Common Criteria recommendatins." }
+
