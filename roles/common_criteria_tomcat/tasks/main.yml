@@ -4,24 +4,11 @@
   loop:
     - perl-XML-XPath
 
-- name: "Checks that CATALINA_HOME has been defined."
-  assert:
-    that:
-      - tomcat.home is defined
-      - tomcat.home != ""
-
-- name: "Checks that {{ tomcat.home }} is a directory and exists"
-  stat:
-    path: "{{ tomcat.home }}"
-  register: tomcat_home_dir
-
-- fail:
-    msg: "Provided CATALINA_HOME does not exists: {{ tomcat.home }}."
-  when: not tomcat_home_dir.stat.exists
-
-- fail:
-    msg: "Provided CATALINA_HOME is not a directory: {{ tomcat.home }}."
-  when: not tomcat_home_dir.stat.isdir
+- name: "Checks that root directories are appropriately defined."
+  include_tasks: tasks/checks_root_dirs.yml
+  loop:
+    - { name: "CATALINA_HOME", path: "{{ tomcat.home }}", required: true }
+    - { name: "CATALINA_BASE", path: "{{ tomcat.base }}", required: false }
 
 - name: "Check that file's owner, group and mode are in compliance."
   include_tasks: tasks/checks_conf_files.yml

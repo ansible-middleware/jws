@@ -9,6 +9,7 @@
       user: tomcat_admin
       group: tomcat
       home: "{{ lookup('env','CATALINA_HOME') }}"
+      base: "{{ lookup('env','CATALINA_BASE') }}"
       conf:
         properties: "./conf/catalina.properties"
         policy: "./conf/catalina.policy"
