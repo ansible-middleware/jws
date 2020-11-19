@@ -1,0 +1,21 @@
+---
+- name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
+  command: >
+    xpath  -e {{ item.xpath }} {{ item.xmlfile }}
+  register: res
+  changed_when: false
+
+- name: "Display XPath if requested"
+  debug:
+    msg: "{{ res.stdout }}"
+  when: display_xpath_res
+
+- name: "Verify compliance of {{ item.xmlfile }}."
+  assert:
+    that:
+      - res.failed == false
+      - res.rc == 0
+      - res.stdout == "" or item.not_empty_result
+    fail_msg: "{{ item.error }} "
+    success_msg: "{{ item.success }}"
+    quiet: true
