@@ -1,0 +1,4 @@
+---
+- include_task: tasks/checks_conf_files.yml
+  with_items:
+    - { path: "{{ item }}", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode:

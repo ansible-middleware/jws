@@ -34,4 +34,31 @@
     - { xpath: "//Server[not(@port)or(port=8005)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Shutdown port should be randomized", success: "Shutdown port has been randomized." }
     - { xpath: "//Connector[not(@SSLEnabled)or(@SSLEnabled=false)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connectors are not all using SSL", success: "Connectors are all using SSL" }
     - { xpath: "//Connector[not(@scheme)or(@scheme=http)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "The Connector scheme attribute SHOULD be defined and set to 'https'", success: "Connecter's schemes are in compliance with Common Criteria recommendatins." }
+    - { xpath: "//Connector[not(@sslProtocol)or(@sslProtocol!='TLS')and(@SSLEnabled=true)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "If SSL protocols is enabled, associated attribute should be set to TLS'", success: "Connectors SSL protocol configuration are in compliance with Common Criteria recommendations." }
+    - { xpath: "//security-constraint/user-data-constraint/transport-guarantee[text()!='CONFIDENTIAL']", xmlfile: "{{ tomcat.home }}/webapps/manager/WEB-INF/web.xml", error: "Manager webapp SHOULD only be accessed using SSL", success: "Manager webapp access has been properly configured to use SSL." }
+
+- include_tasks: tasks/assert_no_result_with_xpath.yml
+  with_items:
+    - { xpath: "//Listener[@className='org.apache.catalina.core.JreMemoryLeakPreventionListener']", xmlfile: "{{ tomcat.home }}/{{ tomcat.conf.server }}", not_empty_result: true, error: "TODO", success: "TODO" }
+
+- name: "Check that CATALINA_BASE (if defined)."
+  include_tasks: tasks/checks_conf_files.yml
+  loop:
+    - { path: "{{ tomcat.base }}", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
+  when: tomcat.base
+
+
+- name: Find locate all context.xml files
+  find:
+    paths: "{{ tomcat.home }}"
+    patterns: 'context.xml'
+    file_type: file
+    use_regex: yes
+    recurse: yes
+  register: matching_files
+
+- name: "Checks server's configuration"
+  include_tasks: tasks/process_context_xml.yml
+  with_items:
+    - "{{ matching_files.files }}"
 
