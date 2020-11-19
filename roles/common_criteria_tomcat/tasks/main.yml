@@ -33,9 +33,12 @@
     - { path: "{{ tomcat.home }}/conf/jaspic-providers.xml", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
     - { path: "{{ tomcat.home }}/conf/server.xml", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
     - { path: "{{ tomcat.home }}/conf/web.xml", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
+    - { path: "{{ tomcat.home }}/conf/context.xml", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0600" }
     - { path: "{{ tomcat.home }}/conf", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
     - { path: "{{ tomcat.home }}/temp", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
     - { path: "{{ tomcat.home }}/logs", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
+    - { path: "{{ tomcat.home }}/webapps", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
+    - { path: "{{ tomcat.home }}/bin", owner: "{{ tomcat_owner }}", group: "{{ tomcat_group }}", mode: "0750" }
 
 - name: "Checks server's configuration"
   include_tasks: tasks/assert_no_result_with_xpath.yml
