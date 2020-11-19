@@ -16,20 +16,20 @@
   - name: "Creates group: {{ tomcat.group }}"
     group:
       name: "{{ tomcat.group }}"
-  
+
   - name: "Creates user for tomcat: {{ tomcat.user }}"
     user:
       name: "{{ tomcat.user }}"
       groups: "{{ tomcat.group }}"
       comment: "User for Apache Tomcat"
-  
+
   - name: "Ensure install dir is created: {{ workdir }}"
     file:
       path: "{{ workdir }}"
       owner: "{{ tomcat.user }}"
       group: "{{ tomcat.group }}"
       state: directory
-  
+
   - name: "Download and setup Apache Tomcat 9"
     unarchive:
       src: "{{ tomcat.archive_url }}"
@@ -39,7 +39,7 @@
       mode: 0750
       remote_src: yes
       creates: "{{ lookup('env','CATALINA_HOME') }}"
-  
+
   - name: "Ensures {{ tomcat.home }}/{{ item }}/ has appropriate privileges."
     file:
       path: "{{ tomcat.home }}/{{ item }}/"
@@ -51,8 +51,10 @@
       - conf
       - temp
       - logs
-  
-  - name: "Ensures {{ item }}" 
+      - webapps
+      - bin
+
+  - name: "Ensures {{ item }} has the recommended priviliges, owner and group"
     file:
       path: "{{ item }}"
       owner: "{{ tomcat.user }}"
@@ -64,7 +66,7 @@
       - "{{ tomcat.home }}/{{ tomcat.conf.logging }}"
       - "{{ tomcat.home }}/conf/tomcat-users.xml"
       - "{{ tomcat.home }}/conf/jaspic-providers.xml"
-  
+
   - name: "Deploy custom configuration file from {{ item.template }}"
     template:
       src: "{{ item.template }}"
@@ -75,4 +77,5 @@
     loop:
       - { template: templates/server.xml.j2, dest: "{{ tomcat.home }}/conf/server.xml" }
       - { template: templates/web.xml.j2, dest: "{{ tomcat.home }}/conf/web.xml" }
-  when: tomcat_setup 
+      - { template: templates/context.xml.j2, dest: "{{ tomcat.home }}/conf/context.xml" }
+  when: tomcat_setup
