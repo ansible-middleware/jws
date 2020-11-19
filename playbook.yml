@@ -3,7 +3,7 @@
   hosts: localhost
   vars:
     tomcat_setup: true
-    tomcat_version: 9.0.39
+    tomcat_version: 9.0.40
     workdir: /opt
     tomcat:
       user: tomcat_admin
