@@ -1,4 +1,10 @@
 ---
+- name: "Checks that CATALINA_HOME has been defined."
+  assert:
+    that:
+      - tomcat.home is defined
+      - tomcat.home != ""
+
 - name: "Install required dependencies"
   yum:
     name: "{{ item }}"
