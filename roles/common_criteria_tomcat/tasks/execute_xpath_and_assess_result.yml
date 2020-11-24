@@ -16,7 +16,7 @@
       that:
         - res.failed == false
         - res.rc == 0
-        - res.stdout == "" or item.not_empty_result
+        - res.stdout == "" or (item.not_empty_result is defined and item.not_empty_result)
       fail_msg: "{{ item.error }} "
       success_msg: "{{ item.success }}"
       quiet: true
@@ -39,7 +39,7 @@
       that:
         - res2.failed == false
         - res2.rc == 0
-        - res2.stdout == "" or item.not_empty_result
+        - res2.stdout == "" or (item.not_empty_result is defined and item.not_empty_result)
       fail_msg: "{{ item.error }} "
       success_msg: "{{ item.success }}"
       quiet: true
