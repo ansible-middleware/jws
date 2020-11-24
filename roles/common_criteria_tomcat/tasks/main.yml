@@ -36,6 +36,8 @@
     - { xpath: "//Connector[not(@scheme)or(@scheme=http)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "The Connector scheme attribute SHOULD be defined and set to 'https'", success: "Connecter's schemes are in compliance with Common Criteria recommendatins." }
     - { xpath: "//Connector[not(@sslProtocol)or(@sslProtocol!='TLS')and(@SSLEnabled=true)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "If SSL protocols is enabled, associated attribute should be set to TLS'", success: "Connectors SSL protocol configuration are in compliance with Common Criteria recommendations." }
     - { xpath: "//security-constraint/user-data-constraint/transport-guarantee[text()!='CONFIDENTIAL']", xmlfile: "{{ tomcat.home }}/webapps/manager/WEB-INF/web.xml", error: "Manager webapp SHOULD only be accessed using SSL", success: "Manager webapp access has been properly configured to use SSL." }
+    - { xpath: "//Connector[not(@xpoweredBy)or(@xpoweredBy=false)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "A used Connector has NOT the xpoweredBy attribute set to false", success: "No Connectors uses xpoweredBy" }
+    - { xpath: "//Connector[not(@server)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector needs to have the server attribute defined to remove default server header", success: "All Connectors have customized server header." }
 
 - include_tasks: tasks/execute_xpath_and_assess_result.yml
   with_items:
