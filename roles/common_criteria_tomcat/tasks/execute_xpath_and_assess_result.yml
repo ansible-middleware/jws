@@ -4,6 +4,15 @@
     xpath  -e {{ item.xpath }} {{ item.xmlfile }}
   register: res
   changed_when: false
+  when: ansible_distribution == 'Fedora'
+
+- name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
+  command: >
+    xpath  {{ item.xmlfile }} {{ item.xpath }}
+  register: res
+  changed_when: false
+  when: ansible_distribution == 'RedHat'
+
 
 - name: "Display XPath if requested"
   debug:
