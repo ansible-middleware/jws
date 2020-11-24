@@ -23,7 +23,7 @@
           - examples
       archive_url: "https://downloads.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip"
       shutdown:
-        port: "8999"
+        port: "-1"
   roles:
     - tomcat
     - common_criteria_tomcat
