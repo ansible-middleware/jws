@@ -16,6 +16,11 @@
         logging: "./conf/logging.properties"
         context: "./conf/context.xml"
         server: "./conf/server.xml"
+      apps:
+        to_remove:
+          - docs
+          - ROOT
+          - examples
       archive_url: "https://downloads.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip"
       shutdown:
         port: "8999"

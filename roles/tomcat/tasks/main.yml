@@ -78,4 +78,12 @@
       - { template: templates/server.xml.j2, dest: "{{ tomcat.home }}/conf/server.xml" }
       - { template: templates/web.xml.j2, dest: "{{ tomcat.home }}/conf/web.xml" }
       - { template: templates/context.xml.j2, dest: "{{ tomcat.home }}/conf/context.xml" }
+
+  - name: "Remove app: {{ item }}"
+    file:
+      path: "{{ tomcat.home }}/webapps/{{ item }}"
+      state: absent
+    loop:
+      - "{{ tomcat.apps.to_remove }}"
+    when: tomcat.apps.to_remove is defined
   when: tomcat_setup
