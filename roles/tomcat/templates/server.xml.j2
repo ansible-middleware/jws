@@ -84,7 +84,7 @@
     -->
     <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https"
                maxThreads="150" SSLEnabled="true" allowTrace="false" secure="true" sslProtocol="TLS"
-               xpoweredBy="false" server="My Server">
+               xpoweredBy="false" server="My Server" clientAuth="true" certificateVerification="required">
         <SSLHostConfig>
             <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
                          type="RSA" />
@@ -146,7 +146,7 @@
       </Realm>
 
       <Host name="localhost"  appBase="webapps"
-            unpackWARs="true" autoDeploy="true">
+            unpackWARs="true" autoDeploy="false">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
