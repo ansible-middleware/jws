@@ -84,7 +84,8 @@
     -->
     <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https"
                maxThreads="150" SSLEnabled="true" allowTrace="false" secure="true" sslProtocol="TLS"
-               xpoweredBy="false" server="My Server" clientAuth="true" certificateVerification="required">
+               xpoweredBy="false" server="My Server" clientAuth="true" certificateVerification="required"
+               connectionTimeout="6000" maxHttpHeaderSize="8192">
         <SSLHostConfig>
             <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
                          type="RSA" />

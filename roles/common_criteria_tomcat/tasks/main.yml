@@ -43,6 +43,8 @@
       #    - { xpath: "//Connector[@certificateVerification!=required]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector clientAuth attribute should be set to true", success: "All Connectors clientAuth are properly set." }
     - { xpath: "//Realm[(@className='org.apache.catalina.realm.UserDatabaseRealm')or(@className='org.apache.catalina.realm.MemoryRealm')]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Realms used are not safe.", success: "All Realms are valid." }
     - { xpath: "//Host[not(@autoDeploy)or(@autoDeploy='true')]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector clientAuth attribute should be set to true", success: "All Connectors clientAuth are properly set." }
+    - { xpath: "//Connector[not(@connectionTimeout)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector connection's timeout must be set", success: "All Connectors connection's timeout are properly set." }
+    - { xpath: "//Connector[not(@maxHttpHeaderSize)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector maxHttpHeaderSize must be set", success: "All Connectors maxHttpHeaderSize are properly set." }
 
 - include_tasks: tasks/execute_xpath_and_assess_result.yml
   with_items:
