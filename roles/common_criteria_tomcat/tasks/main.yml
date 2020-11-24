@@ -66,9 +66,7 @@
   with_items:
     - "{{ matching_files.files }}"
 
-
 - name: "Ensure removed apps are absent"
   include_tasks: tasks/remove_apps.yml
-  loop:
-    - "{{ tomcat.apps.to_remove }}"
+  loop: "{{ tomcat.apps.to_remove }}"
   when: tomcat.apps.to_remove

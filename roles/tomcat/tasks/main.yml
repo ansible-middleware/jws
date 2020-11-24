@@ -83,7 +83,6 @@
     file:
       path: "{{ tomcat.home }}/webapps/{{ item }}"
       state: absent
-    loop:
-      - "{{ tomcat.apps.to_remove }}"
+    loop: "{{ tomcat.apps.to_remove }}"
     when: tomcat.apps.to_remove is defined
   when: tomcat_setup
