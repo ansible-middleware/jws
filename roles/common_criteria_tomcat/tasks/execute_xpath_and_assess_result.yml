@@ -1,30 +1,46 @@
 ---
-- name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
-  command: >
-    xpath  -e {{ item.xpath }} {{ item.xmlfile }}
-  register: res
-  changed_when: false
+- block:
+  - name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
+    command: >
+      xpath  -e {{ item.xpath }} {{ item.xmlfile }}
+    register: res
+    changed_when: false
+
+  - name: "Display XPath if requested"
+    debug:
+      msg: "{{ res.stdout }}"
+    when: display_xpath_res
+
+  - name: "Verify compliance of {{ item.xmlfile }}."
+    assert:
+      that:
+        - res.failed == false
+        - res.rc == 0
+        - res.stdout == "" or item.not_empty_result
+      fail_msg: "{{ item.error }} "
+      success_msg: "{{ item.success }}"
+      quiet: true
   when: ansible_distribution == 'Fedora'
 
-- name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
-  command: >
-    xpath  {{ item.xmlfile }} {{ item.xpath }}
-  register: res
-  changed_when: false
+- block:
+  - name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
+    command: >
+      xpath {{ item.xmlfile }} {{ item.xpath }}
+    register: res2
+    changed_when: false
+
+  - name: "Display XPath if requested"
+    debug:
+      msg: "{{ res2.stdout }}"
+    when: display_xpath_res
+
+  - name: "Verify compliance of {{ item.xmlfile }}."
+    assert:
+      that:
+        - res2.failed == false
+        - res2.rc == 0
+        - res2.stdout == "" or item.not_empty_result
+      fail_msg: "{{ item.error }} "
+      success_msg: "{{ item.success }}"
+      quiet: true
   when: ansible_distribution == 'RedHat'
-
-
-- name: "Display XPath if requested"
-  debug:
-    msg: "{{ res.stdout }}"
-  when: display_xpath_res
-
-- name: "Verify compliance of {{ item.xmlfile }}."
-  assert:
-    that:
-      - res.failed == false
-      - res.rc == 0
-      - res.stdout == "" or item.not_empty_result
-    fail_msg: "{{ item.error }} "
-    success_msg: "{{ item.success }}"
-    quiet: true
