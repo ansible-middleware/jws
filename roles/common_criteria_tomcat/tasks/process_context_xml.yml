@@ -1,5 +1,5 @@
 ---
-- include_tasks: tasks/assert_no_result_with_xpath.yml
+- include_tasks: tasks/execute_xpath_and_assess_result.yml
   loop:
     - { xpath: "//*[@allowLink]", xmlfile: "{{ item.path }}", error: "Atttribute allowLink SHOULD NOT be set or set to true", success: "Attribute allowLink is properly configured." }
     - { xpath: "//*[@allowLink=true]", xmlfile: "{{ item.path }}", error: "Atttribute allowLink SHOULD NOT be set or set to true", success: "Attribute allowLink is properly configured." }
