@@ -38,6 +38,8 @@
     - { xpath: "//security-constraint/user-data-constraint/transport-guarantee[text()!='CONFIDENTIAL']", xmlfile: "{{ tomcat.home }}/webapps/manager/WEB-INF/web.xml", error: "Manager webapp SHOULD only be accessed using SSL", success: "Manager webapp access has been properly configured to use SSL." }
     - { xpath: "//Connector[not(@xpoweredBy)or(@xpoweredBy=false)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "A used Connector has NOT the xpoweredBy attribute set to false", success: "No Connectors uses xpoweredBy" }
     - { xpath: "//Connector[not(@server)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector needs to have the server attribute defined to remove default server header", success: "All Connectors have customized server header." }
+    - { xpath: "//Realm[(@className='org.apache.catalina.realm.UserDatabaseRealm')or(@className='org.apache.catalina.realm.MemoryRealm')]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Realms used are not safe.", success: "All Realms are valid." }
+
 
 - include_tasks: tasks/execute_xpath_and_assess_result.yml
   with_items:
