@@ -3,7 +3,7 @@
   assert:
     that:
       - tomcat.home is defined
-      - tomcat.home != ""
+      - tomcat.home | length > 0
 
 - name: "Install required dependencies"
   yum:
@@ -13,76 +13,77 @@
     - unzip
 
 - block:
-  - name: "Creates group: {{ tomcat.group }}"
-    group:
-      name: "{{ tomcat.group }}"
+    - name: "Creates group: {{ tomcat.group }}"
+      group:
+        name: "{{ tomcat.group }}"
 
-  - name: "Creates user for tomcat: {{ tomcat.user }}"
-    user:
-      name: "{{ tomcat.user }}"
-      groups: "{{ tomcat.group }}"
-      comment: "User for Apache Tomcat"
+    - name: "Creates user for tomcat: {{ tomcat.user }}"
+      user:
+        name: "{{ tomcat.user }}"
+        groups: "{{ tomcat.group }}"
+        comment: "User for Apache Tomcat"
 
-  - name: "Ensure install dir is created: {{ workdir }}"
-    file:
-      path: "{{ workdir }}"
-      owner: "{{ tomcat.user }}"
-      group: "{{ tomcat.group }}"
-      state: directory
+    - name: "Ensure install dir is created: {{ workdir }}"
+      file:
+        path: "{{ workdir }}"
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0750
+        state: directory
 
-  - name: "Download and setup Apache Tomcat 9"
-    unarchive:
-      src: "{{ tomcat.archive_url }}"
-      dest: "{{ workdir }}"
-      owner: "{{ tomcat.user }}"
-      group: "{{ tomcat.group }}"
-      mode: 0750
-      remote_src: yes
-      creates: "{{ lookup('env','CATALINA_HOME') }}"
+    - name: "Download and setup Apache Tomcat 9"
+      unarchive:
+        src: "{{ tomcat.archive_url }}"
+        dest: "{{ workdir }}"
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0750
+        remote_src: yes
+        creates: "{{ lookup('env','CATALINA_HOME') }}"
 
-  - name: "Ensures {{ tomcat.home }}/{{ item }}/ has appropriate privileges."
-    file:
-      path: "{{ tomcat.home }}/{{ item }}/"
-      owner: "{{ tomcat.user }}"
-      group: "{{ tomcat.group }}"
-      mode: 0750
-      state: directory
-    loop:
-      - conf
-      - temp
-      - logs
-      - webapps
-      - bin
+    - name: "Ensures {{ tomcat.home }}/{{ item }}/ has appropriate privileges."
+      file:
+        path: "{{ tomcat.home }}/{{ item }}/"
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0750
+        state: directory
+      loop:
+        - conf
+        - temp
+        - logs
+        - webapps
+        - bin
 
-  - name: "Ensures {{ item }} has the recommended priviliges, owner and group"
-    file:
-      path: "{{ item }}"
-      owner: "{{ tomcat.user }}"
-      group: "{{ tomcat.group }}"
-      mode: 0600
-    loop:
-      - "{{ tomcat.home }}/{{ tomcat.conf.properties }}"
-      - "{{ tomcat.home }}/{{ tomcat.conf.policy }}"
-      - "{{ tomcat.home }}/{{ tomcat.conf.logging }}"
-      - "{{ tomcat.home }}/conf/tomcat-users.xml"
-      - "{{ tomcat.home }}/conf/jaspic-providers.xml"
+    - name: "Ensures {{ item }} has the recommended priviliges, owner and group"
+      file:
+        path: "{{ item }}"
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0600
+      loop:
+        - "{{ tomcat.home }}/{{ tomcat.conf.properties }}"
+        - "{{ tomcat.home }}/{{ tomcat.conf.policy }}"
+        - "{{ tomcat.home }}/{{ tomcat.conf.logging }}"
+        - "{{ tomcat.home }}/conf/tomcat-users.xml"
+        - "{{ tomcat.home }}/conf/jaspic-providers.xml"
 
-  - name: "Deploy custom configuration file from {{ item.template }}"
-    template:
-      src: "{{ item.template }}"
-      dest: "{{ item.dest }}"
-      owner: "{{ tomcat.user }}"
-      group: "{{ tomcat.group }}"
-      mode: 0600
-    loop:
-      - { template: templates/server.xml.j2, dest: "{{ tomcat.home }}/conf/server.xml" }
-      - { template: templates/web.xml.j2, dest: "{{ tomcat.home }}/conf/web.xml" }
-      - { template: templates/context.xml.j2, dest: "{{ tomcat.home }}/conf/context.xml" }
+    - name: "Deploy custom configuration file from {{ item.template }}"
+      template:
+        src: "{{ item.template }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0600
+      loop:
+        - { template: templates/server.xml.j2, dest: "{{ tomcat.home }}/conf/server.xml" }
+        - { template: templates/web.xml.j2, dest: "{{ tomcat.home }}/conf/web.xml" }
+        - { template: templates/context.xml.j2, dest: "{{ tomcat.home }}/conf/context.xml" }
 
-  - name: "Remove app: {{ item }}"
-    file:
-      path: "{{ tomcat.home }}/webapps/{{ item }}"
-      state: absent
-    loop: "{{ tomcat.apps.to_remove }}"
-    when: tomcat.apps.to_remove is defined
+    - name: "Remove app: {{ item }}"
+      file:
+        path: "{{ tomcat.home }}/webapps/{{ item }}"
+        state: absent
+      loop: "{{ tomcat.apps.to_remove }}"
+      when: tomcat.apps.to_remove is defined
   when: tomcat_setup

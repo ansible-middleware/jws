@@ -1,3 +1,5 @@
+---
+
 - name: "Ensures required dependencies are installed"
   yum:
     name: "{{ item }}"
@@ -40,7 +42,7 @@
     - { xpath: "//Connector[not(@server)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector needs to have the server attribute defined to remove default server header", success: "All Connectors have customized server header." }
     - { xpath: "//Connector[not(@clientAuth)or(@clientAuth='true')]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector clientAuth attribute should be set to true", success: "All Connectors clientAuth are properly set." }
     - { xpath: "//Connector[not(@certificateVerification)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector clientAuth attribute should be set to true", success: "All Connectors clientAuth are properly set." }
-      #    - { xpath: "//Connector[@certificateVerification!=required]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector clientAuth attribute should be set to true", success: "All Connectors clientAuth are properly set." }
+    #    - { xpath: "//Connector[@certificateVerification!=required]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector clientAuth attribute should be set to true", success: "All Connectors clientAuth are properly set." }
     - { xpath: "//Realm[(@className='org.apache.catalina.realm.UserDatabaseRealm')or(@className='org.apache.catalina.realm.MemoryRealm')]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Realms used are not safe.", success: "All Realms are valid." }
     - { xpath: "//Host[not(@autoDeploy)or(@autoDeploy='true')]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector clientAuth attribute should be set to true", success: "All Connectors clientAuth are properly set." }
     - { xpath: "//Connector[not(@connectionTimeout)]", xmlfile: "{{ tomcat.home }}/conf/server.xml", error: "Connector connection's timeout must be set", success: "All Connectors connection's timeout are properly set." }

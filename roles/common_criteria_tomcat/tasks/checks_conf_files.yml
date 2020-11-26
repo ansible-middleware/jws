@@ -9,7 +9,8 @@
     msg: "{{ file.stat }}"
   when: display_directory_stats
 
-- assert:
+- name: "Check file permissions"
+  assert:
     that:
       - file.stat.pw_name == item.owner
       - file.stat.gr_name == item.group

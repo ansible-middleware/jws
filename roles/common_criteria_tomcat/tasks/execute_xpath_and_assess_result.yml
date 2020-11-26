@@ -14,33 +14,33 @@
   - name: "Verify compliance of {{ item.xmlfile }}."
     assert:
       that:
-        - res.failed == false
+        - not res.failed
         - res.rc == 0
-        - res.stdout == "" or (item.not_empty_result is defined and item.not_empty_result)
+        - (res.stdout | length == 0) or (item.not_empty_result is defined and item.not_empty_result)
       fail_msg: "{{ item.error }} "
       success_msg: "{{ item.success }}"
       quiet: true
   when: ansible_distribution == 'Fedora'
 
 - block:
-  - name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
-    command: >
-      xpath {{ item.xmlfile }} {{ item.xpath }}
-    register: res2
-    changed_when: false
+    - name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
+      command: >
+        xpath {{ item.xmlfile }} {{ item.xpath }}
+      register: res2
+      changed_when: false
 
-  - name: "Display XPath if requested"
-    debug:
-      msg: "{{ res2.stdout }}"
-    when: display_xpath_res
+    - name: "Display XPath if requested"
+      debug:
+        msg: "{{ res2.stdout }}"
+      when: display_xpath_res
 
-  - name: "Verify compliance of {{ item.xmlfile }}."
-    assert:
-      that:
-        - res2.failed == false
-        - res2.rc == 0
-        - res2.stdout == "" or (item.not_empty_result is defined and item.not_empty_result)
-      fail_msg: "{{ item.error }} "
-      success_msg: "{{ item.success }}"
-      quiet: true
+    - name: "Verify compliance of {{ item.xmlfile }}."
+      assert:
+        that:
+          - not res2.failed
+          - res2.rc == 0
+          - (res2.stdout | length != 0) or (item.not_empty_result is defined and item.not_empty_result)
+        fail_msg: "{{ item.error }} "
+        success_msg: "{{ item.success }}"
+        quiet: true
   when: ansible_distribution == 'RedHat'

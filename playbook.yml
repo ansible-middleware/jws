@@ -1,6 +1,6 @@
 ---
 - name: "Apache Tomcat Common Criteria Validation"
-  hosts: localhost
+  hosts: "all"
   vars:
     tomcat_setup: true
     tomcat_version: 9.0.40

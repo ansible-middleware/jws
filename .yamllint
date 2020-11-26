@@ -1,0 +1,10 @@
+---
+
+extends: default
+
+rules:
+  braces:
+    max-spaces-inside: 1
+    level: error
+  truthy: disable
+  line-length: disable
