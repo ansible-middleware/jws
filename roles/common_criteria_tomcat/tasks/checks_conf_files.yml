@@ -7,7 +7,7 @@
 - name: "Display file stats if requested"
   debug:
     msg: "{{ file.stat }}"
-  when: display_directory_stats
+  when: display_directory_stats|bool
 
 - name: "Check file permissions"
   assert:

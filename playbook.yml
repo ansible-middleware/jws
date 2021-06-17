@@ -1,14 +1,28 @@
 ---
 - name: "Apache Tomcat Common Criteria Validation"
   hosts: "all"
+  become: yes
   vars:
     tomcat_setup: true
-    tomcat_version: 9.0.40
+    jws_version: 5.4.0
     workdir: /opt
+    tomcat_install_java: True
+    tomcat_java_version: 1.8.0
+    tomcat_java_home: /usr/lib/jvm/jre
+    tomcat_java_packages_EL: "java-{{ tomcat_java_version }}-openjdk"
+    tomcat_vault:
+      name: vault.keystore
+      enable: True
+      alias: my_vault
+      storepass: 123456
+    mod_cluster:
+      enable: True
+      ip: 127.0.0.1
+      port: 6666
     tomcat:
       user: tomcat_admin
       group: tomcat
-      home: "{{ lookup('env','CATALINA_HOME') }}"
+      home: /opt/jws-5.4/tomcat
       base: "{{ lookup('env','CATALINA_BASE') }}"
       conf:
         properties: "./conf/catalina.properties"
@@ -21,9 +35,21 @@
           - docs
           - ROOT
           - examples
-      archive_url: "https://downloads.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip"
       shutdown:
-        port: "-1"
+        port: 8005
+      listen:
+        http:
+          port: 8080
+        https:
+          port: 8443
+        ajp:
+          enabled: False
+          address: "::1"
+          port: 8009
+          secretRequired: True
+          secret: "secret"
+
+          
   roles:
     - tomcat
     - common_criteria_tomcat

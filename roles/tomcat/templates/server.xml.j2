@@ -20,9 +20,14 @@
      Documentation at /docs/config/server.html
  -->
 <Server port="{{ tomcat.shutdown.port }}" shutdown="SHUTDOWN">
+  {% if mod_cluster.enable  %}
+  <Listener className="org.jboss.modcluster.container.catalina.standalone.ModClusterListener" connectorPort="{{ tomcat.listen.http.port }}" advertise="false" stickySession="true" stickySessionForce="false" stickySessionRemove="true" proxyList='{{ mod_cluster.ip }}:{{ mod_cluster.port }}'/>
+  {% endif %}
   <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
-  <!-- Security listener. Documentation at /docs/config/listeners.html -->
-  <Listener className="org.apache.catalina.security.SecurityListener" checkedOsUsers="root" minimumUmask="0007"/>
+  <!-- Security listener. Documentation at /docs/config/listeners.html
+  <Listener className="org.apache.catalina.security.SecurityListener" />
+  -->
+  <!--APR library loader. Documentation at /docs/apr.html -->
   <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
   <!-- Prevent memory leaks due to use of particular java/javax APIs-->
   <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
@@ -64,9 +69,10 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <!-- Connector port="8080" protocol="HTTP/1.1"
+    <Connector executor="tomcatThreadPool" 
+               port="{{ tomcat.listen.http.port }}" protocol="HTTP/1.1"
                connectionTimeout="20000"
-	    redirectPort="8443"/ -->
+               redirectPort="{{ tomcat.listen.https.port }}"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -82,16 +88,18 @@
          Either JSSE or OpenSSL style configuration may be used regardless of
          the SSLImplementation selected. JSSE style configuration is used below.
     -->
-    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https"
-               maxThreads="150" SSLEnabled="true" allowTrace="false" secure="true" sslProtocol="TLS"
-               xpoweredBy="false" server="My Server" clientAuth="true" certificateVerification="required"
-               connectionTimeout="6000" maxHttpHeaderSize="8192">
+    
+    <Connector port="{{ tomcat.listen.https.port }}" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true" allowTrace="false"
+               secure="true" xpoweredBy="false" server="My Server"
+               connectionTimeout="6000" maxHttpHeaderSize="8192"
+               >
         <SSLHostConfig>
             <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
                          type="RSA" />
         </SSLHostConfig>
     </Connector>
-    -->
+   
     <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
          This connector uses the APR/native implementation which always uses
          OpenSSL for TLS.
@@ -118,6 +126,21 @@
                port="8009"
                redirectPort="8443" />
     -->
+{% if tomcat.listen.ajp.enabled  %}
+{% if tomcat.listen.ajp.secretRequired  %}
+    <Connector protocol="AJP/1.3"
+               address="{{ tomcat.listen.ajp.address }}"
+               port="{{ tomcat.listen.ajp.port }}"
+               redirectPort="{{ tomcat.listen.https.port }}"
+               secret="{{ tomcat.listen.ajp.secret }}" />
+{% else %}
+    <Connector protocol="AJP/1.3"
+               address="{{ tomcat.listen.ajp.address }}"
+               port="{{ tomcat.listen.ajp.port }}"
+               redirectPort="{{ tomcat.listen.https.port }}"
+               secretRequired="false" />
+{% endif %}
+{% endif %}
 
     <!-- An Engine represents the entry point (within Catalina) that processes
          every request.  The Engine implementation for Tomcat stand alone
@@ -144,10 +167,12 @@
              resources under the key "UserDatabase".  Any edits
              that are performed against this UserDatabase are immediately
              available for use by the Realm.  -->
+        <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+               resourceName="UserDatabase"/>
       </Realm>
 
       <Host name="localhost"  appBase="webapps"
-            unpackWARs="true" autoDeploy="false">
+            unpackWARs="true" autoDeploy="true">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->

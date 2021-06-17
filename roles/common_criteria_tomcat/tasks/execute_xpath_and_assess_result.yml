@@ -8,8 +8,8 @@
 
   - name: "Display XPath if requested"
     debug:
-      msg: "{{ res.stdout }}"
-    when: display_xpath_res
+      msg: "{{ res }}"
+    when: display_xpath_res|bool
 
   - name: "Verify compliance of {{ item.xmlfile }}."
     assert:
@@ -25,14 +25,22 @@
 - block:
     - name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
       command: >
-        xpath {{ item.xmlfile }} {{ item.xpath }}
+        xpath {{ item.xmlfile }} \"{{ item.xpath }}\"
       register: res2
       changed_when: false
+      when: ansible_facts['distribution_major_version'] == "7"
+    
+    - name: "Checks compliance {{ item.xmlfile }} ({{ item.xpath }})"
+      command: >
+        xpath -e \"{{ item.xpath }}\" {{ item.xmlfile }}
+      register: res2
+      changed_when: false
+      when: ansible_facts['distribution_major_version'] == "8"
 
     - name: "Display XPath if requested"
       debug:
         msg: "{{ res2.stdout }}"
-      when: display_xpath_res
+      when: display_xpath_res|bool
 
     - name: "Verify compliance of {{ item.xmlfile }}."
       assert:
