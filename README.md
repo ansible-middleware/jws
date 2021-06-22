@@ -20,19 +20,32 @@ There are two roles in this playbook:
 
 How to use this playbook
 ====
-- Update your inventory, e.g.:
+
+1) Download the requires zipfiles from your Red Hat account:
+
+- Red Hat JBoss Web Server 5.4.0 Application Server (the server itself)
+- Red Hat JBoss Web Server 5.4.0 Application Server for RHEL 8 x86_64 (the native bits)
+
+Replace the dummy files in the role by those zipfiles:
+
+    # ls roles/tomcat/files/*.zip
+    roles/tomcat/files/jws-5.4.0-application-server-RHEL8-x86_64.zip
+    roles/tomcat/files/jws-5.4.0-application-server.zip
+
+
+2) Update your inventory, e.g.:
     ```
         [tomcat]
         192.168.0.1      # Remote user to act on
     ```
-- Update variables in playbook file, the variables are as follow:
+3) Update variables in playbook file, the variables are as follow:
     - jws_version (which version of jws to install)
     - tomcat_install_java (where to install java)
     - tomcat_java_version (which version of java to install)
     - tomcat.listen.http.port and tomcat.listen.https.port (which http/https ports to listen on)
     - tomcat.listen.ajp (Where to use ajp and if yes configure the address, port, where to use a secret etc.)
 
-- If you are using a non root remote user, then set username and enable sudo:
+Note: If you are using a non root remote user, then set username and enable sudo:
     ```
         become: yes
         become_method: sudo
