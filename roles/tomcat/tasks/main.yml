@@ -6,14 +6,22 @@
       - tomcat.home | length > 0
 
 - name: Install {{ tomcat_java_packages_EL }}
-  yum:
-    name: "{{tomcat_java_packages_EL}}"
-    state: present
+  include_tasks: fastpackage.yml
+  vars:
+    package_name: "{{tomcat_java_packages_EL}}"
+  when: tomcat_install_java|bool
+
+
+- name: Install {{ tomcat_java_packages_EL }}
+  include_tasks: fastpackage.yml
+  vars:
+    package_name: "{{tomcat_java_packages_EL}}"
   when: tomcat_install_java|bool
 
 - name: "Install required dependencies"
-  yum:
-    name: "{{ item }}"
+  include_tasks: fastpackage.yml
+  vars:
+    package_name: "{{ item }}"
   loop:
     - zip
     - unzip
@@ -93,13 +101,13 @@
         state: absent
       loop: "{{ tomcat.apps.to_remove }}"
       when: tomcat.apps.to_remove is defined
-    
+
     - name: Copy tomcat vault file from control node to remote
       copy:
         src: "{{ tomcat_vault.name }}"
         dest: "{{ tomcat.home }}/"
       when: tomcat_vault.enable
-    
+
     - name: Initialize tomcat vault
       command:
         cmd: "{{ tomcat.home }}/bin/tomcat-vault.sh --keystore {{ tomcat.home }}/vault.keystore --keystore-password {{ tomcat_vault.storepass }} --alias {{ tomcat_vault.alias }} --enc-dir {{ tomcat.home }} --iteration 44 --salt 1234abcd -g {{ tomcat.home }}/conf/vault.properties"
