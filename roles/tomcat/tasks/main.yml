@@ -47,6 +47,7 @@
       unarchive:
         src: jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip
         dest: /opt/
+        creates: "{{ tomcat.home }}/lib/libtcnative-1.so"
 
     - name: "Ensures {{ tomcat.home }}/{{ item }}/ has appropriate privileges."
       file:
