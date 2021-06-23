@@ -19,37 +19,7 @@
       enable: True
       ip: 127.0.0.1
       port: 6666
-    tomcat:
-      user: tomcat_admin
-      group: tomcat
-      home: /opt/jws-5.4/tomcat
-      base: "{{ lookup('env','CATALINA_BASE') }}"
-      conf:
-        properties: "./conf/catalina.properties"
-        policy: "./conf/catalina.policy"
-        logging: "./conf/logging.properties"
-        context: "./conf/context.xml"
-        server: "./conf/server.xml"
-      apps:
-        to_remove:
-          - docs
-          - ROOT
-          - examples
-      shutdown:
-        port: 8005
-      listen:
-        http:
-          port: 8080
-        https:
-          port: 8443
-        ajp:
-          enabled: False
-          address: "::1"
-          port: 8009
-          secretRequired: True
-          secret: "secret"
-
-
-  roles:
+ 
+ roles:
     - tomcat
   tasks:
