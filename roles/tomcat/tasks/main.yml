@@ -94,15 +94,14 @@
         state: absent
       loop: "{{ tomcat.apps.to_remove }}"
       when: tomcat.apps.to_remove is defined
-    
-    - name: Copy tomcat vault file from control node to remote
-      copy:
-        src: "{{ tomcat_vault.name }}"
-        dest: "{{ tomcat.home }}/"
-      when: tomcat_vault.enable
-    
-    - name: Initialize tomcat vault
-      command:
-        cmd: "{{ tomcat.home }}/bin/tomcat-vault.sh --keystore {{ tomcat.home }}/vault.keystore --keystore-password {{ tomcat_vault.storepass }} --alias {{ tomcat_vault.alias }} --enc-dir {{ tomcat.home }} --iteration 44 --salt 1234abcd -g {{ tomcat.home }}/conf/vault.properties"
+    - block:
+      - name: Copy tomcat vault file from control node to remote
+        copy:
+          src: "{{ tomcat_vault.name }}"
+          dest: "{{ tomcat.home }}/"
 
+      - name: Initialize tomcat vault
+        command:
+          cmd: "{{ tomcat.home }}/bin/tomcat-vault.sh --keystore {{ tomcat.home }}/vault.keystore --keystore-password {{ tomcat_vault.storepass }} --alias {{ tomcat_vault.alias }} --enc-dir {{ tomcat.home }} --iteration 44 --salt 1234abcd -g {{ tomcat.home }}/conf/vault.properties"
+      when: tomcat_vault.enable
   when: tomcat_setup
