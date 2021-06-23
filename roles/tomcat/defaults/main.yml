@@ -1,0 +1,28 @@
+---
+tomcat_apps_to_remove: "{{ override_tomcat_apps_to_remove | default('docs,ROOT,examples') }}"
+tomcat:
+  user: "{{ override_tomcat_user | default('tomcat_admin') }}"
+  group: "{{ override_tomcat_group | default('tomcat') }}"
+  home: "{{ tomcat_home | default('/opt/jws-5.4/tomcat') }}"
+  base: "{{ tomcat_catalina_base | default(lookup('env','CATALINA_BASE')) }}"
+  conf:
+    properties: "{{ override_tomcat_conf_properties | default('./conf/catalina.properties') }}"
+    policy: "{{ override_tomcat_conf_policy | default('./conf/catalina.policy') }}"
+    logging: "{{ override_tomcat_conf_loggging | default('./conf/logging.properties') }}"
+    context: "{{ override_tomcat_conf_context | default('./conf/context.xml') }}"
+    server: "{{ override_tomcat_conf_server | default('./conf/server.xml') }}"
+  apps:
+    to_remove: "{{ tomcat_apps_to_remove.split(',') }}"
+  shutdown:
+    port: "{{ override_tomcat_shutdown_port | default('8005') }}"
+  listen:
+    http:
+      port: "{{ override_tomcat_listen_http_port | default('8080') }}"
+    https:
+      port: "{{ override_tomcat_listen_https_port | default('8443') }}"
+    ajp:
+      enabled: "{{ override_tomcat_listen_ajp_enabled | default('False') }}"
+      address: "{{ override_tomcat_listen_ajp_address | default('::1') }}"
+      port: "{{ override_tomcat_listen_ajp_port | default('8009') }}"
+      secretRequired: "{{ override_tomcat_listen_ajp_secretRequired | default('True') }}"
+      secret: "{{ override_tomcat_listen_ajp_secret | default('secret') }}"
