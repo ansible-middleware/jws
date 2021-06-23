@@ -49,8 +49,7 @@
           secretRequired: True
           secret: "secret"
 
-          
+
   roles:
     - tomcat
-    - common_criteria_tomcat
   tasks:
