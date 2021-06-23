@@ -6,10 +6,7 @@
     tomcat_setup: true
     jws_version: 5.4.0
     workdir: /opt
-    tomcat_install_java: True
     tomcat_java_version: 1.8.0
-    tomcat_java_home: /usr/lib/jvm/jre
-    tomcat_java_packages_EL: "java-{{ tomcat_java_version }}-openjdk"
     tomcat_vault:
       name: vault.keystore
       enable: True
@@ -19,7 +16,7 @@
       enable: True
       ip: 127.0.0.1
       port: 6666
- 
+
   roles:
     - tomcat
   tasks:
