@@ -9,11 +9,11 @@
     tomcat_java_version: 1.8.0
     tomcat_vault:
       name: vault.keystore
-      enable: True
+      enable: "{{ override_tomcat_vault_enable | default('True') }}"
       alias: my_vault
       storepass: 123456
     mod_cluster:
-      enable: True
+      enable: "{{ override_tomcat_modcluster_enable | default('True') }}"
       ip: 127.0.0.1
       port: 6666
 
