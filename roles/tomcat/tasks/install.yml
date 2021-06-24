@@ -37,15 +37,47 @@
         quiet: true
         fail_msg: "No RPM package name provided."
 
+    - assert:
+        that:
+           - ansible_os_family == "RedHat"
+        quiet: true
+        fail_msg: "RPM install can only work on RedHat based distribution."
+      when:
+        - ansible_os_family is defined
+
+    - assert:
+        that:
+          - tomcat.home is defined
+          - tomcat.home == "/opt/rh/jws5/root/usr/share/tomcat/"
+        quiet: true
+        fail_msg: "Tomcat HOME does not match the one provided by RPM."
+
     - name: "Install {{ tomcat.rpm }}"
-      command: "yum group install -y {{ tomcat.rpm }}"
+      command:
+        cmd: "yum group install -y {{ tomcat.rpm }}"
+        creates: "{{ tomcat.home }}"
+
+    - block:
+      - name: "Enable tomcat service"
+        service:
+          name: jws5-tomcat.service
+          enabled: yes
+
+      - name: "start tomcat service"
+        service:
+          name: jws5-tomcat.service
+          state: started
+      when:
+        - tomcat.service is defined
+        - tomcat.service.enabled is defined
+        - tomcat.service.enabled
   when:
     - tomcat.install_method == 'rpm'
 
 - block:
     - assert:
         that:
-          - tomcat.install_method == 'local_zipfiles'
+          - tomcat.install_method == 'local_zipfiles' or tomcat.install_method == 'rpm'
         quiet: true
         fail_msg: "{{ tomcat.install_method }} is not yet supported"
   when:
