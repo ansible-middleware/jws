@@ -32,20 +32,9 @@
         path: "{{ workdir }}"
         state: directory
 
-    - name: "Get JWS-{{ jws_version }} from control node files and setup on remote"
-      unarchive:
-        src: jws-{{ jws_version }}-application-server.zip
-        dest: "{{ workdir }}"
-        owner: "{{ tomcat.user }}"
-        group: "{{ tomcat.group }}"
-        mode: 0750
-        creates: "{{ tomcat.home }}"
-
-    - name: "Get JWS-{{ jws_version }} for RHEL{{ ansible_facts['distribution_major_version'] }} from control node files and setup on remote"
-      unarchive:
-        src: jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip
-        dest: "{{ workdir }}"
-        creates: "{{ tomcat.home }}/lib/libtcnative-1.so"
+    - include_tasks: install.yml
+      when:
+        - tomcat.install_method is defined
 
     - name: "Ensures {{ tomcat.home }}/{{ item }}/ has appropriate privileges."
       file:

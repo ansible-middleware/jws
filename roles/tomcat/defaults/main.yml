@@ -1,6 +1,8 @@
 ---
 tomcat_apps_to_remove: "{{ override_tomcat_apps_to_remove | default('docs,ROOT,examples') }}"
 tomcat:
+  supported_install_method: "local_zipfiles,rhn_zipfiles,rpms"
+  install_method: "{{ tomcat_install_method | default('local_zipfiles') }}"
   user: "{{ override_tomcat_user | default('tomcat_admin') }}"
   group: "{{ override_tomcat_group | default('tomcat') }}"
   home: "{{ tomcat_home | default('/opt/jws-5.4/tomcat') }}"
