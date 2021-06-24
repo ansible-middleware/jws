@@ -11,13 +11,6 @@
     package_name: "{{tomcat_java_packages_EL}}"
   when: tomcat_install_java|bool
 
-
-- name: Install {{ tomcat_java_packages_EL }}
-  include_tasks: fastpackage.yml
-  vars:
-    package_name: "{{tomcat_java_packages_EL}}"
-  when: tomcat_install_java|bool
-
 - name: "Install required dependencies"
   include_tasks: fastpackage.yml
   vars:
