@@ -77,7 +77,34 @@
 - block:
     - assert:
         that:
-          - tomcat.install_method == 'local_zipfiles' or tomcat.install_method == 'rpm'
+          - tomcat.rhn.server_zipfile_url is defined
+          - tomcat.rhn.server_zipfile_url | length > 0
+        quiet: true
+        fail_msg: "You need to provide"
+
+    - name: "Install JWS with zipfile from RHN: {{ tomcat.rhn.server_zipfile_url }}"
+      redhat_csp_download:
+        url: "{{ tomcat.rhn.server_zipfile_url }}"
+        dest: "{{  tomcat.home }}"
+        username: "{{ tomcat.rhn.username }}"
+        password: "{{ tomcat.rhn.password }}"
+
+    - name: "Install JWS native dependencies with zipfile from RHN: {{ tomcat.rhn.native_zipfile_url }}"
+      redhat_csp_download:
+        url: "{{ tomcat.rhn.native_zipfile_url }}"
+        dest: "{{  tomcat.home }}"
+        username: "{{ tomcat.rhn.username }}"
+        password: "{{ tomcat.rhn.password }}"
+      when:
+        - native_zipfile_url is defined
+        - native_zipfile_url | length > 0
+  when:
+    - tomcat.install_method == 'rhn_zipfiles'
+
+- block:
+    - assert:
+        that:
+          - tomcat.install_method == 'local_zipfiles' or tomcat.install_method == 'rpm' or tomcat_install_method == 'rhn_zipfiles'
         quiet: true
         fail_msg: "{{ tomcat.install_method }} is not yet supported"
   when:

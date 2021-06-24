@@ -28,6 +28,13 @@ three options:
 - rpm
 - using your RHN credentials to retrieve the JWS zipfiles provided by Red Hat.
 
+Prerequisite
+----
+
+You'll need to install the role sabre1041.redhat-csp-download with ansible-galaxy in order to use this install method:
+
+    $ ansible-galaxy install sabre1041.redhat-csp-download
+
 Using local zipfiles
 ----
 
@@ -63,22 +70,17 @@ Change the default install method to RPM and provide the appropriate Tomcat HOME
 Using RHN
 ---
 
-You'll need to install the role sabre1041.redhat-csp-download with ansible-galaxy in order to use this install method:
 
-    $ ansible-galaxy install sabre1041.redhat-csp-download
-
-Then use the install method RHN zipfiles:
+To use the install method RHN zipfiles, simply set the method :
 
     vars:
        ...
        tomcat_install_method: rhn_zipfiles
 
-Provided your RHN credentials (as argument or in file):
+And provide your RHN credentials (as argument or in file):
 
     rhn_username: alice@wonderland.org
     rhn_password: eatme
-
-THIS METHOD IS NOT IMPLEMENTED YET
 
 Running the play books
 ===
