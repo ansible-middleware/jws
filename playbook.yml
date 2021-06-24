@@ -1,5 +1,5 @@
 ---
-- name: "Apache Tomcat Common Criteria Validation"
+- name: "Red Hat JBoss Web Server installation and configuration"
   hosts: "all"
   become: yes
   vars:
