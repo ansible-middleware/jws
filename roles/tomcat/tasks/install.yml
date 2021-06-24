@@ -13,7 +13,7 @@
           - native_zipfile is defined
           - native_zipfile != ""
         quiet: true
-        fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' and 'native_zipfile' needs to be defined"
+        fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' and 'native_zipfile' needs to be defined (or at least jws_version)"
 
     - name: "Install tomcat and required binaries from local zipfiles (install method: {{ tomcat.install_method }}"
       unarchive:
