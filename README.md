@@ -12,11 +12,6 @@ There are two roles in this playbook:
     - Downloads tomcat and install
     - Makes sure that tomcat belongs to the tomcat user and group
     - Deploys server.xml, web.xml and context.xml
-- The common_criteria_tomcat role which:
-    - Installs XML-XPath
-    - Checks that root directories are appropriately defined
-    - Checks that file's owner, group and mode are in compliance
-    - Checks that the server's configuration is in compliance with the tomcat common criteria
 
 How to use this playbook
 ====

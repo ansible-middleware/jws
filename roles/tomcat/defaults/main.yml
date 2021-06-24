@@ -34,3 +34,15 @@ tomcat:
       port: "{{ override_tomcat_listen_ajp_port | default('8009') }}"
       secretRequired: "{{ override_tomcat_listen_ajp_secretRequired | default('True') }}"
       secret: "{{ override_tomcat_listen_ajp_secret | default('secret') }}"
+  vault:
+    name: "{{ override_tomcat_vault_name | default('vault.keystore') }}"
+    enable: "{{ override_tomcat_vault_enable | default('True') }}"
+    alias: "{{ override_tomcat_vault_alias | default('my_vault') }}"
+    storepass: "{{ override_tomcat_vault_storepass | default('123456') }}"
+    iteration: "{{ override_tomcat_vault_iteration | default('44') }}"
+    salt: "{{ override_tomcat_vault_salt  | default('1234abcd') }}"
+    properties: "{{ override_tomcat_vault_properties | default('/conf/vault.properties') }}"
+  mod_cluster:
+    enable: "{{ override_tomcat_modcluster_enable | default('True') }}"
+    ip: "{{ override_tomcat_modcluster_ip | default('127.0.0.1') }}"
+    port: "{{ override_tomcat_modcluster_port | default('6666') }}"
