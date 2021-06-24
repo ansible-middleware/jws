@@ -21,17 +21,69 @@ There are two roles in this playbook:
 How to use this playbook
 ====
 
-1) Download the requires zipfiles from your Red Hat account:
+The use of the playbook will vary on the installation method you choose. There is currently
+three options:
+
+- local zipfile
+- rpm
+- using your RHN credentials to retrieve the JWS zipfiles provided by Red Hat.
+
+Using local zipfiles
+----
+
+Download the requires zipfiles from your Red Hat account:
 
 - Red Hat JBoss Web Server 5.4.0 Application Server (the server itself)
 - Red Hat JBoss Web Server 5.4.0 Application Server for RHEL 8 x86_64 (the native bits)
 
-Replace the dummy files in the role by those zipfiles:
+Provides the path to those zipfiles:
 
-    # ls roles/tomcat/files/*.zip
-    roles/tomcat/files/jws-5.4.0-application-server-RHEL8-x86_64.zip
-    roles/tomcat/files/jws-5.4.0-application-server.zip
+    vars:
+      ...
+      tomcat_zipfile: jws-5.4.0-application-server.zip
+      native_zipfile: jws-5.4.0-application-server-RHEL8-x86_64.zip
 
+Note that if you respect the naming convention above for the file name, you can just provide the JWS version instead of those two paths:
+
+    vars:
+      ...
+      jws_version: 5.4.0
+
+
+Using RPM
+---
+
+Change the default install method to RPM and provide the appropriate Tomcat HOME in the playbooks:
+
+    vars:
+      ...
+      tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
+      tomcat_install_method: rpm
+
+Using RHN
+---
+
+You'll need to install the role sabre1041.redhat-csp-download with ansible-galaxy in order to use this install method:
+
+    $ ansible-galaxy install sabre1041.redhat-csp-download
+
+Then use the install method RHN zipfiles:
+
+    vars:
+       ...
+       tomcat_install_method: rhn_zipfiles
+
+Provided your RHN credentials (as argument or in file):
+
+    rhn_username: alice@wonderland.org
+    rhn_password: eatme
+
+THIS METHOD IS NOT IMPLEMENTED YET
+
+Running the play books
+===
+
+1) Configure the install method as described above!
 
 2) Update your inventory, e.g.:
     ```
@@ -55,12 +107,12 @@ Note: If you are using a non root remote user, then set username and enable sudo
 Mod Cluster Listener
 ====
 ## What does the mod cluster listener do:
-Allows communication between Apache Tomcat and the Apache HTTP Server’s mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the [HTTP Connectors and Load Balancing Guide](https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/ "HTTP Connectors and Load Balancing Guide").  
+Allows communication between Apache Tomcat and the Apache HTTP Server’s mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the [HTTP Connectors and Load Balancing Guide](https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/ "HTTP Connectors and Load Balancing Guide").
 
 
 ## How to enable mod cluster listener:
 
-All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:  
+All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:
 - mod_cluster.enable (Set to True to enable the listener)
 - mod_cluster.ip (Set the ip of the mod_cluster instance)
 - mod_cluster.port (Set the port of the mod_cluster instance)

@@ -4,7 +4,9 @@
   become: yes
   vars:
     tomcat_setup: true
-    jws_version: 5.4.0
+    #uncomment the two next line if you want to install using RPM on a RHEL system.
+    #tomcat_install_method: rpm
+    #tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
     workdir: /opt
     tomcat_java_version: 1.8.0
     tomcat_vault:
