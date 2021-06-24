@@ -32,6 +32,19 @@
 - block:
     - assert:
         that:
+          - tomcat.rpm is defined
+          - tomcat.rpm != ""
+        quiet: true
+        fail_msg: "No RPM package name provided."
+
+    - name: "Install {{ tomcat.rpm }}"
+      command: "yum group install -y {{ tomcat.rpm }}"
+  when:
+    - tomcat.install_method == 'rpm'
+
+- block:
+    - assert:
+        that:
           - tomcat.install_method == 'local_zipfiles'
         quiet: true
         fail_msg: "{{ tomcat.install_method }} is not yet supported"
