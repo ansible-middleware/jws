@@ -1,111 +1,18 @@
 ---
-- block:
-    - set_fact:
-        tomcat_zipfile: "jws-{{ jws_version }}-application-server.zip"
-        native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
-      when:
-        - jws_version is defined
-
-    - assert:
-        that:
-          - tomcat_zipfile is defined
-          - tomcat_zipfile != ""
-          - native_zipfile is defined
-          - native_zipfile != ""
-        quiet: true
-        fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' and 'native_zipfile' needs to be defined (or at least jws_version)"
-
-    - name: "Install tomcat and required binaries from local zipfiles (install method: {{ tomcat.install_method }}"
-      unarchive:
-        src: "{{ item.src }}"
-        dest: "{{ workdir }}"
-        owner: "{{ tomcat.user }}"
-        group: "{{ tomcat.group }}"
-        mode: 0750
-        creates: "{{ item.creates }}"
-      loop:
-        - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
-        - { src: "{{ native_zipfile }}", creates: "{{ tomcat.home }}/lib/libtcnative-1.so" }
+- include_tasks: install/zipfiles.yml
   when:
     - tomcat.install_method == 'local_zipfiles'
 
-- block:
-    - assert:
-        that:
-          - tomcat.rpm is defined
-          - tomcat.rpm != ""
-        quiet: true
-        fail_msg: "No RPM package name provided."
-
-    - assert:
-        that:
-           - ansible_os_family == "RedHat"
-        quiet: true
-        fail_msg: "RPM install can only work on RedHat based distribution."
-      when:
-        - ansible_os_family is defined
-
-    - assert:
-        that:
-          - tomcat.home is defined
-          - tomcat.home == "/opt/rh/jws5/root/usr/share/tomcat/"
-        quiet: true
-        fail_msg: "Tomcat HOME does not match the one provided by RPM."
-
-    - name: "Install {{ tomcat.rpm }}"
-      command:
-        cmd: "yum group install -y {{ tomcat.rpm }}"
-        creates: "{{ tomcat.home }}"
-
-    - block:
-      - name: "Enable tomcat service"
-        service:
-          name: jws5-tomcat.service
-          enabled: yes
-
-      - name: "start tomcat service"
-        service:
-          name: jws5-tomcat.service
-          state: started
-      when:
-        - tomcat.service is defined
-        - tomcat.service.enabled is defined
-        - tomcat.service.enabled
+- include_tasks: install/rpm.yml
   when:
     - tomcat.install_method == 'rpm'
 
-- block:
-    - assert:
-        that:
-          - tomcat.rhn.server_zipfile_url is defined
-          - tomcat.rhn.server_zipfile_url | length > 0
-        quiet: true
-        fail_msg: "You need to provide"
-
-    - name: "Install JWS with zipfile from RHN: {{ tomcat.rhn.server_zipfile_url }}"
-      redhat_csp_download:
-        url: "{{ tomcat.rhn.server_zipfile_url }}"
-        dest: "{{  tomcat.home }}"
-        username: "{{ tomcat.rhn.username }}"
-        password: "{{ tomcat.rhn.password }}"
-
-    - name: "Install JWS native dependencies with zipfile from RHN: {{ tomcat.rhn.native_zipfile_url }}"
-      redhat_csp_download:
-        url: "{{ tomcat.rhn.native_zipfile_url }}"
-        dest: "{{  tomcat.home }}"
-        username: "{{ tomcat.rhn.username }}"
-        password: "{{ tomcat.rhn.password }}"
-      when:
-        - native_zipfile_url is defined
-        - native_zipfile_url | length > 0
+- include_tasks: install/rhn.yml
   when:
     - tomcat.install_method == 'rhn_zipfiles'
 
-- block:
-    - assert:
-        that:
-          - tomcat.install_method == 'local_zipfiles' or tomcat.install_method == 'rpm' or tomcat_install_method == 'rhn_zipfiles'
-        quiet: true
-        fail_msg: "{{ tomcat.install_method }} is not yet supported"
-  when:
-    - tomcat.install_method != 'local_zipfiles'
+- assert:
+    that:
+      - tomcat.install_method == 'local_zipfiles' or tomcat.install_method == 'rpm' or tomcat_install_method == 'rhn_zipfiles'
+    quiet: true
+    fail_msg: "{{ tomcat.install_method }} does not exist or is not supported. Supported methods are: {{ tomcat.supported_install_method }}"

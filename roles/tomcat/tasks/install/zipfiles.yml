@@ -1,0 +1,27 @@
+---
+- set_fact:
+    tomcat_zipfile: "jws-{{ jws_version }}-application-server.zip"
+    native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
+  when:
+    - jws_version is defined
+
+- assert:
+    that:
+      - tomcat_zipfile is defined
+      - tomcat_zipfile != ""
+      - native_zipfile is defined
+      - native_zipfile != ""
+    quiet: true
+    fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' and 'native_zipfile' needs to be defined (or at least jws_version)"
+
+- name: "Install tomcat and required binaries from local zipfiles (install method: {{ tomcat.install_method }}"
+  unarchive:
+    src: "{{ item.src }}"
+    dest: "{{ workdir }}"
+    owner: "{{ tomcat.user }}"
+    group: "{{ tomcat.group }}"
+    mode: 0750
+    creates: "{{ item.creates }}"
+  loop:
+    - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
+    - { src: "{{ native_zipfile }}", creates: "{{ tomcat.home }}/lib/libtcnative-1.so" }
