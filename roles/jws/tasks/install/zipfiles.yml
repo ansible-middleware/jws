@@ -9,10 +9,23 @@
     that:
       - tomcat_zipfile is defined
       - tomcat_zipfile != ""
-      - native_zipfile is defined
-      - native_zipfile != ""
     quiet: true
-    fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' and 'native_zipfile' needs to be defined (or at least jws_version)"
+    fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' needs to be defined (or at least jws_version)"
+
+- set_fact:
+    zipfiles:
+    - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
+
+- block:
+    - set_fact:
+        native_zipfiles:
+          - { src: "{{ native_zipfile }}", creates: "{{ tomcat.home }}/lib/libtcnative-1.so" }
+
+    - set_fact:
+        zipfiles: "{{ zipfiles }} + {{ native_zipfiles }}"
+  when:
+    - native_zipfile is defined
+    - native_zipfile != ""
 
 - name: "Install tomcat and required binaries from local zipfiles (install method: {{ tomcat.install_method }}"
   unarchive:
@@ -22,6 +35,4 @@
     group: "{{ tomcat.group }}"
     mode: 0750
     creates: "{{ item.creates }}"
-  loop:
-    - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
-    - { src: "{{ native_zipfile }}", creates: "{{ tomcat.home }}/lib/libtcnative-1.so" }
+  loop: "{{ zipfiles }}"

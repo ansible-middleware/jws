@@ -4,20 +4,31 @@
   become: yes
   vars:
     tomcat_setup: true
+    tomcat_version: 9.0.48
+    tomcat_download_url: https://downloads.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
+    # note that workdir is only used when installing from zipfiles
+    workdir: /opt
+    tomcat_zipfile: "{{ workdir }}/tomcat.zip"
+    tomcat_home: "{{ workdir }}/apache-tomcat-{{ tomcat_version }}"
     # comment the next line if you another install method
-    jws_version: 5.4.0
+    # installed from local zipfiles downloaded from RHN (JWS)
+    # jws_version: 5.4.0
     # uncomment the two next line if you want to install using RPM on a RHEL system.
+    #
     #tomcat_install_method: rpm
     #tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
     #
     # uncomment the line below if you want to install fetching zipfiles from RHN directly
     #tomcat_install_method: rhn_zipfiles
-    # note that workdir is only used when installing from zipfiles
-    workdir: /opt
     tomcat_java_version: 1.8.0
   collections:
     - middleware_automation.jws
   roles:
     - jws
     - sabre1041.redhat-csp-download
-  tasks:
+  pre_tasks:
+    - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_url }}."
+      get_url:
+        url: "{{ tomcat_download_url }}"
+        dest: "{{ tomcat_zipfile }}"
+
