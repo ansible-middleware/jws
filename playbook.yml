@@ -15,7 +15,9 @@
     # note that workdir is only used when installing from zipfiles
     workdir: /opt
     tomcat_java_version: 1.8.0
+  collections:
+    - middleware_automation.jws
   roles:
-    - tomcat
+    - jws
     - sabre1041.redhat-csp-download
   tasks:
