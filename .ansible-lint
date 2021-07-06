@@ -1,4 +1,6 @@
 ---
-
 skip_list:
   - 204
+warn_list:
+  - unnamed-task
+  - command-instead-of-module
