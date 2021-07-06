@@ -27,7 +27,7 @@
     - jws
     - sabre1041.redhat-csp-download
   pre_tasks:
-    - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_url }}."
+    - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:
         url: "{{ tomcat_download_url }}"
         dest: "{{ tomcat_zipfile }}"
