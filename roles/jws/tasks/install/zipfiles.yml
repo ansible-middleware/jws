@@ -29,6 +29,7 @@
 
 - name: "Install tomcat and required binaries from local zipfiles (install method: {{ tomcat.install_method }}"
   unarchive:
+    remote_src: yes
     src: "{{ item.src }}"
     dest: "{{ workdir }}"
     owner: "{{ tomcat.user }}"
