@@ -5,15 +5,15 @@
     quiet: true
 
 - block:
-  - name: "Test if package {{ package_name }} is already installed"
-    command: rpm -q {{ package_name }}
-    args:
-      warn: no
-    register: rpm_info
-    changed_when: rpm_info.failed
+    - name: "Test if package {{ package_name }} is already installed"
+      command: rpm -q {{ package_name }}
+      args:
+        warn: no
+      register: rpm_info
+      changed_when: rpm_info.failed
   rescue:
-  - name: "If package {{ package_name }} is missing, install package using yum."
-    yum:
-      name: "{{ package_name }}"
-      state: installed
-    when: rpm_info.failed
+    - name: "If package {{ package_name }} is missing, install package using yum."
+      yum:
+        name: "{{ package_name }}"
+        state: installed
+      when: rpm_info.failed

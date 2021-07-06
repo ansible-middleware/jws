@@ -8,7 +8,7 @@
 
 - assert:
     that:
-       - ansible_os_family == "RedHat"
+      - ansible_os_family == "RedHat"
     quiet: true
     fail_msg: "RPM install can only work on RedHat based distribution."
   when:
@@ -27,15 +27,15 @@
     creates: "{{ tomcat.home }}"
 
 - block:
-  - name: "Enable tomcat service"
-    service:
-      name: jws5-tomcat.service
-      enabled: yes
+    - name: "Enable tomcat service"
+      service:
+        name: jws5-tomcat.service
+        enabled: yes
 
-  - name: "start tomcat service"
-    service:
-      name: jws5-tomcat.service
-      state: started
+    - name: "start tomcat service"
+      service:
+        name: jws5-tomcat.service
+        state: started
   when:
     - tomcat.service is defined
     - tomcat.service.enabled is defined

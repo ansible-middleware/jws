@@ -14,7 +14,7 @@
 
 - set_fact:
     zipfiles:
-    - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
+      - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
 
 - block:
     - set_fact:
