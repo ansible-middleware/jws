@@ -1,0 +1,67 @@
+# This will be loaded by systemd as an environment file,
+# so please keep the syntax. For shell expansion support
+# place your custom files as /etc/opt/rh/scls/jws5/tomcat/conf.d/*.conf.
+#
+# There are 2 "classes" of startup behavior in this package.
+# The old one, the default service named jws5-tomcat.service.
+# The new named instances are called jws5-tomcat@instance.service.
+#
+# Use this file to change default values for all services.
+# Change the service specific ones to affect only one service.
+# For jws5-tomcat.service it's /etc/opt/rh/scls/jws5/sysconfig/tomcat, for
+# jws5-tomcat@instance it's /etc/opt/rh/scls/jws5/sysconfig/tomcat@instance.
+
+# This variable is used to figure out if config is loaded or not.
+TOMCAT_CFG_LOADED="1"
+
+# Where your java installation lives
+#JAVA_HOME="/usr/lib/jvm/java"
+
+# Where your tomcat installation lives
+CATALINA_BASE="{{ tomcat.home }}"
+CATALINA_HOME="{{ tomcat.home }}"
+{% if tomcat.tmpdir is defined %}
+CATALINA_TMPDIR="{{ tomcat.tmpdir }}"
+{% endif %}
+# You can pass some parameters to java here if you wish to
+#JAVA_OPTS="-Xminf0.1 -Xmaxf0.3"
+
+# You can change your tomcat locale here
+#LANG="en_US"
+
+# Run tomcat under the Java Security Manager
+SECURITY_MANAGER="false"
+
+# DEPRECATED VARIABLES
+# 
+# TOMCAT_USER has been deprecated. To update the tomcat process owner,
+# please see User in jws5-tomcat.service.
+#
+# TOMCAT_GROUP has been deprecated. To update the tomcat process group,
+# please see Group in jws5-tomcat.service.
+#
+# SHUTDOWN_WAIT has been deprecated. To change the shutdown wait time, set
+# TimeoutStopSec in jws5-tomcat.service.
+#
+# SHUTDOWN_VERBOSE has been deprecated. There is no replacement for this behavior.
+#
+# CATALINA_PID has been deprecated. A replacement for this behavior is to set
+# PIDFile in jws5-tomcat.service.
+#
+# CONNECTOR_PORT has been deprecated. There is no replacement for this behavior.
+# Set init script output file
+#
+# TOMCAT_LOG has been deprecated. Output from start/stop/status operations are
+# logged to the system's journal.
+#
+# LOGGING_CONFIG has been deprecated. To update the logging properties in use, use:
+# LOGGING_PROPERTIES="${CATALINA_HOME}/lib/log4j.properties"
+
+# If you wish to further customize your tomcat environment,
+# put your own definitions here
+# (i.e. LD_LIBRARY_PATH for some jdbc drivers)
+
+# Add the JAVA 9 specific start-up parameters required by Tomcat
+{% if tomcat.jdk is defined and tomcat.jdk.options is defined %}
+JDK_JAVA_OPTIONS="{{ tomcat.jdk.options }}"
+{% endif %}

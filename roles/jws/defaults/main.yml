@@ -46,3 +46,10 @@ tomcat:
     enable: "{{ override_tomcat_modcluster_enable | default('False') }}"
     ip: "{{ override_tomcat_modcluster_ip | default('127.0.0.1') }}"
     port: "{{ override_tomcat_modcluster_port | default('6666') }}"
+  service:
+    enabled: "{{ tomcat_systemd_enabled | default('False') }}"
+    name: "{{ tomcat_service_name | default('jws5-tomcat.service') }}"
+    conf: "{{ tomcat_home }}/conf/tomcat.conf"
+    script: "{{ tomcat_home }}/bin/systemd-service.sh"
+    systemd: "{{ override_tomcat_service_systemd | default('/usr/lib/systemd/system/tomcat.service') }}"
+    pidfile: "{{ tomcat_home }}/tomcat.pidfile"
