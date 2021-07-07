@@ -7,9 +7,11 @@
     tomcat_version: 9.0.50
     tomcat_download_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
     # note that workdir is only used when installing from zipfiles
-    workdir: /opt
-    tomcat_zipfile: "{{ workdir }}/tomcat.zip"
-    tomcat_home: "{{ workdir }}/apache-tomcat-{{ tomcat_version }}"
+    tomcat_install_dir: /opt
+    tomcat_zipfile: "{{ tomcat_install_dir }}/tomcat.zip"
+    tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+    # uncomment to also start tomcat as a service under Systemd
+    # tomcat_systemd_enabled: True
     tomcat_service_name: tomcat
     # comment the next line if you another install method
     # installed from local zipfiles downloaded from RHN (JWS)
@@ -21,9 +23,13 @@
     #
     # uncomment the line below if you want to install fetching zipfiles from RHN directly
     # tomcat_install_method: rhn_zipfiles
+    # tomcat_home: "{{ tomcat_install_dir }}/jws"
+    # install java using RPM:
     tomcat_java_version: 1.8.0
   collections:
     - middleware_automation.redhat-csp-download
+  roles:
+    - jws
   pre_tasks:
     - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:
