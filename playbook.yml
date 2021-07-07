@@ -23,10 +23,7 @@
     # tomcat_install_method: rhn_zipfiles
     tomcat_java_version: 1.8.0
   collections:
-    - middleware_automation.jws
-  roles:
-    - jws
-    - sabre1041.redhat-csp-download
+    - middleware_automation.redhat-csp-download
   pre_tasks:
     - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:

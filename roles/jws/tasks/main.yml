@@ -27,9 +27,9 @@
         groups: "{{ tomcat.group }}"
         comment: "User for Apache Tomcat"
 
-    - name: "Ensure install dir is created: {{ workdir }}"
+    - name: "Ensure install dir is created: {{ tomcat_install_dir }}"
       file:
-        path: "{{ workdir }}"
+        path: "{{ tomcat_install_dir }}"
         state: directory
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
