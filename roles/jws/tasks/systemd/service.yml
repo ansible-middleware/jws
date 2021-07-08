@@ -1,0 +1,15 @@
+---
+- assert:
+    that:
+      - tomcat.service.name is defined
+    quiet: true
+
+- name: "Enable tomcat service"
+  service:
+    name: "{{ tomcat.service.name }}"
+    enabled: yes
+
+- name: "start tomcat service"
+  service:
+    name: "{{ tomcat.service.name }}"
+    state: started

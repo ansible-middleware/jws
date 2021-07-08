@@ -10,6 +10,7 @@
     workdir: /opt
     tomcat_zipfile: "{{ workdir }}/tomcat.zip"
     tomcat_home: "{{ workdir }}/apache-tomcat-{{ tomcat_version }}"
+    tomcat_service_name: tomcat
     # comment the next line if you another install method
     # installed from local zipfiles downloaded from RHN (JWS)
     # jws_version: 5.4.0
