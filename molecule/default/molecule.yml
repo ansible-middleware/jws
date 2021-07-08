@@ -1,13 +1,16 @@
 ---
 dependency:
   name: galaxy
+  options:
+    role-file: requirements.yml
+    requirements-file: collections.yml
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint .
-  flake8
-  ansible-lint --force-color
+# lint: |
+#   set -e
+#   yamllint .
+#   flake8
+#   ansible-lint --force-color
 platforms:
   - name: instance
     image: docker.io/centos:7
@@ -16,7 +19,7 @@ provisioner:
   playbooks:
     converge: ../../playbook.yml
   env:
-    CATALINA_HOME: "/opt/apache-tomcat-9.0.40"
+    CATALINA_HOME: "/opt/apache-tomcat-9.0.50"
   inventory:
     host_vars:
       localhost:

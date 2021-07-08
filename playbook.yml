@@ -15,11 +15,11 @@
     # jws_version: 5.4.0
     # uncomment the two next line if you want to install using RPM on a RHEL system.
     #
-    #tomcat_install_method: rpm
-    #tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
+    # tomcat_install_method: rpm
+    # tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
     #
     # uncomment the line below if you want to install fetching zipfiles from RHN directly
-    #tomcat_install_method: rhn_zipfiles
+    # tomcat_install_method: rhn_zipfiles
     tomcat_java_version: 1.8.0
   collections:
     - middleware_automation.jws

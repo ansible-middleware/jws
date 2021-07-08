@@ -14,7 +14,7 @@
 
 - set_fact:
     zipfiles:
-    - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
+      - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
 
 - block:
     - set_fact:
@@ -29,6 +29,7 @@
 
 - name: "Install tomcat and required binaries from local zipfiles (install method: {{ tomcat.install_method }}"
   unarchive:
+    remote_src: yes
     src: "{{ item.src }}"
     dest: "{{ workdir }}"
     owner: "{{ tomcat.user }}"

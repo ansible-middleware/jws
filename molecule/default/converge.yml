@@ -4,7 +4,4 @@
   tasks:
     - name: "Include tomcat"
       include_role:
-        name: "foo"
-    - name: "Include common_criteria_tomcat"
-      include_role:
-        name: "common_criteria_tomcat"
+        name: "jws"
