@@ -9,7 +9,7 @@ tomcat:
     native_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361
     username: "{{ rhn_username | default('') }}"
     password: "{{ rhn_password | default('') }}"
-  user: "{{ override_tomcat_user | default('tomcat_admin') }}"
+  user: "{{ override_tomcat_user | default('tomcat') }}"
   group: "{{ override_tomcat_group | default('tomcat') }}"
   home: "{{ tomcat_home | default('/opt/jws-5.4/tomcat') }}"
   base: "{{ tomcat_catalina_base | default(lookup('env','CATALINA_BASE')) }}"
