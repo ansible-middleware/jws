@@ -44,7 +44,7 @@ tags: [java, tomcat, server, apache, jws, mod_cluster]
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
 dependencies:
-  middleware_automation.redhat_csp_download: '>=1.0'
+  middleware_automation.redhat_csp_download: '>=1.1.1'
 
 # The URL of the originating SCM repository
 repository: http://example.com/repository
