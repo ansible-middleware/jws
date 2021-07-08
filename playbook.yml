@@ -4,8 +4,8 @@
   become: yes
   vars:
     tomcat_setup: true
-    tomcat_version: 9.0.48
-    tomcat_download_url: https://downloads.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
+    tomcat_version: 9.0.50
+    tomcat_download_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
     # note that workdir is only used when installing from zipfiles
     workdir: /opt
     tomcat_zipfile: "{{ workdir }}/tomcat.zip"
