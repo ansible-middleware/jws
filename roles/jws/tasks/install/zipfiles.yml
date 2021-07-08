@@ -31,7 +31,7 @@
   unarchive:
     remote_src: yes
     src: "{{ item.src }}"
-    dest: "{{ workdir }}"
+    dest: "{{ tomcat_install_dir }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
     mode: 0750
