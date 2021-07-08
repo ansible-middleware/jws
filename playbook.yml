@@ -31,4 +31,5 @@
       get_url:
         url: "{{ tomcat_download_url }}"
         dest: "{{ tomcat_zipfile }}"
-
+      when:
+        - tomcat_download_url is defined
