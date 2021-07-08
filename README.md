@@ -30,6 +30,11 @@ You'll need to install the role sabre1041.redhat-csp-download with ansible-galax
 
     $ ansible-galaxy install sabre1041.redhat-csp-download
 
+You can the playbook directly from this folder for demostration purpose, however, the proper way to install the collection is to build it and install it :
+
+    $ ansible-galaxy collection build .
+    $ ansible-galaxy collection install middleware_automation-jws-0.0.1.tar.gz
+
 Using local zipfiles
 ----
 
