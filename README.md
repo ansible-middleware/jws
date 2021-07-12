@@ -26,10 +26,6 @@ three options:
 Prerequisite
 ----
 
-You'll need to install the role sabre1041.redhat-csp-download with ansible-galaxy in order to use this install method:
-
-    $ ansible-galaxy install sabre1041.redhat-csp-download
-
 You can the playbook directly from this folder for demostration purpose, however, the proper way to install the collection is to build it and install it :
 
     $ ansible-galaxy collection build .
@@ -69,7 +65,6 @@ Change the default install method to RPM and provide the appropriate Tomcat HOME
 
 Using RHN
 ---
-
 
 To use the install method RHN zipfiles, simply set the method :
 
