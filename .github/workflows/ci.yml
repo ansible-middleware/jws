@@ -3,7 +3,7 @@ name: CI
 "on":
   push:
     branches:
-      - main
+      - trunk
   pull_request:
 
 jobs:
@@ -20,6 +20,11 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python_version }}
+      
+      - name: Create default collection path symlink
+        run: |
+          mkdir -p /home/runner/.ansible
+          ln -s /home/runner/work/middleware_automation/jws /home/runner/.ansible/collections
 
       - name: Install molecule
         run: |
