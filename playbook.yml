@@ -27,7 +27,7 @@
     # install java using RPM:
     tomcat_java_version: 1.8.0
   collections:
-    - middleware_automation.redhat-csp-download
+    - middleware_automation.redhat_csp_download
   roles:
     - jws
   pre_tasks:
