@@ -20,11 +20,12 @@ readme: README.md
 authors:
   - George Zaronikas <gzaronik@redhat.com>
   - Romain Pelisse <belaran@redhat.com>
+  - Harsha Cherukuri <hcheruku@redhat.com>
 
 ### OPTIONAL but strongly recommended
 
 # A short summary description of the collection
-description: your collection description
+description: This collection contains the ansible playbook to setup JWS.
 
 # Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
 # accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
@@ -33,7 +34,7 @@ license:
 
 # The path to the license file for the collection. This path is relative to the root of the collection. This key is
 # mutually exclusive with 'license'
-license_file: ''
+license_file: "LICENSE"
 
 # A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
 # requirements as 'namespace' and 'name'
@@ -44,16 +45,16 @@ tags: [java, tomcat, server, apache, jws, mod_cluster]
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
 dependencies:
-  middleware_automation.redhat_csp_download: '>=1.1.1'
+  middleware_automation.redhat_csp_download: '>=1.1.2'
 
 # The URL of the originating SCM repository
-repository: http://example.com/repository
+repository: https://github.com/ansible-middleware/jws-ansible-playbook
 
 # The URL to any online docs
-documentation: http://docs.example.com
+documentation: https://github.com/ansible-middleware/jws-ansible-playbook
 
 # The URL to the homepage of the collection/project
-homepage: http://example.com
+homepage: https://github.com/ansible-middleware/jws-ansible-playbook
 
 # The URL to the collection issue tracker
-issues: http://example.com/issue/tracker
+issues: https://github.com/ansible-middleware/jws-ansible-playbook/issues
