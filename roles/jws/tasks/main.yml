@@ -89,6 +89,8 @@
         - { template: templates/server.xml.j2, dest: "{{ tomcat.home }}/conf/server.xml" }
         - { template: templates/web.xml.j2, dest: "{{ tomcat.home }}/conf/web.xml" }
         - { template: templates/context.xml.j2, dest: "{{ tomcat.home }}/conf/context.xml" }
+      notify:
+        - Restart Tomcat service
 
     - name: "Remove app: {{ item }}"
       file:
