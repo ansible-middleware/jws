@@ -10,4 +10,4 @@
         package_name: "{{tomcat_java_packages_EL}}"
   when:
     - tomcat_java_version is defined
-    - ansible_distribution == "RedHat"
+    - ansible_os_family == "RedHat"
