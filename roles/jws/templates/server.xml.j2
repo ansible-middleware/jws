@@ -70,7 +70,9 @@
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
     <Connector executor="tomcatThreadPool"
-               port="{{ tomcat.listen.http.port }}" protocol="HTTP/1.1"
+               port="{{ tomcat.listen.http.port }}"
+               protocol="HTTP/1.1"
+               {% if tomcat.listen.http.bind_address is defined %}address="{{ tomcat.listen.http.bind_address }}"{% endif %}
                connectionTimeout="20000"
                redirectPort="{{ tomcat.listen.https.port }}"/>
     <!-- A "Connector" using the shared thread pool-->
@@ -89,11 +91,18 @@
          the SSLImplementation selected. JSSE style configuration is used below.
     -->
 
-    <Connector port="{{ tomcat.listen.https.port }}" protocol="org.apache.coyote.http11.Http11NioProtocol"
-               maxThreads="150" SSLEnabled="true" allowTrace="false"
-               secure="true" xpoweredBy="false" server="My Server"
-               connectionTimeout="6000" maxHttpHeaderSize="8192"
-               >
+    <Connector port="{{ tomcat.listen.https.port }}"
+               protocol="org.apache.coyote.http11.Http11NioProtocol"
+{% if tomcat.listen.https.bind_address is defined %}address="{{ tomcat.listen.https.bind_address }}"
+{% endif %}
+               maxThreads="150"
+               SSLEnabled="true"
+               allowTrace="false"
+               secure="true"
+               xpoweredBy="false"
+               server="My Server"
+               connectionTimeout="6000"
+               maxHttpHeaderSize="8192">
         <SSLHostConfig>
             <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
                          type="RSA" />
