@@ -19,6 +19,11 @@ tomcat:
     logging: "{{ override_tomcat_conf_loggging | default('./conf/logging.properties') }}"
     context: "{{ override_tomcat_conf_context | default('./conf/context.xml') }}"
     server: "{{ override_tomcat_conf_server | default('./conf/server.xml') }}"
+    web: "{{ override_tomcat_conf_web | default('./conf/web.xml') }}"
+    templates:
+      context: "{{ override_tomcat_conf_templates_context | default('templates/context.xml.j2') }}"
+      server: "{{ override_tomcat_conf_templates_server | default('templates/server.xml.j2') }}"
+      web: "{{ override_tomcat_conf_templates_web | default('templates/web.xml.j2') }}"
   apps:
     to_remove: "{{ tomcat_apps_to_remove.split(',') }}"
   shutdown:
