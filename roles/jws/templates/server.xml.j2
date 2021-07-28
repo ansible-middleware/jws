@@ -71,11 +71,15 @@
     -->
     <Connector executor="tomcatThreadPool"
                port="{{ tomcat.listen.http.port }}"
-	           protocol="HTTP/1.1"
-	           allowTrace="false"
+               protocol="HTTP/1.1"
+               allowTrace="false"
 {% if tomcat.listen.http.bind_address is defined %}address="{{ tomcat.listen.http.bind_address }}"
 {% endif %}
                connectionTimeout="20000"
+               xpoweredBy="false"
+               server="My Server"
+               clientAuth="true"
+               maxHttpHeaderSize="8192"
                redirectPort="{{ tomcat.listen.https.port }}"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
@@ -104,6 +108,7 @@
                secure="true"
                xpoweredBy="false"
                server="My Server"
+               clientAuth="true"
                connectionTimeout="6000"
                maxHttpHeaderSize="8192">
         <SSLHostConfig>
