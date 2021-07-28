@@ -1,0 +1,22 @@
+---
+- name: "Checks that {{ item.name }} has been defined."
+  assert:
+    that:
+      - item.path is defined
+      - item.path | length != 0
+  when: item.required
+
+- name: "Checks that {{ item.path }} is a directory and exists"
+  stat:
+    path: "{{ item.path }}"
+  register: root_dir
+
+- name: "Fail if required directory does not exist"
+  fail:
+    msg: "Provided {{ item.name }} does not exists: {{ item.path }}."
+  when: not root_dir.stat.exists and item.required
+
+- name: "Fail if path is not a directory"
+  fail:
+    msg: "Provided {{ item.name }} is NOT a directory: {{ item.path }}."
+  when: root_dir.stat.exists and not root_dir.stat.isdir

@@ -1,0 +1,7 @@
+---
+- include_tasks: tasks/execute_xpath_and_assess_result.yml
+  loop:
+    - { name: '[AllowLink]', xpath: "//*[@allowLink]", xmlfile: "{{ item.path }}", error: "Atttribute allowLink SHOULD NOT be set or set to true", success: "Attribute allowLink is properly configured." }
+    - { name: '[AllowLink]', xpath: "//*[@allowLink=true]", xmlfile: "{{ item.path }}", error: "Atttribute allowLink SHOULD NOT be set or set to true", success: "Attribute allowLink is properly configured." }
+    - { name: '[AllowLink]', xpath: "//*[@crossContext]", xmlfile: "{{ item.path }}", error: "Atttribute crossContext SHOULD NOT be set or set to true", success: "Attribute allowLink is properly configured." }
+    - { name: '[AllowLink]', xpath: "//*[@crossContext=true]", xmlfile: "{{ item.path }}", error: "Atttribute crossContext SHOULD NOT be set or set to true", success: "Attribute allowLink is properly configured." }

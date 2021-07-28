@@ -1,0 +1,37 @@
+---
+- assert:
+    that:
+      - item is defined
+      - item.name is defined
+      - item.xpath is defined
+      - item.xmlfile is defined
+      - item.success is defined
+      - item.error is defined
+    quiet: true
+    fail_msg: "Missing required field in {{ item }}"
+
+- name: "[{{ item.name }}] with xpath: {{ item.xpath }}"
+  community.general.xml:
+    path: "{{ item.xmlfile }}"
+    xpath: "{{ item.xpath }}"
+    count: yes
+  register: res
+
+- set_fact:
+    expected_count: "{{ item.count | default('0') | int }}"
+
+- debug:
+    msg: "{{ res }} (expected_count: {{ expected_count }})"
+  when:
+    - tomcat_common_criteria.display_xpath_res is defined
+    - tomcat_common_criteria.display_xpath_res
+    - res is defined
+    - res.count is defined
+    - (res.count | int ) != expected_count
+
+- debug:
+    msg: "[{{ item.name }}] {{ item.error }}"
+  changed_when: (res.count | int) == (expected_count | int)
+  when:
+    - res is defined
+    - res.count is defined

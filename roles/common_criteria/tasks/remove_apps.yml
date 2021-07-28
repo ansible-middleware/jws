@@ -1,0 +1,12 @@
+---
+- name: "Gather information on webapp {{ item }}"
+  stat:
+    path: "{{ tomcat.home }}/webapps/{{ item }}"
+  register: path_to_removed_app
+
+- name: "Validate path does not exist"
+  assert:
+    that:
+      - path_to_removed_app.stat is defined
+      - path_to_removed_app.stat.exists is defined
+      - not path_to_removed_app.stat.exists

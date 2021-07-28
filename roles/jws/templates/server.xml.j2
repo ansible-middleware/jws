@@ -71,8 +71,10 @@
     -->
     <Connector executor="tomcatThreadPool"
                port="{{ tomcat.listen.http.port }}"
-               protocol="HTTP/1.1"
-               {% if tomcat.listen.http.bind_address is defined %}address="{{ tomcat.listen.http.bind_address }}"{% endif %}
+	           protocol="HTTP/1.1"
+	           allowTrace="false"
+{% if tomcat.listen.http.bind_address is defined %}address="{{ tomcat.listen.http.bind_address }}"
+{% endif %}
                connectionTimeout="20000"
                redirectPort="{{ tomcat.listen.https.port }}"/>
     <!-- A "Connector" using the shared thread pool-->
@@ -97,6 +99,7 @@
 {% endif %}
                maxThreads="150"
                SSLEnabled="true"
+               sslProtocol="TLS"
                allowTrace="false"
                secure="true"
                xpoweredBy="false"
@@ -141,13 +144,15 @@
                address="{{ tomcat.listen.ajp.address }}"
                port="{{ tomcat.listen.ajp.port }}"
                redirectPort="{{ tomcat.listen.https.port }}"
-               secret="{{ tomcat.listen.ajp.secret }}" />
+	       secret="{{ tomcat.listen.ajp.secret }}"
+	       allowTrace="false"/>
 {% else %}
     <Connector protocol="AJP/1.3"
                address="{{ tomcat.listen.ajp.address }}"
                port="{{ tomcat.listen.ajp.port }}"
                redirectPort="{{ tomcat.listen.https.port }}"
-               secretRequired="false" />
+	       secretRequired="false"
+	       allowTrace="false"/>
 {% endif %}
 {% endif %}
 
