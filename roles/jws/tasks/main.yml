@@ -86,9 +86,9 @@
         group: "{{ tomcat.group }}"
         mode: 0600
       loop:
-        - { template: templates/server.xml.j2, dest: "{{ tomcat.home }}/conf/server.xml" }
-        - { template: templates/web.xml.j2, dest: "{{ tomcat.home }}/conf/web.xml" }
-        - { template: templates/context.xml.j2, dest: "{{ tomcat.home }}/conf/context.xml" }
+        - { template: "{{ tomcat.conf.templates.server }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.server }}" }
+        - { template: "{{ tomcat.conf.templates.web }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.web }}" }
+        - { template: "{{ tomcat.conf.templates.context }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.context }}" }
       notify:
         - Restart Tomcat service
 
