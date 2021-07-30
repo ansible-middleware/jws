@@ -1,0 +1,20 @@
+---
+- name: "Load stats on file {{ item.path }}"
+  stat:
+    path: "{{ item.path }}"
+  register: file
+
+- name: "Display file stats if requested"
+  debug:
+    msg: "{{ file.stat }}"
+  when: display_directory_stats
+
+- name: "Check file permissions ({{ file.stat.pw_name }} == {{ item.owner }}"
+  assert:
+    that:
+      - file.stat.pw_name == item.owner
+      - file.stat.gr_name == item.group
+      - file.stat.mode == item.mode
+    fail_msg: "File {{ item.path }} owner, groups and/or mode are not in compliance with Common Criteria recommendation."
+    success_msg: "File {{ item.path }} is compliant with Common Criteria recommendations."
+    quiet: true

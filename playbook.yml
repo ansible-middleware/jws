@@ -30,6 +30,7 @@
     - middleware_automation.redhat_csp_download
   roles:
     - jws
+    - common_criteria
   pre_tasks:
     - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:

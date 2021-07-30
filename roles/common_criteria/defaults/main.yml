@@ -1,0 +1,6 @@
+---
+tomcat_common_criteria:
+  display_xpath_res: "{{ display_xpath_res_override | default('False') }}"
+display_directory_stats: "{{ display_directory_stats_override | default('false') }}"
+tomcat_owner: "{{ tomcat_owner_override | default('tomcat') }}"
+tomcat_group: "{{ tomcat_group_override | default('tomcat') }}"
