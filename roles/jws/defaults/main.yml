@@ -32,6 +32,7 @@ tomcat:
     http:
       port: "{{ override_tomcat_listen_http_port | default('8080') }}"
       bind_address: "{{ override_tomcat_listen_http_bind_address | default('localhost') }}"
+      enabled: "{{ override_tomcat_listen_http_enabled | default('yes') }}"
     https:
       port: "{{ override_tomcat_listen_https_port | default('8443') }}"
     ajp:
