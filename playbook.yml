@@ -50,6 +50,8 @@
       wait_for:
         host: "{{ override_tomcat_listen_http_bind_address }}"
         port: "8080"
+      when:
+        - tomcat_systemd_enabled is defined
 
     - name: "Ensure Tomcat is started and listen to appropriate port"
       wait_for:
