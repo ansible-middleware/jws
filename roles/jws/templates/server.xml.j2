@@ -73,7 +73,7 @@
                port="{{ tomcat.listen.http.port }}"
                protocol="HTTP/1.1"
                allowTrace="false"
-{% if tomcat.listen.http.bind_address is defined %}address="{{ tomcat.listen.http.bind_address }}"
+{% if tomcat.listen.http.bind_address is defined %}               address="{{ tomcat.listen.http.bind_address }}"
 {% endif %}
                connectionTimeout="20000"
                xpoweredBy="false"
