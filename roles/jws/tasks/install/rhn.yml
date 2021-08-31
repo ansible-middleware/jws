@@ -9,14 +9,14 @@
 - name: "Install JWS with zipfile from RHN: {{ tomcat.rhn.server_zipfile_url }}"
   redhat_csp_download:
     url: "{{ tomcat.rhn.server_zipfile_url }}"
-    dest: "{{  tomcat.home }}"
+    dest: "{{ tomcat_zipfile }}"
     username: "{{ tomcat.rhn.username }}"
     password: "{{ tomcat.rhn.password }}"
 
 - name: "Install JWS native dependencies with zipfile from RHN: {{ tomcat.rhn.native_zipfile_url }}"
   redhat_csp_download:
     url: "{{ tomcat.rhn.native_zipfile_url }}"
-    dest: "{{  tomcat.home }}"
+    dest: "{{ native_zipfile }}"
     username: "{{ tomcat.rhn.username }}"
     password: "{{ tomcat.rhn.password }}"
   when:
