@@ -1,15 +1,25 @@
 ---
-- include_tasks: install/zipfiles.yml
-  when:
-    - tomcat.install_method == 'local_zipfiles'
+- assert:
+    that:
+      - tomcat is defined
+      - tomcat.install_method is defined
+    quiet: true
 
-- include_tasks: install/rpm.yml
-  when:
-    - tomcat.install_method == 'rpm'
+- debug:
+    msg: "{{ tomcat.install_method }}"
+
 
 - include_tasks: install/rhn.yml
   when:
     - tomcat.install_method == 'rhn_zipfiles'
+
+- include_tasks: install/zipfiles.yml
+  when:
+    - tomcat.install_method == 'local_zipfiles' or tomcat.install_method == 'rhn_zipfiles'
+
+- include_tasks: install/rpm.yml
+  when:
+    - tomcat.install_method == 'rpm'
 
 - assert:
     that:
