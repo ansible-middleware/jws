@@ -3,6 +3,7 @@ tomcat_apps_to_remove: "{{ override_tomcat_apps_to_remove | default('docs,ROOT,e
 tomcat:
   supported_install_method: "local_zipfiles,rhn_zipfiles,rpm"
   install_method: "{{ tomcat_install_method | default('local_zipfiles') }}"
+  install_dir: "{{ tomcat_install_dir }}"
   rpm: "{{ override_tomcat_rpm | default('jws5') }}"
   rhn:
     server_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341
