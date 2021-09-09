@@ -53,6 +53,11 @@ tomcat:
     enable: "{{ override_tomcat_modcluster_enable | default('False') }}"
     ip: "{{ override_tomcat_modcluster_ip | default('127.0.0.1') }}"
     port: "{{ override_tomcat_modcluster_port | default('6666') }}"
+    connector_port: "{{ override_tomcat_modcluster_connector_port | default('6666') }}"
+    advertise: "{{ override_tomcat_modcluster_advertise | default('false') }}"
+    stickySession: "{{ override_tomcat_modcluster_stickySession | default('true') }}"
+    stickySessionForce: "{{ override_tomcat_modcluster_stickySessionForce | default('false') }}"
+    stickySessionRemove: "{{ override_tomcat_modcluster_stickySessionRemove | default('true') }}"
   service:
     enabled: "{{ tomcat_systemd_enabled | default('False') }}"
     name: "{{ tomcat_service_name | default('jws5-tomcat.service') }}"

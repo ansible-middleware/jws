@@ -21,7 +21,13 @@
  -->
 <Server port="{{ tomcat.shutdown.port }}" shutdown="SHUTDOWN">
   {% if tomcat.mod_cluster.enable  %}
-  <Listener className="org.jboss.modcluster.container.catalina.standalone.ModClusterListener" connectorPort="{{ tomcat.listen.http.port }}" advertise="false" stickySession="true" stickySessionForce="false" stickySessionRemove="true" proxyList='{{ tomcat.mod_cluster.ip }}:{{ tomcat.mod_cluster.port }}'/>
+  <Listener className="org.jboss.modcluster.container.catalina.standalone.ModClusterListener"
+        connectorPort="{{ tomcat.mod_cluster.connector_port }}"
+        advertise="{{ tomcat.mod_cluster.advertise }}"
+        stickySession="{{ tomcat.mod_cluster.stickySession }}"
+        stickySessionForce="{{ tomcat.mod_cluster.stickySessionForce }}"
+        stickySessionRemove="{{ tomcat.mod_cluster.stickySessionRemove }}"
+        proxyList='{{ tomcat.mod_cluster.ip }}:{{ tomcat.mod_cluster.port }}'/>
   {% endif %}
   <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
   <!-- Security listener. Documentation at /docs/config/listeners.html
