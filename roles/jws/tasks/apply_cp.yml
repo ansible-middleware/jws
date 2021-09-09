@@ -1,0 +1,71 @@
+---
+- assert:
+    that:
+      - rhn_cp_url is defined
+      - tomcat.rhn.username is defined
+      - tomcat.rhn.password is defined
+      - override_patches_repository is defined or tomcat.install_dir
+    quiet: true
+    fail_msg: "One or more required parameters for cumulative patch application is missing."
+
+- set_fact:
+    patches_repository: "{{ override_patches_repository | default(tomcat.install_dir) }}"
+
+- set_fact:
+    path_to_patch: "{{ patches_repository }}/{{ patch_name | default('patch.zip') }}"
+
+- name: "Ensure patches repository ({{ patches_repository }}"
+  file:
+    path: "{{ patches_repository }}"
+    state: directory
+
+- name: "Download CP RHN: {{ rhn_cp_url }}"
+  redhat_csp_download:
+    url: "{{ rhn_cp_url }}"
+    dest: "{{ path_to_patch }}"
+    username: "{{ tomcat.rhn.username }}"
+    password: "{{ tomcat.rhn.password }}"
+
+- stat:
+    path: "{{ path_to_patch }}"
+  register: patch_info
+
+- set_fact:
+    patch_checksum_file: "{{ tomcat.install_dir }}/.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
+  when:
+    - patch_info is defined
+
+- stat:
+    path: "{{ patch_checksum_file }}"
+  register: last_patch_status
+
+- block:
+
+  - name: "Update {{ tomcat.home }} with downloaded CP from {{ rhn_cp_url }}"
+    unarchive:
+      src: "{{ path_to_patch }}"
+      dest: "{{ tomcat.install_dir }}"
+      remote_src: yes
+    notify:
+      - Restart Tomcat service
+    when:
+      - not path_to_patch.stat.exists
+
+  - file:
+      path: "{{ patch_checksum_file }}"
+      state: present
+      content: 1
+    when:
+      - not path_to_patch.stat.exists
+
+  - debug:
+      msg: "[WARNING] Patch {{ rhn_cp_url }} ({{ path_to_patch.stat.checksum }}) has already been applied."
+    when:
+      - path_to_patch.stat.exists
+
+  when:
+    - path_to_patch is defined
+    - path_to_patch.stat is defined
+  rescue:
+    - debug:
+        msg: "This should NEVER happen, something is wrong."
