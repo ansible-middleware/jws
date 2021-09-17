@@ -69,3 +69,39 @@
         port: "6666"
       when:
         - modcluster_todo is defined
+
+    - set_fact:
+        app_name: info.war
+        app_url: 'https://drive.google.com/uc?export=download&id=1w9ss5okctnjUvRAxhPEPyC7DmbUwmbhb'
+
+    - name: "Deploy webapp {{ app_name }} from  {{ app_url }}"
+      include_role:
+        name: jws
+        tasks_from: deploy/artefacts.yml
+      vars:
+        artefact_url: "{{ app_url }}"
+        artefact_dest: "{{ tomcat_home }}/webapps/{{ app_name }}"
+
+    - debug:
+      changed_when: artefact_deployment_results.changed
+      notify:
+        - Restart Tomcat service
+
+    - name: "Ensure Tomcat is started and listen to appropriate port"
+      wait_for:
+        host: "{{ override_tomcat_listen_http_bind_address }}"
+        port: "8080"
+      when:
+        - tomcat_systemd_enabled is defined
+
+    - set_fact:
+        driver_url: 'https://repo.maven.apache.org/maven2/org/postgresql/postgresql/9.2-1002-jdbc4/postgresql-9.2-1002-jdbc4.jar'
+        driver_name: 'postgresql.jar'
+
+    - name: "Deploy jdbc driver {{ driver_url }} from  {{ app_url }}"
+      include_role:
+        name: jws
+        tasks_from: deploy/artefacts.yml
+      vars:
+        artefact_url: "{{ driver_url }}"
+        artefact_dest: "{{ tomcat_home }}/lib/{{ driver_name }}"

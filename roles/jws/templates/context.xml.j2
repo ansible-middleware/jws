@@ -28,4 +28,18 @@
     <!--
     <Manager pathname="" />
     -->
+    <!-- JDBC Datasources -->
+    {% if tomcat.datasources is defined %}{% for ds in tomcat.datasources %}
+    <Resource
+        name="{{ ds.name }}"
+        auth="Container"
+        type="javax.sql.DataSource"
+        {%if ds.username is defined %}username="{{ ds.username }}"{% endif %}
+        {%if ds.password is defined %}password="{{ ds.password }}"{% endif %}
+        driverClassName="{{ ds.driver_classname }}"
+        url="{{ ds.url }}"
+        {%if ds.connection_pool is defined and ds.connection_pool.maxActive %}maxActive="{{ ds.connection_pool.maxActive }}"{% endif %}
+        {%if ds.connection_pool is defined and ds.connection_pool.maxIdle %}maxIdle="{{ ds.connection_pool.maxIdle }}"{% endif %}
+        />{% endfor %}
+     {% endif %}
 </Context>

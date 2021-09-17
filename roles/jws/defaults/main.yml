@@ -66,3 +66,5 @@ tomcat:
     script: "{{ tomcat_home }}/bin/systemd-service.sh"
     systemd: "{{ override_tomcat_service_systemd | default('/usr/lib/systemd/system/tomcat.service') }}"
     pidfile: "{{ tomcat_home }}/tomcat.pidfile"
+  datasources:
+    - { name: "jdbc/DsWebAppDB", username: "sa", password: "", driver_classname: 'org.h2.Driver', url: 'jdbc:h2:mem:target/test/db/h2/hibernate', maxActive: 8, maxIdle: 4 }

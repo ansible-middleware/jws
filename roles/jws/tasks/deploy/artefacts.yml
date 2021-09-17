@@ -1,0 +1,29 @@
+---
+- assert:
+    that:
+      - artefact_url is defined or artefact_path is defined
+      - not (artefact_url is defined and artefact_path is defined)
+      - artefact_dest is defined
+    quiet: true
+
+- name: "Download {{ artefact_name }} from {{ artefact_url }}"
+  get_url:
+    url: "{{ artefact_url }}"
+    dest: "{{ artefact_dest }}"
+    owner: "{{ artefact_owner | default(tomcat.user) }}"
+    group: "{{ artefact_group | default(tomcat.group) }}"
+    mode: "{{ artefact_filemode | default('0644') }}"
+  register: artefact_deployment_results
+  when:
+    - artefact_url is defined
+
+- name: "Copy {{ artefact_name }} from {{ artefact_path }}."
+  copy:
+    src: "{{ artefact_path }}"
+    dest: "{{ artefact_dest }}"
+    owner: "{{ artefact_owner | default(tomcat.user) }}"
+    group: "{{ artefact_group | default(tomcat.group) }}"
+    mode: "{{ artefact_filemode | default('0644') }}"
+  register:  artefact_deployment_results
+  when:
+    - artefact_path is defined
