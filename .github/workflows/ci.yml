@@ -15,24 +15,31 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+        with:
+          path: ansible_collections/middleware_automation/jws
 
       - name: Set up Python ${{ matrix.python_version }}
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python_version }}
+      
+      - name: Install yamllint, ansible and molecule
+        run: |
+          python -m pip install --upgrade pip
+          pip install yamllint 'molecule[docker]~=3.3.0' ansible~=2.9.0 flake8 ansible-lint
 
       - name: Create default collection path symlink
         run: |
           mkdir -p /home/runner/.ansible
           ln -s /home/runner/work/middleware_automation/jws /home/runner/.ansible/collections
 
-      - name: Install molecule
-        run: |
-          python -m pip install --upgrade pip
-          pip install yamllint 'molecule[docker]~=3.3.0' ansible~=2.9.0 flake8 ansible-lint
+      - name: Run sanity tests
+        run: ansible-test sanity
+        working-directory: ./ansible_collections/middleware_automation/jws
 
       - name: Run molecule test
         run: molecule test
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
+        working-directory: ./ansible_collections/middleware_automation/jws
