@@ -37,6 +37,7 @@
     - redhat_csp_download
     - jws
     - common_criteria
+  
   pre_tasks:
     - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:
