@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: ["3.7"]
+        python_version: ["3.9"]
     steps:
       - name: Check out code
         uses: actions/checkout@v2
         with:
-          path: ansible_collections/middleware_automation/jws
+          path: ansible_collections/redhat/jws
 
       - name: Set up Python ${{ matrix.python_version }}
         uses: actions/setup-python@v1
@@ -26,20 +26,20 @@ jobs:
       - name: Install yamllint, ansible and molecule
         run: |
           python -m pip install --upgrade pip
-          pip install yamllint 'molecule[docker]~=3.3.0' ansible~=2.9.0 flake8 ansible-lint
+          pip install yamllint 'molecule[docker]' ansible-core flake8 ansible-lint voluptuous
 
       - name: Create default collection path symlink
         run: |
           mkdir -p /home/runner/.ansible
-          ln -s /home/runner/work/middleware_automation/jws /home/runner/.ansible/collections
+          ln -s /home/runner/work/redhat/jws /home/runner/.ansible/collections
 
       - name: Run sanity tests
         run: ansible-test sanity
-        working-directory: ./ansible_collections/middleware_automation/jws
+        working-directory: ./ansible_collections/redhat/jws
 
       - name: Run molecule test
         run: molecule test
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
-        working-directory: ./ansible_collections/middleware_automation/jws
+        working-directory: ./ansible_collections/redhat/jws

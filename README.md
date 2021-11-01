@@ -34,7 +34,7 @@ Prerequisite
 You can the playbook directly from this folder for demostration purpose, however, the proper way to install the collection is to build it and install it :
 
     $ ansible-galaxy collection build .
-    $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
+    $ ansible-galaxy collection install redhat-jws-*.tar.gz
 
 Using local zipfiles
 ----
