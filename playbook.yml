@@ -34,10 +34,14 @@
   collections:
     - middleware_automation.redhat_csp_download
   roles:
-    - redhat_csp_download
+    # - redhat_csp_download
     - jws
     - common_criteria
   pre_tasks:
+    - name: Include redhat_csp_download role
+      include_role:
+        name: redhat_csp_download
+  
     - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:
         url: "{{ tomcat_download_url }}"
