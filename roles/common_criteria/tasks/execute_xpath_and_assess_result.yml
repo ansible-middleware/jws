@@ -10,7 +10,7 @@
     quiet: true
     fail_msg: "Missing required field in {{ item }}"
 
-- name: "[{{ item.name }}] with xpath: {{ item.xpath }}"
+- name: "Name with xpath"
   community.general.xml:
     path: "{{ item.xmlfile }}"
     xpath: "{{ item.xpath }}"
