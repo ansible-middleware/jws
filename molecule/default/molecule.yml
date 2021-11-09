@@ -33,7 +33,6 @@ scenario:
     - destroy
     - syntax
     - create
-    - dependency
     - prepare
     - converge
     # -   idempotence

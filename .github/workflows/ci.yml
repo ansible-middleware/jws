@@ -38,7 +38,9 @@ jobs:
         working-directory: ./ansible_collections/redhat/jws
 
       - name: Run molecule test
-        run: molecule test
+        run: |
+          ansible-galaxy collection install -r molecule/default/requirements.yml
+          molecule test
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
