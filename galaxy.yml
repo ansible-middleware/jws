@@ -41,7 +41,6 @@ tags: [java, tomcat, server, apache, jws, mod_cluster, infrastructure, linux]
 # range specifiers can be set and are separated by ','
 dependencies:
   middleware_automation.redhat_csp_download: '>=1.1.2'
-  community.general: '>=3.4.0'
 
 # The URL of the originating SCM repository
 repository: https://github.com/ansible-middleware/jws-ansible-playbook
