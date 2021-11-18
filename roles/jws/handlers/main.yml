@@ -2,6 +2,10 @@
 - name: Systemd reload
   ansible.builtin.systemd:
     daemon_reload: yes
+  when:
+    - tomcat.service is defined
+    - tomcat.service.enabled is defined
+    - tomcat.service.enabled
 
 - name: Ensures Tomcat runs under systemd
   include_tasks: tasks/systemd/service.yml
