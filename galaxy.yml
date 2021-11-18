@@ -4,13 +4,13 @@
 # The namespace of the collection. This can be a company/brand/organization or product namespace under which all
 # content lives. May only contain alphanumeric lowercase characters and underscores. Namespaces cannot start with
 # underscores or numbers and cannot contain consecutive underscores
-namespace: redhat
+namespace: middleware_automation
 
 # The name of the collection. Has the same character restrictions as 'namespace'
 name: jws
 
 # The version of the collection. Must be compatible with semantic versioning
-version: "1.0.0"
+version: "0.0.3"
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
