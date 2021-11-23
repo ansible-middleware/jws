@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         python_version: ["3.9"]
-    steps:
+    steps:      
       - name: Check out code
         uses: actions/checkout@v2
         with:
@@ -32,6 +32,13 @@ jobs:
         run: ansible-test sanity
         working-directory: ./ansible_collections/redhat/jws
 
+      - name: Replace token in anisble.cfg
+        env:
+          AUTOMATION_HUB_TOKEN: ${{ secrets.AUTOMATION_HUB_TOKEN }}
+        run: |
+          sed -i -e "s/hub_token/${AUTOMATION_HUB_TOKEN}/g" ansible.cfg
+        working-directory: ./ansible_collections/redhat/jws
+      
       - name: Run molecule test
         run: |
           ansible-galaxy collection install -r molecule/default/requirements.yml
