@@ -31,8 +31,8 @@ jobs:
         with:
           files: "*.tar.gz"
           body: "Release ${{ steps.get_version.outputs.TAG_VERSION }}"
-      - name: Publish collection
-        env:
-          ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
-        run: |
-          ansible-galaxy collection publish *.tar.gz --api-key $ANSIBLE_GALAXY_API_KEY
+      # - name: Publish collection
+      #   env:
+      #     ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
+      #   run: |
+      #     ansible-galaxy collection publish *.tar.gz --api-key $ANSIBLE_GALAXY_API_KEY
