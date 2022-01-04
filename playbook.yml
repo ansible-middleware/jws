@@ -49,7 +49,7 @@
         - tomcat_download_url is defined
 
   post_tasks:
-    - name: "Ensure Tomcat is started and listen to appropriate port"
+    - name: "Ensure Tomcat is started and listen to appropriate port {{ tomcat_systemd_enabled }}"
       wait_for:
         host: "{{ tomcat_listen_http_bind_address }}"
         port: "8080"
