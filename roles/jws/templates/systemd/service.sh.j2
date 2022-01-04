@@ -1,8 +1,8 @@
-#!/bin/bash
+{{ tomcat_systemd_script_shebang }}
 
 readonly MAIN_CLASS='org.apache.catalina.startup.Bootstrap'
 
-{% if tomcat.home is defined %} 
+{% if tomcat.home is defined %}
 readonly CATALINA_BASE='{{ tomcat.home }}'
 export CATALINA_BASE
 {% endif %}

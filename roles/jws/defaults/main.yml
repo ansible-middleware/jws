@@ -50,6 +50,8 @@ tomcat_modcluster_stickySessionForce: 'false'
 tomcat_modcluster_stickySessionRemove: 'true'
 
 tomcat_systemd_enabled: 'False'
+tomact_systemd_script_interpreter: 'bash'
+tomcat_systemd_script_shebang: "#!/bin/{{ tomcat_systemd_script_shebang }}"
 tomcat_service_name: 'tomcat.service'
 tomcat_service_conf: "{{ tomcat_home }}/conf/tomcat.conf"
 tomcat_service_script: "{{ tomcat_home }}/bin/systemd-service.sh"
