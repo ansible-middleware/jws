@@ -41,6 +41,11 @@
     - jws
 
   pre_tasks:
+
+    - package:
+        name: sudo
+        state: present
+
     - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:
         url: "{{ tomcat_download_url }}"
