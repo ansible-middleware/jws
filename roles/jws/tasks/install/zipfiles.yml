@@ -27,7 +27,7 @@
     - native_zipfile is defined
     - native_zipfile != ""
 
-- name: "Install tomcat and required binaries from local zipfiles (install method: {{ tomcat.install_method }}"
+- name: "Install tomcat and required binaries from local zipfiles ({{ item.src }}) to {{ item.creates }} (install method: {{ tomcat.install_method }}"
   unarchive:
     remote_src: yes
     src: "{{ item.src }}"
