@@ -92,7 +92,7 @@ To use the install method RHN zipfiles, simply set the method :
 And provide your RHN credentials (as argument or in file):
 
     rhn_username: alice@wonderland.org
-    rhn_password: eatme
+    rhn_password: eatmeiamacookie
 
 ### Running the play books
 
