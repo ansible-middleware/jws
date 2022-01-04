@@ -34,10 +34,10 @@
 
     # workaround issue on Github actions
     ansible_distribution: 'RedHat'
-  collections:
-    - redhat.redhat_csp_download
+      #  collections:
+      #- redhat.redhat_csp_download
   roles:
-    - redhat_csp_download
+    #    - redhat_csp_download
     - jws
 
   pre_tasks:
