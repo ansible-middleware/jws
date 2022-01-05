@@ -65,3 +65,4 @@ tomcat:
     script: "{{ tomcat_service_script }}"
     systemd: "{{ tomcat_service_systemd }}"
     pidfile: "{{ tomcat_service_systemd_pidfile }}"
+    type: "{{ tomcat_service_systemd_type }}"
