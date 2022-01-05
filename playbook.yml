@@ -42,8 +42,12 @@
   pre_tasks:
 
     - package:
-        name: sudo
+        name: "{{ item }}"
         state: present
+      loop:
+        - sudo
+        - iproute
+        - hostname
 
     - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:
