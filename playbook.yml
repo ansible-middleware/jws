@@ -45,6 +45,16 @@
         name: sudo
         state: present
 
+    - name: configure firewall for JBCS ports
+      become: yes
+      firewalld:
+        port: "8080/tcp"
+        permanent: true
+        state: enabled
+        immediate: yes
+        zone: public
+
+
     - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
       get_url:
         url: "{{ tomcat_download_url }}"
