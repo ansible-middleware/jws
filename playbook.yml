@@ -53,6 +53,14 @@
         - tomcat_download_url is defined
 
   post_tasks:
+    - name: collect facts about system services
+      service_facts:
+      register: services_state
+
+    - name: Display service state
+      debug:
+        var: services_state
+
     - name: "Ensure Tomcat is started and listen to appropriate port {{ tomcat_systemd_enabled }}"
       wait_for:
         host: "{{ tomcat_listen_http_bind_address }}"
