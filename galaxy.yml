@@ -40,7 +40,7 @@ tags: [java, tomcat, server, apache, jws, mod_cluster, infrastructure, linux]
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
 dependencies:
-  redhat.redhat_csp_download: '>=1.2.0'
+  middleware_automation.redhat_csp_download: '>=1.2.0'
 
 # The URL of the originating SCM repository
 repository: https://github.com/ansible-middleware/jws-ansible-playbook
