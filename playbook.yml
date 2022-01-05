@@ -58,8 +58,15 @@
 
   post_tasks:
 
-    - wait_for:
-        timeout: 10
+    - name: Find out what the remote machine's mounts are
+      ansible.builtin.slurp:
+        src: /opt/apache-tomcat-9.0.50/logs/catalina.out 
+      register: catalina_out
+    
+    - name: Print catalina.out
+      ansible.builtin.debug:
+        msg: "{{ catalina_out['content'] | b64decode }}"
+
 
     - name: collect facts about system services
       service_facts:
@@ -69,17 +76,6 @@
       debug:
         var: services_state
 
-    - name: Display facts
-      debug:
-        var: ansible_devices
-    - name: "Ensure Tomcat is started and listen to appropriate port {{ tomcat_systemd_enabled }} on {{ tomcat_listen_http_bind_address }}"
-      wait_for:
-        host: "{{ tomcat_listen_http_bind_address }}"
-        port: "8080"
-      when:
-        - tomcat_systemd_enabled is defined
-        - tomcat_systemd_enabled
-#:
 #:    - name: "Ensure Tomcat is started and listen to appropriate port"
 #:      wait_for:
 #:        host: "{{ tomcat_listen_http_bind_address }}"
