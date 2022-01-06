@@ -4,7 +4,7 @@ Description=Apache Tomcat Web Application Container
 After=syslog.target network.target
 
 [Service]
-Type=simple
+Type={{ tomcat.service.type }}"
 EnvironmentFile={{ tomcat.home }}/conf/tomcat.conf
 ExecStart={{ tomcat.service.script }} start
 PIDFile={{ tomcat.service.pidfile }}

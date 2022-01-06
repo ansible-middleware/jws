@@ -57,3 +57,4 @@ tomcat_service_conf: "{{ tomcat_home }}/conf/tomcat.conf"
 tomcat_service_script: "{{ tomcat_home }}/bin/systemd-service.sh"
 tomcat_service_systemd: '/usr/lib/systemd/system/tomcat.service'
 tomcat_service_systemd_pidfile: "{{ tomcat_home }}/tomcat.pidfile"
+tomcat_service_systemd_type: "simple"
