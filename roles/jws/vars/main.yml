@@ -1,0 +1,67 @@
+---
+tomcat:
+  supported_install_method: "local_zipfiles,rhn_zipfiles,rpm"
+  install_method: "{{ tomcat_install_method }}"
+  install_dir: "{{ tomcat_install_dir }}"
+  rpm: "{{ tomcat_rpm }}"
+  rhn:
+    server_zipfile_url: "{{ jws_rhn_server_zipfile_url }}"
+    native_zipfile_url: "{{ jws_native_zipfile_url }}"
+    username: "{{ rhn_username | default('') }}"
+    password: "{{ rhn_password | default('') }}"
+  user: "{{ tomcat_user }}"
+  group: "{{ tomcat_group }}"
+  home: "{{ tomcat_home }}"
+  base: "{{ tomcat_catalina_base }}"
+  conf:
+    properties: "{{ tomcat_conf_properties  }}"
+    policy: "{{ tomcat_conf_policy }}"
+    logging: "{{ tomcat_conf_loggging }}"
+    context: "{{ tomcat_conf_context }}"
+    server: "{{ tomcat_conf_server }}"
+    web: "{{ tomcat_conf_web }}"
+    templates:
+      context: "{{ tomcat_conf_templates_context }}"
+      server: "{{ tomcat_conf_templates_server }}"
+      web: "{{ tomcat_conf_templates_web }}"
+  apps:
+    to_remove: "{{ tomcat_apps_to_remove.split(',') }}"
+  shutdown:
+    port: "{{ tomcat_shutdown_port }}"
+  listen:
+    http:
+      port: "{{ tomcat_listen_http_port }}"
+      bind_address: "{{ tomcat_listen_http_bind_address }}"
+      enabled: "{{ tomcat_listen_http_enabled }}"
+    https:
+      port: "{{ tomcat_listen_https_port }}"
+    ajp:
+      enabled: "{{ tomcat_listen_ajp_enabled }}"
+      address: "{{ tomcat_listen_ajp_address }}"
+      port: "{{ tomcat_listen_ajp_port }}"
+      secretRequired: "{{ tomcat_listen_ajp_secretRequired }}"
+      secret: "{{ tomcat_listen_ajp_secret }}"
+  vault:
+    name: "{{ tomcat_vault_name }}"
+    enable: "{{ tomcat_vault_enable }}"
+    alias: "{{ tomcat_vault_alias }}"
+    storepass: "{{ tomcat_vault_storepass }}"
+    iteration: "{{ tomcat_vault_iteration }}"
+    salt: "{{ tomcat_vault_salt }}"
+    properties: "{{ tomcat_vault_properties }}"
+  mod_cluster:
+    enable: "{{ tomcat_modcluster_enable }}"
+    ip: "{{ tomcat_modcluster_ip }}"
+    port: "{{ tomcat_modcluster_port }}"
+    connector_port: "{{ tomcat_modcluster_connector_port }}"
+    advertise: "{{ tomcat_modcluster_advertise }}"
+    stickySession: "{{ tomcat_modcluster_stickySession }}"
+    stickySessionForce: "{{ tomcat_modcluster_stickySessionForce }}"
+    stickySessionRemove: "{{ tomcat_modcluster_stickySessionRemove }}"
+  service:
+    enabled: "{{ tomcat_systemd_enabled }}"
+    name: "{{ tomcat_service_name }}"
+    conf: "{{ tomcat_service_conf }}"
+    script: "{{ tomcat_service_script }}"
+    systemd: "{{ tomcat_service_systemd }}"
+    pidfile: "{{ tomcat_service_systemd_pidfile }}"

@@ -1,68 +1,59 @@
 ---
-tomcat_apps_to_remove: "{{ override_tomcat_apps_to_remove | default('docs,ROOT,examples') }}"
-tomcat:
-  supported_install_method: "local_zipfiles,rhn_zipfiles,rpm"
-  install_method: "{{ tomcat_install_method | default('local_zipfiles') }}"
-  install_dir: "{{ tomcat_install_dir }}"
-  rpm: "{{ override_tomcat_rpm | default('jws5') }}"
-  rhn:
-    server_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341
-    native_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361
-    username: "{{ rhn_username | default('') }}"
-    password: "{{ rhn_password | default('') }}"
-  user: "{{ override_tomcat_user | default('tomcat') }}"
-  group: "{{ override_tomcat_group | default('tomcat') }}"
-  home: "{{ tomcat_home | default('/opt/jws-5.4/tomcat') }}"
-  base: "{{ tomcat_catalina_base | default(lookup('env','CATALINA_BASE')) }}"
-  conf:
-    properties: "{{ override_tomcat_conf_properties | default('./conf/catalina.properties') }}"
-    policy: "{{ override_tomcat_conf_policy | default('./conf/catalina.policy') }}"
-    logging: "{{ override_tomcat_conf_loggging | default('./conf/logging.properties') }}"
-    context: "{{ override_tomcat_conf_context | default('./conf/context.xml') }}"
-    server: "{{ override_tomcat_conf_server | default('./conf/server.xml') }}"
-    web: "{{ override_tomcat_conf_web | default('./conf/web.xml') }}"
-    templates:
-      context: "{{ override_tomcat_conf_templates_context | default('templates/context.xml.j2') }}"
-      server: "{{ override_tomcat_conf_templates_server | default('templates/server.xml.j2') }}"
-      web: "{{ override_tomcat_conf_templates_web | default('templates/web.xml.j2') }}"
-  apps:
-    to_remove: "{{ tomcat_apps_to_remove.split(',') }}"
-  shutdown:
-    port: "{{ override_tomcat_shutdown_port | default('8005') }}"
-  listen:
-    http:
-      port: "{{ override_tomcat_listen_http_port | default('8080') }}"
-      bind_address: "{{ override_tomcat_listen_http_bind_address | default('localhost') }}"
-      enabled: "{{ override_tomcat_listen_http_enabled | default('yes') }}"
-    https:
-      port: "{{ override_tomcat_listen_https_port | default('8443') }}"
-    ajp:
-      enabled: "{{ override_tomcat_listen_ajp_enabled | default('False') }}"
-      address: "{{ override_tomcat_listen_ajp_address | default('::1') }}"
-      port: "{{ override_tomcat_listen_ajp_port | default('8009') }}"
-      secretRequired: "{{ override_tomcat_listen_ajp_secretRequired | default('True') }}"
-      secret: "{{ override_tomcat_listen_ajp_secret | default('secret') }}"
-  vault:
-    name: "{{ override_tomcat_vault_name | default('vault.keystore') }}"
-    enable: "{{ override_tomcat_vault_enable | default('False') }}"
-    alias: "{{ override_tomcat_vault_alias | default('my_vault') }}"
-    storepass: "{{ override_tomcat_vault_storepass | default('123456') }}"
-    iteration: "{{ override_tomcat_vault_iteration | default('44') }}"
-    salt: "{{ override_tomcat_vault_salt  | default('1234abcd') }}"
-    properties: "{{ override_tomcat_vault_properties | default('/conf/vault.properties') }}"
-  mod_cluster:
-    enable: "{{ override_tomcat_modcluster_enable | default('False') }}"
-    ip: "{{ override_tomcat_modcluster_ip | default('127.0.0.1') }}"
-    port: "{{ override_tomcat_modcluster_port | default('6666') }}"
-    connector_port: "{{ override_tomcat_modcluster_connector_port | default('6666') }}"
-    advertise: "{{ override_tomcat_modcluster_advertise | default('false') }}"
-    stickySession: "{{ override_tomcat_modcluster_stickySession | default('true') }}"
-    stickySessionForce: "{{ override_tomcat_modcluster_stickySessionForce | default('false') }}"
-    stickySessionRemove: "{{ override_tomcat_modcluster_stickySessionRemove | default('true') }}"
-  service:
-    enabled: "{{ tomcat_systemd_enabled | default('False') }}"
-    name: "{{ tomcat_service_name | default('jws5-tomcat.service') }}"
-    conf: "{{ tomcat_home }}/conf/tomcat.conf"
-    script: "{{ tomcat_home }}/bin/systemd-service.sh"
-    systemd: "{{ override_tomcat_service_systemd | default('/usr/lib/systemd/system/tomcat.service') }}"
-    pidfile: "{{ tomcat_home }}/tomcat.pidfile"
+tomcat_apps_to_remove: 'docs,ROOT,examples'
+tomcat_install_method: 'local_zipfiles'
+tomcat_rpm: 'jws5'
+jws_rhn_server_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341
+jws_native_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361
+tomcat_user: 'tomcat'
+tomcat_group: 'tomcat'
+tomcat_home: '/opt/jws-5.4/tomcat'
+tomcat_catalina_base: "{{ lookup('env','CATALINA_BASE') }}"
+tomcat_conf_properties: './conf/catalina.properties'
+tomcat_conf_policy: './conf/catalina.policy'
+tomcat_conf_loggging: './conf/logging.properties'
+tomcat_conf_context: './conf/context.xml'
+tomcat_conf_server: './conf/server.xml'
+tomcat_conf_web: './conf/web.xml'
+
+tomcat_conf_templates_context: 'templates/context.xml.j2'
+tomcat_conf_templates_server: 'templates/server.xml.j2'
+tomcat_conf_templates_web: 'templates/web.xml.j2'
+tomcat_shutdown_port: '8005'
+
+tomcat_listen_http_port: '8080'
+tomcat_listen_http_bind_address: 'localhost'
+tomcat_listen_http_enabled: 'yes'
+tomcat_listen_https_port: '8443'
+
+tomcat_listen_ajp_enabled: 'False'
+tomcat_listen_ajp_address: '::1'
+tomcat_listen_ajp_port: '8009'
+tomcat_listen_ajp_secretRequired: 'True'
+tomcat_listen_ajp_secret: 'secret'
+
+tomcat_vault_name: 'vault.keystore'
+tomcat_vault_enable: 'False'
+tomcat_vault_alias: 'my_vault'
+tomcat_vault_storepass: '123456'
+tomcat_vault_iteration: '44'
+tomcat_vault_salt: '1234abcd'
+tomcat_vault_properties: '/conf/vault.properties'
+
+tomcat_modcluster_enable: 'False'
+tomcat_modcluster_ip: '127.0.0.1'
+tomcat_modcluster_port: '6666'
+tomcat_modcluster_connector_port: '6666'
+tomcat_modcluster_advertise: 'false'
+
+tomcat_modcluster_stickySession: 'true'
+tomcat_modcluster_stickySessionForce: 'false'
+tomcat_modcluster_stickySessionRemove: 'true'
+
+tomcat_systemd_enabled: 'False'
+tomact_systemd_script_interpreter: 'bash'
+tomcat_systemd_script_shebang: "#!/bin/{{ tomcat_systemd_script_shebang }}"
+tomcat_service_name: 'tomcat.service'
+tomcat_service_conf: "{{ tomcat_home }}/conf/tomcat.conf"
+tomcat_service_script: "{{ tomcat_home }}/bin/systemd-service.sh"
+tomcat_service_systemd: '/usr/lib/systemd/system/tomcat.service'
+tomcat_service_systemd_pidfile: "{{ tomcat_home }}/tomcat.pidfile"
