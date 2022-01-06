@@ -49,17 +49,42 @@
         - tomcat_download_url is defined
 
   post_tasks:
-    - name: "Ensure Tomcat is started and listen to appropriate port"
-      wait_for:
-        host: "{{ tomcat_listen_http_bind_address }}"
-        port: "8080"
-      when:
-        - tomcat_systemd_enabled is defined
-        - tomcat_systemd_enabled
+
+    - command: systemctl status tomcat
+      register: tc_status
+      changed_when: False
+
+    - debug:
+        msg: "{{ tc_status.stdout }}"
+
+    - name: Find out what the remote machine's mounts are
+      ansible.builtin.slurp:
+        src: /opt/apache-tomcat-9.0.50/logs/catalina.out
+      register: catalina_out
+
+    - name: Print catalina.out
+      ansible.builtin.debug:
+        msg: "{{ catalina_out['content'] | b64decode | length }}"
+
+    - name: collect facts about system services
+      service_facts:
+      register: services_state
+
+    - debug:
+        msg: "{{ services_state.ansible_facts }}"
+
+    - set_fact:
+        services_list: "{{ services_state.ansible_facts.services }}"
+
+    - name: Checks that Tomcat service is running
+      assert:
+        that:
+        - services_list is defined
+        - services_list['tomcat.service'] is defined
+        - services_list['tomcat.service'].state is defined
+        - services_list['tomcat.service'].state == "running"
 
     - name: "Ensure Tomcat is started and listen to appropriate port"
       wait_for:
         host: "{{ tomcat_listen_http_bind_address }}"
-        port: "6666"
-      when:
-        - modcluster_todo is defined
+        port: "8080"
