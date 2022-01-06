@@ -29,8 +29,8 @@
     tomcat_java_version: 1.8.0
     tomcat_listen_http_bind_address: 127.0.0.1
     # B) uncomment to also start tomcat as a service under Systemd
-    tomcat_systemd_enabled: True
-    tomcat_service_name: tomcat
+    #tomcat_systemd_enabled: True
+    #tomcat_service_name: tomcat
 
     # workaround issue on Github actions
     ansible_distribution: 'RedHat'
@@ -55,6 +55,7 @@
         port: "8080"
       when:
         - tomcat_systemd_enabled is defined
+        - tomcat_systemd_enabled
 
     - name: "Ensure Tomcat is started and listen to appropriate port"
       wait_for:
