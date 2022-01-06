@@ -1,7 +1,6 @@
 ---
 - name: "Red Hat JBoss Web Server installation and configuration"
   hosts: "all"
-  become: yes
   vars:
     tomcat_setup: true
     # note that workdir is only used when installing from zipfiles
