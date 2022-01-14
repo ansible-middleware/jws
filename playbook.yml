@@ -1,38 +1,41 @@
 ---
 - name: "Red Hat JBoss Web Server installation and configuration"
   hosts: "all"
-  become: yes
   vars:
     tomcat_setup: true
-    tomcat_version: 9.0.50
-    tomcat_download_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
     # note that workdir is only used when installing from zipfiles
     tomcat_install_dir: /opt
+
+    # Use Case 1 - Using Tomcat from apache
+    tomcat_version: 9.0.50
+    tomcat_download_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
     tomcat_zipfile: "{{ tomcat_install_dir }}/tomcat.zip"
     tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
-    # uncomment to also start tomcat as a service under Systemd
-    # tomcat_systemd_enabled: True
-    # tomcat_service_name: tomcat
-    # comment the next line if you another install method
-    # installed from local zipfiles downloaded from RHN (JWS)
-    # jws_version: 5.4.0
-    # tomcat_home: /opt/jws-5.4/tomcat
-    # uncomment the two next line if you want to install using RPM on a RHEL system.
+
+    # Use Case 2 - Using JWS, installed from local zipfiles downloaded from RHN (JWS)
+    #tomcat_install_method: rhn_zipfiles
+    #tomcat_install_dir: "/opt/jws-5.4/"
+    #tomcat_home: "{{ tomcat_install_dir }}/jws-5.4/tomcat"
+    #tomcat_zipfile: '/opt/jws.zip'
+
+    # Use Case 3 - Using RPM on a RHEL system.
     #
-    # tomcat_install_method: rpm
-    # tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
-    #
-    # uncomment the line below if you want to install fetching zipfiles from RHN directly
-    # tomcat_install_method: rhn_zipfiles
-    # tomcat_zipfile: "{{ tomcat_install_dir }}/jws.zip"
-    # tomcat_home: "{{ tomcat_install_dir }}/jws-5.4/tomcat"
-    # install java using RPM:
+    #tomcat_install_method: rpm
+    #tomcat_home: /opt/rh/root/usr/share/tomcat/
+
+    # Activate extra features
+    # A) install java using RPM:
     tomcat_java_version: 1.8.0
-    override_tomcat_listen_http_bind_address: 127.0.0.1
+    tomcat_listen_http_bind_address: 127.0.0.1
+    # B) uncomment to also start tomcat as a service under Systemd
+    tomcat_systemd_enabled: True
+    tomcat_service_name: tomcat
+    tomcat_service_systemd_type: forking
+
     # workaround issue on Github actions
     ansible_distribution: 'RedHat'
   collections:
-    - redhat.redhat_csp_download
+    - middleware_automation.redhat_csp_download
   roles:
     - redhat_csp_download
     - jws
@@ -46,16 +49,42 @@
         - tomcat_download_url is defined
 
   post_tasks:
-    - name: "Ensure Tomcat is started and listen to appropriate port"
-      wait_for:
-        host: "{{ override_tomcat_listen_http_bind_address }}"
-        port: "8080"
-      when:
-        - tomcat_systemd_enabled is defined
+
+    - command: systemctl status tomcat
+      register: tc_status
+      changed_when: False
+
+    - debug:
+        msg: "{{ tc_status.stdout }}"
+
+    - name: Find out what the remote machine's mounts are
+      ansible.builtin.slurp:
+        src: /opt/apache-tomcat-9.0.50/logs/catalina.out
+      register: catalina_out
+
+    - name: Print catalina.out
+      ansible.builtin.debug:
+        msg: "{{ catalina_out['content'] | b64decode | length }}"
+
+    - name: collect facts about system services
+      service_facts:
+      register: services_state
+
+    - debug:
+        msg: "{{ services_state.ansible_facts }}"
+
+    - set_fact:
+        services_list: "{{ services_state.ansible_facts.services }}"
+
+    - name: Checks that Tomcat service is running
+      assert:
+        that:
+        - services_list is defined
+        - services_list['tomcat.service'] is defined
+        - services_list['tomcat.service'].state is defined
+        - services_list['tomcat.service'].state == "running"
 
     - name: "Ensure Tomcat is started and listen to appropriate port"
       wait_for:
-        host: "{{ override_tomcat_listen_http_bind_address }}"
-        port: "6666"
-      when:
-        - modcluster_todo is defined
+        host: "{{ tomcat_listen_http_bind_address }}"
+        port: "8080"

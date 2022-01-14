@@ -35,7 +35,6 @@
         group: "{{ tomcat.group }}"
         mode: 0750
       when:
-        - wordir is defined
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
 

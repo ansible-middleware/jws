@@ -14,7 +14,7 @@ Click on the name of a plugin or module to view that content's documentation:
 
 ### Collections
 
-- redhat.redhat_csp_download
+- middleware_automation.redhat_csp_download
     - This collection is required to download resources from RedHat Customer Portal.
     - Documentation to collection can be found at <https://github.com/ansible-middleware/redhat-csp-download>
 
@@ -92,7 +92,7 @@ To use the install method RHN zipfiles, simply set the method :
 And provide your RHN credentials (as argument or in file):
 
     rhn_username: alice@wonderland.org
-    rhn_password: eatme
+    rhn_password: eatmeiamacookie
 
 ### Running the play books
 
