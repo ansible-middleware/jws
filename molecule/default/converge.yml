@@ -1,6 +1,8 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    tomcat_install_dir: /opt
   tasks:
     - name: "Include tomcat"
       include_role:
