@@ -12,6 +12,8 @@ driver:
 #   ansible-lint --force-color
 platforms:
   - name: instance
+  - name: centos8
+    image: docker.io/centos:8
 provisioner:
   name: ansible
   playbooks:
