@@ -1,5 +1,6 @@
 ---
-- assert:
+- name: Check arguments
+  assert:
     that:
       - tomcat.rpm is defined
       - tomcat.rpm != ""

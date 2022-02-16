@@ -21,6 +21,9 @@
   file:
     path: "{{ patches_repository }}"
     state: directory
+    owner: "{{ tomcat.user }}"
+    group: "{{ tomcat.group }}"
+    mode: 0750
 
 - name: "Download CP RHN: {{ rhn_cp_url }}"
   redhat_csp_download:
@@ -29,7 +32,8 @@
     username: "{{ tomcat.rhn.username }}"
     password: "{{ tomcat.rhn.password }}"
 
-- stat:
+- name: "Check {{ path_to_patch }} state"
+  stat:
     path: "{{ path_to_patch }}"
   register: patch_info
 
@@ -38,33 +42,41 @@
   when:
     - patch_info is defined
 
-- stat:
+- name: "Check {{ patch_checksum_file }} state"
+  stat:
     path: "{{ patch_checksum_file }}"
   register: last_patch_status
 
 - block:
 
-  - name: "Update {{ tomcat.home }} with downloaded CP from {{ rhn_cp_url }}"
-    unarchive:
-      src: "{{ path_to_patch }}"
-      dest: "{{ tomcat.install_dir }}"
-      remote_src: yes
-    notify:
-      - Restart Tomcat service
-    when:
-      - not path_to_patch.stat.exists
+    - name: "Update {{ tomcat.home }} with downloaded CP from {{ rhn_cp_url }}"
+      unarchive:
+        src: "{{ path_to_patch }}"
+        dest: "{{ tomcat.install_dir }}"
+        remote_src: yes
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0750
+      notify:
+        - Restart Tomcat service
+      when:
+        - not path_to_patch.stat.exists
 
-  - file:
-      path: "{{ patch_checksum_file }}"
-      state: present
-      content: 1
-    when:
-      - not path_to_patch.stat.exists
+    - file:
+        path: "{{ patch_checksum_file }}"
+        state: present
+        content: 1
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0640
+      when:
+        - not path_to_patch.stat.exists
 
-  - debug:
-      msg: "[WARNING] Patch {{ rhn_cp_url }} ({{ path_to_patch.stat.checksum }}) has already been applied."
-    when:
-      - path_to_patch.stat.exists
+    - name: Print when patch has been applied already
+      debug:
+        msg: "[WARNING] Patch {{ rhn_cp_url }} ({{ path_to_patch.stat.checksum }}) has already been applied."
+      when:
+        - path_to_patch.stat.exists
 
   when:
     - path_to_patch is defined

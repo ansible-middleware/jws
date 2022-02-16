@@ -103,6 +103,9 @@
           copy:
             src: "{{ tomcat.vault.name }}"
             dest: "{{ tomcat.home }}/"
+            owner: "{{ tomcat.user }}"
+            group: "{{ tomcat.group }}"
+            mode: 0750
 
         - name: Initialize tomcat vault
           command:

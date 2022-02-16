@@ -14,10 +14,10 @@ galaxy_info:
   min_ansible_version: "2.9"
 
   platforms:
-   - name: EL
-     versions:
-     - 7
-     - 8
+    - name: EL
+      versions:
+        - 7
+        - 8
 
   galaxy_tags:
     - java
@@ -25,6 +25,6 @@ galaxy_info:
     - server
     - apache
     - jws
-    - mod_cluster
+    - modcluster
     - infrastructure
     - linux
