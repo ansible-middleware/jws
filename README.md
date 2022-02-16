@@ -20,7 +20,7 @@ Click on the name of a plugin or module to view that content's documentation:
 
 ### Roles
 
-- The tomcat role which:
+- The [jws](roles/jws/README.md) role which:
     - Installs JAVA
     - Installs basic packages required
     - Adds tomcat user and group

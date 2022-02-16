@@ -1,0 +1,263 @@
+argument_specs:
+    main:
+        options:
+            tomcat_apps_to_remove:
+                # line 2 of jws/defaults/main.yml
+                default: "docs,ROOT,examples"
+                description: "Comma separated list of apps to undeploy"
+                type: "str"
+            tomcat_install_method:
+                # line 3 of jws/defaults/main.yml
+                default: "local_zipfiles"
+                description: "Installation method"
+                type: "str"
+            tomcat_rpm:
+                # line 4 of jws/defaults/main.yml
+                default: "jws5"
+                description: "Installation RPM version"
+                type: "str"
+            jws_rhn_server_zipfile_url:
+                # line 5 of jws/defaults/main.yml
+                default: "https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341"
+                description: "Customer Portal URL for installation archive"
+                type: "str"
+            jws_native_zipfile_url:
+                # line 6 of jws/defaults/main.yml
+                default: "https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361"
+                description: "Customer Portal URL for installation archive, native variant"
+                type: "str"
+            tomcat_user:
+                # line 7 of jws/defaults/main.yml
+                default: "tomcat"
+                description: "posix user account for service"
+                type: "str"
+            tomcat_group:
+                # line 8 of jws/defaults/main.yml
+                default: "tomcat"
+                description: "posix group for service"
+                type: "str"
+            tomcat_home:
+                # line 9 of jws/defaults/main.yml
+                default: "/opt/jws-5.4/tomcat"
+                description: "Target installation directory"
+                type: "str"
+            tomcat_catalina_base:
+                # line 10 of jws/defaults/main.yml
+                default: "{{ lookup('env','CATALINA_BASE') }}"
+                description: "Tomcat catalina base env variable"
+                type: "str"
+            tomcat_conf_properties:
+                # line 11 of jws/defaults/main.yml
+                default: "./conf/catalina.properties"
+                description: "Path for tomcat configuration"
+                type: "str"
+            tomcat_conf_policy:
+                # line 12 of jws/defaults/main.yml
+                default: "./conf/catalina.policy"
+                description: "Path for tomcat policy configuration"
+                type: "str"
+            tomcat_conf_loggging:
+                # line 13 of jws/defaults/main.yml
+                default: "./conf/logging.properties"
+                description: "Path for logging configuration"
+                type: "str"
+            tomcat_conf_context:
+                # line 14 of jws/defaults/main.yml
+                default: "./conf/context.xml"
+                description: "Relative path to context.xml"
+                type: "str"
+            tomcat_conf_server:
+                # line 15 of jws/defaults/main.yml
+                default: "./conf/server.xml"
+                description: "Relative path to server.xml"
+                type: "str"
+            tomcat_conf_web:
+                # line 16 of jws/defaults/main.yml
+                default: "./conf/web.xml"
+                description: "Relative path to web.xml"
+                type: "str"
+            tomcat_conf_templates_context:
+                # line 18 of jws/defaults/main.yml
+                default: "templates/context.xml.j2"
+                description: "Template to use for context.xml"
+                type: "str"
+            tomcat_conf_templates_server:
+                # line 19 of jws/defaults/main.yml
+                default: "templates/server.xml.j2"
+                description: "Template to use for server.xml"
+                type: "str"
+            tomcat_conf_templates_web:
+                # line 20 of jws/defaults/main.yml
+                default: "templates/web.xml.j2"
+                description: "Template to use for web.xml"
+                type: "str"
+            tomcat_shutdown_port:
+                # line 21 of jws/defaults/main.yml
+                default: "8005"
+                description: "Tomcat shutdown port"
+                type: "str"
+            tomcat_listen_http_port:
+                # line 23 of jws/defaults/main.yml
+                default: "8080"
+                description: "Tomcat http listen port"
+                type: "str"
+            tomcat_listen_http_bind_address:
+                # line 24 of jws/defaults/main.yml
+                default: "localhost"
+                description: "Service bind address"
+                type: "str"
+            tomcat_listen_http_enabled:
+                # line 25 of jws/defaults/main.yml
+                default: "yes"
+                description: "Enable listening on http port"
+                type: "str"
+            tomcat_listen_https_port:
+                # line 26 of jws/defaults/main.yml
+                default: "8443"
+                description: "Enable listening on https port"
+                type: "str"
+            tomcat_listen_ajp_enabled:
+                # line 28 of jws/defaults/main.yml
+                default: "False"
+                description: "Enable listening on ajp port"
+                type: "str"
+            tomcat_listen_ajp_address:
+                # line 29 of jws/defaults/main.yml
+                default: "::1"
+                description: "Bind address for ajp"
+                type: "str"
+            tomcat_listen_ajp_port:
+                # line 30 of jws/defaults/main.yml
+                default: "8009"
+                description: "Tomcat ajp listen port"
+                type: "str"
+            tomcat_listen_ajp_secretRequired:
+                # line 31 of jws/defaults/main.yml
+                default: "True"
+                description: "Enable loading secret from vault"
+                type: "str"
+            tomcat_listen_ajp_secret:
+                # line 32 of jws/defaults/main.yml
+                default: "secret"
+                description: "Passphrase for vault secret"
+                type: "str"
+            tomcat_vault_name:
+                # line 34 of jws/defaults/main.yml
+                default: "vault.keystore"
+                description: "Path to tomcat keysore"
+                type: "str"
+            tomcat_vault_enable:
+                # line 35 of jws/defaults/main.yml
+                default: "False"
+                description: "Enable value"
+                type: "str"
+            tomcat_vault_alias:
+                # line 36 of jws/defaults/main.yml
+                default: "my_vault"
+                description: "Alias for loading from vault"
+                type: "str"
+            tomcat_vault_storepass:
+                # line 37 of jws/defaults/main.yml
+                default: "123456"
+                description: "Tomcat keystore password"
+                type: "str"
+            tomcat_vault_iteration:
+                # line 38 of jws/defaults/main.yml
+                default: "44"
+                description: "TODO document argument"
+                type: "str"
+            tomcat_vault_salt:
+                # line 39 of jws/defaults/main.yml
+                default: "1234abcd"
+                description: "Salt for encrypting tomcat vault"
+                type: "str"
+            tomcat_vault_properties:
+                # line 40 of jws/defaults/main.yml
+                default: "/conf/vault.properties"
+                description: "Relative path to vault.properties"
+                type: "str"
+            tomcat_modcluster_enable:
+                # line 42 of jws/defaults/main.yml
+                default: "False"
+                description: "Enable mod_cluster module"
+                type: "str"
+            tomcat_modcluster_ip:
+                # line 43 of jws/defaults/main.yml
+                default: "127.0.0.1"
+                description: "Bind address for mod_cluster"
+                type: "str"
+            tomcat_modcluster_port:
+                # line 44 of jws/defaults/main.yml
+                default: "6666"
+                description: "mod_cluster port"
+                type: "str"
+            tomcat_modcluster_connector_port:
+                # line 45 of jws/defaults/main.yml
+                default: "6666"
+                description: "mod_cluster connector port"
+                type: "str"
+            tomcat_modcluster_advertise:
+                # line 46 of jws/defaults/main.yml
+                default: "false"
+                description: "Enable mod_cluster advertising"
+                type: "str"
+            tomcat_modcluster_stickySession:
+                # line 48 of jws/defaults/main.yml
+                default: "true"
+                description: "Enable mod_cluster sticky sessions"
+                type: "str"
+            tomcat_modcluster_stickySessionForce:
+                # line 49 of jws/defaults/main.yml
+                default: "false"
+                description: "Force use of sticky sessions"
+                type: "str"
+            tomcat_modcluster_stickySessionRemove:
+                # line 50 of jws/defaults/main.yml
+                default: "true"
+                description: "Remove sticky session from cookies"
+                type: "str"
+            tomcat_systemd_enabled:
+                # line 52 of jws/defaults/main.yml
+                default: "False"
+                description: "Enable tomcat systemd unit"
+                type: "str"
+            tomcat_systemd_script_interpreter:
+                # line 53 of jws/defaults/main.yml
+                default: "bash"
+                description: "Interpreter for systemd unit"
+                type: "str"
+            tomcat_systemd_script_shebang:
+                # line 54 of jws/defaults/main.yml
+                default: "#!/bin/{{ tomcat_systemd_script_interpreter }}"
+                description: "Customize sysVinit script sheband"
+                type: "str"
+            tomcat_service_name:
+                # line 55 of jws/defaults/main.yml
+                default: "tomcat.service"
+                description: "Name for the systemd unit"
+                type: "str"
+            tomcat_service_conf:
+                # line 56 of jws/defaults/main.yml
+                default: "{{ tomcat_home }}/conf/tomcat.conf"
+                description: "Absolute path to tomcat.conf"
+                type: "str"
+            tomcat_service_script:
+                # line 57 of jws/defaults/main.yml
+                default: "{{ tomcat_home }}/bin/systemd-service.sh"
+                description: "Tomcat sysVinit script"
+                type: "str"
+            tomcat_service_systemd:
+                # line 58 of jws/defaults/main.yml
+                default: "/usr/lib/systemd/system/tomcat.service"
+                description: "Tomcat systemd unit"
+                type: "str"
+            tomcat_service_systemd_pidfile:
+                # line 59 of jws/defaults/main.yml
+                default: "{{ tomcat_home }}/tomcat.pidfile"
+                description: "Absolute path to tomcat PIDfile"
+                type: "str"
+            tomcat_service_systemd_type:
+                # line 60 of jws/defaults/main.yml
+                default: "simple"
+                description: "Systemd unit type"
+                type: "str"
