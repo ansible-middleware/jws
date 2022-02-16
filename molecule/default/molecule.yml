@@ -5,11 +5,9 @@ dependency:
     requirements-file: molecule/default/requirements.yml
 driver:
   name: docker
-# lint: |
-#   set -e
-#   yamllint .
-#   flake8
-#   ansible-lint --force-color
+lint: |
+  ansible-lint --version
+  ansible-lint -v
 platforms:
   - name: instance
     image: registry.access.redhat.com/ubi8/ubi-init
