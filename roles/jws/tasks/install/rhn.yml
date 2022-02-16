@@ -1,5 +1,6 @@
 ---
-- assert:
+- name: Check arguments
+  assert:
     that:
       - tomcat.rhn.server_zipfile_url is defined
       - tomcat.rhn.server_zipfile_url | length > 0

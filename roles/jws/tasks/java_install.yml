@@ -1,7 +1,8 @@
 ---
 - block:
 
-    - set_fact:
+    - name: Set rpm name with version
+      set_fact:
         tomcat_java_packages_EL: "java-{{ tomcat_java_version }}-openjdk"
 
     - name: "Install {{ tomcat_java_packages_EL }}"

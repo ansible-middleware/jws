@@ -28,6 +28,8 @@ warn_list:
   - no-log-password
   - unnamed-task
   - command-instead-of-module
+  - no-changed-when
+  - task_has_valid_name
 
 use_default_rules: true
 parseable: true

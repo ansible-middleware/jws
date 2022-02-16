@@ -5,7 +5,8 @@
   when:
     - jws_version is defined
 
-- assert:
+- name: Check arguments
+  assert:
     that:
       - tomcat_zipfile is defined
       - tomcat_zipfile != ""
