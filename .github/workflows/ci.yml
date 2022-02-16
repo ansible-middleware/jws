@@ -28,6 +28,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install yamllint 'molecule[docker]~=3.5.2' ansible-core flake8 ansible-lint voluptuous
 
+      - name: Install ansible-lint custom rules
+        uses: actions/checkout@v2
+        with:
+          repository: ansible-middleware/ansible-lint-custom-rules
+          path: ansible_collections/ansible-lint-custom-rules/
+
       - name: Run sanity tests
         run: ansible-test sanity
         working-directory: ./ansible_collections/redhat/jws
