@@ -1,5 +1,5 @@
 ---
-- name: "Checks that tomcat.home has been defined."
+- name: "Check that tomcat.home has been defined."
   assert:
     that:
       - tomcat.home is defined
@@ -17,11 +17,11 @@
   when: tomcat_java_version is defined
 
 - block:
-    - name: "Creates group: {{ tomcat.group }}"
+    - name: "Create group: {{ tomcat.group }}"
       group:
         name: "{{ tomcat.group }}"
 
-    - name: "Creates user for tomcat: {{ tomcat.user }}"
+    - name: "Create user for tomcat: {{ tomcat.user }}"
       user:
         name: "{{ tomcat.user }}"
         groups: "{{ tomcat.group }}"
@@ -50,7 +50,7 @@
         - tomcat.service.enabled is defined
         - tomcat.service.enabled
 
-    - name: "Ensures {{ tomcat.home }}/{{ item }}/ has appropriate privileges."
+    - name: "Ensure {{ tomcat.home }}/{{ item }}/ has appropriate privileges."
       file:
         path: "{{ tomcat.home }}/{{ item }}/"
         owner: "{{ tomcat.user }}"
@@ -64,7 +64,7 @@
         - webapps
         - bin
 
-    - name: "Ensures {{ item }} has the recommended priviliges, owner and group"
+    - name: "Ensure {{ item }} has the recommended priviliges, owner and group"
       file:
         path: "{{ item }}"
         owner: "{{ tomcat.user }}"
