@@ -1,5 +1,6 @@
 ---
-- assert:
+- name: Check arguments
+  assert:
     that:
       - rhn_cp_url is defined
       - tomcat.rhn.username is defined
@@ -8,10 +9,12 @@
     quiet: true
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 
-- set_fact:
+- name: Set patch repository
+  set_fact:
     patches_repository: "{{ override_patches_repository | default(tomcat.install_dir) }}"
 
-- set_fact:
+- name: Set patch path
+  set_fact:
     path_to_patch: "{{ patches_repository }}/{{ patch_name | default('patch.zip') }}"
 
 - name: "Ensure patches repository ({{ patches_repository }}"

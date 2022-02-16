@@ -7,7 +7,7 @@
       - tomcat.service.conf is defined
       - tomcat.service.script is defined
 
-- name: "Ensures requirements for systemd"
+- name: "Ensure requirements for systemd"
   include_tasks: fastpackage.yml
   vars:
     package_name: "{{ item }}"
@@ -15,7 +15,7 @@
     - systemd
     - procps
 
-- name: "Ensures service script is deployed"
+- name: "Ensure service script is deployed"
   template:
     src: templates/systemd/service.sh.j2
     dest: "{{ tomcat.service.script }}"
@@ -23,7 +23,7 @@
     group: "{{ tomcat.group }}"
     mode: 0755
 
-- name: "Ensures service configurations files is deployed: {{ tomcat.service.conf }}"
+- name: "Ensure service configurations files is deployed: {{ tomcat.service.conf }}"
   template:
     src: templates/systemd/tomcat.conf.j2
     dest: "{{ tomcat.service.conf }}"
@@ -34,7 +34,7 @@
     - Systemd reload
     - Ensures Tomcat runs under systemd
 
-- name: "Ensures systemd service is configured"
+- name: "Ensure systemd service is configured"
   template:
     src: templates/systemd/tomcat.service.j2
     dest: "{{ tomcat.service.systemd }}"

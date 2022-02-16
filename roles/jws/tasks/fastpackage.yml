@@ -12,7 +12,7 @@
       register: rpm_info
       changed_when: rpm_info.failed
   rescue:
-    - name: "If package {{ package_name }} is missing, install package using yum."
+    - name: "Install package {{ package_name }} using yum if missing"
       yum:
         name: "{{ package_name }}"
         state: installed

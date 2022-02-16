@@ -13,15 +13,15 @@
     tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 
     # Use Case 2 - Using JWS, installed from local zipfiles downloaded from RHN (JWS)
-    #tomcat_install_method: rhn_zipfiles
-    #tomcat_install_dir: "/opt/jws-5.4/"
-    #tomcat_home: "{{ tomcat_install_dir }}/jws-5.4/tomcat"
-    #tomcat_zipfile: '/opt/jws.zip'
+    # tomcat_install_method: rhn_zipfiles
+    # tomcat_install_dir: "/opt/jws-5.4/"
+    # tomcat_home: "{{ tomcat_install_dir }}/jws-5.4/tomcat"
+    # tomcat_zipfile: '/opt/jws.zip'
 
     # Use Case 3 - Using RPM on a RHEL system.
     #
-    #tomcat_install_method: rpm
-    #tomcat_home: /opt/rh/root/usr/share/tomcat/
+    # tomcat_install_method: rpm
+    # tomcat_home: /opt/rh/root/usr/share/tomcat/
 
     # Activate extra features
     # A) install java using RPM:
@@ -70,19 +70,20 @@
       service_facts:
       register: services_state
 
-    - debug:
+    - name: show current role configuration
+      debug:
         msg: "{{ services_state.ansible_facts }}"
 
     - set_fact:
         services_list: "{{ services_state.ansible_facts.services }}"
 
-    - name: Checks that Tomcat service is running
+    - name: Check that Tomcat service is running
       assert:
         that:
-        - services_list is defined
-        - services_list['tomcat.service'] is defined
-        - services_list['tomcat.service'].state is defined
-        - services_list['tomcat.service'].state == "running"
+          - services_list is defined
+          - services_list['tomcat.service'] is defined
+          - services_list['tomcat.service'].state is defined
+          - services_list['tomcat.service'].state == "running"
 
     - name: "Ensure Tomcat is started and listen to appropriate port"
       wait_for:
