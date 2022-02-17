@@ -78,14 +78,14 @@ Role Variables
 <!--end argument_specs-->
 
 
-Example Playbooks
---------------
-'''
+Example Playbook
+----------------
+```
 ---
 - hosts: all
   tasks:
     - name: "Include tomcat"
       include_role:
         name: "jws"
-'''
+```
 
