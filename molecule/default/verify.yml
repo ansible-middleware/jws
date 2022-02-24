@@ -1,0 +1,34 @@
+---
+- name: Verify
+  hosts: instance
+  vars:
+    tomcat_listen_http_bind_address: 127.0.0.1
+    tomcat_listen_http_port: 8080
+  tasks:
+    - name: Populate service facts
+      ansible.builtin.service_facts:
+
+    - name: Check if service is started
+      assert:
+        that:
+          - ansible_facts is defined
+          - ansible_facts.services is defined
+          - ansible_facts.services['tomcat.service'] is defined
+          - ansible_facts.services['tomcat.service']['state'] is defined
+          - ansible_facts.services["tomcat.service"]['state'] == 'running'
+        quiet: true
+        fail_msg: "Service is not started."
+
+    - name: Slurp the content of catalina.out
+      ansible.builtin.slurp:
+        src: /opt/apache-tomcat-9.0.50/logs/catalina.out
+      register: catalina_out
+
+    - name: Print the content of catalina.out
+      ansible.builtin.debug:
+        msg: "{{ catalina_out['content'] | b64decode | length }}"
+
+    - name: "Ensure Tomcat is started and listen to appropriate port"
+      wait_for:
+        host: "{{ tomcat_listen_http_bind_address }}"
+        port: "{{ tomcat_listen_http_port }}"
