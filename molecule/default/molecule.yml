@@ -28,7 +28,9 @@ platforms:
 provisioner:
   name: ansible
   playbooks:
-    converge: ../../playbook.yml
+    prepare: prepare.yml
+    converge: converge.yml
+    verify: verify.yml
   env:
     CATALINA_HOME: "/opt/apache-tomcat-9.0.50"
   inventory:
