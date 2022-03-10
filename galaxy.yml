@@ -10,7 +10,7 @@ namespace: middleware_automation
 name: jws
 
 # The version of the collection. Must be compatible with semantic versioning
-version: "0.0.3"
+version: "1.0.0"
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
@@ -40,7 +40,7 @@ tags: [java, tomcat, server, apache, jws, mod_cluster, infrastructure, linux]
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
 dependencies:
-  middleware_automation.redhat_csp_download: '>=1.2.0'
+  middleware_automation.redhat_csp_download: '>=1.2.1'
 
 # The URL of the originating SCM repository
 repository: https://github.com/ansible-middleware/jws-ansible-playbook
