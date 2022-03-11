@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JWS Collection for Ansible &mdash; JWS Ansible Collection  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/ansible-basic-sphinx-ext.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Role Index" href="roles/index.html" />
+    <link rel="prev" title="Welcome to JWS Collection documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> JWS Ansible Collection
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">JWS Collection for Ansible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ansible-version-compatibility">Ansible version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#included-content">Included content</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#collections">Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roles">Roles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-and-usage">Installation and Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use-this-playbook">How to use this playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-local-zipfiles">Using local zipfiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-rpm">Using RPM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-rhn">Using RHN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-play-books">Running the play books</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mod-cluster-listener">Mod Cluster Listener</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-does-the-mod-cluster-listener-do">What does the mod cluster listener do:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-enable-mod-cluster-listener">How to enable mod cluster listener:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-playbook">Running Playbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="roles/index.html">Role Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">Contributor’s Guidelines</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JWS Ansible Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>JWS Collection for Ansible</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="jws-collection-for-ansible">
+<h1>JWS Collection for Ansible<a class="headerlink" href="#jws-collection-for-ansible" title="Permalink to this headline"></a></h1>
+<p>This repository contains the ansible playbook to setup JWS.</p>
+<section id="ansible-version-compatibility">
+<h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Permalink to this headline"></a></h2>
+<p>This collection has been tested against following Ansible versions: <strong>&gt;=2.9.10</strong>.</p>
+<p>Plugins and modules within a collection may be tested with only specific Ansible versions. A collection may contain metadata that identifies these versions.</p>
+<!--end requires_ansible-->
+</section>
+<section id="included-content">
+<h2>Included content<a class="headerlink" href="#included-content" title="Permalink to this headline"></a></h2>
+<p>Click on the name of a plugin or module to view that content’s documentation:</p>
+<section id="collections">
+<h3>Collections<a class="headerlink" href="#collections" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>middleware_automation.redhat_csp_download</p>
+<ul>
+<li><p>This collection is required to download resources from RedHat Customer Portal.</p></li>
+<li><p>Documentation to collection can be found at <a class="reference external" href="https://github.com/ansible-middleware/redhat-csp-download">https://github.com/ansible-middleware/redhat-csp-download</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="roles">
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>The <span class="xref myst">jws</span> role which:</p>
+<ul>
+<li><p>Installs JAVA</p></li>
+<li><p>Installs basic packages required</p></li>
+<li><p>Adds tomcat user and group</p></li>
+<li><p>Downloads tomcat and install</p></li>
+<li><p>Makes sure that tomcat belongs to the tomcat user and group</p></li>
+<li><p>Deploys server.xml, web.xml and context.xml</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="installation-and-usage">
+<h2>Installation and Usage<a class="headerlink" href="#installation-and-usage" title="Permalink to this headline"></a></h2>
+<section id="how-to-use-this-playbook">
+<h3>How to use this playbook<a class="headerlink" href="#how-to-use-this-playbook" title="Permalink to this headline"></a></h3>
+<p>The use of the playbook will vary on the installation method you choose. There is currently
+three options:</p>
+<ul class="simple">
+<li><p>local zipfile</p></li>
+<li><p>rpm</p></li>
+<li><p>using your RHN credentials to retrieve the JWS zipfiles provided by Red Hat.</p></li>
+</ul>
+</section>
+<section id="prerequisite">
+<h3>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this headline"></a></h3>
+<p>You can the playbook directly from this folder for demostration purpose, however, the proper way to install the collection is to build it and install it :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ansible-galaxy collection build .
+$ ansible-galaxy collection install redhat-jws-*.tar.gz
+</pre></div>
+</div>
+</section>
+<section id="using-local-zipfiles">
+<h3>Using local zipfiles<a class="headerlink" href="#using-local-zipfiles" title="Permalink to this headline"></a></h3>
+<p>Download the requires zipfiles from your Red Hat account:</p>
+<ul class="simple">
+<li><p>Red Hat JBoss Web Server 5.4.0 Application Server (the server itself)</p></li>
+<li><p>Red Hat JBoss Web Server 5.4.0 Application Server for RHEL 8 x86_64 (the native bits)</p></li>
+</ul>
+<p>Provides the path to those zipfiles:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+  ...
+  tomcat_zipfile: jws-5.4.0-application-server.zip
+  native_zipfile: jws-5.4.0-application-server-RHEL8-x86_64.zip
+</pre></div>
+</div>
+<p>Note that if you respect the naming convention above for the file name, you can just provide the JWS version instead of those two paths:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+  ...
+  jws_version: 5.4.0
+</pre></div>
+</div>
+</section>
+<section id="using-rpm">
+<h3>Using RPM<a class="headerlink" href="#using-rpm" title="Permalink to this headline"></a></h3>
+<p>Change the default install method to RPM and provide the appropriate Tomcat HOME in the playbooks:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+  ...
+  tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
+  tomcat_install_method: rpm
+</pre></div>
+</div>
+</section>
+<section id="using-rhn">
+<h3>Using RHN<a class="headerlink" href="#using-rhn" title="Permalink to this headline"></a></h3>
+<p>To use the install method RHN zipfiles, simply set the method :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+   ...
+   tomcat_install_method: rhn_zipfiles
+</pre></div>
+</div>
+<p>And provide your RHN credentials (as argument or in file):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rhn_username: alice@wonderland.org
+rhn_password: eatmeiamacookie
+</pre></div>
+</div>
+</section>
+<section id="running-the-play-books">
+<h3>Running the play books<a class="headerlink" href="#running-the-play-books" title="Permalink to this headline"></a></h3>
+<ol class="arabic">
+<li><p>Configure the install method as described above!</p></li>
+<li><p>Update your inventory, e.g.:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p p-Indicator">[</span><span class="nv">tomcat</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.1</span><span class="w">      </span><span class="c1"># Remote user to act on</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Update variables in playbook file, the variables are as follow:</p>
+<ul class="simple">
+<li><p>jws_version (which version of jws to install)</p></li>
+<li><p>tomcat_install_java (where to install java)</p></li>
+<li><p>tomcat_java_version (which version of java to install)</p></li>
+<li><p>tomcat.listen.http.port and tomcat.listen.https.port (which http/https ports to listen on)</p></li>
+<li><p>tomcat.listen.ajp (Where to use ajp and if yes configure the address, port, where to use a secret etc.)</p></li>
+</ul>
+</li>
+</ol>
+<p>Note: If you are using a non root remote user, then set username and enable sudo:
+<code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">become:</span> <span class="pre">yes</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">become_method:</span> <span class="pre">sudo</span>&#160;&#160;&#160; </code></p>
+</section>
+</section>
+<section id="mod-cluster-listener">
+<h2>Mod Cluster Listener<a class="headerlink" href="#mod-cluster-listener" title="Permalink to this headline"></a></h2>
+<section id="what-does-the-mod-cluster-listener-do">
+<h3>What does the mod cluster listener do:<a class="headerlink" href="#what-does-the-mod-cluster-listener-do" title="Permalink to this headline"></a></h3>
+<p>Allows communication between Apache Tomcat and the Apache HTTP Server’s mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/">HTTP Connectors and Load Balancing Guide</a>.</p>
+</section>
+<section id="how-to-enable-mod-cluster-listener">
+<h3>How to enable mod cluster listener:<a class="headerlink" href="#how-to-enable-mod-cluster-listener" title="Permalink to this headline"></a></h3>
+<p>All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:</p>
+<ul class="simple">
+<li><p>mod_cluster.enable (Set to True to enable the listener)</p></li>
+<li><p>mod_cluster.ip (Set the ip of the mod_cluster instance)</p></li>
+<li><p>mod_cluster.port (Set the port of the mod_cluster instance)</p></li>
+</ul>
+</section>
+</section>
+<section id="running-playbook">
+<h2>Running Playbook<a class="headerlink" href="#running-playbook" title="Permalink to this headline"></a></h2>
+<p>Once all values are updated, you can then run the playbook against your nodes.</p>
+<!-- First of all export CATALINA_HOME:
+```
+$ export CATALINA_HOME=/opt/apache-tomcat-9.0.40/
+``` -->
+<p>Playbook executed as root user - with ssh key:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Playbook executed as root user - with password:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml --ask-pass</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Playbook executed as sudo user - with password:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml --ask-pass --ask-become-pass</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Playbook executed as sudo user - with ssh key and sudo password:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml --ask-become-pass</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Playbook executed as sudo user - with ssh key and passwordless sudo:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml --ask-become-pass</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Execution should be successful without errors</p>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline"></a></h2>
+<p>jws collection v1.0.0 is a Beta release and for <a class="reference external" href="https://access.redhat.com/support/offerings/techpreview">Technical Preview</a>. If you have any issues or questions related to collection, please don’t hesitate to contact us on <a class="reference external" href="mailto:Ansible-middleware-core&#37;&#52;&#48;redhat&#46;com">Ansible-middleware-core<span>&#64;</span>redhat<span>&#46;</span>com</a> or open an issue on https://github.com/ansible-middleware/jws-ansible-playbook/issues</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<p>Apache License v2.0 or later</p>
+<p>See <span class="xref myst">LICENCE</span> to view the full text.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to JWS Collection documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="roles/index.html" class="btn btn-neutral float-right" title="Role Index" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Red Hat, Inc..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
