@@ -8,6 +8,7 @@ This collection has been tested against following Ansible versions: **>=2.9.10**
 
 Plugins and modules within a collection may be tested with only specific Ansible versions. A collection may contain metadata that identifies these versions.
 <!--end requires_ansible-->
+
 ## Included content
 
 Click on the name of a plugin or module to view that content's documentation:
@@ -17,6 +18,7 @@ Click on the name of a plugin or module to view that content's documentation:
 - middleware_automation.redhat_csp_download
     - This collection is required to download resources from RedHat Customer Portal.
     - Documentation to collection can be found at <https://github.com/ansible-middleware/redhat-csp-download>
+
 
 ### Roles
 
@@ -28,28 +30,28 @@ Click on the name of a plugin or module to view that content's documentation:
     - Makes sure that tomcat belongs to the tomcat user and group
     - Deploys server.xml, web.xml and context.xml
 
+
 ## Installation and Usage
 
 ### How to use this playbook
 
-
-The use of the playbook will vary on the installation method you choose. There is currently
-three options:
+The use of the playbook will vary on the installation method you choose. The following options are available:
 
 - local zipfile
 - rpm
-- using your RHN credentials to retrieve the JWS zipfiles provided by Red Hat.
+- using your RHN credentials to retrieve the JWS zipfiles provided by Red Hat
+- setting a custom URL for downloading the tomcat/JWS archives
+
 
 ### Prerequisite
-
 
 You can the playbook directly from this folder for demostration purpose, however, the proper way to install the collection is to build it and install it :
 
     $ ansible-galaxy collection build .
     $ ansible-galaxy collection install redhat-jws-*.tar.gz
 
-### Using local zipfiles
 
+### Using local zipfiles
 
 Download the requires zipfiles from your Red Hat account:
 
@@ -72,7 +74,6 @@ Note that if you respect the naming convention above for the file name, you can 
 
 ### Using RPM
 
-
 Change the default install method to RPM and provide the appropriate Tomcat HOME in the playbooks:
 
     vars:
@@ -82,7 +83,6 @@ Change the default install method to RPM and provide the appropriate Tomcat HOME
 
 
 ### Using RHN
-
 
 To use the install method RHN zipfiles, simply set the method :
 
@@ -108,7 +108,6 @@ To use the install method zipfiles, downloading from a custom URL, set :
 
 
 ### Running the play books
-
 
 1) Configure the install method as described above!
 
@@ -146,7 +145,6 @@ All that you have to do to enable a mod_cluster listener for jws is to edit the 
 
 
 ## Running Playbook
-
 
 Once all values are updated, you can then run the playbook against your nodes.
 <!-- First of all export CATALINA_HOME:
@@ -190,6 +188,7 @@ Execution should be successful without errors
 ## Support
 
 jws collection v1.0.0 is a Beta release and for [Technical Preview](https://access.redhat.com/support/offerings/techpreview). If you have any issues or questions related to collection, please don't hesitate to contact us on <Ansible-middleware-core@redhat.com> or open an issue on https://github.com/ansible-middleware/jws-ansible-playbook/issues
+
 
 ## License
 

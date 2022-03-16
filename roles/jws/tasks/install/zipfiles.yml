@@ -1,11 +1,4 @@
 ---
-- set_fact:
-    tomcat_zipfile: "jws-{{ jws_version }}-application-server.zip"
-    native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
-  when:
-    - jws_version is defined
-    - tomcat.install_method != "zipfiles"
-
 - name: Check arguments
   assert:
     that:
@@ -18,16 +11,13 @@
     zipfiles:
       - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}/bin" }
 
-- block:
-    - set_fact:
-        native_zipfiles:
-          - { src: "{{ native_zipfile }}", creates: "{{ tomcat.home }}/lib/libtcnative-1.so" }
-
-    - set_fact:
-        zipfiles: "{{ zipfiles }} + {{ native_zipfiles }}"
+- set_fact:
+    native_zipfiles:
+      - { src: "{{ native_zipfile }}", creates: "{{ tomcat.home }}/lib/libtcnative-1.so" }
+    zipfiles: "{{ zipfiles + native_zipfiles }}"
   when:
     - native_zipfile is defined
-    - native_zipfile != ""
+    - native_zipfile | length > 0
 
 - name: "Install tomcat and required binaries from local zipfiles ({{ item.src }}) to {{ item.creates }} (install method: {{ tomcat.install_method }}"
   unarchive:

@@ -7,6 +7,12 @@
     quiet: true
     fail_msg: "You need to provide"
 
+- set_fact:
+    tomcat_zipfile: "jws-{{ jws_version }}-application-server.zip"
+    native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
+  when:
+    - jws_version is defined
+
 - name: "Install JWS with zipfile from RHN: {{ tomcat.rhn.server_zipfile_url }}"
   redhat_csp_download:
     url: "{{ tomcat.rhn.server_zipfile_url }}"

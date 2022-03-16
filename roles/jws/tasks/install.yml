@@ -19,9 +19,13 @@
   when:
     - tomcat.install_method == 'zipfiles'
 
+- include_tasks: install/local.yml
+  when:
+    - tomcat.install_method == 'local_zipfiles'
+
 - include_tasks: install/zipfiles.yml
   when:
-    - tomcat.install_method == 'local_zipfiles' or tomcat.install_method == 'rhn_zipfiles' or tomcat.install_method == 'zipfiles'
+    - tomcat.install_method != 'rpm'
 
 - include_tasks: install/rpm.yml
   when:
