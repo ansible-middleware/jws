@@ -7,14 +7,14 @@
     tomcat_install_dir: /opt
 
     # Use Case 1 - Using Tomcat from apache (uncomment pre-tasks below if download is necessary)
-    #tomcat_version: 9.0.50
-    #tomcat_download_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
-    #tomcat_zipfile: "{{ tomcat_install_dir }}/tomcat.zip"
+    tomcat_version: 9.0.50
+    tomcat_download_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
+    tomcat_zipfile: "{{ tomcat_install_dir }}/tomcat.zip"
 
 
     # Use Case 2 - Download Tomcat from apache
-    tomcat_install_method: zipfiles
-    tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+    #tomcat_install_method: zipfiles
+    #tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 
     # Use Case 3 - Using JWS, installed from local zipfiles downloaded from RHN (JWS)
     # tomcat_install_method: rhn_zipfiles

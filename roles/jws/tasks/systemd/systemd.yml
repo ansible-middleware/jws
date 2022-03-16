@@ -33,7 +33,7 @@
     mode: 0755
   notify:
     - Systemd reload
-    - Ensures Tomcat runs under systemd
+    - Ensure Tomcat runs under systemd
 
 - name: "Ensure systemd service is configured"
   template:
@@ -44,4 +44,4 @@
     mode: 0755
   notify:
     - Systemd reload
-    - Ensures Tomcat runs under systemd
+    - Ensure Tomcat runs under systemd

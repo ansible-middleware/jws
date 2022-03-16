@@ -27,4 +27,4 @@
     cmd: "yum group install -y {{ tomcat.rpm }}"
     creates: "{{ tomcat.home }}"
   notify:
-    - Ensures Tomcat runs under systemd
+    - Ensure Tomcat runs under systemd
