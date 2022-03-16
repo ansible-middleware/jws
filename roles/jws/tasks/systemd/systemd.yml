@@ -9,7 +9,7 @@
       - tomcat.service.script is defined
 
 - name: "Ensure requirements for systemd"
-  include_tasks: fastpackage.yml
+  include_tasks: ../fastpackage.yml
   vars:
     package_name: "{{ item }}"
   loop:

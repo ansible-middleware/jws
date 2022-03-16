@@ -56,7 +56,7 @@ Download the requires zipfiles from your Red Hat account:
 - Red Hat JBoss Web Server 5.4.0 Application Server (the server itself)
 - Red Hat JBoss Web Server 5.4.0 Application Server for RHEL 8 x86_64 (the native bits)
 
-Provides the path to those zipfiles:
+Provide the path to those zipfiles:
 
     vars:
       ...
@@ -80,6 +80,7 @@ Change the default install method to RPM and provide the appropriate Tomcat HOME
       tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
       tomcat_install_method: rpm
 
+
 ### Using RHN
 
 
@@ -93,6 +94,18 @@ And provide your RHN credentials (as argument or in file):
 
     rhn_username: alice@wonderland.org
     rhn_password: eatmeiamacookie
+
+
+### Using a custom download URL
+
+To use the install method zipfiles, downloading from a custom URL, set :
+
+    vars:
+       ...
+       tomcat_install_method: zipfiles
+       tomcat_zipfile: tomcat-x.y.z.zip
+       tomcat_zipfile_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
+
 
 ### Running the play books
 

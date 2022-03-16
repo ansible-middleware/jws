@@ -21,12 +21,17 @@
       group:
         name: "{{ tomcat.group }}"
         gid: "{{ tomcat.gid }}"
+        system: yes
 
     - name: "Create user for tomcat: {{ tomcat.user }}"
       user:
+        uid: 53
+        system: yes
         name: "{{ tomcat.user }}"
         uid: "{{ tomcat.uid }}"
         groups: "{{ tomcat.group }}"
+        home: "{{ tomcat.home }}"
+        shell: /sbin/nologin
         comment: "User for Apache Tomcat"
 
     - name: "Ensure install dir is created: {{ tomcat_install_dir }}"
@@ -52,7 +57,7 @@
         - tomcat.service.enabled is defined
         - tomcat.service.enabled
 
-    - name: "Ensure {{ tomcat.home }}/{{ item }}/ has appropriate privileges."
+    - name: "Ensure {{ tomcat.home }}/ directories have appropriate privileges"
       file:
         path: "{{ tomcat.home }}/{{ item }}/"
         owner: "{{ tomcat.user }}"
@@ -66,18 +71,18 @@
         - webapps
         - bin
 
-    - name: "Ensure {{ item }} has the recommended priviliges, owner and group"
+    - name: "Ensure {{ tomcat.home }}/ files have the recommended priviliges, owner and group"
       file:
-        path: "{{ item }}"
+        path: "{{ tomcat.home }}/{{ item }}"
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
         mode: 0600
       loop:
-        - "{{ tomcat.home }}/{{ tomcat.conf.properties }}"
-        - "{{ tomcat.home }}/{{ tomcat.conf.policy }}"
-        - "{{ tomcat.home }}/{{ tomcat.conf.logging }}"
-        - "{{ tomcat.home }}/conf/tomcat-users.xml"
-        - "{{ tomcat.home }}/conf/jaspic-providers.xml"
+        - "{{ tomcat.conf.properties }}"
+        - "{{ tomcat.conf.policy }}"
+        - "{{ tomcat.conf.logging }}"
+        - "conf/tomcat-users.xml"
+        - "conf/jaspic-providers.xml"
 
     - name: "Deploy custom configuration file from {{ item.template }}"
       template:
@@ -92,6 +97,11 @@
         - { template: "{{ tomcat.conf.templates.context }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.context }}" }
       notify:
         - Restart Tomcat service
+
+    - include_tasks: systemd/selinux.yml
+      when:
+        - tomcat.install_method is defined
+        - tomcat.install_method != "rpm"
 
     - name: "Remove app: {{ item }}"
       file:

@@ -17,7 +17,7 @@ Role Defaults
 | Variable | Description | Default |
 |:---------|:------------|:--------|
 |`tomcat_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
-|`tomcat_install_method`| Installation method | `local_zipfiles` |
+|`tomcat_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles,rpm']` | `local_zipfiles` |
 |`tomcat_rpm`| Installation RPM version | `jws5` |
 |`jws_rhn_server_zipfile_url`| Customer Portal URL for installation archive | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341` |
 |`jws_native_zipfile_url`| Customer Portal URL for installation archive, native variant | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361` |
@@ -72,7 +72,9 @@ Role Defaults
 |`tomcat_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |
 |`tomcat_service_systemd_pidfile`| Absolute path to tomcat PIDfile | `{{ tomcat_home }}/tomcat.pidfile` |
 |`tomcat_service_systemd_type`| Systemd unit type | `simple` |
-
+|`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
+|`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
+|`tomcat_version`| Tomcat version to download | `9.0.60` |
 
 
 Role Variables

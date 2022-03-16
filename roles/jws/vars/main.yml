@@ -1,6 +1,6 @@
 ---
 tomcat:
-  supported_install_method: "local_zipfiles,rhn_zipfiles,rpm"
+  supported_install_method: [local_zipfiles, rhn_zipfiles, zipfiles, rpm]
   install_method: "{{ tomcat_install_method }}"
   install_dir: "{{ tomcat_install_dir }}"
   rpm: "{{ tomcat_rpm }}"

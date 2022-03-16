@@ -4,6 +4,7 @@
     native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
   when:
     - jws_version is defined
+    - tomcat.install_method != "zipfiles"
 
 - name: Check arguments
   assert:
@@ -15,7 +16,7 @@
 
 - set_fact:
     zipfiles:
-      - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}" }
+      - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}/bin" }
 
 - block:
     - set_fact:
@@ -31,7 +32,7 @@
 - name: "Install tomcat and required binaries from local zipfiles ({{ item.src }}) to {{ item.creates }} (install method: {{ tomcat.install_method }}"
   unarchive:
     remote_src: yes
-    src: "{{ item.src }}"
+    src: "{{ tomcat_install_dir }}/{{ item.src }}"
     dest: "{{ tomcat_install_dir }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
