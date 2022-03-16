@@ -46,7 +46,7 @@ dependencies:
 repository: https://github.com/ansible-middleware/jws-ansible-playbook
 
 # The URL to any online docs
-documentation: https://github.com/ansible-middleware/jws-ansible-playbook
+documentation: https://ansible-middleware.github.io/jws-ansible-playbook
 
 # The URL to the homepage of the collection/project
 homepage: https://github.com/ansible-middleware/jws-ansible-playbook
