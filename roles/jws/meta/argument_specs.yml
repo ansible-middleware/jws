@@ -120,10 +120,18 @@ argument_specs:
                 default: "yes"
                 description: "Enable listening on http port"
                 type: "str"
+            tomcat_listen_https_enabled:
+                default: "false"
+                description: "Enable listening on https connector"
+                type: "str"
             tomcat_listen_https_port:
                 # line 26 of jws/defaults/main.yml
                 default: "8443"
                 description: "Enable listening on https port"
+                type: "str"
+            tomcat_listen_https_bind_address:
+                default: "localhost"
+                description: "HTTPS Connector bind address"
                 type: "str"
             tomcat_listen_ajp_enabled:
                 # line 28 of jws/defaults/main.yml

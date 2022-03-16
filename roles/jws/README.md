@@ -41,6 +41,8 @@ Role Defaults
 |`tomcat_listen_http_bind_address`| Service bind address | `localhost` |
 |`tomcat_listen_http_enabled`| Enable listening on http port | `yes` |
 |`tomcat_listen_https_port`| Enable listening on https port | `8443` |
+|`tomcat_listen_https_bind_address`| Bind address for https | `::1` |
+|`tomcat_listen_https_enabled`| Enable listening on https port | `false` |
 |`tomcat_listen_ajp_enabled`| Enable listening on ajp port | `False` |
 |`tomcat_listen_ajp_address`| Bind address for ajp | `::1` |
 |`tomcat_listen_ajp_port`| Tomcat ajp listen port | `8009` |
