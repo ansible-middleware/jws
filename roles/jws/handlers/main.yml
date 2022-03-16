@@ -7,7 +7,7 @@
     - tomcat.service.enabled is defined
     - tomcat.service.enabled
 
-- name: Ensures Tomcat runs under systemd
+- name: Ensure Tomcat runs under systemd
   include_tasks: tasks/systemd/service.yml
   when:
     - tomcat.service is defined
