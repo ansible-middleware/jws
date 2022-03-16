@@ -27,6 +27,8 @@ tomcat_listen_http_port: '8080'
 tomcat_listen_http_bind_address: 'localhost'
 tomcat_listen_http_enabled: 'yes'
 tomcat_listen_https_port: '8443'
+tomcat_listen_https_bind_address: 'localhost'
+tomcat_listen_https_enabled: 'False'
 
 tomcat_listen_ajp_enabled: 'False'
 tomcat_listen_ajp_address: '::1'

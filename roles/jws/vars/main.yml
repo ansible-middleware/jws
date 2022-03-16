@@ -37,6 +37,8 @@ tomcat:
       enabled: "{{ tomcat_listen_http_enabled }}"
     https:
       port: "{{ tomcat_listen_https_port }}"
+      bind_address: "{{ tomcat_listen_https_bind_address }}"
+      enabled: "{{ tomcat_listen_https_enabled }}"
     ajp:
       enabled: "{{ tomcat_listen_ajp_enabled }}"
       address: "{{ tomcat_listen_ajp_address }}"

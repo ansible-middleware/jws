@@ -102,10 +102,10 @@
          Either JSSE or OpenSSL style configuration may be used regardless of
          the SSLImplementation selected. JSSE style configuration is used below.
     -->
-{% if tomcat.listen.https.enabled is defined %}
+{% if tomcat.listen.https.enabled is defined and tomcat.listen.https.enabled %}
     <Connector port="{{ tomcat.listen.https.port }}"
                protocol="org.apache.coyote.http11.Http11NioProtocol"
-{% if tomcat.listen.https.bind_address is defined %}address="{{ tomcat.listen.https.bind_address }}"
+{% if tomcat.listen.https.bind_address is defined %}               address="{{ tomcat.listen.https.bind_address }}"
 {% endif %}
                maxThreads="150"
                SSLEnabled="true"
