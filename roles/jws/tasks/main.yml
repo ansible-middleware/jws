@@ -25,10 +25,9 @@
 
     - name: "Create user for tomcat: {{ tomcat.user }}"
       user:
-        uid: 53
-        system: yes
         name: "{{ tomcat.user }}"
         uid: "{{ tomcat.uid }}"
+        system: yes
         groups: "{{ tomcat.group }}"
         home: "{{ tomcat.home }}"
         shell: /sbin/nologin

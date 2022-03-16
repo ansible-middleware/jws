@@ -76,7 +76,7 @@ tomcat:
     stickySessionRemove: "{{ tomcat_modcluster_stickySessionRemove }}"
   service:
     enabled: "{{ tomcat_systemd_enabled }}"
-    name: "{{ tomcat_service_name }}"
+    name: "{{ tomcat_service_name }}.service"
     conf: "{{ tomcat_service_conf }}"
     script: "{{ tomcat_service_script }}"
     systemd: "{{ tomcat_service_systemd }}"
