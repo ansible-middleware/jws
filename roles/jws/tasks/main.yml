@@ -20,10 +20,12 @@
     - name: "Create group: {{ tomcat.group }}"
       group:
         name: "{{ tomcat.group }}"
+        gid: "{{ tomcat.gid }}"
 
     - name: "Create user for tomcat: {{ tomcat.user }}"
       user:
         name: "{{ tomcat.user }}"
+        uid: "{{ tomcat.uid }}"
         groups: "{{ tomcat.group }}"
         comment: "User for Apache Tomcat"
 
