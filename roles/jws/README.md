@@ -22,7 +22,9 @@ Role Defaults
 |`jws_rhn_server_zipfile_url`| Customer Portal URL for installation archive | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341` |
 |`jws_native_zipfile_url`| Customer Portal URL for installation archive, native variant | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361` |
 |`tomcat_user`| posix user account for service | `tomcat` |
+|`tomcat_uid`| posix UID user account for service | `tomcat` |
 |`tomcat_group`| posix group for service | `tomcat` |
+|`tomcat_gid`| posix GID user account for service | `tomcat` |
 |`tomcat_home`| Target installation directory | `/opt/jws-5.4/tomcat` |
 |`tomcat_catalina_base`| Tomcat catalina base env variable | `{{ lookup('env','CATALINA_BASE') }}` |
 |`tomcat_conf_properties`| Path for tomcat configuration | `./conf/catalina.properties` |

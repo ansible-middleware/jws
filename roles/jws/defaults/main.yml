@@ -5,7 +5,10 @@ tomcat_rpm: 'jws5'
 jws_rhn_server_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341
 jws_native_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361
 tomcat_user: 'tomcat'
+tomcat_uid: 53
 tomcat_group: 'tomcat'
+tomcat_gid: 53
+
 tomcat_home: '/opt/jws-5.4/tomcat'
 tomcat_catalina_base: "{{ lookup('env','CATALINA_BASE') }}"
 tomcat_conf_properties: './conf/catalina.properties'

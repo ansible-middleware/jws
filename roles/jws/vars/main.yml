@@ -10,7 +10,9 @@ tomcat:
     username: "{{ rhn_username | default('') }}"
     password: "{{ rhn_password | default('') }}"
   user: "{{ tomcat_user }}"
+  uid: "{{ tomcat_uid }}"
   group: "{{ tomcat_group }}"
+  gid: "{{ tomcat_gid }}"
   home: "{{ tomcat_home }}"
   base: "{{ tomcat_catalina_base }}"
   conf:

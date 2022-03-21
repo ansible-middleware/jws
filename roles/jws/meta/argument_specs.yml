@@ -32,11 +32,19 @@ argument_specs:
                 default: "tomcat"
                 description: "posix user account for service"
                 type: "str"
+            tomcat_uid:
+                default: "53"
+                description: "posix user UID for service"
+                type: "int"
             tomcat_group:
                 # line 8 of jws/defaults/main.yml
                 default: "tomcat"
                 description: "posix group for service"
                 type: "str"
+            tomcat_gid:
+                default: "53"
+                description: "posix group GID for service"
+                type: "int"
             tomcat_home:
                 # line 9 of jws/defaults/main.yml
                 default: "/opt/jws-5.4/tomcat"
