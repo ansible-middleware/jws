@@ -109,18 +109,17 @@
                maxThreads="150"
                SSLEnabled="true"
                sslProtocol="TLS"
-               allowTrace="false"
+	           allowTrace="false"
+	           scheme="https"
                secure="true"
                xpoweredBy="false"
                server="My Server"
-               clientAuth="true"
                connectionTimeout="6000"
-               maxHttpHeaderSize="8192">
-        <SSLHostConfig>
-            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
-                         type="RSA" />
-        </SSLHostConfig>
-    </Connector>
+	           maxHttpHeaderSize="8192"
+	           keystoreFile="keystore.jks"
+	           keyAlias="alias"
+               keystorePass="password"
+	           clientAuth="false"/>
 {% endif %}
     <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
          This connector uses the APR/native implementation which always uses
