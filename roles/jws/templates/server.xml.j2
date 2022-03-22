@@ -75,8 +75,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector executor="tomcatThreadPool"
-               port="{{ tomcat.listen.http.port }}"
+    <Connector port="{{ tomcat.listen.http.port }}"
                protocol="HTTP/1.1"
                allowTrace="false"
 {% if tomcat.listen.http.bind_address is defined %}               address="{{ tomcat.listen.http.bind_address }}"
