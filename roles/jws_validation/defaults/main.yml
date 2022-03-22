@@ -1,0 +1,9 @@
+---
+tomcat_listen_http_bind_address: 127.0.0.1
+tomcat_listen_http_port: 8080
+tomcat_user: tomcat
+tomcat_uid: 53
+tomcat_group: tomcat
+tomcat_gid: 53
+tomcat_catalina_logfile: '/opt/apache-tomcat-9.0.50/logs/catalina.out'
+tomcat_service_name: tomcat
