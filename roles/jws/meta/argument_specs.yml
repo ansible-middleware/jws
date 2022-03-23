@@ -2,6 +2,11 @@
 argument_specs:
     main:
         options:
+            tomcat_install_dir:
+                # line 4 of jws/defaults/main.yml
+                default: "/opt"
+                description: "JWS/tomcat installation path"
+                type: "str"
             tomcat_apps_to_remove:
                 # line 2 of jws/defaults/main.yml
                 default: "docs,ROOT,examples"

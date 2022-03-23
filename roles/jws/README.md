@@ -17,10 +17,12 @@ Role Defaults
 | Variable | Description | Default |
 |:---------|:------------|:--------|
 |`tomcat_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
-|`tomcat_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles,rpm']` | `local_zipfiles` |
+|`tomcat_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
+|`tomcat_install_dir`| Installation path for JWS/tomcat | `/opt` |
 |`tomcat_rpm`| Installation RPM version | `jws5` |
 |`jws_rhn_server_zipfile_url`| Customer Portal URL for installation archive | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341` |
 |`jws_native_zipfile_url`| Customer Portal URL for installation archive, native variant | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361` |
+|`jws_version`| Version of JWS to install | `5.6.0` |
 |`tomcat_user`| posix user account for service | `tomcat` |
 |`tomcat_uid`| posix UID user account for service | `tomcat` |
 |`tomcat_group`| posix group for service | `tomcat` |

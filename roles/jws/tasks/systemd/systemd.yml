@@ -30,7 +30,7 @@
     dest: "{{ tomcat.service.conf }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
-    mode: 0755
+    mode: 0644
   notify:
     - Systemd reload
     - Ensure Tomcat runs under systemd
@@ -41,7 +41,7 @@
     dest: "{{ tomcat.service.systemd }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
-    mode: 0755
+    mode: 0644
   notify:
     - Systemd reload
     - Ensure Tomcat runs under systemd

@@ -12,9 +12,7 @@
       - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}/bin" }
 
 - set_fact:
-    native_zipfiles:
-      - { src: "{{ native_zipfile }}", creates: "{{ tomcat.home }}/lib/libtcnative-1.so" }
-    zipfiles: "{{ zipfiles + native_zipfiles }}"
+    zipfiles: "{{ zipfiles + [{ 'src': native_zipfile, 'creates': tomcat.home + '/lib/libtcnative-1.so' }] }}"
   when:
     - native_zipfile is defined
     - native_zipfile | length > 0

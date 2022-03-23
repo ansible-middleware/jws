@@ -1,17 +1,18 @@
 ---
 tomcat_apps_to_remove: 'docs,ROOT,examples'
-tomcat_install_method: 'local_zipfiles'
-tomcat_rpm: 'jws5'
+tomcat_install_method: local_zipfiles
+tomcat_install_dir: /opt
+tomcat_rpm: jws5
 jws_rhn_server_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341
 jws_native_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361
 jws_version: 5.6.0
 tomcat_version: 9.0.60
 tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
-tomcat_zipfile_url: "https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
+tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
 
-tomcat_user: 'tomcat'
+tomcat_user: tomcat
 tomcat_uid: 53
-tomcat_group: 'tomcat'
+tomcat_group: tomcat
 tomcat_gid: 53
 
 tomcat_home: '/opt/jws-5.4/tomcat'
