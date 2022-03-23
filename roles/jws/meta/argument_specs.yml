@@ -133,6 +133,34 @@ argument_specs:
                 default: "localhost"
                 description: "HTTPS Connector bind address"
                 type: "str"
+            tomcat_listen_https_servername:
+                default: "My Server"
+                description: "HTTPS Connector servername"
+                type: "str"
+            tomcat_listen_https_threads_max:
+                default: "150"
+                description: "HTTPS Connector max number of threads"
+                type: "int"
+            tomcat_listen_https_connection_timeout:
+                default: "6000"
+                description: "HTTPS Connector connection timeout"
+                type: "int"
+            tomcat_listen_https_headers_size:
+                default: "8192"
+                description: "HTTPS Connector headers max size"
+                type: "int"
+            tomcat_listen_https_keystore_file:
+                default: "/etc/ssl/keystore.jks"
+                description: "Path to Java Keystore file used by the HTTPS Connector"
+                type: "str"
+            tomcat_listen_https_keystore_password:
+                default: "changeit"
+                description: "Password for Java Keystore file used by the HTTPS Connector"
+                type: "str"
+            tomcat_listen_https_client_auth:
+                default: "False"
+                description: "HTTPS Connector client auth enable"
+                type: "str"
             tomcat_listen_ajp_enabled:
                 # line 28 of jws/defaults/main.yml
                 default: "False"

@@ -39,6 +39,18 @@ tomcat:
       port: "{{ tomcat_listen_https_port }}"
       bind_address: "{{ tomcat_listen_https_bind_address }}"
       enabled: "{{ tomcat_listen_https_enabled }}"
+      servername: "{{ tomcat_listen_https_servername }}"
+      threads:
+        max: "{{ tomcat_listen_https_threads_max }}"
+      connection:
+        timeout: "{{ tomcat_listen_https_connection_timeout }}"
+      headers:
+        max_size: "{{ tomcat_listen_https_headers_size }}"
+      keystore:
+        file: "{{ tomcat_listen_https_keystore_file }}"
+        password: "{{ tomcat_listen_https_keystore_password }}"
+      client:
+        auth: "{{ tomcat_listen_https_client_auth }}"
     ajp:
       enabled: "{{ tomcat_listen_ajp_enabled }}"
       address: "{{ tomcat_listen_ajp_address }}"

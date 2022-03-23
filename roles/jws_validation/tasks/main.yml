@@ -53,7 +53,7 @@
     - tomcat_service_name is defined
 
 - block:
-    - name: Slurp the content of catalina.out
+    - name: Read the content of catalina.out
       ansible.builtin.slurp:
         src: "{{ tomcat_catalina_logfile }}"
       register: catalina_out
@@ -68,3 +68,14 @@
   wait_for:
     host: "{{ tomcat_listen_http_bind_address }}"
     port: "{{ tomcat_listen_http_port }}"
+  when:
+    - tomcat_listen_http_bind_address is defined
+    - tomcat_listen_http_port is defined
+
+- name: "Ensure Tomcat HTTPS connecter is started and listen to the appropriate port"
+  wait_for:
+    host: "{{ tomcat_listen_https_bind_address }}"
+    port: "{{ tomcat_listen_https_port }}"
+  when:
+    - tomcat_listen_https_bind_address is defined
+    - tomcat_listen_https_port is defined
