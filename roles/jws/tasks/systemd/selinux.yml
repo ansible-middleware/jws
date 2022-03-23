@@ -22,15 +22,7 @@
         creates: "{{ tomcat.home }}/selinux/jws5-tomcat.pp"
       when:
         - not policy_path_selinux.stat.exists
-      register: policy_created
-
-    - name: Install selinux policy
-      command: semodule -i jws5-tomcat.pp
-      args:
-        chdir: "{{ tomcat.home }}/selinux"
-      when:
-        - policy_created.changed
-
-    - name: Apply selinux policy
-      command: "restorecon -r {{ tomcat.install_dir }}"
+      notify:
+        - "Selinux policy created"
+        - "Apply selinux policy"
   when: archive_path_selinux.stat.exists

@@ -14,20 +14,29 @@ Dependency
 Role Defaults
 -------------
 
+* Download and install parameters
+
 | Variable | Description | Default |
 |:---------|:------------|:--------|
-|`tomcat_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
 |`tomcat_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
 |`tomcat_install_dir`| Installation path for JWS/tomcat | `/opt` |
 |`tomcat_rpm`| Installation RPM version | `jws5` |
 |`jws_rhn_server_zipfile_url`| Customer Portal URL for installation archive | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341` |
 |`jws_native_zipfile_url`| Customer Portal URL for installation archive, native variant | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361` |
 |`jws_version`| Version of JWS to install | `5.6.0` |
+|`tomcat_home`| Target installation directory | `/opt/jws-5.4/tomcat` |
 |`tomcat_user`| posix user account for service | `tomcat` |
 |`tomcat_uid`| posix UID user account for service | `tomcat` |
 |`tomcat_group`| posix group for service | `tomcat` |
 |`tomcat_gid`| posix GID user account for service | `tomcat` |
-|`tomcat_home`| Target installation directory | `/opt/jws-5.4/tomcat` |
+|`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
+|`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
+|`tomcat_version`| Tomcat version to download | `9.0.60` |
+
+
+* Service configuration
+
+|`tomcat_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
 |`tomcat_catalina_base`| Tomcat catalina base env variable | `{{ lookup('env','CATALINA_BASE') }}` |
 |`tomcat_conf_properties`| Path for tomcat configuration | `./conf/catalina.properties` |
 |`tomcat_conf_policy`| Path for tomcat policy configuration | `./conf/catalina.policy` |
@@ -54,7 +63,7 @@ Role Defaults
 |`tomcat_vault_enable`| Enable value | `False` |
 |`tomcat_vault_alias`| Alias for loading from vault | `my_vault` |
 |`tomcat_vault_storepass`| Tomcat keystore password | `123456` |
-|`tomcat_vault_iteration`| TODO document argument | `44` |
+|`tomcat_vault_iteration`| Number of iteration for vault encryption | `44` |
 |`tomcat_vault_salt`| Salt for encrypting tomcat vault | `1234abcd` |
 |`tomcat_vault_properties`| Relative path to vault.properties | `/conf/vault.properties` |
 |`tomcat_modcluster_enable`| Enable mod_cluster module | `False` |
@@ -67,16 +76,13 @@ Role Defaults
 |`tomcat_modcluster_stickySessionRemove`| Remove sticky session from cookies | `true` |
 |`tomcat_systemd_enabled`| Enable tomcat systemd unit | `False` |
 |`tomcat_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
-|`tomcat_systemd_script_shebang`| Customize sysVinit script sheband | `#!/bin/{{ tomcat_systemd_script_interpreter }}` |
+|`tomcat_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ tomcat_systemd_script_interpreter }}` |
 |`tomcat_service_name`| Name for the systemd unit | `tomcat.service` |
 |`tomcat_service_conf`| Absolute path to tomcat.conf | `{{ tomcat_home }}/conf/tomcat.conf` |
 |`tomcat_service_script`| Tomcat sysVinit script | `{{ tomcat_home }}/bin/systemd-service.sh` |
 |`tomcat_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |
 |`tomcat_service_systemd_pidfile`| Absolute path to tomcat PIDfile | `{{ tomcat_home }}/tomcat.pidfile` |
 |`tomcat_service_systemd_type`| Systemd unit type | `simple` |
-|`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
-|`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
-|`tomcat_version`| Tomcat version to download | `9.0.60` |
 
 
 Role Variables
