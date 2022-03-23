@@ -110,7 +110,7 @@
       when: tomcat.apps.to_remove is defined
 
     - block:
-        - name: Copy tomcat vault file from control node to remote
+        - name: "Copy {{ tomcat.service.hr_name }} vault file from control node to remote"
           copy:
             src: "{{ tomcat.vault.name }}"
             dest: "{{ tomcat.home }}/"
@@ -118,7 +118,7 @@
             group: "{{ tomcat.group }}"
             mode: 0750
 
-        - name: Initialize tomcat vault
+        - name: "Initialize {{ tomcat.service.hr_name }} vault"
           command:
             cmd: "{{ tomcat.home }}/bin/tomcat-vault.sh --keystore {{ tomcat.home }}/vault.keystore --keystore-password {{ tomcat.vault.storepass }} --alias {{ tomcat.vault.alias }} --enc-dir {{ tomcat.home }} --iteration {{ tomcat.vault.iteration }} --salt {{ tomcat.vault.salt }} -g {{ tomcat.home }}/{{ tomcat.vault.properties }}"
       when: tomcat.vault.enable

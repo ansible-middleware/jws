@@ -82,3 +82,4 @@ tomcat:
     systemd: "{{ tomcat_service_systemd }}"
     pidfile: "{{ tomcat_service_systemd_pidfile }}"
     type: "{{ tomcat_service_systemd_type }}"
+    hr_name: "{{ 'Jboss Web Server' if tomcat_install_method in ['rhn_zipfiles','rpm'] else 'Tomcat' }}"

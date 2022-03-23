@@ -7,6 +7,7 @@
     tomcat_install_dir: /opt
 
     # Use Case 1 - Using Tomcat from apache (uncomment pre-tasks below if download is necessary)
+    tomcat_home: /opt/apache-tomcat-9.0.50
     tomcat_version: 9.0.50
     tomcat_download_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip
     tomcat_zipfile: "tomcat.zip"
@@ -48,9 +49,9 @@
     - jws
 
   pre_tasks:
-    - name: "Download latest Apache Tomcat Zipfile from {{ tomcat_download_url }}."
+    - name: "Pre Tasks: download archive"
       get_url:
         url: "{{ tomcat_download_url }}"
-        dest: "{{ tomcat_zipfile }}"
+        dest: "{{ tomcat_install_dir }}/{{ tomcat_zipfile }}"
       when:
         - tomcat_download_url is defined

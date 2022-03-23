@@ -20,7 +20,7 @@
       - tomcat.home is defined
       - tomcat.home == "/opt/rh/jws5/root/usr/share/tomcat/"
     quiet: true
-    fail_msg: "Tomcat HOME does not match the one provided by RPM."
+    fail_msg: "{{ tomcat.service.hr_name }} HOME does not match the one provided by RPM."
 
 - name: "Install {{ tomcat.rpm }}"
   command:
