@@ -2,5 +2,6 @@
 - name: Verify
   hosts: instance
   tasks:
-    - include_role:
-        name: jws_validation
+    - name: "Verify that state is consistent"
+      include_role:
+        name: ../../../roles/jws_validation

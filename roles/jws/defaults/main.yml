@@ -29,6 +29,13 @@ tomcat_listen_http_enabled: 'yes'
 tomcat_listen_https_port: '8443'
 tomcat_listen_https_bind_address: 'localhost'
 tomcat_listen_https_enabled: 'False'
+tomcat_listen_https_servername: 'My Server'
+tomcat_listen_https_threads_max: 150
+tomcat_listen_https_connection_timeout: 6000
+tomcat_listen_https_headers_size: 8192
+tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
+tomcat_listen_https_keystore_password: changeit
+tomcat_listen_https_client_auth: false
 
 tomcat_listen_ajp_enabled: 'False'
 tomcat_listen_ajp_address: '::1'

@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python_version }}
-      
+
       - name: Install yamllint, ansible and molecule
         run: |
           python -m pip install --upgrade pip
@@ -44,10 +44,10 @@ jobs:
         run: |
           sed -i -e "s/hub_token/${AUTOMATION_HUB_TOKEN}/g" ansible.cfg
         working-directory: ./ansible_collections/redhat/jws
-      
+
       - name: Run molecule test
         run: |
-          ansible-galaxy collection install -r molecule/default/requirements.yml
+          ansible-galaxy collection install -r molecule/requirements.yml
           molecule test
         env:
           PY_COLORS: "1"
