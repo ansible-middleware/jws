@@ -53,6 +53,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#using-local-zipfiles">Using local zipfiles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-rpm">Using RPM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-rhn">Using RHN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-a-custom-download-url">Using a custom download URL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#running-the-play-books">Running the play books</a></li>
 </ul>
 </li>
@@ -140,12 +141,12 @@
 <h2>Installation and Usage<a class="headerlink" href="#installation-and-usage" title="Permalink to this headline"></a></h2>
 <section id="how-to-use-this-playbook">
 <h3>How to use this playbook<a class="headerlink" href="#how-to-use-this-playbook" title="Permalink to this headline"></a></h3>
-<p>The use of the playbook will vary on the installation method you choose. There is currently
-three options:</p>
+<p>The use of the playbook will vary on the installation method you choose. The following options are available:</p>
 <ul class="simple">
 <li><p>local zipfile</p></li>
 <li><p>rpm</p></li>
-<li><p>using your RHN credentials to retrieve the JWS zipfiles provided by Red Hat.</p></li>
+<li><p>using your RHN credentials to retrieve the JWS zipfiles provided by Red Hat</p></li>
+<li><p>setting a custom URL for downloading the tomcat/JWS archives</p></li>
 </ul>
 </section>
 <section id="prerequisite">
@@ -163,7 +164,7 @@ $ ansible-galaxy collection install redhat-jws-*.tar.gz
 <li><p>Red Hat JBoss Web Server 5.4.0 Application Server (the server itself)</p></li>
 <li><p>Red Hat JBoss Web Server 5.4.0 Application Server for RHEL 8 x86_64 (the native bits)</p></li>
 </ul>
-<p>Provides the path to those zipfiles:</p>
+<p>Provide the path to those zipfiles:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
   tomcat_zipfile: jws-5.4.0-application-server.zip
@@ -198,6 +199,17 @@ $ ansible-galaxy collection install redhat-jws-*.tar.gz
 <p>And provide your RHN credentials (as argument or in file):</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rhn_username: alice@wonderland.org
 rhn_password: eatmeiamacookie
+</pre></div>
+</div>
+</section>
+<section id="using-a-custom-download-url">
+<h3>Using a custom download URL<a class="headerlink" href="#using-a-custom-download-url" title="Permalink to this headline"></a></h3>
+<p>To use the install method zipfiles, downloading from a custom URL, set :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+   ...
+   tomcat_install_method: zipfiles
+   tomcat_zipfile: tomcat-x.y.z.zip
+   tomcat_zipfile_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
 </pre></div>
 </div>
 </section>
