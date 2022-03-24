@@ -1,0 +1,28 @@
+---
+- name: Check if archive contains a selinux policy
+  ansible.builtin.stat:
+    path: "{{ tomcat.home }}/selinux/jws5-tomcat.if"
+  register: archive_path_selinux
+
+- block:
+    - name: Install selinux-policy-devel
+      include_tasks: ../fastpackage.yml
+      vars:
+        package_name: selinux-policy-devel
+
+    - name: Check if archive contains a selinux policy
+      ansible.builtin.stat:
+        path: "{{ tomcat.home }}/selinux/jws5-tomcat.pp"
+      register: policy_path_selinux
+
+    - name: Create selinux policy
+      command: make -f /usr/share/selinux/devel/Makefile
+      args:
+        chdir: "{{ tomcat.home }}/selinux"
+        creates: "{{ tomcat.home }}/selinux/jws5-tomcat.pp"
+      when:
+        - not policy_path_selinux.stat.exists
+      notify:
+        - "Selinux policy created"
+        - "Apply selinux policy"
+  when: archive_path_selinux.stat.exists

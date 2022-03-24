@@ -10,7 +10,7 @@
     name: "{{ tomcat.service.name }}"
     enabled: yes
 
-- name: "start tomcat service"
+- name: "Start tomcat service"
   service:
     name: "{{ tomcat.service.name }}"
     state: started

@@ -1,11 +1,12 @@
+# {{ ansible_managed }}
 # Systemd unit file for default tomcat
 [Unit]
-Description=Apache Tomcat Web Application Container
+Description={{ tomcat.service.hr_name }}
 After=syslog.target network.target
 
 [Service]
-Type={{ tomcat.service.type }}"
-EnvironmentFile={{ tomcat.home }}/conf/tomcat.conf
+Type={{ tomcat.service.type }}
+EnvironmentFile={{ tomcat.service.conf }}
 ExecStart={{ tomcat.service.script }} start
 PIDFile={{ tomcat.service.pidfile }}
 #SuccessExitStatus=143

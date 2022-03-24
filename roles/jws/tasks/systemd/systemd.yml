@@ -9,12 +9,12 @@
       - tomcat.service.script is defined
 
 - name: "Ensure requirements for systemd"
-  include_tasks: fastpackage.yml
+  include_tasks: ../fastpackage.yml
   vars:
     package_name: "{{ item }}"
   loop:
     - systemd
-    - procps
+    - procps-ng
 
 - name: "Ensure service script is deployed"
   template:
@@ -30,10 +30,10 @@
     dest: "{{ tomcat.service.conf }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
-    mode: 0755
+    mode: 0644
   notify:
     - Systemd reload
-    - Ensures Tomcat runs under systemd
+    - Ensure Tomcat runs under systemd
 
 - name: "Ensure systemd service is configured"
   template:
@@ -41,7 +41,7 @@
     dest: "{{ tomcat.service.systemd }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
-    mode: 0755
+    mode: 0644
   notify:
     - Systemd reload
-    - Ensures Tomcat runs under systemd
+    - Ensure Tomcat runs under systemd

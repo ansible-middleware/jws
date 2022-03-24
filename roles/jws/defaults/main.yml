@@ -1,12 +1,18 @@
 ---
 tomcat_apps_to_remove: 'docs,ROOT,examples'
-tomcat_install_method: 'local_zipfiles'
-tomcat_rpm: 'jws5'
+tomcat_install_method: local_zipfiles
+tomcat_install_dir: /opt
+tomcat_rpm: jws5
 jws_rhn_server_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341
 jws_native_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361
-tomcat_user: 'tomcat'
+jws_version: 5.6.0
+tomcat_version: 9.0.60
+tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
+tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
+
+tomcat_user: tomcat
 tomcat_uid: 53
-tomcat_group: 'tomcat'
+tomcat_group: tomcat
 tomcat_gid: 53
 
 tomcat_home: '/opt/jws-5.4/tomcat'
@@ -64,9 +70,9 @@ tomcat_modcluster_stickySessionRemove: 'true'
 tomcat_systemd_enabled: 'False'
 tomcat_systemd_script_interpreter: 'bash'
 tomcat_systemd_script_shebang: "#!/bin/{{ tomcat_systemd_script_interpreter }}"
-tomcat_service_name: 'tomcat.service'
-tomcat_service_conf: "{{ tomcat_home }}/conf/tomcat.conf"
+tomcat_service_name: 'jws5-tomcat'
+tomcat_service_conf: "{{ tomcat_home }}/conf/{{ tomcat_service_name }}.conf"
 tomcat_service_script: "{{ tomcat_home }}/bin/systemd-service.sh"
-tomcat_service_systemd: '/usr/lib/systemd/system/tomcat.service'
-tomcat_service_systemd_pidfile: "{{ tomcat_home }}/tomcat.pidfile"
+tomcat_service_systemd: "/usr/lib/systemd/system/{{ tomcat_service_name }}.service"
+tomcat_service_systemd_pidfile: "{{ tomcat_home }}/{{ tomcat_service_name }}.pidfile"
 tomcat_service_systemd_type: "simple"

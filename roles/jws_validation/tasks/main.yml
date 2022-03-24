@@ -47,6 +47,7 @@
           - ansible_facts.services["{{ tomcat_service_name }}.service"] is defined
           - ansible_facts.services["{{ tomcat_service_name }}.service"]['state'] is defined
           - ansible_facts.services["{{ tomcat_service_name }}.service"]['state'] == 'running'
+          - ansible_facts.services["{{ tomcat_service_name }}.service"]['status'] == 'enabled'
         quiet: true
         fail_msg: "Service is not started."
   when:

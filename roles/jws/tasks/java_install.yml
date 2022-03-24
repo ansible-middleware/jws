@@ -3,12 +3,12 @@
 
     - name: Set rpm name with version
       set_fact:
-        tomcat_java_packages_EL: "java-{{ tomcat_java_version }}-openjdk"
+        tomcat_java_packages_el: "java-{{ tomcat_java_version }}-openjdk"
 
-    - name: "Install {{ tomcat_java_packages_EL }}"
+    - name: "Install {{ tomcat_java_packages_el }}"
       include_tasks: fastpackage.yml
       vars:
-        package_name: "{{tomcat_java_packages_EL}}"
+        package_name: "{{ tomcat_java_packages_el }}"
   when:
     - tomcat_java_version is defined
     - ansible_os_family == "RedHat"
