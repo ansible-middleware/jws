@@ -24,7 +24,7 @@
 
 - name: "Install {{ tomcat.rpm }}"
   command:
-    cmd: "yum group install -y {{ tomcat.rpm }}"
-    creates: "{{ tomcat.home }}"
+    cmd: "dnf groupinstall -y {{ tomcat.rpm }}"
+    creates: "{{ tomcat_rpm_root_dir }}/enable"
   notify:
     - Ensure Tomcat runs under systemd

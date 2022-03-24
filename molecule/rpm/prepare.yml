@@ -1,0 +1,24 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Display Ansible version
+      debug:
+        msg: "Ansible version is  {{ ansible_version.full }}"
+
+    - name: "Creates dummy configuration folder as RPM would do"
+      file:
+        path: /opt/rh/jws5/root/usr/share/tomcat/conf/
+        state: directory
+
+    - name: "Deploy files to emulate that RPM installation has been performed"
+      file:
+        path: "{{ item }}"
+        state: touch
+      loop:
+         - /opt/rh/jws5/enable
+         - /opt/rh/jws5/root/usr/share/tomcat/conf/catalina.properties
+         - /opt/rh/jws5/root/usr/share/tomcat/conf/catalina.policy
+         - /opt/rh/jws5/root/usr/share/tomcat/conf/logging.properties
+         - /opt/rh/jws5/root/usr/share/tomcat/conf/tomcat-users.xml
+         - /opt/rh/jws5/root/usr/share/tomcat/conf/jaspic-providers.xml

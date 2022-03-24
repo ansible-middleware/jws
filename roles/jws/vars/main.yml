@@ -4,6 +4,7 @@ tomcat:
   install_method: "{{ tomcat_install_method }}"
   install_dir: "{{ tomcat_install_dir }}"
   rpm: "{{ tomcat_rpm }}"
+  rpm_root_dir: "{{ tomcat_rpm_root_dir }}"
   rhn:
     server_zipfile_url: "{{ jws_rhn_server_zipfile_url }}"
     native_zipfile_url: "{{ jws_native_zipfile_url }}"

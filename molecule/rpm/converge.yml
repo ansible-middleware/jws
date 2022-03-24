@@ -1,0 +1,20 @@
+---
+- name: "Red Hat JBoss Web Server installation and configuration"
+  hosts: all
+  vars:
+    tomcat_setup: true
+
+    tomcat_install_method: rpm
+    tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
+    tomcat_catalina_base: "{{ tomcat_home }}"
+
+    tomcat_java_version: 1.8.0
+    tomcat_listen_http_bind_address: 127.0.0.1
+
+    # workaround issue on Github actions
+    ansible_distribution: 'RedHat'
+  collections:
+    - middleware_automation.redhat_csp_download
+  roles:
+    - redhat_csp_download
+    - jws
