@@ -1,0 +1,8 @@
+---
+- name: "Ensure Tomcat listens to appropriate port {{ listen_port }} on {{ bind_address }}"
+  wait_for:
+    host: "{{ bind_address }}"
+    port: "{{ listen_port }}"
+  when:
+    - bind_address is defined
+    - listen_port is defined

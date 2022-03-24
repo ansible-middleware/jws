@@ -1,0 +1,9 @@
+---
+- name: Read the content of catalina.out
+  ansible.builtin.slurp:
+    src: "{{ tomcat_catalina_logfile }}"
+  register: catalina_out
+
+- name: Print the content of catalina.out
+  ansible.builtin.debug:
+    msg: "{{ catalina_out['content'] | b64decode | length }}"

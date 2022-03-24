@@ -1,0 +1,14 @@
+---
+- name: "Check that user account {{ tomcat_user }} was properly created"
+  user:
+    name: "{{ tomcat_user }}"
+    uid: "{{ tomcat_uid }}"
+  register: tomcat_account_check
+
+- name: "Fail if user account has been changed"
+  assert:
+    that:
+      - tomcat_account_check is defined
+      - not tomcat_account_check.changed
+    quiet: true
+    fail_msg: "User account {{ tomcat_user }} has not been properly configured."

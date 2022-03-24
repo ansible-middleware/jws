@@ -1,91 +1,46 @@
 ---
-- block:
-    - name: "Check that user account {{ tomcat_user }} was properly created"
-      user:
-        name: "{{ tomcat_user }}"
-        uid: "{{ tomcat_uid }}"
-      register: tomcat_account_check
-
-    - name: "Fail if user account has been changed"
-      assert:
-        that:
-          - tomcat_account_check is defined
-          - not tomcat_account_check.changed
-        quiet: true
-        fail_msg: "User account {{ tomcat_user }} has not been properly configured."
+- include_tasks: user.yml
   when:
     - tomcat_user is defined
     - tomcat_uid is defined
 
-- block:
-    - name: "Check that group account was properly created"
-      group:
-        name: "{{ tomcat_group }}"
-        gid: "{{ tomcat_gid }}"
-      register: tomcat_group_check
-
-    - name: "Fail if group has been updated"
-      assert:
-        that:
-          - tomcat_group_check is defined
-          - not tomcat_group_check.changed
-        quiet: true
-        fail_msg: "Group {{ tomcat_group }} has not been properly configured."
+- include_tasks: group.yml
   when:
     - tomcat_group is defined
     - tomcat_gid is defined
 
-- block:
-    - name: Populate service facts
-      ansible.builtin.service_facts:
-
-    - name: Check if service is started
-      assert:
-        that:
-          - ansible_facts is defined
-          - ansible_facts.services is defined
-          - ansible_facts.services["{{ tomcat_service_name }}.service"] is defined
-          - ansible_facts.services["{{ tomcat_service_name }}.service"]['state'] is defined
-          - ansible_facts.services["{{ tomcat_service_name }}.service"]['state'] == 'running'
-          - ansible_facts.services["{{ tomcat_service_name }}.service"]['status'] == 'enabled'
-        quiet: true
-        fail_msg: "Service is not started."
+- include_tasks: service_status.yml
   when:
     - tomcat_service_name is defined
 
-- block:
-    - name: Read the content of catalina.out
-      ansible.builtin.slurp:
-        src: "{{ tomcat_catalina_logfile }}"
-      register: catalina_out
-
-    - name: Print the content of catalina.out
-      ansible.builtin.debug:
-        msg: "{{ catalina_out['content'] | b64decode | length }}"
+- include_tasks: catalina_out.yml
   when:
     - tomcat_catalina_logfile is defined
 
-- name: "Ensure Tomcat is started and listen to appropriate port"
-  wait_for:
-    host: "{{ tomcat_listen_http_bind_address }}"
-    port: "{{ tomcat_listen_http_port }}"
+- name: "Ensure Tomcat HTTP connector is started and listen to the appropriate port"
+  include_tasks: check_connector_port.yml
+  vars:
+    bind_address: "{{ tomcat_listen_http_bind_address }}"
+    listen_port: "{{ tomcat_listen_http_port }}"
   when:
     - tomcat_listen_http_bind_address is defined
     - tomcat_listen_http_port is defined
 
 - name: "Ensure Tomcat HTTPS connector is started and listen to the appropriate port"
-  wait_for:
-    host: "{{ tomcat_listen_https_bind_address }}"
-    port: "{{ tomcat_listen_https_port }}"
+  include_tasks: check_connector_port.yml
+  vars:
+    bind_address: "{{ tomcat_listen_https_bind_address }}"
+    listen_port: "{{ tomcat_listen_https_port }}"
   when:
     - tomcat_listen_https_enabled is defined
     - tomcat_listen_https_bind_address is defined
     - tomcat_listen_https_port is defined
 
 - name: "Ensure Tomcat AJP connector is started and listen to the appropriate port"
-  wait_for:
-    host: "{{ tomcat_listen_ajp_bind_address }}"
-    port: "{{ tomcat_listen_ajp_port }}"
+  include_tasks: check_connector_port.yml
+  vars:
+    bind_address: "{{  tomcat_listen_ajp_bind_address }}"
+    listen_port: "{{  tomcat_listen_ajp_port }}"
   when:
     - tomcat_listen_ajp_enabled is defined
     - tomcat_listen_ajp_bind_address is defined
