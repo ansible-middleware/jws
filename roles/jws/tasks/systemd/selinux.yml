@@ -15,7 +15,7 @@
         path: "{{ tomcat.home }}/selinux/jws5-tomcat.pp"
       register: policy_path_selinux
 
-    - name: Create selinux selinux
+    - name: Create selinux policy
       command: make -f /usr/share/selinux/devel/Makefile
       args:
         chdir: "{{ tomcat.home }}/selinux"

@@ -14,7 +14,7 @@
     package_name: "{{ item }}"
   loop:
     - systemd
-    - procps
+    - procps-ng
 
 - name: "Ensure service script is deployed"
   template:
