@@ -77,7 +77,7 @@ Role Defaults
 |`tomcat_systemd_enabled`| Enable tomcat systemd unit | `False` |
 |`tomcat_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
 |`tomcat_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ tomcat_systemd_script_interpreter }}` |
-|`tomcat_service_name`| Name for the systemd unit | `tomcat.service` |
+|`tomcat_service_name`| Name for the systemd unit | `tomcat` |
 |`tomcat_service_conf`| Absolute path to tomcat.conf | `{{ tomcat_home }}/conf/tomcat.conf` |
 |`tomcat_service_script`| Tomcat sysVinit script | `{{ tomcat_home }}/bin/systemd-service.sh` |
 |`tomcat_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |

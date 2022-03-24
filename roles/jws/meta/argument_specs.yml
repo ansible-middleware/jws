@@ -303,7 +303,7 @@ argument_specs:
                 type: "str"
             tomcat_service_name:
                 # line 55 of jws/defaults/main.yml
-                default: "tomcat.service"
+                default: "tomcat"
                 description: "Name for the systemd unit"
                 type: "str"
             tomcat_service_conf:
