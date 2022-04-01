@@ -1,0 +1,19 @@
+---
+- name: Verify
+  hosts: instance
+  vars:
+    tomcat_home: /opt/apache-tomcat-9.0.50
+  tasks:
+    - name: "Read info on server home: {{ tomcat_home }}"
+      stat:
+        path: "{{ tomcat_home }}/lib"
+      register: tc_home
+
+    - name: "Check that server home has been removed"
+      assert:
+        that:
+          - tc_home is defined
+          - tc_home.stat is defined
+          - tc_home.stat.exists is defined
+          - not tc_home.stat.exists
+        quiet: true
