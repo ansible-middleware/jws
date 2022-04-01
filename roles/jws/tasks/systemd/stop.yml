@@ -1,0 +1,11 @@
+---
+- name: Check arguments
+  assert:
+    that:
+      - tomcat.service.name is defined
+    quiet: true
+
+- name: "Stop tomcat service"
+  service:
+    name: "{{ tomcat.service.name }}"
+    state: stopped
