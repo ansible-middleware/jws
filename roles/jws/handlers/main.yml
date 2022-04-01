@@ -16,6 +16,14 @@
     - tomcat.service.enabled
   listen: "Ensure Tomcat runs under systemd"
 
+- name: "Ensure systemd service for {{ tomcat.service.hr_name }} is stopped."
+  include_tasks: tasks/systemd/stop.yml
+  when:
+    - tomcat.service is defined
+    - tomcat.service.enabled is defined
+    - tomcat.service.enabled
+  listen: "Ensure Tomcat runs under systemd"
+
 - name: "Restart {{ tomcat.service.hr_name }} service"
   service:
     name: "{{ tomcat.service.name }}"
