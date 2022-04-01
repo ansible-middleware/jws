@@ -7,6 +7,9 @@
     quiet: true
     fail_msg: "No RPM package name provided."
 
+- debug:
+    var: dnf_command
+
 - assert:
     that:
       - ansible_os_family == "RedHat"
@@ -22,9 +25,21 @@
     quiet: true
     fail_msg: "{{ tomcat.service.hr_name }} HOME does not match the one provided by RPM."
 
-- name: "Install {{ tomcat.rpm }}"
+- set_fact:
+    dnf_command: "'groupinstall'"
+    info_msg: "Install {{ tomcat.rpm }}"
+  when:
+    - not dnf_command is defined
+
+- set_fact:
+    info_msg: "Remove {{ tomcat.rpm }}"
+  when:
+    - dnf_command is defined
+    - dnf_command != "groupinstall"
+
+- name: "{{ info_msg }}"
   command:
-    cmd: "dnf groupinstall -y {{ tomcat.rpm }}"
+    cmd: "dnf {{ dnf_command | default('groupinstall') }} -y {{ tomcat.rpm }}"
     creates: "{{ tomcat_rpm_root_dir }}/enable"
   notify:
     - Ensure Tomcat runs under systemd
