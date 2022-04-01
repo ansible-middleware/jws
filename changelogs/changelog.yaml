@@ -1,0 +1,9 @@
+ancestor: 0.0.3
+releases:
+  1.0.0:
+    changes:
+      release_summary: 'This is the first stable release of the ``middleware_automation.jws``
+        collection.
+
+        '
+    release_date: '2022-03-11'
