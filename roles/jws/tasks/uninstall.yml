@@ -13,20 +13,30 @@
   when:
     - tomcat_systemd_enabled is defined
 
-#- include_tasks: uninstall.yml
-#  when:
-#    - tomcat.install_method == 'zipfiles'
-#    - tomcat.install_method == 'local_zipfiles'
-#    - tomcat.install_method != 'rpm'
+- name: "Deletes files from server home {{ tomcat.home }}"
+  block:
+    - name: "Check that server home has been provided"
+      assert:
+        that:
+          - tomcat.home is defined
+        quiet: true
+
+    - name: "Deletes files from server home {{ tomcat.home }}"
+      file:
+        path: "{{ tomcat.home }}"
+        state: absent
+  when:
+    - tomcat.install_method == 'zipfiles' or tomcat.install_method == 'local_zipfiles'
+    - tomcat.install_method != 'rpm'
 
 - block:
-   - name: "Disable installed server to ensure package is removed"
-     file:
-       path: /opt/rh/jws5/enable
-       state: absent
+    - name: "Disable installed server to ensure package is removed"
+      file:
+        path: /opt/rh/jws5/enable
+        state: absent
 
-   - include_tasks: install/rpm.yml
-     vars:
-       dnf_command: 'groupremove'
+    - include_tasks: install/rpm.yml
+      vars:
+        dnf_command: 'groupremove'
   when:
     - tomcat.install_method == 'rpm'

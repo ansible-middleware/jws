@@ -1,0 +1,12 @@
+---
+- import_playbook: ../../playbook.yml
+
+- name: "Red Hat JBoss Web Server uninstallation"
+  hosts: all
+  post_tasks:
+    - include_role:
+        name: ../../roles/jws
+        tasks_from: uninstall.yml
+      vars:
+        tomcat_service_name: tomcat
+        tomcat_home: /opt/apache-tomcat-9.0.50
