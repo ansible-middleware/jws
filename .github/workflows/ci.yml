@@ -35,10 +35,10 @@ jobs:
           path: ansible_collections/ansible-lint-custom-rules/
 
       - name: Run sanity tests
-        run: ansible-test sanity
+        run: ansible-test sanity -v --color --exclude changelogs/fragments/.gitignore
         working-directory: ./ansible_collections/redhat/jws
 
-      - name: Replace token in anisble.cfg
+      - name: Replace token in ansible.cfg
         env:
           AUTOMATION_HUB_TOKEN: ${{ secrets.AUTOMATION_HUB_TOKEN }}
         run: |

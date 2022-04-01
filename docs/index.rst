@@ -15,8 +15,8 @@ Welcome to JWS Collection documentation
    :maxdepth: 2
    :caption: Developer documentation
 
-   developing
    testing
+   developing
    releasing
 
 .. toctree::

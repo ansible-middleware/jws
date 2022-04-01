@@ -10,7 +10,7 @@ namespace: middleware_automation
 name: jws
 
 # The version of the collection. Must be compatible with semantic versioning
-version: "1.0.0"
+version: "1.0.1"
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
@@ -33,7 +33,7 @@ license_file: "LICENSE"
 
 # A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
 # requirements as 'namespace' and 'name'
-tags: [java, tomcat, server, apache, jws, mod_cluster, infrastructure, linux]
+tags: [java, tomcat, server, apache, jws, modcluster, infrastructure, linux]
 
 # Collections that this collection requires to be installed for it to be usable. The key of the dict is the
 # collection label 'namespace.name'. The value is a version range
@@ -53,3 +53,8 @@ homepage: https://github.com/ansible-middleware/jws-ansible-playbook
 
 # The URL to the collection issue tracker
 issues: https://github.com/ansible-middleware/jws-ansible-playbook/issues
+build_ignore:
+  - molecule
+  - .github
+  - '*.tar.gz'
+  - '*.zip'
