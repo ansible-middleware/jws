@@ -27,7 +27,7 @@ jobs:
 
       - name: Get current version
         id: get_version
-        run: echo "::set-output name=TAG_VERSION::$(grep version: galaxy.yml | awk -F'"' '{ print $2 }')"
+        run: echo "::set-output name=TAG_VERSION::$(grep 'version:' galaxy.yml | awk -F'"' '{ print $2 }')"
 
       - name: Check if tag exists
         id: check_tag
