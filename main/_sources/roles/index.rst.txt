@@ -1,4 +1,5 @@
 Role Index
 ==========
 
- * :doc:`jws`
+.. toctree::
+    jws
