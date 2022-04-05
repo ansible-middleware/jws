@@ -36,6 +36,8 @@ Role Defaults
 
 * Service configuration
 
+| Variable | Description | Default |
+|:---------|:------------|:--------|
 |`tomcat_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
 |`tomcat_catalina_base`| Tomcat catalina base env variable | `{{ lookup('env','CATALINA_BASE') }}` |
 |`tomcat_conf_properties`| Path for tomcat configuration | `./conf/catalina.properties` |
