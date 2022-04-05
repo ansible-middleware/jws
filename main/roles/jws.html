@@ -176,53 +176,204 @@
 <ul class="simple">
 <li><p>Service configuration</p></li>
 </ul>
-<p>|<code class="docutils literal notranslate"><span class="pre">tomcat_apps_to_remove</span></code>| Comma separated list of apps to undeploy | <code class="docutils literal notranslate"><span class="pre">docs,ROOT,examples</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_catalina_base</span></code>| Tomcat catalina base env variable | <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">lookup('env','CATALINA_BASE')</span> <span class="pre">}}</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_properties</span></code>| Path for tomcat configuration | <code class="docutils literal notranslate"><span class="pre">./conf/catalina.properties</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_policy</span></code>| Path for tomcat policy configuration | <code class="docutils literal notranslate"><span class="pre">./conf/catalina.policy</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_loggging</span></code>| Path for logging configuration | <code class="docutils literal notranslate"><span class="pre">./conf/logging.properties</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_context</span></code>| Relative path to context.xml | <code class="docutils literal notranslate"><span class="pre">./conf/context.xml</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_server</span></code>| Relative path to server.xml | <code class="docutils literal notranslate"><span class="pre">./conf/server.xml</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_web</span></code>| Relative path to web.xml | <code class="docutils literal notranslate"><span class="pre">./conf/web.xml</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_context</span></code>| Template to use for context.xml | <code class="docutils literal notranslate"><span class="pre">templates/context.xml.j2</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_server</span></code>| Template to use for server.xml | <code class="docutils literal notranslate"><span class="pre">templates/server.xml.j2</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_web</span></code>| Template to use for web.xml | <code class="docutils literal notranslate"><span class="pre">templates/web.xml.j2</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_shutdown_port</span></code>| Tomcat shutdown port | <code class="docutils literal notranslate"><span class="pre">8005</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_port</span></code>| Tomcat http listen port | <code class="docutils literal notranslate"><span class="pre">8080</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_bind_address</span></code>| Service bind address | <code class="docutils literal notranslate"><span class="pre">localhost</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_enabled</span></code>| Enable listening on http port | <code class="docutils literal notranslate"><span class="pre">yes</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_port</span></code>| Enable listening on https port | <code class="docutils literal notranslate"><span class="pre">8443</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_bind_address</span></code>| Bind address for https | <code class="docutils literal notranslate"><span class="pre">::1</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_enabled</span></code>| Enable listening on https port | <code class="docutils literal notranslate"><span class="pre">false</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_enabled</span></code>| Enable listening on ajp port | <code class="docutils literal notranslate"><span class="pre">False</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_address</span></code>| Bind address for ajp | <code class="docutils literal notranslate"><span class="pre">::1</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_port</span></code>| Tomcat ajp listen port | <code class="docutils literal notranslate"><span class="pre">8009</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_secretRequired</span></code>| Enable loading secret from vault | <code class="docutils literal notranslate"><span class="pre">True</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_secret</span></code>| Passphrase for vault secret | <code class="docutils literal notranslate"><span class="pre">secret</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_vault_name</span></code>| Path to tomcat keysore | <code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_vault_enable</span></code>| Enable value | <code class="docutils literal notranslate"><span class="pre">False</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_vault_alias</span></code>| Alias for loading from vault | <code class="docutils literal notranslate"><span class="pre">my_vault</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_vault_storepass</span></code>| Tomcat keystore password | <code class="docutils literal notranslate"><span class="pre">123456</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_vault_iteration</span></code>| Number of iteration for vault encryption | <code class="docutils literal notranslate"><span class="pre">44</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_vault_salt</span></code>| Salt for encrypting tomcat vault | <code class="docutils literal notranslate"><span class="pre">1234abcd</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_vault_properties</span></code>| Relative path to vault.properties | <code class="docutils literal notranslate"><span class="pre">/conf/vault.properties</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_enable</span></code>| Enable mod_cluster module | <code class="docutils literal notranslate"><span class="pre">False</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_ip</span></code>| Bind address for mod_cluster | <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_port</span></code>| mod_cluster port | <code class="docutils literal notranslate"><span class="pre">6666</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_connector_port</span></code>| mod_cluster connector port | <code class="docutils literal notranslate"><span class="pre">6666</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_advertise</span></code>| Enable mod_cluster advertising | <code class="docutils literal notranslate"><span class="pre">false</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_stickySession</span></code>| Enable mod_cluster sticky sessions | <code class="docutils literal notranslate"><span class="pre">true</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_stickySessionForce</span></code>| Force use of sticky sessions | <code class="docutils literal notranslate"><span class="pre">false</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_stickySessionRemove</span></code>| Remove sticky session from cookies | <code class="docutils literal notranslate"><span class="pre">true</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_systemd_enabled</span></code>| Enable tomcat systemd unit | <code class="docutils literal notranslate"><span class="pre">False</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_systemd_script_interpreter</span></code>| Interpreter for systemd unit | <code class="docutils literal notranslate"><span class="pre">bash</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_systemd_script_shebang</span></code>| Customize sysVinit script shebang | <code class="docutils literal notranslate"><span class="pre">#!/bin/{{</span> <span class="pre">tomcat_systemd_script_interpreter</span> <span class="pre">}}</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_service_name</span></code>| Name for the systemd unit | <code class="docutils literal notranslate"><span class="pre">tomcat</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_service_conf</span></code>| Absolute path to tomcat.conf | <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/conf/tomcat.conf</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_service_script</span></code>| Tomcat sysVinit script | <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/bin/systemd-service.sh</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd</span></code>| Tomcat systemd unit | <code class="docutils literal notranslate"><span class="pre">/usr/lib/systemd/system/tomcat.service</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd_pidfile</span></code>| Absolute path to tomcat PIDfile | <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/tomcat.pidfile</span></code> |
-|<code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd_type</span></code>| Systemd unit type | <code class="docutils literal notranslate"><span class="pre">simple</span></code> |</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>Variable</p></th>
+<th class="text-left head"><p>Description</p></th>
+<th class="text-left head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_apps_to_remove</span></code></p></td>
+<td class="text-left"><p>Comma separated list of apps to undeploy</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">docs,ROOT,examples</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_catalina_base</span></code></p></td>
+<td class="text-left"><p>Tomcat catalina base env variable</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">lookup('env','CATALINA_BASE')</span> <span class="pre">}}</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_properties</span></code></p></td>
+<td class="text-left"><p>Path for tomcat configuration</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/catalina.properties</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_policy</span></code></p></td>
+<td class="text-left"><p>Path for tomcat policy configuration</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/catalina.policy</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_loggging</span></code></p></td>
+<td class="text-left"><p>Path for logging configuration</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/logging.properties</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_context</span></code></p></td>
+<td class="text-left"><p>Relative path to context.xml</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/context.xml</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_server</span></code></p></td>
+<td class="text-left"><p>Relative path to server.xml</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/server.xml</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_web</span></code></p></td>
+<td class="text-left"><p>Relative path to web.xml</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/web.xml</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_context</span></code></p></td>
+<td class="text-left"><p>Template to use for context.xml</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">templates/context.xml.j2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_server</span></code></p></td>
+<td class="text-left"><p>Template to use for server.xml</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">templates/server.xml.j2</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_web</span></code></p></td>
+<td class="text-left"><p>Template to use for web.xml</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">templates/web.xml.j2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_shutdown_port</span></code></p></td>
+<td class="text-left"><p>Tomcat shutdown port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8005</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_port</span></code></p></td>
+<td class="text-left"><p>Tomcat http listen port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8080</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_bind_address</span></code></p></td>
+<td class="text-left"><p>Service bind address</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">localhost</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_enabled</span></code></p></td>
+<td class="text-left"><p>Enable listening on http port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">yes</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_port</span></code></p></td>
+<td class="text-left"><p>Enable listening on https port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8443</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_bind_address</span></code></p></td>
+<td class="text-left"><p>Bind address for https</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">::1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_enabled</span></code></p></td>
+<td class="text-left"><p>Enable listening on https port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_enabled</span></code></p></td>
+<td class="text-left"><p>Enable listening on ajp port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_address</span></code></p></td>
+<td class="text-left"><p>Bind address for ajp</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">::1</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_port</span></code></p></td>
+<td class="text-left"><p>Tomcat ajp listen port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8009</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_secretRequired</span></code></p></td>
+<td class="text-left"><p>Enable loading secret from vault</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_secret</span></code></p></td>
+<td class="text-left"><p>Passphrase for vault secret</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">secret</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_vault_name</span></code></p></td>
+<td class="text-left"><p>Path to tomcat keysore</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_vault_enable</span></code></p></td>
+<td class="text-left"><p>Enable value</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_vault_alias</span></code></p></td>
+<td class="text-left"><p>Alias for loading from vault</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">my_vault</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_vault_storepass</span></code></p></td>
+<td class="text-left"><p>Tomcat keystore password</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">123456</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_vault_iteration</span></code></p></td>
+<td class="text-left"><p>Number of iteration for vault encryption</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">44</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_vault_salt</span></code></p></td>
+<td class="text-left"><p>Salt for encrypting tomcat vault</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1234abcd</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_vault_properties</span></code></p></td>
+<td class="text-left"><p>Relative path to vault.properties</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">/conf/vault.properties</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_enable</span></code></p></td>
+<td class="text-left"><p>Enable mod_cluster module</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_ip</span></code></p></td>
+<td class="text-left"><p>Bind address for mod_cluster</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_port</span></code></p></td>
+<td class="text-left"><p>mod_cluster port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6666</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_connector_port</span></code></p></td>
+<td class="text-left"><p>mod_cluster connector port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6666</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_advertise</span></code></p></td>
+<td class="text-left"><p>Enable mod_cluster advertising</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_stickySession</span></code></p></td>
+<td class="text-left"><p>Enable mod_cluster sticky sessions</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_stickySessionForce</span></code></p></td>
+<td class="text-left"><p>Force use of sticky sessions</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_stickySessionRemove</span></code></p></td>
+<td class="text-left"><p>Remove sticky session from cookies</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_systemd_enabled</span></code></p></td>
+<td class="text-left"><p>Enable tomcat systemd unit</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_systemd_script_interpreter</span></code></p></td>
+<td class="text-left"><p>Interpreter for systemd unit</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">bash</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_systemd_script_shebang</span></code></p></td>
+<td class="text-left"><p>Customize sysVinit script shebang</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">#!/bin/{{</span> <span class="pre">tomcat_systemd_script_interpreter</span> <span class="pre">}}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_name</span></code></p></td>
+<td class="text-left"><p>Name for the systemd unit</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_conf</span></code></p></td>
+<td class="text-left"><p>Absolute path to tomcat.conf</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/conf/tomcat.conf</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_script</span></code></p></td>
+<td class="text-left"><p>Tomcat sysVinit script</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/bin/systemd-service.sh</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd</span></code></p></td>
+<td class="text-left"><p>Tomcat systemd unit</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">/usr/lib/systemd/system/tomcat.service</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd_pidfile</span></code></p></td>
+<td class="text-left"><p>Absolute path to tomcat PIDfile</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/tomcat.pidfile</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd_type</span></code></p></td>
+<td class="text-left"><p>Systemd unit type</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">simple</span></code></p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="role-variables">
 <h2>Role Variables<a class="headerlink" href="#role-variables" title="Permalink to this headline"></a></h2>
