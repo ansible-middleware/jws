@@ -26,15 +26,10 @@ argument_specs:
                 default: "/opt/rh/jws5/"
                 description: "Path to the install dir used by RPM (do not override unless you relocate the RPM"
                 type: "str"
-            jws_rhn_server_zipfile_url:
+            jws_rhn_base_url:
                 # line 5 of jws/defaults/main.yml
-                default: "https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341"
-                description: "Customer Portal URL for installation archive"
-                type: "str"
-            jws_native_zipfile_url:
-                # line 6 of jws/defaults/main.yml
-                default: "https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361"
-                description: "Customer Portal URL for installation archive, native variant"
+                default: "https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId="
+                description: "Customer Portal Base URL for archive download"
                 type: "str"
             jws_version:
                 # line 7 of jws/defaults/main.yml

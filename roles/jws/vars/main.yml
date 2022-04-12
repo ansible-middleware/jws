@@ -6,8 +6,8 @@ tomcat:
   rpm: "{{ tomcat_rpm }}"
   rpm_root_dir: "{{ tomcat_rpm_root_dir }}"
   rhn:
-    server_zipfile_url: "{{ jws_rhn_server_zipfile_url }}"
-    native_zipfile_url: "{{ jws_native_zipfile_url }}"
+    server_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].id }}"
+    native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].native }}"
     username: "{{ rhn_username | default('') }}"
     password: "{{ rhn_password | default('') }}"
   user: "{{ tomcat_user }}"
@@ -84,3 +84,12 @@ tomcat:
     pidfile: "{{ tomcat_service_systemd_pidfile }}"
     type: "{{ tomcat_service_systemd_type }}"
     hr_name: "{{ 'Jboss Web Server' if tomcat_install_method in ['rhn_zipfiles','rpm'] else 'Tomcat' }}"
+
+jws:
+  rhn_ids:
+    '5.6.0':  # noqa vars_in_vars_files_have_valid_names
+      id: '90341'
+      native: '90361'
+      latest_cp:
+            id: '104063'
+            v: '5.6.1'
