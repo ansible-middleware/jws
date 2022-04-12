@@ -58,8 +58,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mod-cluster-listener">Mod Cluster Listener</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#what-does-the-mod-cluster-listener-do">What does the mod cluster listener do:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-enable-mod-cluster-listener">How to enable mod cluster listener:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-does-the-mod-cluster-listener-do">What does the mod_cluster listener do</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-enable-mod-cluster-listener">How to enable mod_cluster listener</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#running-playbook">Running Playbook</a></li>
@@ -166,20 +166,20 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <h3>Using local zipfiles<a class="headerlink" href="#using-local-zipfiles" title="Permalink to this headline"></a></h3>
 <p>Download the requires zipfiles from your Red Hat account:</p>
 <ul class="simple">
-<li><p>Red Hat JBoss Web Server 5.4.0 Application Server (the server itself)</p></li>
-<li><p>Red Hat JBoss Web Server 5.4.0 Application Server for RHEL 8 x86_64 (the native bits)</p></li>
+<li><p>Red Hat JBoss Web Server 5.6.0 Application Server (the server itself)</p></li>
+<li><p>Red Hat JBoss Web Server 5.6.0 Application Server for RHEL 8 x86_64 (the native bits)</p></li>
 </ul>
 <p>Provide the path to those zipfiles:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
-  tomcat_zipfile: jws-5.4.0-application-server.zip
-  native_zipfile: jws-5.4.0-application-server-RHEL8-x86_64.zip
+  tomcat_zipfile: jws-5.6.0-application-server.zip
+  native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
 </pre></div>
 </div>
 <p>Note that if you respect the naming convention above for the file name, you can just provide the JWS version instead of those two paths:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
-  jws_version: 5.4.0
+  jws_version: 5.6.0
 </pre></div>
 </div>
 </section>
@@ -245,16 +245,16 @@ rhn_password: eatmeiamacookie
 <section id="mod-cluster-listener">
 <h2>Mod Cluster Listener<a class="headerlink" href="#mod-cluster-listener" title="Permalink to this headline"></a></h2>
 <section id="what-does-the-mod-cluster-listener-do">
-<h3>What does the mod cluster listener do:<a class="headerlink" href="#what-does-the-mod-cluster-listener-do" title="Permalink to this headline"></a></h3>
+<h3>What does the mod_cluster listener do<a class="headerlink" href="#what-does-the-mod-cluster-listener-do" title="Permalink to this headline"></a></h3>
 <p>Allows communication between Apache Tomcat and the Apache HTTP Server’s mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/">HTTP Connectors and Load Balancing Guide</a>.</p>
 </section>
 <section id="how-to-enable-mod-cluster-listener">
-<h3>How to enable mod cluster listener:<a class="headerlink" href="#how-to-enable-mod-cluster-listener" title="Permalink to this headline"></a></h3>
+<h3>How to enable mod_cluster listener<a class="headerlink" href="#how-to-enable-mod-cluster-listener" title="Permalink to this headline"></a></h3>
 <p>All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:</p>
 <ul class="simple">
-<li><p>mod_cluster.enable (Set to True to enable the listener)</p></li>
-<li><p>mod_cluster.ip (Set the ip of the mod_cluster instance)</p></li>
-<li><p>mod_cluster.port (Set the port of the mod_cluster instance)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_enable</span></code> (Set to True to enable the listener)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_ip</span></code> (Set the ip of the mod_cluster instance)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_port</span></code> (Set the port of the mod_cluster instance)</p></li>
 </ul>
 </section>
 </section>

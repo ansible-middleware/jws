@@ -10,6 +10,23 @@ Dependency
     - This collection is required to download resources from RedHat Customer Portal.
     - Documentation to collection can be found at <https://github.com/ansible-middleware/redhat-csp-download>
 
+
+Versions
+--------
+
+| JWS VERSION | Release Date      | Tomcat Version | Native Version | Notes           |
+|:------------|:------------------|:---------------|:---------------|:----------------|
+|`5.6.0`      |November 30, 2021  |`9.0.50`        | `1.2.30`       |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_release_notes/index)|
+
+
+Patching
+--------
+
+| JWS VERSION | Release Date      | JWS LATEST CP | Notes           |
+|:------------|:------------------|:--------------|:----------------|
+|`5.6.0`      |February 03, 2022  |`5.6.1`        |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_1_release_notes/index)|
+
+
 <!--start argument_specs-->
 Role Defaults
 -------------
@@ -21,8 +38,7 @@ Role Defaults
 |`tomcat_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
 |`tomcat_install_dir`| Installation path for JWS/tomcat | `/opt` |
 |`tomcat_rpm`| Installation RPM version | `jws5` |
-|`jws_rhn_server_zipfile_url`| Customer Portal URL for installation archive | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341` |
-|`jws_native_zipfile_url`| Customer Portal URL for installation archive, native variant | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361` |
+|`jws_rhn_base_url`| Customer Portal Base URL for archive download | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=` |
 |`jws_version`| Version of JWS to install | `5.6.0` |
 |`tomcat_home`| Target installation directory | `/opt/jws-5.4/tomcat` |
 |`tomcat_user`| posix user account for service | `tomcat` |

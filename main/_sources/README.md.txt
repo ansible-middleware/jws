@@ -55,21 +55,21 @@ You can the playbook directly from this folder for demostration purpose, however
 
 Download the requires zipfiles from your Red Hat account:
 
-- Red Hat JBoss Web Server 5.4.0 Application Server (the server itself)
-- Red Hat JBoss Web Server 5.4.0 Application Server for RHEL 8 x86_64 (the native bits)
+- Red Hat JBoss Web Server 5.6.0 Application Server (the server itself)
+- Red Hat JBoss Web Server 5.6.0 Application Server for RHEL 8 x86_64 (the native bits)
 
 Provide the path to those zipfiles:
 
     vars:
       ...
-      tomcat_zipfile: jws-5.4.0-application-server.zip
-      native_zipfile: jws-5.4.0-application-server-RHEL8-x86_64.zip
+      tomcat_zipfile: jws-5.6.0-application-server.zip
+      native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
 
 Note that if you respect the naming convention above for the file name, you can just provide the JWS version instead of those two paths:
 
     vars:
       ...
-      jws_version: 5.4.0
+      jws_version: 5.6.0
 
 
 ### Using RPM
@@ -132,16 +132,17 @@ Note: If you are using a non root remote user, then set username and enable sudo
 
 ## Mod Cluster Listener
 
-### What does the mod cluster listener do:
+### What does the mod_cluster listener do
+
 Allows communication between Apache Tomcat and the Apache HTTP Server's mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the [HTTP Connectors and Load Balancing Guide](https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/ "HTTP Connectors and Load Balancing Guide").
 
 
-### How to enable mod cluster listener:
+### How to enable mod_cluster listener
 
 All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:
-- mod_cluster.enable (Set to True to enable the listener)
-- mod_cluster.ip (Set the ip of the mod_cluster instance)
-- mod_cluster.port (Set the port of the mod_cluster instance)
+- `tomcat_modcluster_enable` (Set to True to enable the listener)
+- `tomcat_modcluster_ip` (Set the ip of the mod_cluster instance)
+- `tomcat_modcluster_port` (Set the port of the mod_cluster instance)
 
 
 ## Running Playbook
