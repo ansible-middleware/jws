@@ -1,5 +1,5 @@
 ---
-- import_playbook: ../../playbook.yml
+- import_playbook: playbook.yml
   vars:
     tomcat_conf_templates_server: override_server_xml_template.xml.j2
     tomcat_listen_ajp_enabled: True

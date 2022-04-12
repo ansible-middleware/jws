@@ -11,11 +11,6 @@ lint: |
 platforms:
   - name: instance
     image: registry.access.redhat.com/ubi8/ubi-init
-    tmpfs:
-      - /run
-      - /tmp
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     command: "/usr/sbin/init"
     pre_build_image: true
     privileged: true

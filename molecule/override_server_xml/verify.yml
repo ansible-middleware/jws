@@ -9,7 +9,7 @@
     tomcat_ajp_flush_attribute_name: 'ajpFlush'
   tasks:
     - include_role:
-        name: ../../../roles/jws_validation
+        name: jws_validation
 
     - set_fact:
         path_to_server_xml: "{{ tomcat_home }}/conf/server.xml"
