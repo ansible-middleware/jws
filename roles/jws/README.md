@@ -22,8 +22,6 @@ Versions
 Patching
 --------
 
-When variable `keycloak_rhsso_apply_patches` is `True` (default: `False`), the role will automatically apply the latest cumulative patch for the selected base version.
-
 | JWS VERSION | Release Date      | JWS LATEST CP | Notes           |
 |:------------|:------------------|:--------------|:----------------|
 |`5.6.0`      |February 03, 2022  |`5.6.1`        |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_1_release_notes/index)|
