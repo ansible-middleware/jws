@@ -83,6 +83,16 @@
         - "conf/tomcat-users.xml"
         - "conf/jaspic-providers.xml"
 
+    - include_tasks: sanity_checks/ajp.yml
+      when:
+        - tomcat.listen.ajp.enabled is defined
+        - tomcat_listen_ajp_enabled
+
+    - include_tasks: sanity_checks/https.yml
+      when:
+        - tomcat_listen_https_enabled is defined
+        - tomcat_listen_https_enabled
+
     - name: "Deploy custom configuration file from {{ item.template }}"
       template:
         src: "{{ item.template }}"

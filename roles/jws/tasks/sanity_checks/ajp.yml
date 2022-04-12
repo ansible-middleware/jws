@@ -1,0 +1,14 @@
+---
+- name: "Ensure required parameters for AJP connector have been provided."
+  ansible.builtin.assert:
+    that:
+      - tomcat.listen.ajp is defined
+      - tomcat.listen.ajp.enabled is defined
+      - tomcat.listen.ajp.enabled
+      - tomcat.listen.ajp.address is defined
+      - tomcat.listen.ajp.address != ""
+      - tomcat.listen.https is defined
+      - tomcat.listen.https.port is defined
+      - tomcat.listen.https.port != ""
+    quiet: true
+    fail_msg: "Required parameters for AJP connector have not been provided"
