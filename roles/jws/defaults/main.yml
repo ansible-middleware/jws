@@ -4,8 +4,7 @@ tomcat_install_method: local_zipfiles
 tomcat_install_dir: /opt
 tomcat_rpm: jws5
 tomcat_rpm_root_dir: /opt/rh/jws5/
-jws_rhn_server_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90341
-jws_native_zipfile_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=90361
+jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
 jws_version: 5.6.0
 tomcat_version: 9.0.60
 tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
