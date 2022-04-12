@@ -17,4 +17,6 @@
     - middleware_automation.redhat_csp_download
   roles:
     - redhat_csp_download
-    - jws
+  tasks:
+    - ansible.builtin.include_role:
+        name: ../../roles/jws
