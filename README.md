@@ -151,6 +151,7 @@ All that you have to do to enable a mod_cluster listener for jws is to edit the 
 The default template for server.xml provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the requires SSH keys and Java Keystore. It expects it to be already installed and available.
 
     tomcat_listen_https_enabled: True
+    # uncomment the following line to change the default value for the java keystore path
     #tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
 
 Please refers to the [server documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more details on the setup and configuration of this feature.
@@ -159,7 +160,7 @@ Note: There other collections and modules available to automate the creation of 
 
 (This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/https) )
 
-## Overridng the default template for server.xml
+## Overriding the default template for server.xml
 
 The provided template for the server.xml.j2 covers the most basic use case of the server. It's most likely that a user will need to replace this template by its own, it order to deploy a fine-grained configuration, suiting one's use case. To do so, just change of this default variable:
 
