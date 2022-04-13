@@ -22,6 +22,7 @@
   args:
     executable: /bin/bash
   become: yes
+  failed_when: running_processes.stderr_lines | length > 0
   register: running_processes
 
 - name: "Kill foreign processes"

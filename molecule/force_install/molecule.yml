@@ -35,8 +35,6 @@ provisioner:
     host_vars:
       localhost:
         ansible_python_interpreter: "{{ ansible_playbook_python }}"
-      instance:
-        tomcat_listen_https_enabled: True
 verifier:
   name: ansible
 scenario:
@@ -49,7 +47,6 @@ scenario:
     - create
     - prepare
     - converge
-    - idempotence
     - side_effect
     - verify
     - cleanup

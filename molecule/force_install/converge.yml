@@ -24,6 +24,7 @@
     tomcat_service_name: tomcat
     tomcat_service_systemd_type: forking
     ansible_distribution: 'RedHat'
+    tomcat_force_install: true
   roles:
     - role: jws
       tomcat_version: 9.0.60
