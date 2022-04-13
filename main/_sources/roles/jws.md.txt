@@ -48,6 +48,7 @@ Role Defaults
 |`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
 |`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
 |`tomcat_version`| Tomcat version to download | `9.0.60` |
+|`tomcat_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
 
 
 * Service configuration
