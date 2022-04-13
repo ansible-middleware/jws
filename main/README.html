@@ -62,6 +62,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#how-to-enable-mod-cluster-listener">How to enable mod_cluster listener</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#enable-https">Enable HTTPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overriding-the-default-template-for-server-xml">Overriding the default template for server.xml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-playbook">Running Playbook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
@@ -256,7 +258,28 @@ rhn_password: eatmeiamacookie
 <li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_ip</span></code> (Set the ip of the mod_cluster instance)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_port</span></code> (Set the port of the mod_cluster instance)</p></li>
 </ul>
+<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/ajp">Molecule scenario</a> )</p>
 </section>
+</section>
+<section id="enable-https">
+<h2>Enable HTTPS<a class="headerlink" href="#enable-https" title="Permalink to this headline"></a></h2>
+<p>The default template for server.xml provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the requires SSH keys and Java Keystore. It expects it to be already installed and available.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tomcat_listen_https_enabled: True
+# uncomment the following line to change the default value for the java keystore path
+#tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
+</pre></div>
+</div>
+<p>Please refers to the <a class="reference external" href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start">server documentation</a> for more details on the setup and configuration of this feature.</p>
+<p>Note: There other collections and modules available to automate the creation of those files (such as <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html">Ansible OpenSSH Keypair collection</a>, <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html">Ansible Collection Community Crytpo</a> and the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html">Java Keystore module</a>). Please refers to those in order to automate this part.</p>
+<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/https">Molecule scenario</a> )</p>
+</section>
+<section id="overriding-the-default-template-for-server-xml">
+<h2>Overriding the default template for server.xml<a class="headerlink" href="#overriding-the-default-template-for-server-xml" title="Permalink to this headline"></a></h2>
+<p>The provided template for the server.xml.j2 covers the most basic use case of the server. It’s most likely that a user will need to replace this template by its own, it order to deploy a fine-grained configuration, suiting one’s use case. To do so, just change of this default variable:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tomcat_conf_templates_server: path/to/my_template_for_server_xml.j2
+</pre></div>
+</div>
+<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/override_server_xml">Molecule scenario</a> )</p>
 </section>
 <section id="running-playbook">
 <h2>Running Playbook<a class="headerlink" href="#running-playbook" title="Permalink to this headline"></a></h2>
