@@ -32,7 +32,19 @@
         home: "{{ tomcat.home }}"
         shell: /sbin/nologin
         comment: "User for Apache Tomcat"
+  rescue:
+    - name: "Inform of process owned by {{ tomcat.user }} already running"
+      assert:
+        that:
+          - tomcat_force_install
+        fail_msg: "Found a process owned by {{ tomcat.user }} and tomcat_force_install is false, aborting installation"
+        success_msg: "Found a process owned by {{ tomcat.user }} and tomcat_force_install is true, continuing installation anyway"
 
+    - name: "Include force install steps"
+      include_tasks: install/force_install.yml
+      when: tomcat_force_install
+
+- block:
     - name: "Ensure install dir is created: {{ tomcat_install_dir }}"
       file:
         path: "{{ tomcat_install_dir }}"

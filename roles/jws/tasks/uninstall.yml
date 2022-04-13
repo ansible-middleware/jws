@@ -13,7 +13,7 @@
   when:
     - tomcat_systemd_enabled is defined
 
-- name: "Deletes files from server home {{ tomcat.home }}"
+- name: "Delete files from server home {{ tomcat.home }}"
   block:
     - name: "Check that server home has been provided"
       assert:
