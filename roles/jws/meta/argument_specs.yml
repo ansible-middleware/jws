@@ -60,6 +60,10 @@ argument_specs:
                 default: "53"
                 description: "posix user UID for service"
                 type: "int"
+            tomcat_force_install:
+                description: "Whether to stop any running tomcat process and continue installation"
+                default: false
+                type: "bool"
             tomcat_group:
                 # line 8 of jws/defaults/main.yml
                 default: "tomcat"
@@ -184,7 +188,7 @@ argument_specs:
             tomcat_listen_https_client_auth:
                 default: "False"
                 description: "HTTPS Connector client auth enable"
-                type: "str"
+                type: "bool"
             tomcat_listen_ajp_enabled:
                 # line 28 of jws/defaults/main.yml
                 default: "False"

@@ -9,6 +9,7 @@ jws_version: 5.6.0
 tomcat_version: 9.0.60
 tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
 tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
+tomcat_force_install: false
 
 tomcat_user: tomcat
 tomcat_uid: 53
