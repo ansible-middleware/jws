@@ -1,0 +1,51 @@
+---
+- name: "Check foreign processes owned by {{ tomcat.user }} user"
+  shell: |
+    set -o pipefail
+    ps --no-headers -u {{ tomcat.user }} | grep -v grep | awk '{print $1}'
+  args:
+    executable: /bin/bash
+  become: yes
+  register: running_processes
+
+- name: "Terminate foreign processes"
+  command: "kill -15 {{ running_processes.stdout_lines | join(' ') }}"
+  become: yes
+  when:
+    - tomcat_force_install
+    - running_processes.stdout_lines|length > 0
+
+- name: "Check foreign processes owned by {{ tomcat.user }} user"
+  shell: |
+    set -o pipefail
+    ps --no-headers -u {{ tomcat.user }} | grep -v grep | awk '{print $1}'
+  args:
+    executable: /bin/bash
+  become: yes
+  failed_when: running_processes.stderr_lines | length > 0
+  register: running_processes
+
+- name: "Kill foreign processes"
+  command: "kill -9 {{ running_processes.stdout_lines | join(' ') }}"
+  become: yes
+  when:
+    - tomcat_force_install
+    - running_processes.stdout_lines|length > 0
+
+- name: "Create group: {{ tomcat.group }}"
+  group:
+    name: "{{ tomcat.group }}"
+    gid: "{{ tomcat.gid }}"
+    system: yes
+  when: tomcat_force_install
+
+- name: "Create user for tomcat: {{ tomcat.user }}"
+  user:
+    name: "{{ tomcat.user }}"
+    uid: "{{ tomcat.uid }}"
+    system: yes
+    groups: "{{ tomcat.group }}"
+    home: "{{ tomcat.home }}"
+    shell: /sbin/nologin
+    comment: "User for Apache Tomcat"
+  when: tomcat_force_install

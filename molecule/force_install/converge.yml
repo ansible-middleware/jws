@@ -1,0 +1,32 @@
+---
+- name: "Red Hat JBoss Web Server installation"
+  hosts: all
+  vars:
+    tomcat_setup: true
+    tomcat_java_version: 1.8.0
+    tomcat_listen_http_bind_address: 127.0.0.1
+    tomcat_systemd_enabled: True
+    tomcat_service_name: tomcat
+    tomcat_service_systemd_type: forking
+    ansible_distribution: 'RedHat'
+  roles:
+    - role: jws
+      tomcat_version: 9.0.50
+      tomcat_install_method: zipfiles
+      tomcat_home: /opt/apache-tomcat-{{ tomcat_version }}
+- name: "Red Hat JBoss Web Server update"
+  hosts: all
+  vars:
+    tomcat_setup: true
+    tomcat_java_version: 1.8.0
+    tomcat_listen_http_bind_address: 127.0.0.1
+    tomcat_systemd_enabled: True
+    tomcat_service_name: tomcat
+    tomcat_service_systemd_type: forking
+    ansible_distribution: 'RedHat'
+    tomcat_force_install: true
+  roles:
+    - role: jws
+      tomcat_version: 9.0.60
+      tomcat_install_method: zipfiles
+      tomcat_home: /opt/apache-tomcat-{{ tomcat_version }}
