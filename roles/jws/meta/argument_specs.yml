@@ -52,7 +52,7 @@ argument_specs:
                 type: "str"
             tomcat_zipfile_url:
                 # line 7 of jws/defaults/main.yml
-                default: "https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
+                default: "https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
                 description: "Custom URL for tomcat/jws archive download"
                 type: "str"
             tomcat_user:
@@ -79,7 +79,7 @@ argument_specs:
                 type: "int"
             tomcat_home:
                 # line 9 of jws/defaults/main.yml
-                default: "/opt/jws-5.4/tomcat"
+                default: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
                 description: "Target installation directory"
                 type: "str"
             tomcat_catalina_base:
