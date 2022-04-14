@@ -124,7 +124,7 @@
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
 
-    - name: "Remove app: {{ item }}"
+    - name: "Remove apps"
       file:
         path: "{{ tomcat.home }}/webapps/{{ item }}"
         state: absent
