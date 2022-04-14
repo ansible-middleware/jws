@@ -43,13 +43,13 @@ Role Defaults
 |`jws_rhn_base_url`| Customer Portal Base URL for archive download | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=` |
 |`jws_version`| Version of JWS to install | `5.6.0` |
 |`jws_apply_patches`| Install JWS most recent cumulative patch for requested version | `False` |
-|`tomcat_home`| Target installation directory | `/opt/jws-5.6/tomcat` |
+|`tomcat_home`| Target installation directory | `{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}` |
 |`tomcat_user`| posix user account for service | `tomcat` |
 |`tomcat_uid`| posix UID user account for service | `tomcat` |
 |`tomcat_group`| posix group for service | `tomcat` |
 |`tomcat_gid`| posix GID user account for service | `tomcat` |
 |`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
-|`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
+|`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split(".")[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
 |`tomcat_version`| Tomcat version to download | `9.0.60` |
 |`tomcat_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
 

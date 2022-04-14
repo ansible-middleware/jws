@@ -9,7 +9,7 @@ jws_version: 5.6.0
 jws_apply_patches: False
 tomcat_version: 9.0.60
 tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
-tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
+tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
 tomcat_force_install: false
 
 tomcat_user: tomcat
@@ -17,7 +17,7 @@ tomcat_uid: 53
 tomcat_group: tomcat
 tomcat_gid: 53
 
-tomcat_home: '/opt/jws-5.4/tomcat'
+tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 tomcat_catalina_base: "{{ lookup('env','CATALINA_BASE') }}"
 tomcat_conf_properties: './conf/catalina.properties'
 tomcat_conf_policy: './conf/catalina.policy'
