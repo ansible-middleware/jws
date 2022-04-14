@@ -7,11 +7,11 @@
     # Use Case 1 - Download Apache Tomcat from Apache (uncomment pre-tasks below if download is necessary)
     #
     tomcat_install_method: zipfiles
-    tomcat_version: 9.0.62
+    tomcat_version: 9.0.50
 
     # Use Case 2 - Using Apache Tomcat from local zipfiles
     #
-    # tomcat_version: 9.0.62
+    # tomcat_version: 9.0.50
 
     # Use Case 3 - Using JWS, installed from zipfiles, provided in the playbook path or downloaded from RHN (JWS)
     # downloading requires credentials for RHN to be defined: rhn_username and rhn_password
