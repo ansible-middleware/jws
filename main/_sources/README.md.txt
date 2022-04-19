@@ -168,6 +168,37 @@ The provided template for the server.xml.j2 covers the most basic use case of th
 
 (This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/override_server_xml) )
 
+## How to deploy webapps?
+
+Simply use Ansible existing module! For instance, you can use the [get_url:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html) module to deploy a webapp downloaded from a repository:
+
+    - name: Download App
+      get_url:
+        url: https://repo1.maven.org/maven2/org/jolokia/jolokia-war/1.7.1/jolokia-war-1.7.1.war
+        dest: "{{ tomcat_home }}/webapps/"
+
+Another option is to use the [copy:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) module that allow to deploy a file from the Ansible controller to the target:
+
+   ansible.builtin.copy:
+       src: files/jolokia-war-1.7.1.war
+       dest: "{{ tomcat_home }}/webapps/"
+
+This module can also be used if the file already exists on the target host:
+
+   ansible.builtin.copy:
+       src: files/jolokia-war-1.7.1.war
+       dest: "{{ tomcat_home }}/webapps/"
+       remote_src: yes
+
+However, to avoid duplicating the files, a symlink or hardlink can also be used instead using the module [file:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html):
+
+    - ansible.builtin.file:
+        src: /apps/jolokia-war-1.7.1.war
+        dest: "{{ tomcat_home }}/webapps/jolokia-war-1.7.1.war"
+        state: link
+
+Bottom line: Ansible has many features to help deploy webapps into the appropriate directory for the server!
+
 ## Running Playbook
 
 Once all values are updated, you can then run the playbook against your nodes.
