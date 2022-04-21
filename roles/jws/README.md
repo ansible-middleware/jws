@@ -22,6 +22,8 @@ Versions
 Patching
 --------
 
+When variable `jws_apply_patches` is `True` (default: `False`), the role will automatically apply the latest cumulative patch for the selected base version.
+
 | JWS VERSION | Release Date      | JWS LATEST CP | Notes           |
 |:------------|:------------------|:--------------|:----------------|
 |`5.6.0`      |February 03, 2022  |`5.6.1`        |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_1_release_notes/index)|
@@ -40,7 +42,8 @@ Role Defaults
 |`tomcat_rpm`| Installation RPM version | `jws5` |
 |`jws_rhn_base_url`| Customer Portal Base URL for archive download | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=` |
 |`jws_version`| Version of JWS to install | `5.6.0` |
-|`tomcat_home`| Target installation directory | `/opt/jws-5.4/tomcat` |
+|`jws_apply_patches`| Install JWS most recent cumulative patch for requested version | `False` |
+|`tomcat_home`| Target installation directory | `/opt/jws-5.6/tomcat` |
 |`tomcat_user`| posix user account for service | `tomcat` |
 |`tomcat_uid`| posix UID user account for service | `tomcat` |
 |`tomcat_group`| posix group for service | `tomcat` |

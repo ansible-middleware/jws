@@ -68,6 +68,10 @@
         - tomcat.service.enabled is defined
         - tomcat.service.enabled
 
+    - name: Include patch install tasks
+      ansible.builtin.include_tasks: apply_cp.yml
+      when: jws_apply_patches and tomcat.install_method == "rhn_zipfiles"
+
     - name: "Ensure {{ tomcat.home }}/ directories have appropriate privileges"
       file:
         path: "{{ tomcat.home }}/{{ item }}/"
