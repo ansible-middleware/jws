@@ -2,39 +2,66 @@
 - name: Check arguments
   assert:
     that:
-      - rhn_cp_url is defined
       - tomcat.rhn.username is defined
       - tomcat.rhn.password is defined
-      - override_patches_repository is defined or tomcat.install_dir
+      - tomcat.install_dir is defined
     quiet: true
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 
-- name: Set patch repository
-  set_fact:
-    patches_repository: "{{ override_patches_repository | default(tomcat.install_dir) }}"
+- name: Check local download archive path
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'PWD') }}"
+  register: local_path
+  delegate_to: localhost
 
-- name: Set patch path
-  set_fact:
-    path_to_patch: "{{ patches_repository }}/{{ patch_name | default('patch.zip') }}"
+- name: Check downloaded archive
+  ansible.builtin.stat:
+    path: "{{ local_path.stat.path }}/{{ tomcat.rhn.patch_bundle }}"
+  register: local_archive_path
+  delegate_to: localhost
 
-- name: "Ensure patches repository ({{ patches_repository }}"
-  file:
-    path: "{{ patches_repository }}"
-    state: directory
+# check remote patch archive
+- name: Set download patch archive path
+  ansible.builtin.set_fact:
+    patch_archive: "{{ tomcat.install_dir }}/{{ tomcat.rhn.patch_bundle }}"
+
+- name: Check download patch archive path
+  ansible.builtin.stat:
+    path: "{{ patch_archive }}"
+  register: patch_archive_path
+
+- name: Perform patch download from RHN
+  middleware_automation.redhat_csp_download.redhat_csp_download:
+    url: "{{ tomcat.rhn.cpatch_zipfile_url }}"
+    dest: "{{ local_path.stat.path }}/{{ tomcat.rhn.patch_bundle }}"
+    username: "{{ rhn_username }}"
+    password: "{{ rhn_password }}"
+  no_log: "{{ omit_rhn_output | default(true) }}"
+  delegate_to: localhost
+  when:
+    - patch_archive_path is defined
+    - patch_archive_path.stat is defined
+    - not patch_archive_path.stat.exists
+    - not local_archive_path.stat.exists
+
+## copy and unpack
+- name: Copy patch archive to target nodes
+  ansible.builtin.copy:
+    src: "{{ local_path.stat.path }}/{{ tomcat.rhn.patch_bundle }}"
+    dest: "{{ patch_archive }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
-    mode: 0750
+    mode: 0640
+  register: new_version_downloaded
+  when:
+    - not patch_archive_path.stat.exists
+    - local_archive_path.stat is defined
+    - local_archive_path.stat.exists
+  become: yes
 
-- name: "Download CP RHN: {{ rhn_cp_url }}"
-  redhat_csp_download:
-    url: "{{ rhn_cp_url }}"
-    dest: "{{ path_to_patch }}"
-    username: "{{ tomcat.rhn.username }}"
-    password: "{{ tomcat.rhn.password }}"
-
-- name: "Check {{ path_to_patch }} state"
+- name: "Check patch state"
   stat:
-    path: "{{ path_to_patch }}"
+    path: "{{ patch_archive }}"
   register: patch_info
 
 - set_fact:
@@ -49,9 +76,9 @@
 
 - block:
 
-    - name: "Update {{ tomcat.home }} with downloaded CP from {{ rhn_cp_url }}"
+    - name: "Update {{ tomcat.home }} with downloaded Cumulative Patch"
       unarchive:
-        src: "{{ path_to_patch }}"
+        src: "{{ patch_archive }}"
         dest: "{{ tomcat.install_dir }}"
         remote_src: yes
         owner: "{{ tomcat.user }}"
@@ -60,27 +87,27 @@
       notify:
         - Restart Tomcat service
       when:
-        - not path_to_patch.stat.exists
+        - not patch_archive_path.stat.exists
 
-    - file:
-        path: "{{ patch_checksum_file }}"
-        state: present
-        content: 1
+    - name: Set checksum file
+      copy:
+        dest: "{{ patch_checksum_file }}"
+        content: "Patch v{{ jws.rhn_ids[jws_version].latest_cp.v }}"
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
         mode: 0640
       when:
-        - not path_to_patch.stat.exists
+        - not patch_archive_path.stat.exists
 
     - name: Print when patch has been applied already
       debug:
-        msg: "[WARNING] Patch {{ rhn_cp_url }} ({{ path_to_patch.stat.checksum }}) has already been applied."
+        msg: "Patch v{{ jws.rhn_ids[jws_version].latest_cp.v }} (checksum {{ patch_info.stat.checksum }}) has already been applied."
       when:
-        - path_to_patch.stat.exists
+        - patch_archive_path.stat.exists
 
   when:
-    - path_to_patch is defined
-    - path_to_patch.stat is defined
+    - patch_archive_path is defined
+    - patch_archive_path.stat is defined
   rescue:
     - debug:
         msg: "This should NEVER happen, something is wrong."

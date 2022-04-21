@@ -6,6 +6,7 @@ tomcat_rpm: jws5
 tomcat_rpm_root_dir: /opt/rh/jws5/
 jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
 jws_version: 5.6.0
+jws_apply_patches: False
 tomcat_version: 9.0.60
 tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
 tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
