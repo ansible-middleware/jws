@@ -1,9 +1,0 @@
----
-- name: Verify
-  hosts: instance
-  vars:
-    tomcat_listen_https_port: 8443
-    tomcat_listen_https_bind_address: localhost
-  tasks:
-    - include_role:
-        name: ../../../roles/jws_validation
