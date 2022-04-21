@@ -15,15 +15,12 @@
     # tomcat_version: 9.0.50
     # tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 
-    # Use Case 3 - Using JWS, installed from zipfiles downloaded from RHN (JWS)
-    # tomcat_install_method: rhn_zipfiles
-    # tomcat_home: "{{ tomcat_install_dir }}/jws-5.4/tomcat"
-
-    # Use Case 4 - install JWS from local zipfiles
+    # Use Case 3 - Using JWS, installed from zipfiles, provided in the playbook path or downloaded from RHN (JWS)
+    # downloading requires credentials for RHN to be defined: rhn_username and rhn_password
     # tomcat_install_method: rhn_zipfiles
     # tomcat_home: "{{ tomcat_install_dir }}/jws-5.6/tomcat"
 
-    # Use Case 5 - Using RPM on a RHEL system.
+    # Use Case 4 - Using RPM on a RHEL system.
     #
     # tomcat_install_method: rpm
     # tomcat_home: /opt/rh/root/usr/share/tomcat/
