@@ -76,7 +76,7 @@
     - "{{ tomcat_zipfile }}"
     - "{{ native_zipfile }}"
   when:
-    - not archive_path.stat.exists or not local_native_archive_path.stat.exists
+    - not archive_path.stat.exists or not native_archive_path.stat.exists
     - local_archive_path.stat is defined
     - local_archive_path.stat.exists
   become: yes

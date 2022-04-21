@@ -51,7 +51,36 @@ You can the playbook directly from this folder for demostration purpose, however
     $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 
 
-### Using local zipfiles
+### Install tomcat community version
+
+After adding the following variables, the playbook will download tomcat from github and install the requested version of tomcat:
+
+
+```
+    vars:
+      tomcat_install_method: zipfiles
+      tomcat_version: 9.0.50
+      tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+```
+
+
+### Using JWS from Red Hat Customer Portal
+
+To use JWS, set the install method to rhn_zipfiles:
+
+    vars:
+       ...
+       tomcat_install_method: rhn_zipfiles
+
+To automatically download the JWS archives from Red Hat Customer Portal, provide your RHN credentials (as extra argument, in variable file, or better loaded from vault):
+
+    rhn_username: alice@wonderland.org
+    rhn_password: eatmeiamacookie
+
+
+### Using JWS local zipfiles
+
+It is possible to skip the download (ie. for offline installations) by making the downloaded archives available on the playbook directory on the controller.
 
 Download the requires zipfiles from your Red Hat account:
 
@@ -62,10 +91,12 @@ Provide the path to those zipfiles:
 
     vars:
       ...
+      tomcat_install_method: rhn_zipfiles
+      jws_version: 5.6.0
       tomcat_zipfile: jws-5.6.0-application-server.zip
       native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
 
-Note that if you respect the naming convention above for the file name, you can just provide the JWS version instead of those two paths:
+Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:
 
     vars:
       ...
@@ -80,20 +111,6 @@ Change the default install method to RPM and provide the appropriate Tomcat HOME
       ...
       tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
       tomcat_install_method: rpm
-
-
-### Using RHN
-
-To use the install method RHN zipfiles, simply set the method :
-
-    vars:
-       ...
-       tomcat_install_method: rhn_zipfiles
-
-And provide your RHN credentials (as argument or in file):
-
-    rhn_username: alice@wonderland.org
-    rhn_password: eatmeiamacookie
 
 
 ### Using a custom download URL
