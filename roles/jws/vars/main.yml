@@ -1,7 +1,7 @@
 ---
 tomcat:
   supported_install_method: [local_zipfiles, rhn_zipfiles, zipfiles, rpm]
-  install_method: "{{ tomcat_install_method }}"
+  install_method: "{{ tomcat_install_method if tomcat_install_method is defined else 'rhn_zipfiles' if tomcat_version == 0.0 else 'local_zipfiles' }}"
   install_dir: "{{ tomcat_install_dir }}"
   rpm: "{{ tomcat_rpm }}"
   rpm_root_dir: "{{ tomcat_rpm_root_dir }}"
@@ -16,7 +16,7 @@ tomcat:
   uid: "{{ tomcat_uid }}"
   group: "{{ tomcat_group }}"
   gid: "{{ tomcat_gid }}"
-  home: "{{ tomcat_home }}"
+  home: "{{ jws_home if tomcat_version == 0.0 else tomcat_catalina_home }}"
   base: "{{ tomcat_catalina_base }}"
   conf:
     properties: "{{ tomcat_conf_properties  }}"
@@ -85,7 +85,7 @@ tomcat:
     systemd: "{{ tomcat_service_systemd }}"
     pidfile: "{{ tomcat_service_systemd_pidfile }}"
     type: "{{ tomcat_service_systemd_type }}"
-    hr_name: "{{ 'Jboss Web Server' if tomcat_install_method in ['rhn_zipfiles','rpm'] else 'Tomcat' }}"
+    hr_name: "{{ 'Jboss Web Server' if tomcat_install_method is defined and tomcat_install_method in ['rhn_zipfiles','rpm'] else 'Tomcat' }}"
 
 jws:
   rhn_ids:
