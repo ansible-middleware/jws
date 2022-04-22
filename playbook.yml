@@ -16,7 +16,6 @@
     # Use Case 3 - Using JWS, installed from zipfiles, provided in the playbook path or downloaded from RHN (JWS)
     # downloading requires credentials for RHN to be defined: rhn_username and rhn_password
     # tomcat_install_method: rhn_zipfiles
-    # jws_version: 5.6.0
 
     # Use Case 4 - Using JWS RPMs on a RHEL system
     #

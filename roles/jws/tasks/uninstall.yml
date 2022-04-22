@@ -21,7 +21,7 @@
           - tomcat.home is defined
         quiet: true
 
-    - name: "Deletes files from server home {{ tomcat.home }}"
+    - name: "Delete files from server home {{ tomcat.home }}"
       file:
         path: "{{ tomcat.home }}"
         state: absent
