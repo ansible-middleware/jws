@@ -50,9 +50,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation-and-usage">Installation and Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-use-this-playbook">How to use this playbook</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-local-zipfiles">Using local zipfiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-tomcat-community-version">Install tomcat community version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-jws-from-red-hat-customer-portal">Using JWS from Red Hat Customer Portal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-jws-local-zipfiles">Using JWS local zipfiles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-rpm">Using RPM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-rhn">Using RHN</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-a-custom-download-url">Using a custom download URL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#running-the-play-books">Running the play books</a></li>
 </ul>
@@ -165,8 +166,33 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </pre></div>
 </div>
 </section>
-<section id="using-local-zipfiles">
-<h3>Using local zipfiles<a class="headerlink" href="#using-local-zipfiles" title="Permalink to this headline"></a></h3>
+<section id="install-tomcat-community-version">
+<h3>Install tomcat community version<a class="headerlink" href="#install-tomcat-community-version" title="Permalink to this headline"></a></h3>
+<p>After adding the following variables, the playbook will download tomcat from github and install the requested version of tomcat:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">vars</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">tomcat_install_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zipfiles</span><span class="w"></span>
+<span class="w">      </span><span class="nt">tomcat_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9.0.50</span><span class="w"></span>
+<span class="w">      </span><span class="nt">tomcat_home</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">tomcat_install_dir</span> <span class="cp">}}</span><span class="s">/apache-tomcat-</span><span class="cp">{{</span> <span class="nv">tomcat_version</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="using-jws-from-red-hat-customer-portal">
+<h3>Using JWS from Red Hat Customer Portal<a class="headerlink" href="#using-jws-from-red-hat-customer-portal" title="Permalink to this headline"></a></h3>
+<p>To use JWS, set the install method to rhn_zipfiles:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+   ...
+   tomcat_install_method: rhn_zipfiles
+</pre></div>
+</div>
+<p>To automatically download the JWS archives from Red Hat Customer Portal, provide your RHN credentials (as extra argument, in variable file, or better loaded from vault):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rhn_username: alice@wonderland.org
+rhn_password: eatmeiamacookie
+</pre></div>
+</div>
+</section>
+<section id="using-jws-local-zipfiles">
+<h3>Using JWS local zipfiles<a class="headerlink" href="#using-jws-local-zipfiles" title="Permalink to this headline"></a></h3>
+<p>It is possible to skip the download (ie. for offline installations) by making the downloaded archives available on the playbook directory on the controller.</p>
 <p>Download the requires zipfiles from your Red Hat account:</p>
 <ul class="simple">
 <li><p>Red Hat JBoss Web Server 5.6.0 Application Server (the server itself)</p></li>
@@ -175,11 +201,13 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <p>Provide the path to those zipfiles:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
+  tomcat_install_method: rhn_zipfiles
+  jws_version: 5.6.0
   tomcat_zipfile: jws-5.6.0-application-server.zip
   native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
 </pre></div>
 </div>
-<p>Note that if you respect the naming convention above for the file name, you can just provide the JWS version instead of those two paths:</p>
+<p>Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
   jws_version: 5.6.0
@@ -193,20 +221,6 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
   ...
   tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
   tomcat_install_method: rpm
-</pre></div>
-</div>
-</section>
-<section id="using-rhn">
-<h3>Using RHN<a class="headerlink" href="#using-rhn" title="Permalink to this headline"></a></h3>
-<p>To use the install method RHN zipfiles, simply set the method :</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
-   ...
-   tomcat_install_method: rhn_zipfiles
-</pre></div>
-</div>
-<p>And provide your RHN credentials (as argument or in file):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rhn_username: alice@wonderland.org
-rhn_password: eatmeiamacookie
 </pre></div>
 </div>
 </section>
