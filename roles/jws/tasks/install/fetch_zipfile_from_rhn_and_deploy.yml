@@ -1,0 +1,52 @@
+---
+- name: Check arguments
+  assert:
+    that:
+      - zipfile is defined
+      - zipfile_url is defined
+      - zipfile_url | length > 0
+      - path_to_zipfile is defined
+    quiet: true
+    fail_msg: "You need to provide"
+
+- name: "Check download archive path: {{ path_to_zipfile }}"
+  ansible.builtin.stat:
+    path: "{{ path_to_zipfile }}"
+  register: archive_path
+
+- name: Check local download archive path
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'PWD') }}"
+  register: local_path
+  delegate_to: localhost
+
+- name: "Check downloaded archive local_path.stat.path }}/{{ zipfile }}"
+  ansible.builtin.stat:
+    path: "{{ local_path.stat.path }}/{{ zipfile }}"
+  register: local_archive_path
+  delegate_to: localhost
+
+- name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
+  redhat_csp_download:
+    url: "{{ zipfile_url }}"
+    dest: "{{ zipfile }}"
+    username: "{{ tomcat.rhn.username }}"
+    password: "{{ tomcat.rhn.password }}"
+  delegate_to: localhost
+  register: new_version_downloaded
+  when:
+    - not archive_path.stat.exists
+
+- name: "Copy archives to target nodes: {{ tomcat_install_dir }}/{{ zipfile }}"
+  ansible.builtin.copy:
+    src: "{{ local_path.stat.path }}/{{ zipfile }}"
+    dest: "{{ tomcat_install_dir }}/{{ zipfile }}"
+    owner: "{{ tomcat.user }}"
+    group: "{{ tomcat.group }}"
+    mode: 0640
+  register: new_version_downloaded
+  when:
+    - not archive_path.stat.exists
+    - local_archive_path.stat is defined
+    - local_archive_path.stat.exists
+  become: yes

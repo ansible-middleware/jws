@@ -16,6 +16,8 @@ tomcat_version: 9.0.60
 tomcat_zipfile_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
 tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
+# Switch to True if you want to also download native bits
+tomcat_native: False
 
 jws_version: 5.6.0
 jws_home: "{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
@@ -44,7 +46,7 @@ tomcat_conf_templates_web: 'templates/web.xml.j2'
 
 tomcat_shutdown_port: '8005'
 
-# HTTP Connector Config
+# HTTP Connector config
 tomcat_listen_http_port: '8080'
 tomcat_listen_http_bind_address: 'localhost'
 tomcat_listen_http_enabled: 'yes'
