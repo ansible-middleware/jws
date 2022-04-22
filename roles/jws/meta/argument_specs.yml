@@ -60,6 +60,10 @@ argument_specs:
                 default: "https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
                 description: "Custom URL for tomcat/jws archive download"
                 type: "str"
+            tomcat_native:
+                default: False
+                description: "Specify if native bits are required (JWS)"
+                type: "bool"
             tomcat_user:
                 # line 7 of jws/defaults/main.yml
                 default: "tomcat"

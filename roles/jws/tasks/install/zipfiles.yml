@@ -14,6 +14,7 @@
 - set_fact:
     zipfiles: "{{ zipfiles + [{ 'src': native_zipfile, 'creates': tomcat.home + '/lib/libtcnative-1.so' }] }}"
   when:
+    - tomcat_native
     - native_zipfile is defined
     - native_zipfile | length > 0
 
@@ -27,3 +28,4 @@
     mode: 0750
     creates: "{{ item.creates }}"
   loop: "{{ zipfiles }}"
+  notify: "Restart Tomcat service"
