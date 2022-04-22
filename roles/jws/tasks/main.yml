@@ -109,7 +109,7 @@
         - tomcat_listen_https_enabled is defined
         - tomcat_listen_https_enabled
 
-    - name: "Deploy custom configuration file from {{ item.template }}"
+    - name: "Deploy custom configuration files"
       template:
         src: "{{ item.template }}"
         dest: "{{ item.dest }}"
