@@ -1,27 +1,36 @@
 ---
+# comma separated list of wars to undeploy
 tomcat_apps_to_remove: 'docs,ROOT,examples'
+# root directory of installation
 tomcat_install_dir: /opt
 tomcat_rpm: jws5
 tomcat_rpm_root_dir: /opt/rh/jws5/
-tomcat_force_install: false
 
-jws_version: 5.6.0
-jws_apply_patches: False
+# if True continue installing even if a running tomcat is found
+tomcat_force_install: False
+
+# installation method: ['local_zipfiles','rhn_zipfiles','zipfiles','rpm']
+tomcat_install_method: local_zipfiles
+
 tomcat_version: 9.0.60
-jws_home: "{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
-jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
-
-tomcat_version: 0.0
-tomcat_catalina_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+tomcat_zipfile_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
 tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
+
+jws_version: 5.6.0
+jws_home: "{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
+jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
+# if True automaticcaly apply the most recent cumulative patch
+jws_apply_patches: False
 
 tomcat_user: tomcat
 tomcat_uid: 53
 tomcat_group: tomcat
 tomcat_gid: 53
 
-tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+# use default paths for tomcat or jws zipfiles depending on install_method; or can be overriden
+tomcat_home: "{{ jws_home if tomcat_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
+
 tomcat_catalina_base: "{{ lookup('env','CATALINA_BASE') }}"
 tomcat_conf_properties: './conf/catalina.properties'
 tomcat_conf_policy: './conf/catalina.policy'
@@ -29,16 +38,18 @@ tomcat_conf_loggging: './conf/logging.properties'
 tomcat_conf_context: './conf/context.xml'
 tomcat_conf_server: './conf/server.xml'
 tomcat_conf_web: './conf/web.xml'
-
 tomcat_conf_templates_context: 'templates/context.xml.j2'
 tomcat_conf_templates_server: 'templates/server.xml.j2'
 tomcat_conf_templates_web: 'templates/web.xml.j2'
+
 tomcat_shutdown_port: '8005'
 
+# HHTP config
 tomcat_listen_http_port: '8080'
 tomcat_listen_http_bind_address: 'localhost'
 tomcat_listen_http_enabled: 'yes'
 
+# HTTPS listener config
 tomcat_listen_https_enabled: False
 tomcat_listen_https_port: '8443'
 tomcat_listen_https_bind_address: 'localhost'
@@ -50,12 +61,14 @@ tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
 tomcat_listen_https_keystore_password: changeit
 tomcat_listen_https_client_auth: false
 
+# tomcat AJP configuration
 tomcat_listen_ajp_enabled: False
 tomcat_listen_ajp_address: '::1'
 tomcat_listen_ajp_port: '8009'
 tomcat_listen_ajp_secretRequired: 'True'
 tomcat_listen_ajp_secret: 'secret'
 
+# vault configuration
 tomcat_vault_name: 'vault.keystore'
 tomcat_vault_enable: 'False'
 tomcat_vault_alias: 'my_vault'
@@ -64,16 +77,18 @@ tomcat_vault_iteration: '44'
 tomcat_vault_salt: '1234abcd'
 tomcat_vault_properties: '/conf/vault.properties'
 
+# modcluster configuration
 tomcat_modcluster_enable: 'False'
 tomcat_modcluster_ip: '127.0.0.1'
 tomcat_modcluster_port: '6666'
 tomcat_modcluster_connector_port: '6666'
 tomcat_modcluster_advertise: 'false'
-
+# modcluster session configuration
 tomcat_modcluster_stickySession: 'true'
 tomcat_modcluster_stickySessionForce: 'false'
 tomcat_modcluster_stickySessionRemove: 'true'
 
+# systemd/service settings
 tomcat_systemd_enabled: 'False'
 tomcat_systemd_script_interpreter: 'bash'
 tomcat_systemd_script_shebang: "#!/bin/{{ tomcat_systemd_script_interpreter }}"
