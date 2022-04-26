@@ -170,21 +170,29 @@
 <td class="text-left"><p>Installation RPM version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws5</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_rhn_base_url</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile_home</span></code></p></td>
+<td class="text-left"><p>Default installation path for tomcat archives</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_install_dir</span> <span class="pre">}}/apache-tomcat-{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_rhn_base_url</span></code></p></td>
 <td class="text-left"><p>Customer Portal Base URL for archive download</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code></p></td>
 <td class="text-left"><p>Version of JWS to install</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.0</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code></p></td>
 <td class="text-left"><p>Install JWS most recent cumulative patch for requested version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_home</span></code></p></td>
+<td class="text-left"><p>Default installation path for JWS archives</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_install_dir</span> <span class="pre">}}/jws-{{</span> <span class="pre">jws_version.split('.')[0]</span> <span class="pre">}}.{{</span> <span class="pre">jws_version.split('.')[1]</span> <span class="pre">}}/tomcat</span></code></p></td>
+</tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_home</span></code></p></td>
-<td class="text-left"><p>Target installation directory</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">/opt/jws-5.6/tomcat</span></code></p></td>
+<td class="text-left"><p>Target installation directory, defaulting to tomcat or JWS archive path, or can be overridden</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">jws_home</span> <span class="pre">if</span> <span class="pre">tomcat_install_method</span> <span class="pre">==</span> <span class="pre">'rhn_zipfiles'</span> <span class="pre">else</span> <span class="pre">tomcat_zipfile_home</span> <span class="pre">}}</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_user</span></code></p></td>
 <td class="text-left"><p>posix user account for service</p></td>
@@ -208,7 +216,7 @@
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile_url</span></code></p></td>
 <td class="text-left"><p>Alternative download URL</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://dlcdn.apache.org/tomcat/tomcat-9/v{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}/bin/{{</span> <span class="pre">tomcat_zipfile</span> <span class="pre">}}</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://dlcdn.apache.org/tomcat/tomcat-{{</span> <span class="pre">tomcat_version.split(&quot;.&quot;)[0]</span> <span class="pre">}}/v{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}/bin/{{</span> <span class="pre">tomcat_zipfile</span> <span class="pre">}}</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_version</span></code></p></td>
 <td class="text-left"><p>Tomcat version to download</p></td>
