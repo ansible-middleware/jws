@@ -4,7 +4,7 @@
   vars:
     tomcat_setup: true
 
-    # Use Case 1 - Downloading and Using Apache Tomcat from Apache (uncomment pre-tasks below if download is necessary)
+    # Use Case 1 - Downloading and Using Apache Tomcat from Apache
     #
     tomcat_install_method: zipfiles
     tomcat_version: 9.0.50

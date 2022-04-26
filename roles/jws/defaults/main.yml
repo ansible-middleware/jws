@@ -20,7 +20,7 @@ tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_ver
 jws_version: 5.6.0
 jws_home: "{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
 jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
-# if True automaticcaly apply the most recent cumulative patch
+# if True automatically apply the most recent cumulative patch
 jws_apply_patches: False
 
 tomcat_user: tomcat
@@ -44,12 +44,12 @@ tomcat_conf_templates_web: 'templates/web.xml.j2'
 
 tomcat_shutdown_port: '8005'
 
-# HHTP config
+# HTTP Connector Config
 tomcat_listen_http_port: '8080'
 tomcat_listen_http_bind_address: 'localhost'
 tomcat_listen_http_enabled: 'yes'
 
-# HTTPS listener config
+# HTTPS Connector Config
 tomcat_listen_https_enabled: False
 tomcat_listen_https_port: '8443'
 tomcat_listen_https_bind_address: 'localhost'
@@ -61,7 +61,7 @@ tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
 tomcat_listen_https_keystore_password: changeit
 tomcat_listen_https_client_auth: false
 
-# tomcat AJP configuration
+# tomcat AJP Connector Config
 tomcat_listen_ajp_enabled: False
 tomcat_listen_ajp_address: '::1'
 tomcat_listen_ajp_port: '8009'
