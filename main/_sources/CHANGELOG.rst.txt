@@ -29,6 +29,7 @@ Bugfixes
 
 - JWS-2417: Remove undefined executor `#54 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/54>`_
 - Missing required variables to enable HTTPS `#49 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/49>`_
+- The JWS installation option should allow you to exclude natives `#97 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/97>`_
 - Uid gid fix `#52 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/52>`_
 
 v1.0.0

@@ -103,6 +103,8 @@ Note that if you respect the naming convention above for the file name, which is
       jws_version: 5.6.0
 
 
+Note: if you provide the jws_version and set tomcat_native to True, then the collection will compute the value of native_zipfile for you.
+
 ### Using RPM
 
 Change the default install method to RPM and provide the appropriate Tomcat HOME in the playbooks:

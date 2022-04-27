@@ -52,6 +52,7 @@ Role Defaults
 |`tomcat_gid`| posix GID user account for service | `tomcat` |
 |`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
 |`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split(".")[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
+|`tomcat_native`| Install native bits (JWS)| False|
 |`tomcat_version`| Tomcat version to download | `9.0.60` |
 |`tomcat_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
 
