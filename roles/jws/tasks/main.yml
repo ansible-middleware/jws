@@ -120,6 +120,7 @@
         - { template: "{{ tomcat.conf.templates.server }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.server }}" }
         - { template: "{{ tomcat.conf.templates.web }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.web }}" }
         - { template: "{{ tomcat.conf.templates.context }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.context }}" }
+        - { template: "{{ tomcat.conf.templates.catalina_properties }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.properties }}" }
       notify:
         - Restart Tomcat service
 
@@ -136,16 +137,29 @@
       when: tomcat.apps.to_remove is defined
 
     - block:
-        - name: "Copy {{ tomcat.service.hr_name }} vault file from control node to remote"
+        - name: "Copy {{ tomcat.service.hr_name }} vault keystore from control node to remote"
           copy:
             src: "{{ tomcat.vault.name }}"
-            dest: "{{ tomcat.home }}/"
+            dest: "{{ tomcat.home }}"
             owner: "{{ tomcat.user }}"
             group: "{{ tomcat.group }}"
-            mode: 0750
+            mode: 0640
 
-        - name: "Initialize {{ tomcat.service.hr_name }} vault"
-          command:
-            cmd: "{{ tomcat.home }}/bin/tomcat-vault.sh --keystore {{ tomcat.home }}/vault.keystore --keystore-password {{ tomcat.vault.storepass }} --alias {{ tomcat.vault.alias }} --enc-dir {{ tomcat.home }} --iteration {{ tomcat.vault.iteration }} --salt {{ tomcat.vault.salt }} -g {{ tomcat.home }}/{{ tomcat.vault.properties }}"
+        - name: "Copy {{ tomcat.service.hr_name }} vault properties file from control node to remote"
+          copy:
+            src: "{{ tomcat.vault.properties }}"
+            dest: "{{ tomcat.home }}/conf/"
+            owner: "{{ tomcat.user }}"
+            group: "{{ tomcat.group }}"
+            mode: 0640
+
+        - name: "Copy {{ tomcat.service.hr_name }} vault data file from control node to remote"
+          copy:
+            src: "{{ tomcat.vault.data }}"
+            dest: "{{ tomcat.home }}"
+            owner: "{{ tomcat.user }}"
+            group: "{{ tomcat.group }}"
+            mode: 0640
+
       when: tomcat.vault.enable
   when: tomcat_setup

@@ -29,6 +29,7 @@ tomcat:
       context: "{{ tomcat_conf_templates_context }}"
       server: "{{ tomcat_conf_templates_server }}"
       web: "{{ tomcat_conf_templates_web }}"
+      catalina_properties: "{{ tomcat_conf_templates_catalina_properties }}"
   apps:
     to_remove: "{{ tomcat_apps_to_remove.split(',') }}"
   shutdown:
@@ -68,6 +69,7 @@ tomcat:
     iteration: "{{ tomcat_vault_iteration }}"
     salt: "{{ tomcat_vault_salt }}"
     properties: "{{ tomcat_vault_properties }}"
+    data: "{{ tomcat_vault_data }}"
   mod_cluster:
     enable: "{{ tomcat_modcluster_enable }}"
     ip: "{{ tomcat_modcluster_ip }}"

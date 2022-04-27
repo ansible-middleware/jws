@@ -146,8 +146,12 @@ argument_specs:
                 default: "templates/web.xml.j2"
                 description: "Template to use for web.xml"
                 type: "str"
-            tomcat_shutdown_port:
+            tomcat_conf_templates_catalina_properties:
                 # line 21 of jws/defaults/main.yml
+                default: "templates/catalina.properties.j2"
+                description: "Template to use for catalina.properties"
+            tomcat_shutdown_port:
+                # line 22 of jws/defaults/main.yml
                 default: "8005"
                 description: "Tomcat shutdown port"
                 type: "str"

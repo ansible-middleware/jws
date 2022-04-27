@@ -11,3 +11,5 @@ docs/_build/
 changelogs/.plugin-cache.yaml
 inventory
 
+# Ignore JWS zips
+molecule/tomcat-vault/resources/jws-*.zip
