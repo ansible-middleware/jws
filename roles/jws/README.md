@@ -113,7 +113,10 @@ Role Defaults
 Role Variables
 --------------
 
-* No required variables.
+| Variable | Description | Required |
+|:---------|:------------|:---------|
+|`tomcat_java_version`| Version of java openjdk RPM to install for Tomcat, by default nothing is installed | `No` |
+|`tomcat_java_home`| JAVA_HOME to use for starting Tomcat, inferred from `tomcat_java_version` if used, `/usr/lib/jvm/java` otherwise | `No` |
 <!--end argument_specs-->
 
 

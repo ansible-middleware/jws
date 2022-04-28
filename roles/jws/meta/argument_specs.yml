@@ -96,6 +96,14 @@ argument_specs:
                 default: "{{ jws_home if tomcat_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
                 description: "Target installation directory"
                 type: "str"
+            tomcat_java_version:
+                required: False
+                description: "Tomcat java version to install"
+                type: "str"
+            tomcat_java_home:
+                required: False
+                description: "JAVA_HOME to use for starting Tomcat"
+                type: "str"
             tomcat_catalina_base:
                 # line 10 of jws/defaults/main.yml
                 default: "{{ lookup('env','CATALINA_BASE') }}"

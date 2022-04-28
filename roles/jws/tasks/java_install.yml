@@ -1,14 +1,22 @@
 ---
 - block:
-
     - name: Set rpm name with version
       set_fact:
-        tomcat_java_packages_el: "java-{{ tomcat_java_version }}-openjdk"
+        tomcat_java_packages_el: "java-{{ tomcat_java_version }}-openjdk-headless"
 
     - name: "Install {{ tomcat_java_packages_el }}"
       include_tasks: fastpackage.yml
       vars:
         package_name: "{{ tomcat_java_packages_el }}"
+
+    - name: Determine JAVA_HOME for selected JVM RPM  # noqa blocked_modules
+      ansible.builtin.shell: |
+        set -o pipefail
+        rpm -ql {{ tomcat_java_packages_el }} | grep -Po '/usr/lib/jvm/.*(?=/bin/java$)'
+      args:
+        executable: /bin/bash
+      changed_when: False
+      register: rpm_java_home
   when:
     - tomcat_java_version is defined
     - ansible_os_family == "RedHat"

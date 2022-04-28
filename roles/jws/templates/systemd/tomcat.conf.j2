@@ -16,7 +16,7 @@
 TOMCAT_CFG_LOADED="1"
 
 # Where your java installation lives
-#JAVA_HOME="/usr/lib/jvm/java"
+JAVA_HOME={{ tomcat_java_home  | default(tomcat_rpm_java_home, true) }}
 
 # Where your tomcat installation lives
 CATALINA_BASE="{{ tomcat.home }}"

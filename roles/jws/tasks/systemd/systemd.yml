@@ -31,6 +31,8 @@
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
     mode: 0644
+  vars:
+    tomcat_rpm_java_home: "{{ rpm_java_home.stdout if rpm_java_home is defined else '/usr/lib/jvm/java' }}"
   notify:
     - Systemd reload
     - Ensure Tomcat runs under systemd
