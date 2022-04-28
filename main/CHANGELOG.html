@@ -89,22 +89,22 @@
            <div itemprop="articleBody">
              
   <section id="middleware-automation-jws-release-notes">
-<h1><a class="toc-backref" href="#id12">middleware_automation.jws Release Notes</a><a class="headerlink" href="#middleware-automation-jws-release-notes" title="Permalink to this headline"></a></h1>
+<h1><a class="toc-backref" href="#id13">middleware_automation.jws Release Notes</a><a class="headerlink" href="#middleware-automation-jws-release-notes" title="Permalink to this headline"></a></h1>
 <div class="contents topic" id="topics">
 <p class="topic-title">Topics</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#middleware-automation-jws-release-notes" id="id12">middleware_automation.jws Release Notes</a></p>
+<li><p><a class="reference internal" href="#middleware-automation-jws-release-notes" id="id13">middleware_automation.jws Release Notes</a></p>
 <ul>
-<li><p><a class="reference internal" href="#v1-0-1-devel" id="id13">v1.0.1-devel</a></p>
+<li><p><a class="reference internal" href="#v1-0-1-devel" id="id14">v1.0.1-devel</a></p>
 <ul>
-<li><p><a class="reference internal" href="#major-changes" id="id14">Major Changes</a></p></li>
-<li><p><a class="reference internal" href="#minor-changes" id="id15">Minor Changes</a></p></li>
-<li><p><a class="reference internal" href="#bugfixes" id="id16">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#major-changes" id="id15">Major Changes</a></p></li>
+<li><p><a class="reference internal" href="#minor-changes" id="id16">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#bugfixes" id="id17">Bugfixes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#v1-0-0" id="id17">v1.0.0</a></p>
+<li><p><a class="reference internal" href="#v1-0-0" id="id18">v1.0.0</a></p>
 <ul>
-<li><p><a class="reference internal" href="#release-summary" id="id18">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#release-summary" id="id19">Release Summary</a></p></li>
 </ul>
 </li>
 </ul>
@@ -113,15 +113,15 @@
 </div>
 <p>This changelog describes changes after version 0.0.3.</p>
 <section id="v1-0-1-devel">
-<h2><a class="toc-backref" href="#id13">v1.0.1-devel</a><a class="headerlink" href="#v1-0-1-devel" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id14">v1.0.1-devel</a><a class="headerlink" href="#v1-0-1-devel" title="Permalink to this headline"></a></h2>
 <section id="major-changes">
-<h3><a class="toc-backref" href="#id14">Major Changes</a><a class="headerlink" href="#major-changes" title="Permalink to this headline"></a></h3>
+<h3><a class="toc-backref" href="#id15">Major Changes</a><a class="headerlink" href="#major-changes" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Uninstall <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/pull/68">#68</a></p></li>
 </ul>
 </section>
 <section id="minor-changes">
-<h3><a class="toc-backref" href="#id15">Minor Changes</a><a class="headerlink" href="#minor-changes" title="Permalink to this headline"></a></h3>
+<h3><a class="toc-backref" href="#id16">Minor Changes</a><a class="headerlink" href="#minor-changes" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Add custom url download and selinux for jws <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/pull/43">#43</a></p></li>
 <li><p>Apply latest JWS cumulative patch when <code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code> is True <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/pull/94">#94</a></p></li>
@@ -132,8 +132,9 @@
 </ul>
 </section>
 <section id="bugfixes">
-<h3><a class="toc-backref" href="#id16">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Permalink to this headline"></a></h3>
+<h3><a class="toc-backref" href="#id17">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Permalink to this headline"></a></h3>
 <ul class="simple">
+<li><p>Ensure JAVA_HOME is set to installed JVM rpm, or allow to override <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/pull/101">#101</a></p></li>
 <li><p>JWS-2417: Remove undefined executor <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/pull/54">#54</a></p></li>
 <li><p>Missing required variables to enable HTTPS <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/pull/49">#49</a></p></li>
 <li><p>The JWS installation option should allow you to exclude natives <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/pull/97">#97</a></p></li>
@@ -142,9 +143,9 @@
 </section>
 </section>
 <section id="v1-0-0">
-<h2><a class="toc-backref" href="#id17">v1.0.0</a><a class="headerlink" href="#v1-0-0" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id18">v1.0.0</a><a class="headerlink" href="#v1-0-0" title="Permalink to this headline"></a></h2>
 <section id="release-summary">
-<h3><a class="toc-backref" href="#id18">Release Summary</a><a class="headerlink" href="#release-summary" title="Permalink to this headline"></a></h3>
+<h3><a class="toc-backref" href="#id19">Release Summary</a><a class="headerlink" href="#release-summary" title="Permalink to this headline"></a></h3>
 <p>This is the first stable release of the <code class="docutils literal notranslate"><span class="pre">middleware_automation.jws</span></code> collection.</p>
 </section>
 </section>
