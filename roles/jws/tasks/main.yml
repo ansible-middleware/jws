@@ -45,6 +45,11 @@
       when: tomcat_force_install
 
 - block:
+    - name: "Check state of install_dir: {{ tomcat_install_dir }} "
+      ansible.builtin.stat:
+        path: "{{ tomcat_install_dir }}"
+      register: install_path
+
     - name: "Ensure install dir is created: {{ tomcat_install_dir }}"
       file:
         path: "{{ tomcat_install_dir }}"
@@ -53,6 +58,7 @@
         group: "{{ tomcat.group }}"
         mode: 0750
       when:
+        - not install_path.stat.exists
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
 
