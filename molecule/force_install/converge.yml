@@ -18,7 +18,6 @@
   hosts: all
   vars:
     tomcat_setup: true
-    tomcat_java_version: 1.8.0
     tomcat_listen_http_bind_address: 127.0.0.1
     tomcat_systemd_enabled: True
     tomcat_service_name: tomcat
