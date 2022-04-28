@@ -63,6 +63,8 @@ Role Defaults
 |:---------|:------------|:--------|
 |`tomcat_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
 |`tomcat_catalina_base`| Tomcat catalina base env variable | `{{ lookup('env','CATALINA_BASE') }}` |
+|`tomcat_java_version`| Version of java openjdk RPM to install for Tomcat, by default nothing is installed | `None` |
+|`tomcat_java_home`| JAVA_HOME to use for starting Tomcat, inferred from `tomcat_java_version` if used | `None` |
 |`tomcat_conf_properties`| Path for tomcat configuration | `./conf/catalina.properties` |
 |`tomcat_conf_policy`| Path for tomcat policy configuration | `./conf/catalina.policy` |
 |`tomcat_conf_loggging`| Path for logging configuration | `./conf/logging.properties` |
