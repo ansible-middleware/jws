@@ -11,12 +11,16 @@
         src: "{{ item }}"
         dest: "{{ tomcat.home }}/webapps/"
       loop:
-        - ./resources/testapp
+        - testapp
     - name: "Check tomcat-vault configuration"
       uri:
         url: http://localhost:8080/testapp/
         return_content: yes
       register: this
       failed_when: "'test_attr_value' not in this.content"
+      retries: 3
+      delay: 5
     - include_role:
-        name: ../../../roles/jws_validation
+        name: jws_validation
+      vars:
+        tomcat_catalina_logfile: /opt/jws-5.6/tomcat/logs/catalina.out
