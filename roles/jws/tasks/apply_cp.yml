@@ -65,7 +65,7 @@
   register: patch_info
 
 - set_fact:
-    patch_checksum_file: "{{ tomcat.install_dir }}/.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
+    patch_checksum_file: "{{ tomcat.home }}/../.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
   when:
     - patch_info is defined
 
@@ -74,8 +74,13 @@
     path: "{{ patch_checksum_file }}"
   register: last_patch_status
 
-- block:
+- name: Print when patch has been applied already
+  debug:
+    msg: "Patch v{{ jws.rhn_ids[jws_version].latest_cp.v }} (checksum {{ patch_info.stat.checksum }}) has already been applied."
+  when:
+    - last_patch_status.stat.exists
 
+- block:
     - name: "Update {{ tomcat.home }} with downloaded Cumulative Patch"
       unarchive:
         src: "{{ patch_archive }}"
@@ -87,7 +92,7 @@
       notify:
         - Restart Tomcat service
       when:
-        - not patch_archive_path.stat.exists
+        - not last_patch_status.stat.exists
 
     - name: Set checksum file
       copy:
@@ -97,17 +102,12 @@
         group: "{{ tomcat.group }}"
         mode: 0640
       when:
-        - not patch_archive_path.stat.exists
-
-    - name: Print when patch has been applied already
-      debug:
-        msg: "Patch v{{ jws.rhn_ids[jws_version].latest_cp.v }} (checksum {{ patch_info.stat.checksum }}) has already been applied."
-      when:
-        - patch_archive_path.stat.exists
-
+        - not last_patch_status.stat.exists
   when:
     - patch_archive_path is defined
     - patch_archive_path.stat is defined
+    - last_patch_status is defined
+    - last_patch_status.stat is defined
   rescue:
     - debug:
         msg: "This should NEVER happen, something is wrong."
