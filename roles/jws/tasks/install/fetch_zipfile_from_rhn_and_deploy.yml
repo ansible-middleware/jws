@@ -20,7 +20,7 @@
   register: local_path
   delegate_to: localhost
 
-- name: "Check downloaded archive local_path.stat.path }}/{{ zipfile }}"
+- name: "Check downloaded archive {{ local_path.stat.path }}/{{ zipfile }}"
   ansible.builtin.stat:
     path: "{{ local_path.stat.path }}/{{ zipfile }}"
   register: local_archive_path
@@ -36,6 +36,7 @@
   register: new_version_downloaded
   when:
     - not archive_path.stat.exists
+    - not local_archive_path.stat.exists
 
 - name: "Copy archives to target nodes: {{ tomcat_install_dir }}/{{ zipfile }}"
   ansible.builtin.copy:

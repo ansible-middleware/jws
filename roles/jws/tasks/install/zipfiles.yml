@@ -18,7 +18,7 @@
     - native_zipfile is defined
     - native_zipfile | length > 0
 
-- name: "Install {{ tomcat.service.hr_name }} and required binaries from local zipfiles (install method: {{ tomcat.install_method }}"
+- name: "Install {{ tomcat.service.hr_name }} and required binaries from local zipfiles (install method: {{ tomcat.install_method }})"
   unarchive:
     remote_src: yes
     src: "{{ tomcat_install_dir }}/{{ item.src }}"
