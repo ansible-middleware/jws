@@ -154,8 +154,12 @@ argument_specs:
                 default: "templates/web.xml.j2"
                 description: "Template to use for web.xml"
                 type: "str"
-            tomcat_shutdown_port:
+            tomcat_conf_templates_catalina_properties:
                 # line 21 of jws/defaults/main.yml
+                default: "templates/catalina.properties.j2"
+                description: "Template to use for catalina.properties"
+            tomcat_shutdown_port:
+                # line 22 of jws/defaults/main.yml
                 default: "8005"
                 description: "Tomcat shutdown port"
                 type: "str"
@@ -243,7 +247,7 @@ argument_specs:
             tomcat_vault_name:
                 # line 34 of jws/defaults/main.yml
                 default: "vault.keystore"
-                description: "Path to tomcat keysore"
+                description: "vault keystore filename"
                 type: "str"
             tomcat_vault_enable:
                 # line 35 of jws/defaults/main.yml
@@ -273,7 +277,12 @@ argument_specs:
             tomcat_vault_properties:
                 # line 40 of jws/defaults/main.yml
                 default: "/conf/vault.properties"
-                description: "Relative path to vault.properties"
+                description: "vault.properties filename"
+                type: "str"
+            tomcat_vault_data:
+                # line 41 of jws/defaults/main.yml
+                default: "VAULT.dat"
+                description: "vault.data filename"
                 type: "str"
             tomcat_modcluster_enable:
                 # line 42 of jws/defaults/main.yml

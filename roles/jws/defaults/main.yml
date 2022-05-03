@@ -43,6 +43,7 @@ tomcat_conf_web: './conf/web.xml'
 tomcat_conf_templates_context: 'templates/context.xml.j2'
 tomcat_conf_templates_server: 'templates/server.xml.j2'
 tomcat_conf_templates_web: 'templates/web.xml.j2'
+tomcat_conf_templates_catalina_properties: 'templates/catalina.properties.j2'
 
 tomcat_shutdown_port: '8005'
 
@@ -77,7 +78,8 @@ tomcat_vault_alias: 'my_vault'
 tomcat_vault_storepass: '123456'
 tomcat_vault_iteration: '44'
 tomcat_vault_salt: '1234abcd'
-tomcat_vault_properties: '/conf/vault.properties'
+tomcat_vault_properties: 'vault.properties'
+tomcat_vault_data: 'VAULT.dat'
 
 # modcluster configuration
 tomcat_modcluster_enable: 'False'
