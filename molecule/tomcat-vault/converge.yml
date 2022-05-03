@@ -9,9 +9,7 @@
     jws_version: 5.6.0
     tomcat_install_method: rhn_zipfiles
     tomcat_vault_enable: True
-    tomcat_vault_properties: '/opt/vault.properties'
-    tomcat_vault_name: '/opt/vault.keystore'
-    tomcat_vault_data: '/opt/VAULT.dat'
+    tomcat_vault_data: 'VAULT.dat'
 
     # Activate extra features
     # A) install java using RPM:
