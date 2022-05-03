@@ -85,13 +85,14 @@ Role Defaults
 |`tomcat_listen_ajp_port`| Tomcat ajp listen port | `8009` |
 |`tomcat_listen_ajp_secretRequired`| Enable loading secret from vault | `True` |
 |`tomcat_listen_ajp_secret`| Passphrase for vault secret | `secret` |
-|`tomcat_vault_name`| Path to tomcat keysore | `vault.keystore` |
+|`tomcat_vault_name`| vault keystore filename, made available in playbook files lookup paths| `vault.keystore` |
 |`tomcat_vault_enable`| Enable value | `False` |
 |`tomcat_vault_alias`| Alias for loading from vault | `my_vault` |
 |`tomcat_vault_storepass`| Tomcat keystore password | `123456` |
 |`tomcat_vault_iteration`| Number of iteration for vault encryption | `44` |
 |`tomcat_vault_salt`| Salt for encrypting tomcat vault | `1234abcd` |
-|`tomcat_vault_properties`| Relative path to vault.properties | `/conf/vault.properties` |
+|`tomcat_vault_properties`| vault.properties filename, made available in playbook files lookup paths | `vault.properties` |
+|`tomcat_vault_data`| vault.data filename, made available in playbook files lookup paths | `vault.data` |
 |`tomcat_modcluster_enable`| Enable mod_cluster module | `False` |
 |`tomcat_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
 |`tomcat_modcluster_port`| mod_cluster port | `6666` |

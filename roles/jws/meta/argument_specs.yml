@@ -239,7 +239,7 @@ argument_specs:
             tomcat_vault_name:
                 # line 34 of jws/defaults/main.yml
                 default: "vault.keystore"
-                description: "Path to tomcat keysore"
+                description: "vault keystore filename"
                 type: "str"
             tomcat_vault_enable:
                 # line 35 of jws/defaults/main.yml
@@ -269,7 +269,12 @@ argument_specs:
             tomcat_vault_properties:
                 # line 40 of jws/defaults/main.yml
                 default: "/conf/vault.properties"
-                description: "Relative path to vault.properties"
+                description: "vault.properties filename"
+                type: "str"
+            tomcat_vault_data:
+                # line 40 of jws/defaults/main.yml
+                default: "vault.properties"
+                description: "vault.data filename"
                 type: "str"
             tomcat_modcluster_enable:
                 # line 42 of jws/defaults/main.yml
