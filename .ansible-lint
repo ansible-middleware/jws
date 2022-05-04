@@ -31,6 +31,7 @@ warn_list:
   - command-instead-of-module
   - no-changed-when
   - task_has_valid_name
+  - internal-error
 
 use_default_rules: true
 parseable: true
