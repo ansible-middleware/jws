@@ -4,4 +4,4 @@
   tasks:
     - name: "Verify that state is consistent"
       include_role:
-        name: ../../../roles/jws_validation
+        name: jws_validation

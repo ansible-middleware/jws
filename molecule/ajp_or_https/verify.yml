@@ -6,4 +6,4 @@
     tomcat_listen_https_bind_address: localhost
   tasks:
     - include_role:
-        name: ../../../roles/jws_validation
+        name: jws_validation
