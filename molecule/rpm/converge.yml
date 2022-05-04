@@ -19,4 +19,4 @@
     - redhat_csp_download
   tasks:
     - ansible.builtin.include_role:
-        name: ../../roles/jws
+        name: jws

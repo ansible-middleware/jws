@@ -1,11 +1,11 @@
 ---
-- import_playbook: ../../playbook.yml
+- import_playbook: playbook.yml
 
 - name: "Red Hat JBoss Web Server uninstallation"
   hosts: all
   post_tasks:
     - include_role:
-        name: ../../roles/jws
+        name: jws
         tasks_from: uninstall.yml
       vars:
         tomcat_service_name: tomcat
