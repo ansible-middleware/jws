@@ -136,11 +136,10 @@ To use the install method zipfiles, downloading from a custom URL, set :
         192.168.0.1      # Remote user to act on
     ```
 3) Update variables in playbook file, the variables are as follow:
-    - jws_version (which version of jws to install)
-    - tomcat_install_java (where to install java)
-    - tomcat_java_version (which version of java to install)
-    - tomcat.listen.http.port and tomcat.listen.https.port (which http/https ports to listen on)
-    - tomcat.listen.ajp (Where to use ajp and if yes configure the address, port, where to use a secret etc.)
+    - `jws_version` or `tomcat_version` (which version of jws or tomcat to install)
+    - `tomcat_java_version` (which version of java to install, ie. name of the JVM rpm package)
+    - `tomcat_listen_http_port` and `tomcat_listen_https_port` (which http/https ports to listen on)
+    - `tomcat_listen_ajp_enabled` and `tomcat_listen_ajp_*` (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)
 
 Note: If you are using a non root remote user, then set username and enable sudo:
     ```
@@ -229,31 +228,31 @@ $ export CATALINA_HOME=/opt/apache-tomcat-9.0.40/
 Playbook executed as root user - with ssh key:
 
 ```
-$ ansible-playbook -i hosts playbook.yml
+$ ansible-playbook -i hosts playbooks/playbook.yml
 ```
 
 Playbook executed as root user - with password:
 
 ```
-$ ansible-playbook -i hosts playbook.yml --ask-pass
+$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass
 ```
 
 Playbook executed as sudo user - with password:
 
 ```
-$ ansible-playbook -i hosts playbook.yml --ask-pass --ask-become-pass
+$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass --ask-become-pass
 ```
 
 Playbook executed as sudo user - with ssh key and sudo password:
 
 ```
-$ ansible-playbook -i hosts playbook.yml --ask-become-pass
+$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass
 ```
 
 Playbook executed as sudo user - with ssh key and passwordless sudo:
 
 ```
-$ ansible-playbook -i hosts playbook.yml --ask-become-pass
+$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass
 ```
 
 Execution should be successful without errors

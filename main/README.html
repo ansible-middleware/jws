@@ -248,11 +248,10 @@ rhn_password: eatmeiamacookie
 </li>
 <li><p>Update variables in playbook file, the variables are as follow:</p>
 <ul class="simple">
-<li><p>jws_version (which version of jws to install)</p></li>
-<li><p>tomcat_install_java (where to install java)</p></li>
-<li><p>tomcat_java_version (which version of java to install)</p></li>
-<li><p>tomcat.listen.http.port and tomcat.listen.https.port (which http/https ports to listen on)</p></li>
-<li><p>tomcat.listen.ajp (Where to use ajp and if yes configure the address, port, where to use a secret etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code> or <code class="docutils literal notranslate"><span class="pre">tomcat_version</span></code> (which version of jws or tomcat to install)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_java_version</span></code> (which version of java to install, ie. name of the JVM rpm package)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_port</span></code> and <code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_port</span></code> (which http/https ports to listen on)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_enabled</span></code> and <code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_*</span></code> (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)</p></li>
 </ul>
 </li>
 </ol>
@@ -332,23 +331,23 @@ remote_src: yes</p>
 $ export CATALINA_HOME=/opt/apache-tomcat-9.0.40/
 ``` -->
 <p>Playbook executed as root user - with ssh key:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Playbook executed as root user - with password:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml --ask-pass</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Playbook executed as sudo user - with password:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml --ask-pass --ask-become-pass</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass --ask-become-pass</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Playbook executed as sudo user - with ssh key and sudo password:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml --ask-become-pass</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Playbook executed as sudo user - with ssh key and passwordless sudo:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbook.yml --ask-become-pass</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Execution should be successful without errors</p>
