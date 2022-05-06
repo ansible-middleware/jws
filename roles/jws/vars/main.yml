@@ -90,8 +90,34 @@ tomcat:
 jws:
   rhn_ids:
     '5.6.0':  # noqa vars_in_vars_files_have_valid_names
+      id: '103663'
+      native: '103665'
+      latest_cp:
+        id: '104460'
+        v: '5.6.2'
+    '5.5.0':  # noqa vars_in_vars_files_have_valid_names
+      id: '99001'
+      native: '99021'
+      latest_cp:
+        id: '102351'
+        v: '5.5.1'
+    '5.4.0':  # noqa vars_in_vars_files_have_valid_names
       id: '90341'
       native: '90361'
       latest_cp:
-        id: '104063'
-        v: '5.6.1'
+        id: '96421'
+        v: '5.4.2'
+    '5.3.0':  # noqa vars_in_vars_files_have_valid_names
+      id: '81321'
+      native: '81341'
+      latest_cp:
+        id: '86201'
+        v: '5.3.2'
+    '5.2.0':  # noqa vars_in_vars_files_have_valid_names
+      id: '75441'
+      native: '75461'
+      latest_cp:
+    '5.1.0':  # noqa vars_in_vars_files_have_valid_names
+      id: '67741'
+      native: '67751'
+      latest_cp:
