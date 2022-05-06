@@ -17,6 +17,11 @@ Versions
 | JWS VERSION | Release Date      | Tomcat Version | Native Version | Notes           |
 |:------------|:------------------|:---------------|:---------------|:----------------|
 |`5.6.0`      |November 30, 2021  |`9.0.50`        | `1.2.30`       |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_release_notes/index)|
+|`5.5.0`      |June 29, 2021      |`9.0.43`        | `1.2.26`       |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_release_notes/index)|
+|`5.4.0`      |November 23, 2020  |`9.0.36`        | `1.2.25`       |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_release_notes/index)|
+|`5.3.0`      |April 21, 2020     |`9.0.30`        | `1.2.23`       |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.3/html/red_hat_jboss_web_server_5.3_release_notes/index)|
+|`5.2.0`      |November 20, 2019  |`9.0.21`        | `1.2.21`       |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.2/html/red_hat_jboss_web_server_5.2_release_notes/index)|
+|`5.1.0`      |May 08, 2019       |`9.0.7`         | `1.2.17`       |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.1/html/red_hat_jboss_web_server_5.1_release_notes/index)|
 
 
 Patching
@@ -26,8 +31,13 @@ When variable `jws_apply_patches` is `True` (default: `False`), the role will au
 
 | JWS VERSION | Release Date      | JWS LATEST CP | Notes           |
 |:------------|:------------------|:--------------|:----------------|
-|`5.6.0`      |February 03, 2022  |`5.6.1`        |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_1_release_notes/index)|
+|`5.6.0`      |April 29, 2022     |`5.6.2`        |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_2_release_notes/index)|
+|`5.5.0`      |October 06, 2021   |`5.5.1`        |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_service_pack_1_release_notes/index)|
+|`5.4.0`      |April 14, 2021     |`5.4.2`        |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_service_pack_2_release_notes/index)|
+|`5.3.0`      |August 04, 2020    |`5.3.2`        |[Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.3/html/red_hat_jboss_web_server_5.3_service_pack_2_release_notes/index)|
 
+
+Refer to [JBoss Web Server Component Details](https://access.redhat.com/articles/111723) for additional details.
 
 <!--start argument_specs-->
 Role Defaults

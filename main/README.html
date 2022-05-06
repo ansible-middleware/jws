@@ -53,6 +53,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#install-tomcat-community-version">Install tomcat community version</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-jws-from-red-hat-customer-portal">Using JWS from Red Hat Customer Portal</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-jws-local-zipfiles">Using JWS local zipfiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jws-versions">JWS Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jws-patching">JWS Patching</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-rpm">Using RPM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-a-custom-download-url">Using a custom download URL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#running-the-play-books">Running the play books</a></li>
@@ -109,7 +111,7 @@
              
   <section id="jws-collection-for-ansible">
 <h1>JWS Collection for Ansible<a class="headerlink" href="#jws-collection-for-ansible" title="Permalink to this headline"></a></h1>
-<p>This repository contains the ansible playbook to setup JWS.</p>
+<p>This repository contains the ansible roles and playbook to setup JWS.</p>
 <section id="ansible-version-compatibility">
 <h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Permalink to this headline"></a></h2>
 <p>This collection has been tested against following Ansible versions: <strong>&gt;=2.9.10</strong>.</p>
@@ -124,8 +126,8 @@
 <ul class="simple">
 <li><p>middleware_automation.redhat_csp_download</p>
 <ul>
-<li><p>This collection is required to download resources from RedHat Customer Portal.</p></li>
-<li><p>Documentation to collection can be found at <a class="reference external" href="https://github.com/ansible-middleware/redhat-csp-download">https://github.com/ansible-middleware/redhat-csp-download</a></p></li>
+<li><p>This collection is required to download resources from Red Hat Customer Portal.</p></li>
+<li><p>Documentation for the collection can be found at <a class="reference external" href="https://github.com/ansible-middleware/redhat-csp-download">https://github.com/ansible-middleware/redhat-csp-download</a></p></li>
 </ul>
 </li>
 </ul>
@@ -138,7 +140,7 @@
 <li><p>Installs JAVA</p></li>
 <li><p>Installs basic packages required</p></li>
 <li><p>Adds tomcat user and group</p></li>
-<li><p>Downloads tomcat and install</p></li>
+<li><p>Downloads tomcat or jws and installs</p></li>
 <li><p>Makes sure that tomcat belongs to the tomcat user and group</p></li>
 <li><p>Deploys server.xml, web.xml and context.xml</p></li>
 </ul>
@@ -214,6 +216,93 @@ rhn_password: eatmeiamacookie
 </pre></div>
 </div>
 <p>Note: if you provide the jws_version and set tomcat_native to True, then the collection will compute the value of native_zipfile for you.</p>
+</section>
+<section id="jws-versions">
+<h3>JWS Versions<a class="headerlink" href="#jws-versions" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>JWS VERSION</p></th>
+<th class="text-left head"><p>Release Date</p></th>
+<th class="text-left head"><p>Tomcat Version</p></th>
+<th class="text-left head"><p>Native Version</p></th>
+<th class="text-left head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.0</span></code></p></td>
+<td class="text-left"><p>November 30, 2021</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.50</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1.2.30</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.5.0</span></code></p></td>
+<td class="text-left"><p>June 29, 2021</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.43</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1.2.26</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.4.0</span></code></p></td>
+<td class="text-left"><p>November 23, 2020</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.36</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1.2.25</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.3.0</span></code></p></td>
+<td class="text-left"><p>April 21, 2020</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.30</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1.2.23</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.3/html/red_hat_jboss_web_server_5.3_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.2.0</span></code></p></td>
+<td class="text-left"><p>November 20, 2019</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.21</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1.2.21</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.2/html/red_hat_jboss_web_server_5.2_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.1.0</span></code></p></td>
+<td class="text-left"><p>May 08, 2019</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.7</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1.2.17</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.1/html/red_hat_jboss_web_server_5.1_release_notes/index">Release Notes</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="jws-patching">
+<h3>JWS Patching<a class="headerlink" href="#jws-patching" title="Permalink to this headline"></a></h3>
+<p>When variable <code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>), the role will automatically apply the latest cumulative patch for the selected base version.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>JWS VERSION</p></th>
+<th class="text-left head"><p>Release Date</p></th>
+<th class="text-left head"><p>JWS LATEST CP</p></th>
+<th class="text-left head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.0</span></code></p></td>
+<td class="text-left"><p>April 29, 2022</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.2</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_2_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.5.0</span></code></p></td>
+<td class="text-left"><p>October 06, 2021</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.5.1</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_service_pack_1_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.4.0</span></code></p></td>
+<td class="text-left"><p>April 14, 2021</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.4.2</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_service_pack_2_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.3.0</span></code></p></td>
+<td class="text-left"><p>August 04, 2020</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.3.2</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.3/html/red_hat_jboss_web_server_5.3_service_pack_2_release_notes/index">Release Notes</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Refer to <a class="reference external" href="https://access.redhat.com/articles/111723">JBoss Web Server Component Details</a> for additional details.</p>
 </section>
 <section id="using-rpm">
 <h3>Using RPM<a class="headerlink" href="#using-rpm" title="Permalink to this headline"></a></h3>
