@@ -31,6 +31,7 @@ Bugfixes
 - Adjustments to the apply_cp.yml logic `#106 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/106>`_
 - Ensure JAVA_HOME is set to installed JVM rpm, or allow to override `#101 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/101>`_
 - JWS-2417: Remove undefined executor `#54 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/54>`_
+- Make selinux policy for JWS optional like the zip installation docs suggest it is `#112 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/112>`_
 - Missing required variables to enable HTTPS `#49 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/49>`_
 - The JWS installation option should allow you to exclude natives `#97 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/97>`_
 - Uid gid fix `#52 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/52>`_

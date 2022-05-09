@@ -232,47 +232,51 @@
 <td class="text-left"><p>Install JWS most recent cumulative patch for requested version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_home</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_selinux_enabled</span></code></p></td>
+<td class="text-left"><p>Enable selinux policy enforcement for JWS</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_home</span></code></p></td>
 <td class="text-left"><p>Default installation path for JWS archives</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_install_dir</span> <span class="pre">}}/jws-{{</span> <span class="pre">jws_version.split('.')[0]</span> <span class="pre">}}.{{</span> <span class="pre">jws_version.split('.')[1]</span> <span class="pre">}}/tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_home</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_home</span></code></p></td>
 <td class="text-left"><p>Target installation directory, defaulting to tomcat or JWS archive path, or can be overridden</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">jws_home</span> <span class="pre">if</span> <span class="pre">tomcat_install_method</span> <span class="pre">==</span> <span class="pre">'rhn_zipfiles'</span> <span class="pre">else</span> <span class="pre">tomcat_zipfile_home</span> <span class="pre">}}</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_user</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_user</span></code></p></td>
 <td class="text-left"><p>posix user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_uid</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_uid</span></code></p></td>
 <td class="text-left"><p>posix UID user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_group</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_group</span></code></p></td>
 <td class="text-left"><p>posix group for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_gid</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_gid</span></code></p></td>
 <td class="text-left"><p>posix GID user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile</span></code></p></td>
 <td class="text-left"><p>Tomcat archive filename</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">apache-tomcat-{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}.zip</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile_url</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile_url</span></code></p></td>
 <td class="text-left"><p>Alternative download URL</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://dlcdn.apache.org/tomcat/tomcat-{{</span> <span class="pre">tomcat_version.split(&quot;.&quot;)[0]</span> <span class="pre">}}/v{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}/bin/{{</span> <span class="pre">tomcat_zipfile</span> <span class="pre">}}</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_native</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_native</span></code></p></td>
 <td class="text-left"><p>Install native bits (JWS)</p></td>
 <td class="text-left"><p>False</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_version</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_version</span></code></p></td>
 <td class="text-left"><p>Tomcat version to download</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.60</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_force_install</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_force_install</span></code></p></td>
 <td class="text-left"><p>Whether to stop any running tomcat process and continue installation</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
