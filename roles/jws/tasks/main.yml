@@ -134,6 +134,7 @@
       when:
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
+        - jws_selinux_enabled and tomcat.install_method == "rhn_zipfiles"
 
     - name: "Remove apps"
       file:

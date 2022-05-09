@@ -24,6 +24,7 @@ jws_home: "{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_v
 jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
 # if True automatically apply the most recent cumulative patch
 jws_apply_patches: False
+jws_selinux_enabled: True
 
 tomcat_user: tomcat
 tomcat_uid: 53

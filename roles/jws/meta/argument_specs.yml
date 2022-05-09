@@ -45,6 +45,10 @@ argument_specs:
                 default: False
                 description: "Install JWS most recent cumulative patch for requested version"
                 type: "bool"
+            jws_selinux_enabled:
+                # line 27 of jws/defaults/main.yml
+                default: True
+                description: "Enable selinux policy enforcement for JWS"
             tomcat_version:
                 # line 7 of jws/defaults/main.yml
                 default: "9.0.60"
