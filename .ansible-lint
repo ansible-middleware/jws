@@ -21,7 +21,6 @@ skip_list:
   - role_vars_start_with_role_name
 
 warn_list:
-  - vars_in_vars_files_have_valid_names
   - experimental
   - ignore-errors
   - no-handler
