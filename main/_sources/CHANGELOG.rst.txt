@@ -42,6 +42,7 @@ Bugfixes
 - The JWS installation option should allow you to exclude natives `#97 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/97>`_
 - Uid gid fix `#52 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/52>`_
 - fix: tomcat.user owning existing directories `#100 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/100>`_
+- selinux policy allows tomcat to listen to non-default ports `#119 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/119>`_
 
 v1.0.0
 ======
