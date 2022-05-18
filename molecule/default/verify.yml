@@ -5,5 +5,3 @@
     - name: "Verify that state is consistent"
       include_role:
         name: jws_validation
-      vars:
-        tomcat_native: True

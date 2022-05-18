@@ -4,7 +4,6 @@
   become: true
   vars:
     tomcat_setup: true
-    tomcat_native: true
 
     # Use Case 1 - Downloading and Using Apache Tomcat from Apache
     #
