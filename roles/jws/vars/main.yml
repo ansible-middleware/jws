@@ -9,7 +9,9 @@ tomcat:
     server_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].id }}"
     native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].native }}"
     cpatch_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.id | default('') }}"
-    patch_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v | default('') }}-application-server.zip"
+    cpatch_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.native | default('') }}"
+    patch_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v }}-application-server.zip"
+    patch_native_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v | default('') }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
     username: "{{ rhn_username | default('') }}"
     password: "{{ rhn_password | default('') }}"
   user: "{{ tomcat_user }}"
@@ -96,6 +98,7 @@ jws:
       native: '103665'
       latest_cp:
         id: '104460'
+        native: '104462'
         v: '5.6.2'
     '5.5.0':  # noqa vars_in_vars_files_have_valid_names
       id: '99001'
@@ -108,12 +111,14 @@ jws:
       native: '90361'
       latest_cp:
         id: '96421'
+        native: '96441'
         v: '5.4.2'
     '5.3.0':  # noqa vars_in_vars_files_have_valid_names
       id: '81321'
       native: '81341'
       latest_cp:
         id: '86201'
+        native: '86221'
         v: '5.3.2'
     '5.2.0':  # noqa vars_in_vars_files_have_valid_names
       id: '75441'
