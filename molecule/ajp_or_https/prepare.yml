@@ -13,3 +13,8 @@
         dest: /etc/ssl/
       loop:
         - ./resources/keystore.jks
+
+    - name: Install sudo
+      ansible.builtin.yum:
+        name: sudo
+        state: present
