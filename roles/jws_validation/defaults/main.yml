@@ -15,3 +15,5 @@ tomcat_listen_http_port: 8080
 tomcat_listen_ajp_enabled: False
 tomcat_listen_ajp_address: '::1'
 tomcat_listen_ajp_port: '8009'
+
+tomcat_native: False

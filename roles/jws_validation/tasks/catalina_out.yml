@@ -21,3 +21,4 @@
       - "{{ 'Loaded Apache Tomcat Native library' in catalina_out.content }}"
     quiet: true
     fail_msg: "Tomcat native extensions failed to load."
+  when: tomcat_native
