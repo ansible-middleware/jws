@@ -31,9 +31,13 @@ argument_specs:
                 description: "Name for the systemd unit"
                 type: "str"
             tomcat_catalina_logfile:
-                default: '/opt/apache-tomcat-9.0.50/logs/catalina.out'
-                description: "Path to catalina.out"
+                default: 'logs/catalina.out'
+                description: "Path relative to tomcat home for catalina.out"
                 type: "str"
+            tomcat_home:
+                default: /opt/apache-tomcat-9.0.50;
+                type: "str"
+                description: "home of tomcat/jws installation"
             tomcat_listen_ajp_enabled:
                 # line 28 of jws/defaults/main.yml
                 default: "False"
@@ -49,3 +53,7 @@ argument_specs:
                 default: "8009"
                 description: "Tomcat ajp listen port"
                 type: "str"
+            tomcat_native:
+                type: "bool"
+                default: False
+                description: "Whether to check for correct startup using native libraries"

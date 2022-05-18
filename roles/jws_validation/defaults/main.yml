@@ -5,7 +5,7 @@ tomcat_group: tomcat
 tomcat_gid: 53
 tomcat_home: /opt/apache-tomcat-9.0.50
 # Red Hat JWS default home
-#tomcat_home: /opt/jws-5.6/tomcat/
+# tomcat_home: /opt/jws-5.6/tomcat/
 tomcat_catalina_logfile: logs/catalina.out
 tomcat_service_name: tomcat
 
