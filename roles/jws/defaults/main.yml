@@ -51,7 +51,7 @@ tomcat_shutdown_port: '8005'
 # HTTP Connector config
 tomcat_listen_http_port: '8080'
 tomcat_listen_http_bind_address: 'localhost'
-tomcat_listen_http_enabled: 'yes'
+tomcat_listen_http_enabled: True
 
 # HTTPS Connector Config
 tomcat_listen_https_enabled: False
@@ -74,7 +74,7 @@ tomcat_listen_ajp_secret: 'secret'
 
 # vault configuration
 tomcat_vault_name: 'vault.keystore'
-tomcat_vault_enable: 'False'
+tomcat_vault_enabled: False
 tomcat_vault_alias: 'my_vault'
 tomcat_vault_storepass: '123456'
 tomcat_vault_iteration: '44'
@@ -83,18 +83,18 @@ tomcat_vault_properties: 'vault.properties'
 tomcat_vault_data: 'VAULT.dat'
 
 # modcluster configuration
-tomcat_modcluster_enable: 'False'
+tomcat_modcluster_enabled: False
 tomcat_modcluster_ip: '127.0.0.1'
 tomcat_modcluster_port: '6666'
 tomcat_modcluster_connector_port: '6666'
 tomcat_modcluster_advertise: 'false'
 # modcluster session configuration
-tomcat_modcluster_stickySession: 'true'
-tomcat_modcluster_stickySessionForce: 'false'
-tomcat_modcluster_stickySessionRemove: 'true'
+tomcat_modcluster_sticky_session: True
+tomcat_modcluster_sticky_session_force: False
+tomcat_modcluster_sticky_session_remove: True
 
 # systemd/service settings
-tomcat_systemd_enabled: 'False'
+tomcat_systemd_enabled: False
 tomcat_systemd_script_interpreter: 'bash'
 tomcat_systemd_script_shebang: "#!/bin/{{ tomcat_systemd_script_interpreter }}"
 tomcat_service_name: 'jws5-tomcat'

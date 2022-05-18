@@ -179,13 +179,13 @@ argument_specs:
                 type: "str"
             tomcat_listen_http_enabled:
                 # line 25 of jws/defaults/main.yml
-                default: "yes"
+                default: True
                 description: "Enable listening on http port"
-                type: "str"
+                type: "bool"
             tomcat_listen_https_enabled:
-                default: "false"
+                default: False
                 description: "Enable listening on https connector"
-                type: "str"
+                type: "bool"
             tomcat_listen_https_port:
                 # line 26 of jws/defaults/main.yml
                 default: "8443"
@@ -253,11 +253,11 @@ argument_specs:
                 default: "vault.keystore"
                 description: "vault keystore filename"
                 type: "str"
-            tomcat_vault_enable:
+            tomcat_vault_enabled:
                 # line 35 of jws/defaults/main.yml
-                default: "False"
+                default: False
                 description: "Enable value"
-                type: "str"
+                type: "bool"
             tomcat_vault_alias:
                 # line 36 of jws/defaults/main.yml
                 default: "my_vault"
@@ -288,11 +288,11 @@ argument_specs:
                 default: "VAULT.dat"
                 description: "vault.data filename"
                 type: "str"
-            tomcat_modcluster_enable:
+            tomcat_modcluster_enabled:
                 # line 42 of jws/defaults/main.yml
-                default: "False"
+                default: False
                 description: "Enable mod_cluster module"
-                type: "str"
+                type: "bool"
             tomcat_modcluster_ip:
                 # line 43 of jws/defaults/main.yml
                 default: "127.0.0.1"
@@ -310,29 +310,29 @@ argument_specs:
                 type: "str"
             tomcat_modcluster_advertise:
                 # line 46 of jws/defaults/main.yml
-                default: "false"
+                default: False
                 description: "Enable mod_cluster advertising"
-                type: "str"
-            tomcat_modcluster_stickySession:
+                type: "bool"
+            tomcat_modcluster_sticky_session:
                 # line 48 of jws/defaults/main.yml
-                default: "true"
+                default: True
                 description: "Enable mod_cluster sticky sessions"
-                type: "str"
-            tomcat_modcluster_stickySessionForce:
+                type: "bool"
+            tomcat_modcluster_sticky_session_force:
                 # line 49 of jws/defaults/main.yml
-                default: "false"
+                default: False
                 description: "Force use of sticky sessions"
-                type: "str"
-            tomcat_modcluster_stickySessionRemove:
+                type: "bool"
+            tomcat_modcluster_sticky_session_remove:
                 # line 50 of jws/defaults/main.yml
-                default: "true"
+                default: True
                 description: "Remove sticky session from cookies"
-                type: "str"
+                type: "bool"
             tomcat_systemd_enabled:
                 # line 52 of jws/defaults/main.yml
-                default: "False"
+                default: False
                 description: "Enable tomcat systemd unit"
-                type: "str"
+                type: "bool"
             tomcat_systemd_script_interpreter:
                 # line 53 of jws/defaults/main.yml
                 default: "bash"

@@ -97,7 +97,7 @@ Role Defaults
 |`tomcat_listen_ajp_secretRequired`| Enable loading secret from vault | `True` |
 |`tomcat_listen_ajp_secret`| Passphrase for vault secret | `secret` |
 |`tomcat_vault_name`| vault keystore filename, made available in playbook files lookup paths | `vault.keystore` |
-|`tomcat_vault_enable`| Enable value | `False` |
+|`tomcat_vault_enabled`| Enable value | `False` |
 |`tomcat_vault_alias`| Alias for loading from vault | `my_vault` |
 |`tomcat_vault_storepass`| Tomcat keystore password | `123456` |
 |`tomcat_vault_iteration`| Number of iteration for vault encryption | `44` |
@@ -109,9 +109,9 @@ Role Defaults
 |`tomcat_modcluster_port`| mod_cluster port | `6666` |
 |`tomcat_modcluster_connector_port`| mod_cluster connector port | `6666` |
 |`tomcat_modcluster_advertise`| Enable mod_cluster advertising | `false` |
-|`tomcat_modcluster_stickySession`| Enable mod_cluster sticky sessions | `true` |
-|`tomcat_modcluster_stickySessionForce`| Force use of sticky sessions | `false` |
-|`tomcat_modcluster_stickySessionRemove`| Remove sticky session from cookies | `true` |
+|`tomcat_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
+|`tomcat_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
+|`tomcat_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
 |`tomcat_systemd_enabled`| Enable tomcat systemd unit | `False` |
 |`tomcat_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
 |`tomcat_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ tomcat_systemd_script_interpreter }}` |

@@ -8,7 +8,7 @@ tomcat:
   rhn:
     server_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].id }}"
     native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].native }}"
-    cpatch_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.id }}"
+    cpatch_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.id | default('') }}"
     cpatch_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.native | default('') }}"
     patch_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v }}-application-server.zip"
     patch_native_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v | default('') }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
@@ -65,7 +65,7 @@ tomcat:
       secret: "{{ tomcat_listen_ajp_secret }}"
   vault:
     name: "{{ tomcat_vault_name }}"
-    enable: "{{ tomcat_vault_enable }}"
+    enable: "{{ tomcat_vault_enabled }}"
     alias: "{{ tomcat_vault_alias }}"
     storepass: "{{ tomcat_vault_storepass }}"
     iteration: "{{ tomcat_vault_iteration }}"
@@ -73,14 +73,14 @@ tomcat:
     properties: "{{ tomcat_vault_properties }}"
     data: "{{ tomcat_vault_data }}"
   mod_cluster:
-    enable: "{{ tomcat_modcluster_enable }}"
+    enable: "{{ tomcat_modcluster_enabled }}"
     ip: "{{ tomcat_modcluster_ip }}"
     port: "{{ tomcat_modcluster_port }}"
     connector_port: "{{ tomcat_modcluster_connector_port }}"
-    advertise: "{{ tomcat_modcluster_advertise }}"
-    stickySession: "{{ tomcat_modcluster_stickySession }}"
-    stickySessionForce: "{{ tomcat_modcluster_stickySessionForce }}"
-    stickySessionRemove: "{{ tomcat_modcluster_stickySessionRemove }}"
+    advertise: "{{ tomcat_modcluster_advertise | string | lower }}"
+    stickySession: "{{ tomcat_modcluster_sticky_session | string | lower }}"
+    stickySessionForce: "{{ tomcat_modcluster_sticky_session_force | string | lower }}"
+    stickySessionRemove: "{{ tomcat_modcluster_sticky_session_remove | string | lower }}"
   service:
     enabled: "{{ tomcat_systemd_enabled }}"
     name: "{{ tomcat_service_name }}"

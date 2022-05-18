@@ -76,7 +76,12 @@
 
     - name: Include patch install tasks
       ansible.builtin.include_tasks: apply_cp.yml
-      when: jws_apply_patches and tomcat.install_method == "rhn_zipfiles"
+      when:
+        - jws_apply_patches
+        - tomcat.install_method == "rhn_zipfiles"
+        - jws.rhn_ids[jws_version].latest_cp is defined
+        - jws.rhn_ids[jws_version].latest_cp.id is defined
+        - jws.rhn_ids[jws_version].latest_cp.v is defined
 
     - name: "Ensure {{ tomcat.home }}/ directories have appropriate privileges"
       file:
@@ -143,7 +148,8 @@
       loop: "{{ tomcat.apps.to_remove }}"
       when: tomcat.apps.to_remove is defined
 
-    - block:
+    - name: "Vault configuration"
+      block:
         - name: "Copy {{ tomcat.service.hr_name }} vault keystore from control node to remote"
           copy:
             src: "{{ tomcat.vault.name }}"
