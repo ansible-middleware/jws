@@ -1,6 +1,7 @@
 ---
 - name: "Red Hat JBoss Web Server installation and configuration"
   hosts: all
+  become: true
   vars:
     tomcat_setup: true
 

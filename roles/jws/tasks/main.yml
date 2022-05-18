@@ -12,6 +12,13 @@
   loop:
     - zip
     - unzip
+    - openssl
+    - apr
+
+- name: "Ensure tomcatjss rpm is not installed"
+  dnf:
+    name: tomcatjss
+    state: absent
 
 - include_tasks: java_install.yml
   when: tomcat_java_version is defined
