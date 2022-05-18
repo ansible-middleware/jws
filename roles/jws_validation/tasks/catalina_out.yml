@@ -11,9 +11,9 @@
 - name: Fail if logfile contains ERRORs
   assert:
     that:
-      - "{{ 'ERROR' not in catalina_out.content }}"
+      - "{{ 'SEVERE' not in catalina_out.content }}"
     quiet: true
-    fail_msg: "Catalina logfile contains ERROR lines."
+    fail_msg: "Catalina logfile contains SEVERE error lines."
 
 - name: Fail if native is installed but fails to start
   assert:

@@ -4,6 +4,8 @@
   become: true
   vars:
     tomcat_setup: true
+    tomcat_native: true
+    tomcat_native_zipfile: tomcat-native.zip
 
     # Use Case 1 - Downloading and Using Apache Tomcat from Apache
     #

@@ -10,3 +10,11 @@
       ansible.builtin.yum:
         name: sudo
         state: present
+
+    - name: Prepare native archive subdir
+      ansible.builtin.command: mv natives/ apache-tomcat-9.0.50/
+      delegate_to: localhost
+
+    - name: Prepare native archive subdir
+      ansible.builtin.command: zip -r tomcat-native.zip apache-tomcat-9.0.50/
+      delegate_to: localhost
