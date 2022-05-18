@@ -26,3 +26,14 @@
         - "Selinux policy created"
         - "Apply selinux policy"
   when: archive_path_selinux.stat.exists
+
+- name: Allow tomcat to listen to port
+  community.general.seport:
+    ports:
+      - "{{ tomcat_listen_http_port }}"
+      - "{{ tomcat_listen_https_port }}"
+      - "{{ tomcat_listen_ajp_port }}"
+      - "{{ tomcat_shutdown_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
