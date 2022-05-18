@@ -4,7 +4,8 @@
     path: "{{ tomcat.home }}/selinux/jws5-tomcat.if"
   register: archive_path_selinux
 
-- block:
+- name: "Compile and install selinux policy"
+  block:
     - name: Install selinux-policy-devel
       include_tasks: ../fastpackage.yml
       vars:

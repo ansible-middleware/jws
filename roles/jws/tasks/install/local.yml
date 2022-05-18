@@ -10,7 +10,7 @@
   when:
     - tomcat_native
     - tomcat_native_zipfile | length > 0
-  register: native_archive_path  
+  register: native_archive_path
 
 - name: Check local download archive path
   ansible.builtin.stat:
