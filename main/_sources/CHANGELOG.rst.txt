@@ -25,6 +25,11 @@ Minor Changes
 - Replace RHN url defaults with base URL and mapped version-productID `#77 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/77>`_
 - Update playbook to utilize variable defaults `#89 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/89>`_
 
+Breaking Changes / Porting Guide
+--------------------------------
+
+- Rename variables to be consistent `#117 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/117>`_
+
 Bugfixes
 --------
 
