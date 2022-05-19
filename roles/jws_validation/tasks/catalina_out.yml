@@ -18,7 +18,7 @@
 - name: Fail if native is installed but fails to start
   assert:
     that:
-      - "{{ 'Loaded Apache Tomcat Native library' in catalina_out.content }}"
+      - "{{ 'Loaded Apache Tomcat Native library' in catalina_out.content | b64decode }}"
     quiet: true
     fail_msg: "Tomcat native extensions failed to load."
   when: tomcat_native

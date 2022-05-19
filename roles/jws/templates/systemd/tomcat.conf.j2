@@ -61,6 +61,9 @@ SECURITY_MANAGER="false"
 # If you wish to further customize your tomcat environment,
 # put your own definitions here
 # (i.e. LD_LIBRARY_PATH for some jdbc drivers)
+{% if tomcat_native %}
+LD_LIBRARY_PATH="{{ tomcat.home }}/lib"
+{% endif %}
 
 # Add the JAVA 9 specific start-up parameters required by Tomcat
 {% if tomcat.jdk is defined and tomcat.jdk.options is defined %}
