@@ -269,14 +269,18 @@
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://dlcdn.apache.org/tomcat/tomcat-{{</span> <span class="pre">tomcat_version.split(&quot;.&quot;)[0]</span> <span class="pre">}}/v{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}/bin/{{</span> <span class="pre">tomcat_zipfile</span> <span class="pre">}}</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_native</span></code></p></td>
-<td class="text-left"><p>Install native bits (JWS)</p></td>
-<td class="text-left"><p>False</p></td>
+<td class="text-left"><p>Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_version</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_native_zipfile</span></code></p></td>
+<td class="text-left"><p>Tomcat native binaries archive filename</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">''</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_version</span></code></p></td>
 <td class="text-left"><p>Tomcat version to download</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.60</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_force_install</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_force_install</span></code></p></td>
 <td class="text-left"><p>Whether to stop any running tomcat process and continue installation</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
