@@ -15,6 +15,7 @@ tomcat_install_method: local_zipfiles
 tomcat_version: 9.0.60
 tomcat_zipfile_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
+tomcat_native_zipfile: ''
 tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
 # Switch to True if you want to also download native bits
 tomcat_native: False

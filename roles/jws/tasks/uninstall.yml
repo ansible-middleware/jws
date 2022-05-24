@@ -29,7 +29,8 @@
     - tomcat.install_method == 'zipfiles' or tomcat.install_method == 'local_zipfiles'
     - tomcat.install_method != 'rpm'
 
-- block:
+- name: "Perform rpm uninstall"
+  block:
     - name: "Disable installed server to ensure package is removed"
       file:
         path: /opt/rh/jws5/enable

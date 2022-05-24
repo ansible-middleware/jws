@@ -1,0 +1,28 @@
+---
+- name: Prepare
+  hosts: all
+  vars:
+    tomcat_zipfile: apache-tomcat-9.0.50.zip
+  tasks:
+    - name: Display Ansible version
+      debug:
+        msg: "Ansible version is  {{ ansible_version.full }}"
+
+    - name: Install sudo
+      ansible.builtin.yum:
+        name: sudo
+        state: present
+
+    - name: Prepare native archive subdir
+      ansible.builtin.command: cp -rp natives/ apache-tomcat-9.0.50/
+      delegate_to: localhost
+
+    - name: Prepare native archive subdir
+      ansible.builtin.command: zip -r ../../tomcat-native.zip apache-tomcat-9.0.50/
+      delegate_to: localhost
+
+    - name: Download apache tomcat zipfile
+      get_url:
+        url:  "https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.50/bin/{{ tomcat_zipfile }}"
+        dest: "../../{{ tomcat_zipfile }}"
+      delegate_to: localhost

@@ -1,9 +1,24 @@
 ---
 - name: Read the content of catalina.out
   ansible.builtin.slurp:
-    src: "{{ tomcat_catalina_logfile }}"
+    src: "{{ tomcat_home }}/{{ tomcat_catalina_logfile }}"
   register: catalina_out
 
 - name: Print the content of catalina.out
   ansible.builtin.debug:
     msg: "{{ catalina_out['content'] | b64decode | length }}"
+
+- name: Fail if logfile contains ERRORs
+  assert:
+    that:
+      - "{{ 'SEVERE' not in catalina_out.content }}"
+    quiet: true
+    fail_msg: "Catalina logfile contains SEVERE error lines."
+
+- name: Fail if native is installed but fails to start
+  assert:
+    that:
+      - "{{ 'Loaded Apache Tomcat Native library' in catalina_out.content | b64decode }}"
+    quiet: true
+    fail_msg: "Tomcat native extensions failed to load."
+  when: tomcat_native

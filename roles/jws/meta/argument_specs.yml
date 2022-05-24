@@ -66,8 +66,12 @@ argument_specs:
                 type: "str"
             tomcat_native:
                 default: False
-                description: "Specify if native bits are required (JWS)"
+                description: "Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version"
                 type: "bool"
+            tomcat_native_zipfile:
+                default: ""
+                type: "str"
+                description: "Filename for native binaries tomcat archive"
             tomcat_user:
                 # line 7 of jws/defaults/main.yml
                 default: "tomcat"

@@ -12,11 +12,19 @@
   loop:
     - zip
     - unzip
+    - openssl
+    - apr
+
+- name: "Ensure tomcatjss rpm is not installed"
+  dnf:
+    name: tomcatjss
+    state: absent
 
 - include_tasks: java_install.yml
   when: tomcat_java_version is defined
 
-- block:
+- name: Check user/groups and whether force install needed
+  block:
     - name: "Create group: {{ tomcat.group }}"
       group:
         name: "{{ tomcat.group }}"
@@ -44,7 +52,8 @@
       include_tasks: install/force_install.yml
       when: tomcat_force_install
 
-- block:
+- name: Perform setup
+  block:
     - name: "Check state of install_dir: {{ tomcat_install_dir }} "
       ansible.builtin.stat:
         path: "{{ tomcat_install_dir }}"
