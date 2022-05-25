@@ -11,7 +11,7 @@ tomcat:
     cpatch_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.id | default('') }}"
     cpatch_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.native | default('') }}"
     patch_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v }}-application-server.zip"
-    patch_native_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v | default('') }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
+    patch_native_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v | default('') }}-application-server-RHEL8-x86_64.zip"
     username: "{{ rhn_username | default('') }}"
     password: "{{ rhn_password | default('') }}"
   user: "{{ tomcat_user }}"
