@@ -8,6 +8,19 @@
     quiet: true
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 
+- set_fact:
+    patch_native_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v | default('') }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
+  when:
+    - jws_version is defined
+    - ansible_facts is defined
+    - ansible_facts['distribution_major_version'] is defined
+
+- set_fact:
+    patch_native_bundle: "{{ tomcat.rhn.patch_native_bundle }}"
+  when:
+    - jws_version is defined
+    - not ansible_facts is defined or not ansible_facts['distribution_major_version'] is defined
+
 - name: Check local download archive path
   ansible.builtin.stat:
     path: "{{ lookup('env', 'PWD') }}"
@@ -22,7 +35,7 @@
 
 - name: Check downloaded native archive
   ansible.builtin.stat:
-    path: "{{ local_path.stat.path }}/{{ tomcat.rhn.patch_native_bundle }}"
+    path: "{{ local_path.stat.path }}/{{ patch_native_bundle }}"
   register: local_native_archive_path
   delegate_to: localhost
 
@@ -30,7 +43,7 @@
 - name: Set download patch archive path
   ansible.builtin.set_fact:
     patch_archive: "{{ tomcat.install_dir }}/{{ tomcat.rhn.patch_bundle }}"
-    patch_native_archive: "{{ tomcat.install_dir }}/{{ tomcat.rhn.patch_native_bundle }}"
+    patch_native_archive: "{{ tomcat.install_dir }}/{{ patch_native_bundle }}"
 
 - name: Check download patch archive path
   ansible.builtin.stat:
@@ -59,7 +72,7 @@
 - name: Perform native patch download from RHN
   middleware_automation.redhat_csp_download.redhat_csp_download:
     url: "{{ tomcat.rhn.cpatch_native_zipfile_url }}"
-    dest: "{{ local_path.stat.path }}/{{ tomcat.rhn.patch_native_bundle }}"
+    dest: "{{ local_path.stat.path }}/{{ patch_native_bundle}}"
     username: "{{ rhn_username }}"
     password: "{{ rhn_password }}"
   no_log: "{{ omit_rhn_output | default(true) }}"
@@ -88,7 +101,7 @@
 ## copy and unpack
 - name: Copy patch archive to target nodes
   ansible.builtin.copy:
-    src: "{{ local_path.stat.path }}/{{ tomcat.rhn.patch_native_bundle }}"
+    src: "{{ local_path.stat.path }}/{{ patch_native_bundle }}"
     dest: "{{ patch_native_archive }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"

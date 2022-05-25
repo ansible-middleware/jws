@@ -10,4 +10,4 @@ docs/_build/
 *.retry
 changelogs/.plugin-cache.yaml
 inventory
-
+molecule/local_with_native/apache-tomcat*
