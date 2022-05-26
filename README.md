@@ -1,6 +1,8 @@
-# JWS Collection for Ansible
+# Ansible Collection - middleware_automation.jws
 
-This repository contains the ansible roles and playbook to setup JWS.
+[![Build Status](https://github.com/ansible-middleware/keycloak/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/keycloak/actions/workflows/ci.yml)
+
+This repository contains the ansible roles and playbooks to setup [Red Hat JBoss Web Server](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
 
 
 ## Ansible version compatibility
@@ -11,17 +13,14 @@ Plugins and modules within a collection may be tested with only specific Ansible
 <!--end requires_ansible-->
 
 
-## Included content
+### Dependencies
 
-Click on the name of a plugin or module to view that content's documentation:
-
-
-### Collections
-
-- middleware_automation.redhat_csp_download
+- `middleware_automation.redhat_csp_download`
     - This collection is required to download resources from Red Hat Customer Portal.
     - Documentation for the collection can be found at <https://github.com/ansible-middleware/redhat-csp-download>
 
+
+## Included content
 
 ### Roles
 

@@ -14,11 +14,14 @@ jobs:
       deployments: write
       packages: write
       pages: write
+    outputs:
+      tag_version: ${{ steps.get_version.outputs.TAG_VERSION }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.TRIGGERING_PAT }}
 
       - name: Set up Python
         uses: actions/setup-python@v1
@@ -96,5 +99,5 @@ jobs:
         with:
           token: ${{ secrets.TRIGGERING_PAT }}
           repository: ${{ matrix.repo }}
-          event-type: "Dependency released - JWS v${{ steps.get_version.outputs.TAG_VERSION }}"
+          event-type: "Dependency released - JWS v${{ needs.release.outputs.tag_version }}"
           client-payload: '{ "github": ${{toJson(github)}} }'
