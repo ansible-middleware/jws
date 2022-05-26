@@ -1,6 +1,6 @@
 # Ansible Collection - middleware_automation.jws
 
-[![Build Status](https://github.com/ansible-middleware/keycloak/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/keycloak/actions/workflows/ci.yml)
+[![Build Status](https://github.com/ansible-middleware/jws-ansible-playbook/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/jws-ansible-playbook/actions/workflows/ci.yml)
 
 This repository contains the ansible roles and playbooks to setup [Red Hat JBoss Web Server](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
 
