@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JWS Collection for Ansible &mdash; JWS Ansible Collection  documentation</title>
+  <title>Ansible Collection - middleware_automation.jws &mdash; JWS Ansible Collection  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/ansible-basic-sphinx-ext.css" type="text/css" />
@@ -40,10 +40,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">User documentation</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">JWS Collection for Ansible</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ansible-version-compatibility">Ansible version compatibility</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ansible Collection - middleware_automation.jws</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ansible-version-compatibility">Ansible version compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#included-content">Included content</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#collections">Collections</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#roles">Roles</a></li>
 </ul>
 </li>
@@ -77,6 +79,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer documentation</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developing.html">Contributor’s Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="releasing.html">Collection Versioning Strategy</a></li>
 </ul>
@@ -99,7 +102,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>JWS Collection for Ansible</li>
+      <li>Ansible Collection - middleware_automation.jws</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -109,22 +112,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="jws-collection-for-ansible">
-<h1>JWS Collection for Ansible<a class="headerlink" href="#jws-collection-for-ansible" title="Permalink to this headline"></a></h1>
-<p>This repository contains the ansible roles and playbook to setup JWS.</p>
+  <section id="ansible-collection-middleware-automation-jws">
+<h1>Ansible Collection - middleware_automation.jws<a class="headerlink" href="#ansible-collection-middleware-automation-jws" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="https://github.com/ansible-middleware/keycloak/actions/workflows/ci.yml"><img alt="Build Status" src="https://github.com/ansible-middleware/keycloak/workflows/CI/badge.svg?branch=main" /></a></p>
+<p>This repository contains the ansible roles and playbooks to setup <a class="reference external" href="https://www.redhat.com/en/technologies/jboss-middleware/web-server">Red Hat JBoss Web Server</a>.</p>
 <section id="ansible-version-compatibility">
 <h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Permalink to this headline"></a></h2>
 <p>This collection has been tested against following Ansible versions: <strong>&gt;=2.9.10</strong>.</p>
 <p>Plugins and modules within a collection may be tested with only specific Ansible versions. A collection may contain metadata that identifies these versions.</p>
 <!--end requires_ansible-->
-</section>
-<section id="included-content">
-<h2>Included content<a class="headerlink" href="#included-content" title="Permalink to this headline"></a></h2>
-<p>Click on the name of a plugin or module to view that content’s documentation:</p>
-<section id="collections">
-<h3>Collections<a class="headerlink" href="#collections" title="Permalink to this headline"></a></h3>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h3>
 <ul class="simple">
-<li><p>middleware_automation.redhat_csp_download</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">middleware_automation.redhat_csp_download</span></code></p>
 <ul>
 <li><p>This collection is required to download resources from Red Hat Customer Portal.</p></li>
 <li><p>Documentation for the collection can be found at <a class="reference external" href="https://github.com/ansible-middleware/redhat-csp-download">https://github.com/ansible-middleware/redhat-csp-download</a></p></li>
@@ -132,6 +132,9 @@
 </li>
 </ul>
 </section>
+</section>
+<section id="included-content">
+<h2>Included content<a class="headerlink" href="#included-content" title="Permalink to this headline"></a></h2>
 <section id="roles">
 <h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline"></a></h3>
 <ul class="simple">
