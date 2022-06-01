@@ -69,7 +69,7 @@ jobs:
         env:
           ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
         run: |
-          ansible-galaxy collection publish *.tar.gz --api-key $ANSIBLE_GALAXY_API_KEY
+          ansible-galaxy collection publish *.tar.gz --api-key $ANSIBLE_GALAXY_API_KEY -vvvv
 
       - name: Create release tag
         run: |
