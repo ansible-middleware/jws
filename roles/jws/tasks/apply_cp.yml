@@ -72,7 +72,7 @@
 - name: Perform native patch download from RHN
   middleware_automation.redhat_csp_download.redhat_csp_download:
     url: "{{ tomcat.rhn.cpatch_native_zipfile_url }}"
-    dest: "{{ local_path.stat.path }}/{{ patch_native_bundle}}"
+    dest: "{{ local_path.stat.path }}/{{ patch_native_bundle }}"
     username: "{{ rhn_username }}"
     password: "{{ rhn_password }}"
   no_log: "{{ omit_rhn_output | default(true) }}"
