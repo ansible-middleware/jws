@@ -7,7 +7,7 @@
 - name: "Compile and install selinux policy"
   block:
     - name: Install selinux-policy-devel
-      include_tasks: ../fastpackage.yml
+      ansible.builtin.include_tasks: ../fastpackage.yml
       vars:
         package_name: selinux-policy-devel
 
@@ -17,7 +17,7 @@
       register: policy_path_selinux
 
     - name: Create selinux policy
-      command: make -f /usr/share/selinux/devel/Makefile
+      ansible.builtin.command: make -f /usr/share/selinux/devel/Makefile
       args:
         chdir: "{{ tomcat.home }}/selinux"
         creates: "{{ tomcat.home }}/selinux/jws5-tomcat.pp"

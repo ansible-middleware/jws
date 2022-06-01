@@ -1,12 +1,12 @@
 ---
 - name: "Check that user account {{ tomcat_user }} was properly created"
-  user:
+  ansible.builtin.user:
     name: "{{ tomcat_user }}"
     uid: "{{ tomcat_uid }}"
   register: tomcat_account_check
 
 - name: "Fail if user account has been changed"
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat_account_check is defined
       - not tomcat_account_check.changed

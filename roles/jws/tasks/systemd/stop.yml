@@ -1,11 +1,11 @@
 ---
 - name: Check arguments
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat.service.name is defined
     quiet: true
 
 - name: "Stop tomcat service"
-  service:
+  ansible.builtin.service:
     name: "{{ tomcat.service.name }}"
     state: stopped

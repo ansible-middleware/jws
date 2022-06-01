@@ -70,7 +70,7 @@ tomcat_listen_https_client_auth: false
 tomcat_listen_ajp_enabled: False
 tomcat_listen_ajp_address: '::1'
 tomcat_listen_ajp_port: '8009'
-tomcat_listen_ajp_secretRequired: 'True'
+tomcat_listen_ajp_secret_required: True
 tomcat_listen_ajp_secret: 'secret'
 
 # vault configuration

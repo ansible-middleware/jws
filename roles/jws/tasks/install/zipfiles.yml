@@ -1,17 +1,17 @@
 ---
 - name: Check arguments
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat_zipfile is defined
       - tomcat_zipfile != ""
     quiet: true
     fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' needs to be defined (or at least jws_version)"
 
-- set_fact:
+- ansible.builtin.set_fact:
     zipfiles:
       - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}/bin" }
 
-- set_fact:
+- ansible.builtin.set_fact:
     zipfiles: "{{ zipfiles + [{ 'src': tomcat_native_zipfile, 'creates': tomcat.home + '/lib/libtcnative-1.so' }] }}"
   when:
     - tomcat_native
@@ -19,7 +19,7 @@
     - tomcat_native_zipfile | length > 0
 
 - name: "Install {{ tomcat.service.hr_name }} and required binaries from local zipfiles (install method: {{ tomcat.install_method }})"
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: yes
     src: "{{ tomcat_install_dir }}/{{ item.src }}"
     dest: "{{ tomcat_install_dir }}"

@@ -242,11 +242,11 @@ argument_specs:
                 default: "8009"
                 description: "Tomcat ajp listen port"
                 type: "str"
-            tomcat_listen_ajp_secretRequired:
+            tomcat_listen_ajp_secret_required:
                 # line 31 of jws/defaults/main.yml
-                default: "True"
+                default: True
                 description: "Enable loading secret from vault"
-                type: "str"
+                type: "bool"
             tomcat_listen_ajp_secret:
                 # line 32 of jws/defaults/main.yml
                 default: "secret"

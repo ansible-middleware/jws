@@ -1,6 +1,6 @@
 ---
 - name: Check arguments
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat is defined
       - tomcat.install_method is defined
@@ -8,25 +8,25 @@
     quiet: true
     fail_msg: "{{ tomcat.install_method }} does not exist or is not supported. Supported methods are: {{ tomcat.supported_install_method }}"
 
-- debug:
+- ansible.builtin.debug:
     msg: "Install method: {{ tomcat.install_method }}"
 
-- include_tasks: install/rhn.yml
+- ansible.builtin.include_tasks: install/rhn.yml
   when:
     - tomcat.install_method == 'rhn_zipfiles'
 
-- include_tasks: install/url.yml
+- ansible.builtin.include_tasks: install/url.yml
   when:
     - tomcat.install_method == 'zipfiles'
 
-- include_tasks: install/local.yml
+- ansible.builtin.include_tasks: install/local.yml
   when:
     - tomcat.install_method == 'local_zipfiles'
 
-- include_tasks: install/zipfiles.yml
+- ansible.builtin.include_tasks: install/zipfiles.yml
   when:
     - tomcat.install_method != 'rpm'
 
-- include_tasks: install/rpm.yml
+- ansible.builtin.include_tasks: install/rpm.yml
   when:
     - tomcat.install_method == 'rpm'

@@ -1,14 +1,14 @@
 ---
 - name: Check arguments
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat.service.name is defined
     quiet: true
 
 - name: "Disable tomcat service"
-  service:
+  ansible.builtin.service:
     name: "{{ tomcat.service.name }}"
     enabled: no
 
 - name: "Stop tomcat service"
-  include_tasks: systemd/stop.yml
+  ansible.builtin.include_tasks: systemd/stop.yml

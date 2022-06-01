@@ -1,6 +1,6 @@
 ---
 - name: Check that required parameters has been defined
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat is defined
       - tomcat.install_method is defined
@@ -9,20 +9,20 @@
     fail_msg: "{{ tomcat.install_method }} does not exist or is not supported. Supported methods are: {{ tomcat.supported_install_method }}"
 
 - name: "Stop and disable systemd service if running"
-  include_tasks: systemd/disable.yml
+  ansible.builtin.include_tasks: systemd/disable.yml
   when:
     - tomcat_systemd_enabled is defined
 
 - name: "Delete files from server home {{ tomcat.home }}"
   block:
     - name: "Check that server home has been provided"
-      assert:
+      ansible.builtin.assert:
         that:
           - tomcat.home is defined
         quiet: true
 
     - name: "Delete files from server home {{ tomcat.home }}"
-      file:
+      ansible.builtin.file:
         path: "{{ tomcat.home }}"
         state: absent
   when:
@@ -32,11 +32,11 @@
 - name: "Perform rpm uninstall"
   block:
     - name: "Disable installed server to ensure package is removed"
-      file:
+      ansible.builtin.file:
         path: /opt/rh/jws5/enable
         state: absent
 
-    - include_tasks: install/rpm.yml
+    - ansible.builtin.include_tasks: install/rpm.yml
       vars:
         dnf_command: 'groupremove'
   when:

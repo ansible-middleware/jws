@@ -1,6 +1,6 @@
 ---
 - name: "Check that tomcat.home has been defined."
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat.home is defined
       - tomcat.home | length > 0
@@ -16,23 +16,23 @@
     - apr
 
 - name: "Ensure tomcatjss rpm is not installed"
-  dnf:
+  ansible.builtin.dnf:
     name: tomcatjss
     state: absent
 
-- include_tasks: java_install.yml
+- ansible.builtin.include_tasks: java_install.yml
   when: tomcat_java_version is defined
 
 - name: Check user/groups and whether force install needed
   block:
     - name: "Create group: {{ tomcat.group }}"
-      group:
+      ansible.builtin.group:
         name: "{{ tomcat.group }}"
         gid: "{{ tomcat.gid }}"
         system: yes
 
     - name: "Create user for tomcat: {{ tomcat.user }}"
-      user:
+      ansible.builtin.user:
         name: "{{ tomcat.user }}"
         uid: "{{ tomcat.uid }}"
         system: yes
@@ -42,7 +42,7 @@
         comment: "User for Apache Tomcat"
   rescue:
     - name: "Inform of process owned by {{ tomcat.user }} already running"
-      assert:
+      ansible.builtin.assert:
         that:
           - tomcat_force_install
         fail_msg: "Found a process owned by {{ tomcat.user }} and tomcat_force_install is false, aborting installation"
@@ -54,13 +54,13 @@
 
 - name: Perform setup
   block:
-    - name: "Check state of install_dir: {{ tomcat_install_dir }} "
+    - name: "Check state of install_dir: {{ tomcat_install_dir }}"
       ansible.builtin.stat:
         path: "{{ tomcat_install_dir }}"
       register: install_path
 
     - name: "Ensure install dir is created: {{ tomcat_install_dir }}"
-      file:
+      ansible.builtin.file:
         path: "{{ tomcat_install_dir }}"
         state: directory
         owner: "{{ tomcat.user }}"
@@ -71,11 +71,11 @@
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
 
-    - include_tasks: install.yml
+    - ansible.builtin.include_tasks: install.yml
       when:
         - tomcat.install_method is defined
 
-    - include_tasks: systemd/systemd.yml
+    - ansible.builtin.include_tasks: systemd/systemd.yml
       when:
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
@@ -93,7 +93,7 @@
         - jws.rhn_ids[jws_version].latest_cp.v is defined
 
     - name: "Ensure {{ tomcat.home }}/ directories have appropriate privileges"
-      file:
+      ansible.builtin.file:
         path: "{{ tomcat.home }}/{{ item }}/"
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
@@ -107,7 +107,7 @@
         - bin
 
     - name: "Ensure {{ tomcat.home }}/ files have the recommended priviliges, owner and group"
-      file:
+      ansible.builtin.file:
         path: "{{ tomcat.home }}/{{ item }}"
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
@@ -119,18 +119,18 @@
         - "conf/tomcat-users.xml"
         - "conf/jaspic-providers.xml"
 
-    - include_tasks: sanity_checks/ajp.yml
+    - ansible.builtin.include_tasks: sanity_checks/ajp.yml
       when:
         - tomcat.listen.ajp.enabled is defined
         - tomcat_listen_ajp_enabled
 
-    - include_tasks: sanity_checks/https.yml
+    - ansible.builtin.include_tasks: sanity_checks/https.yml
       when:
         - tomcat_listen_https_enabled is defined
         - tomcat_listen_https_enabled
 
     - name: "Deploy custom configuration files"
-      template:
+      ansible.builtin.template:
         src: "{{ item.template }}"
         dest: "{{ item.dest }}"
         owner: "{{ tomcat.user }}"
@@ -144,23 +144,23 @@
       notify:
         - Restart Tomcat service
 
-    - include_tasks: systemd/selinux.yml
+    - ansible.builtin.include_tasks: systemd/selinux.yml
       when:
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
         - jws_selinux_enabled and tomcat.install_method == "rhn_zipfiles"
 
     - name: "Remove apps"
-      file:
+      ansible.builtin.file:
         path: "{{ tomcat.home }}/webapps/{{ item }}"
         state: absent
       loop: "{{ tomcat.apps.to_remove }}"
       when: tomcat.apps.to_remove is defined
 
-    - name: "Vault configuration"
+    - name: "Create vault configuration"
       block:
         - name: "Copy {{ tomcat.service.hr_name }} vault keystore from control node to remote"
-          copy:
+          ansible.builtin.copy:
             src: "{{ tomcat.vault.name }}"
             dest: "{{ tomcat.home }}"
             owner: "{{ tomcat.user }}"
@@ -168,7 +168,7 @@
             mode: 0640
 
         - name: "Copy {{ tomcat.service.hr_name }} vault properties file from control node to remote"
-          copy:
+          ansible.builtin.copy:
             src: "{{ tomcat.vault.properties }}"
             dest: "{{ tomcat.home }}/conf/"
             owner: "{{ tomcat.user }}"
@@ -176,7 +176,7 @@
             mode: 0640
 
         - name: "Copy {{ tomcat.service.hr_name }} vault data file from control node to remote"
-          copy:
+          ansible.builtin.copy:
             src: "{{ tomcat.vault.data }}"
             dest: "{{ tomcat.home }}"
             owner: "{{ tomcat.user }}"

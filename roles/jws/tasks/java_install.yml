@@ -1,7 +1,8 @@
 ---
-- block:
+- name: "Install java"
+  block:
     - name: Set rpm name with version
-      set_fact:
+      ansible.builtin.set_fact:
         tomcat_java_packages_el: "java-{{ tomcat_java_version }}-openjdk-headless"
 
     - name: "Install {{ tomcat_java_packages_el }}"

@@ -1,18 +1,18 @@
 ---
 - name: Check arguments
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat.rhn.server_zipfile_url is defined
       - tomcat.rhn.server_zipfile_url | length > 0
     quiet: true
     fail_msg: "You need to provide"
 
-- set_fact:
+- ansible.builtin.set_fact:
     tomcat_zipfile: "jws-{{ jws_version }}-application-server.zip"
   when:
     - jws_version is defined
 
-- set_fact:
+- ansible.builtin.set_fact:
     native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
   when:
     - tomcat_native is defined
@@ -21,7 +21,7 @@
     - ansible_facts is defined
     - ansible_facts['distribution_major_version'] is defined
 
-- include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
+- ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
   vars:
     zipfile: "{{ tomcat_zipfile }}"
     zipfile_url: "{{ tomcat.rhn.server_zipfile_url }}"
@@ -29,7 +29,7 @@
   when:
     - tomcat_zipfile is defined
 
-- include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
+- ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
   vars:
     zipfile: "{{ native_zipfile }}"
     zipfile_url: "{{ tomcat.rhn.server_zipfile_url }}"

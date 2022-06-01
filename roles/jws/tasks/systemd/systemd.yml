@@ -1,6 +1,6 @@
 ---
 - name: Check arguments
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat.service is defined
       - tomcat.user is defined
@@ -9,7 +9,7 @@
       - tomcat.service.script is defined
 
 - name: "Ensure requirements for systemd"
-  include_tasks: ../fastpackage.yml
+  ansible.builtin.include_tasks: ../fastpackage.yml
   vars:
     package_name: "{{ item }}"
   loop:
@@ -17,7 +17,7 @@
     - procps-ng
 
 - name: "Ensure service script is deployed"
-  template:
+  ansible.builtin.template:
     src: templates/systemd/service.sh.j2
     dest: "{{ tomcat.service.script }}"
     owner: "{{ tomcat.user }}"
@@ -25,7 +25,7 @@
     mode: 0755
 
 - name: "Ensure service configurations files is deployed: {{ tomcat.service.conf }}"
-  template:
+  ansible.builtin.template:
     src: templates/systemd/tomcat.conf.j2
     dest: "{{ tomcat.service.conf }}"
     owner: "{{ tomcat.user }}"
@@ -38,7 +38,7 @@
     - Ensure Tomcat runs under systemd
 
 - name: "Ensure systemd service is configured"
-  template:
+  ansible.builtin.template:
     src: templates/systemd/tomcat.service.j2
     dest: "{{ tomcat.service.systemd }}"
     owner: "{{ tomcat.user }}"

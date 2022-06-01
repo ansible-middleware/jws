@@ -9,7 +9,7 @@
   listen: "Systemd reload"
 
 - name: "Ensure {{ tomcat.service.hr_name }} runs under systemd"
-  include_tasks: tasks/systemd/service.yml
+  ansible.builtin.include_tasks: tasks/systemd/service.yml
   when:
     - tomcat.service is defined
     - tomcat.service.enabled is defined
@@ -17,7 +17,7 @@
   listen: "Ensure Tomcat runs under systemd"
 
 - name: "Ensure systemd service for {{ tomcat.service.hr_name }} is stopped."
-  include_tasks: tasks/systemd/stop.yml
+  ansible.builtin.include_tasks: tasks/systemd/stop.yml
   when:
     - tomcat.service is defined
     - tomcat.service.enabled is defined
@@ -25,7 +25,7 @@
   listen: "Ensure Tomcat runs under systemd"
 
 - name: "Restart {{ tomcat.service.hr_name }} service"
-  service:
+  ansible.builtin.service:
     name: "{{ tomcat.service.name }}"
     state: restarted
   when:
@@ -35,11 +35,11 @@
   listen: "Restart Tomcat service"
 
 - name: Install selinux policy
-  command: semodule -i jws5-tomcat.pp
+  ansible.builtin.command: semodule -i jws5-tomcat.pp
   args:
     chdir: "{{ tomcat.home }}/selinux"
   listen: "Selinux policy created"
 
 - name: Apply selinux policy
-  command: "restorecon -r {{ tomcat.install_dir }}"
+  ansible.builtin.command: "restorecon -r {{ tomcat.install_dir }}"
   listen: "Apply selinux policy"

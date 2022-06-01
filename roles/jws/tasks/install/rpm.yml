@@ -1,16 +1,17 @@
 ---
 - name: Check arguments
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat.rpm is defined
       - tomcat.rpm != ""
     quiet: true
     fail_msg: "No RPM package name provided."
 
-- debug:
+- ansible.builtin.debug:
     var: dnf_command
 
-- assert:
+- name: "Verify distribution"
+  ansible.builtin.assert:
     that:
       - ansible_os_family == "RedHat"
     quiet: true
@@ -18,27 +19,28 @@
   when:
     - ansible_os_family is defined
 
-- assert:
+- name: "Verify tomcat home"
+  ansible.builtin.assert:
     that:
       - tomcat.home is defined
       - tomcat.home == "/opt/rh/jws5/root/usr/share/tomcat/"
     quiet: true
     fail_msg: "{{ tomcat.service.hr_name }} HOME does not match the one provided by RPM."
 
-- set_fact:
+- ansible.builtin.set_fact:
     dnf_command: "'groupinstall'"
-    info_msg: "Install {{ tomcat.rpm }}"
+    info_msg: "install {{ tomcat.rpm }}"
   when:
     - not dnf_command is defined
 
-- set_fact:
-    info_msg: "Remove {{ tomcat.rpm }}"
+- ansible.builtin.set_fact:
+    info_msg: "remove {{ tomcat.rpm }}"
   when:
     - dnf_command is defined
     - dnf_command != "groupinstall"
 
-- name: "{{ info_msg }}"
-  command:
+- name: "Perform {{ info_msg }}"
+  ansible.builtin.command:
     cmd: "dnf {{ dnf_command | default('groupinstall') }} -y {{ tomcat.rpm }}"
     creates: "{{ tomcat_rpm_root_dir }}/enable"
   notify:

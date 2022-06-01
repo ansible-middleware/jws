@@ -1,24 +1,24 @@
 ---
-- include_tasks: user.yml
+- ansible.builtin.include_tasks: user.yml
   when:
     - tomcat_user is defined
     - tomcat_uid is defined
 
-- include_tasks: group.yml
+- ansible.builtin.include_tasks: group.yml
   when:
     - tomcat_group is defined
     - tomcat_gid is defined
 
-- include_tasks: service_status.yml
+- ansible.builtin.include_tasks: service_status.yml
   when:
     - tomcat_service_name is defined
 
-- include_tasks: catalina_out.yml
+- ansible.builtin.include_tasks: catalina_out.yml
   when:
     - tomcat_catalina_logfile is defined
 
 - name: "Ensure Tomcat HTTP connector is started and listen to the appropriate port"
-  include_tasks: check_connector_port.yml
+  ansible.builtin.include_tasks: check_connector_port.yml
   vars:
     bind_address: "{{ tomcat_listen_http_bind_address }}"
     listen_port: "{{ tomcat_listen_http_port }}"
@@ -27,7 +27,7 @@
     - tomcat_listen_http_port is defined
 
 - name: "Ensure Tomcat HTTPS connector is started and listen to the appropriate port"
-  include_tasks: check_connector_port.yml
+  ansible.builtin.include_tasks: check_connector_port.yml
   vars:
     bind_address: "{{ tomcat_listen_https_bind_address }}"
     listen_port: "{{ tomcat_listen_https_port }}"
@@ -37,7 +37,7 @@
     - tomcat_listen_https_port is defined
 
 - name: "Ensure Tomcat AJP connector is started and listen to the appropriate port"
-  include_tasks: check_connector_port.yml
+  ansible.builtin.include_tasks: check_connector_port.yml
   vars:
     bind_address: "{{  tomcat_listen_ajp_bind_address }}"
     listen_port: "{{  tomcat_listen_ajp_port }}"

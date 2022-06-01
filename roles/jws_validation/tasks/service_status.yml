@@ -3,7 +3,7 @@
   ansible.builtin.service_facts:
 
 - name: Check if service is started
-  assert:
+  ansible.builtin.assert:
     that:
       - ansible_facts is defined
       - ansible_facts.services is defined

@@ -1,6 +1,6 @@
 ---
 - name: "Ensure Tomcat listens to appropriate port {{ listen_port }} on {{ bind_address }}"
-  wait_for:
+  ansible.builtin.wait_for:
     host: "{{ bind_address }}"
     port: "{{ listen_port }}"
   when:

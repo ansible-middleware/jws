@@ -1,6 +1,6 @@
 ---
 - name: Check arguments
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat.rhn.username is defined
       - tomcat.rhn.password is defined
@@ -8,14 +8,14 @@
     quiet: true
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 
-- set_fact:
+- ansible.builtin.set_fact:
     patch_native_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v | default('') }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
   when:
     - jws_version is defined
     - ansible_facts is defined
     - ansible_facts['distribution_major_version'] is defined
 
-- set_fact:
+- ansible.builtin.set_fact:
     patch_native_bundle: "{{ tomcat.rhn.patch_native_bundle }}"
   when:
     - jws_version is defined
@@ -114,29 +114,30 @@
   become: yes
 
 - name: "Check patch state"
-  stat:
+  ansible.builtin.stat:
     path: "{{ patch_archive }}"
   register: patch_info
 
-- set_fact:
+- ansible.builtin.set_fact:
     patch_checksum_file: "{{ tomcat.home }}/../.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
   when:
     - patch_info is defined
 
 - name: "Check {{ patch_checksum_file }} state"
-  stat:
+  ansible.builtin.stat:
     path: "{{ patch_checksum_file }}"
   register: last_patch_status
 
 - name: Print when patch has been applied already
-  debug:
+  ansible.builtin.debug:
     msg: "Patch v{{ jws.rhn_ids[jws_version].latest_cp.v }} (checksum {{ patch_info.stat.checksum }}) has already been applied."
   when:
     - last_patch_status.stat.exists
 
-- block:
+- name: "Apply JWS patch"
+  block:
     - name: "Update {{ tomcat.home }} with downloaded Cumulative Patch"
-      unarchive:
+      ansible.builtin.unarchive:
         src: "{{ patch_archive }}"
         dest: "{{ tomcat.install_dir }}"
         remote_src: yes
@@ -149,7 +150,7 @@
         - not last_patch_status.stat.exists
 
     - name: "Update {{ tomcat.home }} with downloaded native Cumulative Patch"
-      unarchive:
+      ansible.builtin.unarchive:
         src: "{{ patch_native_archive }}"
         dest: "{{ tomcat.install_dir }}"
         remote_src: yes
@@ -162,7 +163,7 @@
         - not last_patch_status.stat.exists
 
     - name: Set checksum file
-      copy:
+      ansible.builtin.copy:
         dest: "{{ patch_checksum_file }}"
         content: "Patch v{{ jws.rhn_ids[jws_version].latest_cp.v }}"
         owner: "{{ tomcat.user }}"
@@ -176,5 +177,5 @@
     - last_patch_status is defined
     - last_patch_status.stat is defined
   rescue:
-    - debug:
+    - ansible.builtin.debug:
         msg: "This should NEVER happen, something is wrong."

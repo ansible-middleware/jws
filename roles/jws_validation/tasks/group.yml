@@ -1,12 +1,12 @@
 ---
 - name: "Check that group account was properly created"
-  group:
+  ansible.builtin.group:
     name: "{{ tomcat_group }}"
     gid: "{{ tomcat_gid }}"
   register: tomcat_group_check
 
 - name: "Fail if group has been updated"
-  assert:
+  ansible.builtin.assert:
     that:
       - tomcat_group_check is defined
       - not tomcat_group_check.changed
