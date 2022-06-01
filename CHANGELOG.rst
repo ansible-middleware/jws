@@ -6,14 +6,13 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
-v1.1.0-devel
-============
+v1.1.0
+======
 
 Major Changes
 -------------
 
 - Provide uninstall feature `#68 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/68>`_
-
 
 Minor Changes
 -------------
@@ -27,12 +26,10 @@ Minor Changes
 - Replace RHN url defaults with base URL and mapped version-productID `#77 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/77>`_
 - Update playbook to utilize variable defaults `#89 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/89>`_
 
-
 Breaking Changes / Porting Guide
 --------------------------------
 
 - Rename variables to be consistent `#117 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/117>`_
-
 
 Bugfixes
 --------
@@ -48,7 +45,6 @@ Bugfixes
 - ``jws_apply_patches`` also installs native CP when available `#121 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/121>`_
 - fix: tomcat.user owning existing directories `#100 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/100>`_
 - selinux policy allows tomcat to listen to non-default ports `#119 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/119>`_
-
 
 v1.0.0
 ======
