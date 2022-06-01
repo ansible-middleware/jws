@@ -25,6 +25,9 @@ releases:
       - 'Rename variables to be consistent `#117 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/117>`_
 
         '
+      - 'Rename variables to be consistent `#117 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/117>`_
+
+        '
       bugfixes:
       - 'Adjustments to the apply_cp.yml logic `#106 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/106>`_
 
@@ -41,6 +44,13 @@ releases:
       - 'Adjustments to the apply_cp.yml logic `#106 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/106>`_
 
         '
+      - 'Adjustments to the apply_cp.yml logic `#106 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/106>`_
+
+        '
+      - 'Avoid failure when ``jws_apply_patches`` is true and no CP is available `#118
+        <https://github.com/ansible-middleware/jws-ansible-playbook/pull/118>`_
+
+        '
       - 'Avoid failure when ``jws_apply_patches`` is true and no CP is available `#118
         <https://github.com/ansible-middleware/jws-ansible-playbook/pull/118>`_
 
@@ -81,7 +91,8 @@ releases:
         <https://github.com/ansible-middleware/jws-ansible-playbook/pull/101>`_
 
         '
-      - 'Ensure tomcat native installs and starts correctly `#120 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/120>`_
+      - 'Ensure JAVA_HOME is set to installed JVM rpm, or allow to override `#101
+        <https://github.com/ansible-middleware/jws-ansible-playbook/pull/101>`_
 
         '
       - 'Ensure tomcat native installs and starts correctly `#120 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/120>`_
@@ -94,6 +105,15 @@ releases:
 
         '
       - 'Ensure tomcat native installs and starts correctly `#120 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/120>`_
+
+        '
+      - 'Ensure tomcat native installs and starts correctly `#120 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/120>`_
+
+        '
+      - 'Ensure tomcat native installs and starts correctly `#120 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/120>`_
+
+        '
+      - 'JWS-2417: Remove undefined executor `#54 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/54>`_
 
         '
       - 'JWS-2417: Remove undefined executor `#54 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/54>`_
@@ -131,7 +151,8 @@ releases:
         it is `#112 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/112>`_
 
         '
-      - 'Missing required variables to enable HTTPS `#49 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/49>`_
+      - 'Make selinux policy for JWS optional like the zip installation docs suggest
+        it is `#112 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/112>`_
 
         '
       - 'Missing required variables to enable HTTPS `#49 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/49>`_
@@ -144,6 +165,15 @@ releases:
 
         '
       - 'Missing required variables to enable HTTPS `#49 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/49>`_
+
+        '
+      - 'Missing required variables to enable HTTPS `#49 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/49>`_
+
+        '
+      - 'Missing required variables to enable HTTPS `#49 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/49>`_
+
+        '
+      - 'The JWS installation option should allow you to exclude natives `#97 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/97>`_
 
         '
       - 'The JWS installation option should allow you to exclude natives `#97 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/97>`_
@@ -176,7 +206,7 @@ releases:
       - '``jws_apply_patches`` also installs native CP when available `#121 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/121>`_
 
         '
-      - 'fix: tomcat.user owning existing directories `#100 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/100>`_
+      - '``jws_apply_patches`` also installs native CP when available `#121 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/121>`_
 
         '
       - 'fix: tomcat.user owning existing directories `#100 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/100>`_
@@ -189,6 +219,15 @@ releases:
 
         '
       - 'fix: tomcat.user owning existing directories `#100 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/100>`_
+
+        '
+      - 'fix: tomcat.user owning existing directories `#100 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/100>`_
+
+        '
+      - 'fix: tomcat.user owning existing directories `#100 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/100>`_
+
+        '
+      - 'selinux policy allows tomcat to listen to non-default ports `#119 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/119>`_
 
         '
       - 'selinux policy allows tomcat to listen to non-default ports `#119 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/119>`_
@@ -222,6 +261,9 @@ releases:
       - 'Provide uninstall feature `#68 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/68>`_
 
         '
+      - 'Provide uninstall feature `#68 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/68>`_
+
+        '
       minor_changes:
       - 'Add custom url download and selinux for jws `#43 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/43>`_
 
@@ -238,7 +280,7 @@ releases:
       - 'Add custom url download and selinux for jws `#43 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/43>`_
 
         '
-      - 'Allow overriding tomcat user uid and gid `#52 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/52>`_
+      - 'Add custom url download and selinux for jws `#43 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/43>`_
 
         '
       - 'Allow overriding tomcat user uid and gid `#52 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/52>`_
@@ -251,6 +293,16 @@ releases:
 
         '
       - 'Allow overriding tomcat user uid and gid `#52 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/52>`_
+
+        '
+      - 'Allow overriding tomcat user uid and gid `#52 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/52>`_
+
+        '
+      - 'Allow overriding tomcat user uid and gid `#52 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/52>`_
+
+        '
+      - 'Apply latest JWS cumulative patch when ``jws_apply_patches`` is True `#94
+        <https://github.com/ansible-middleware/jws-ansible-playbook/pull/94>`_
 
         '
       - 'Apply latest JWS cumulative patch when ``jws_apply_patches`` is True `#94
@@ -288,6 +340,13 @@ releases:
       - 'Fix the name of the tarball generated by the collection build step `#76 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/76>`_
 
         '
+      - 'Fix the name of the tarball generated by the collection build step `#76 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/76>`_
+
+        '
+      - 'If another tomcat is found running, fail fast or allow to continue with ``tomcat_force_install``
+        `#80 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/80>`_
+
+        '
       - 'If another tomcat is found running, fail fast or allow to continue with ``tomcat_force_install``
         `#80 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/80>`_
 
@@ -323,8 +382,7 @@ releases:
       - 'Populate JWS version/patch metadata, update docs `#110 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/110>`_
 
         '
-      - 'Replace RHN url defaults with base URL and mapped version-productID `#77
-        <https://github.com/ansible-middleware/jws-ansible-playbook/pull/77>`_
+      - 'Populate JWS version/patch metadata, update docs `#110 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/110>`_
 
         '
       - 'Replace RHN url defaults with base URL and mapped version-productID `#77
@@ -341,6 +399,17 @@ releases:
         '
       - 'Replace RHN url defaults with base URL and mapped version-productID `#77
         <https://github.com/ansible-middleware/jws-ansible-playbook/pull/77>`_
+
+        '
+      - 'Replace RHN url defaults with base URL and mapped version-productID `#77
+        <https://github.com/ansible-middleware/jws-ansible-playbook/pull/77>`_
+
+        '
+      - 'Replace RHN url defaults with base URL and mapped version-productID `#77
+        <https://github.com/ansible-middleware/jws-ansible-playbook/pull/77>`_
+
+        '
+      - 'Update playbook to utilize variable defaults `#89 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/89>`_
 
         '
       - 'Update playbook to utilize variable defaults `#89 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/89>`_
@@ -364,6 +433,8 @@ releases:
     - 100.yaml
     - 100.yaml
     - 100.yaml
+    - 100.yaml
+    - 101.yaml
     - 101.yaml
     - 101.yaml
     - 101.yaml
@@ -374,6 +445,8 @@ releases:
     - 106.yaml
     - 106.yaml
     - 106.yaml
+    - 106.yaml
+    - 110.yaml
     - 110.yaml
     - 110.yaml
     - 110.yaml
@@ -384,6 +457,8 @@ releases:
     - 112.yaml
     - 112.yaml
     - 112.yaml
+    - 112.yaml
+    - 117.yaml
     - 117.yaml
     - 117.yaml
     - 117.yaml
@@ -394,6 +469,8 @@ releases:
     - 118.yaml
     - 118.yaml
     - 118.yaml
+    - 118.yaml
+    - 119.yaml
     - 119.yaml
     - 119.yaml
     - 119.yaml
@@ -404,6 +481,8 @@ releases:
     - 120.yaml
     - 120.yaml
     - 120.yaml
+    - 120.yaml
+    - 121.yaml
     - 121.yaml
     - 121.yaml
     - 121.yaml
@@ -414,6 +493,8 @@ releases:
     - 43.yaml
     - 43.yaml
     - 43.yaml
+    - 43.yaml
+    - 49.yaml
     - 49.yaml
     - 49.yaml
     - 49.yaml
@@ -424,6 +505,8 @@ releases:
     - 52.yaml
     - 52.yaml
     - 52.yaml
+    - 52.yaml
+    - 54.yaml
     - 54.yaml
     - 54.yaml
     - 54.yaml
@@ -434,6 +517,8 @@ releases:
     - 68.yaml
     - 68.yaml
     - 68.yaml
+    - 68.yaml
+    - 76.yaml
     - 76.yaml
     - 76.yaml
     - 76.yaml
@@ -444,6 +529,8 @@ releases:
     - 77.yaml
     - 77.yaml
     - 77.yaml
+    - 77.yaml
+    - 80.yaml
     - 80.yaml
     - 80.yaml
     - 80.yaml
@@ -454,11 +541,14 @@ releases:
     - 89.yaml
     - 89.yaml
     - 89.yaml
+    - 89.yaml
     - 94.yaml
     - 94.yaml
     - 94.yaml
     - 94.yaml
     - 94.yaml
+    - 94.yaml
+    - 97.yaml
     - 97.yaml
     - 97.yaml
     - 97.yaml
