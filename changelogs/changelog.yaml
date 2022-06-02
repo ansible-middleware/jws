@@ -105,3 +105,5 @@ releases:
     - 94.yaml
     - 97.yaml
     release_date: '2022-06-01'
+  1.1.1:
+    release_date: '2022-06-02'
