@@ -103,7 +103,7 @@ Role Defaults
 |`tomcat_vault_storepass`| Tomcat keystore password | `123456` |
 |`tomcat_vault_iteration`| Number of iteration for vault encryption | `44` |
 |`tomcat_vault_salt`| Salt for encrypting tomcat vault | `1234abcd` |
-|`tomcat_vault_properties`| vault.properties filename, made available in playbook files lookup paths | `/conf/vault.properties` |
+|`tomcat_vault_properties`| vault.properties filename, made available in playbook files lookup paths | `vault.properties` |
 |`tomcat_vault_data`| vault.data filename, made available in playbook files lookup paths | `VAULT.dat` |
 |`tomcat_modcluster_enable`| Enable mod_cluster module | `False` |
 |`tomcat_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
