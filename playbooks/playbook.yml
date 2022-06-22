@@ -12,7 +12,11 @@
 
     # Use Case 2 - Using Apache Tomcat from local zipfiles
     #
-    # tomcat_version: 9.0.50
+    #jboss_web_version: '5.6'
+    #tomcat_home: "/opt/jws-{{ jboss_web_version }}/tomcat/"
+    #tomcat_install_method: local_zipfiles
+    #tomcat_install_dir: /opt
+    #tomcat_zipfile: "jws-{{ jboss_web_version }}.0-application-server.zip"
 
     # Use Case 3 - Using JWS, installed from zipfiles, provided in the playbook path or downloaded from RHN (JWS)
     # downloading requires credentials for RHN to be defined: rhn_username and rhn_password
@@ -30,6 +34,7 @@
     # B) uncomment to also start tomcat as a service under Systemd
     tomcat_systemd_enabled: True
     tomcat_service_name: tomcat
+    #tomcat_service_name: jws
     tomcat_service_systemd_type: forking
 
     # workaround issue on Github actions
