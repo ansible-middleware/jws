@@ -7,11 +7,13 @@
     quiet: true
     fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' needs to be defined (or at least jws_version)"
 
-- ansible.builtin.set_fact:
+- name: Add zipfile to unarchive list
+  ansible.builtin.set_fact:
     zipfiles:
       - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}/bin" }
 
-- ansible.builtin.set_fact:
+- name: Add native zipfile to unarchive list
+  ansible.builtin.set_fact:
     zipfiles: "{{ zipfiles + [{ 'src': tomcat_native_zipfile, 'creates': tomcat.home + '/lib/libtcnative-1.so' }] }}"
   when:
     - tomcat_native

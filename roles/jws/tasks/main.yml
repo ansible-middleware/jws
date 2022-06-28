@@ -20,7 +20,8 @@
     name: tomcatjss
     state: absent
 
-- ansible.builtin.include_tasks: java_install.yml
+- name: "Include tasks for java jvm installation"
+  ansible.builtin.include_tasks: java_install.yml
   when: tomcat_java_version is defined
 
 - name: Check user/groups and whether force install needed
@@ -71,11 +72,13 @@
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
 
-    - ansible.builtin.include_tasks: install.yml
+    - name: "Include install tasks"
+      ansible.builtin.include_tasks: install.yml
       when:
         - tomcat.install_method is defined
 
-    - ansible.builtin.include_tasks: systemd/systemd.yml
+    - name: "Include systemd tasks"
+      ansible.builtin.include_tasks: systemd/systemd.yml
       when:
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"
@@ -119,12 +122,14 @@
         - "conf/tomcat-users.xml"
         - "conf/jaspic-providers.xml"
 
-    - ansible.builtin.include_tasks: sanity_checks/ajp.yml
+    - name: "Include ajp sanity check tasks"
+      ansible.builtin.include_tasks: sanity_checks/ajp.yml
       when:
         - tomcat.listen.ajp.enabled is defined
         - tomcat_listen_ajp_enabled
 
-    - ansible.builtin.include_tasks: sanity_checks/https.yml
+    - name: "Include https sanity check tasks"
+      ansible.builtin.include_tasks: sanity_checks/https.yml
       when:
         - tomcat_listen_https_enabled is defined
         - tomcat_listen_https_enabled
@@ -144,7 +149,8 @@
       notify:
         - Restart Tomcat service
 
-    - ansible.builtin.include_tasks: systemd/selinux.yml
+    - name: "Include selinux configuration tasks"
+      ansible.builtin.include_tasks: systemd/selinux.yml
       when:
         - tomcat.install_method is defined
         - tomcat.install_method != "rpm"

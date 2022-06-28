@@ -7,12 +7,14 @@
     quiet: true
     fail_msg: "You need to provide"
 
-- ansible.builtin.set_fact:
+- name: Set filename for JWS zipfile
+  ansible.builtin.set_fact:
     tomcat_zipfile: "jws-{{ jws_version }}-application-server.zip"
   when:
     - jws_version is defined
 
-- ansible.builtin.set_fact:
+- name: Set filename for JWS native zipfile
+  ansible.builtin.set_fact:
     native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
   when:
     - tomcat_native is defined
@@ -21,7 +23,8 @@
     - ansible_facts is defined
     - ansible_facts['distribution_major_version'] is defined
 
-- ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
+- name: "Include fetch and unarchive from RHN tasks"
+  ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
   vars:
     zipfile: "{{ tomcat_zipfile }}"
     zipfile_url: "{{ tomcat.rhn.server_zipfile_url }}"
@@ -29,7 +32,8 @@
   when:
     - tomcat_zipfile is defined
 
-- ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
+- name: "Include fetch and unarchive from RHN tasks"
+  ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
   vars:
     zipfile: "{{ native_zipfile }}"
     zipfile_url: "{{ tomcat.rhn.server_zipfile_url }}"
