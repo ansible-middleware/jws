@@ -8,14 +8,16 @@
     quiet: true
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 
-- ansible.builtin.set_fact:
+- name: "Set native zipfile when distribution data available"
+  ansible.builtin.set_fact:
     patch_native_bundle: "jws-{{ jws.rhn_ids[jws_version].latest_cp.v | default('') }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
   when:
     - jws_version is defined
     - ansible_facts is defined
     - ansible_facts['distribution_major_version'] is defined
 
-- ansible.builtin.set_fact:
+- name: "Set native zipfile when distribution data unavailable"
+  ansible.builtin.set_fact:
     patch_native_bundle: "{{ tomcat.rhn.patch_native_bundle }}"
   when:
     - jws_version is defined
@@ -118,7 +120,8 @@
     path: "{{ patch_archive }}"
   register: patch_info
 
-- ansible.builtin.set_fact:
+- name: "Set patch checksum"
+  ansible.builtin.set_fact:
     patch_checksum_file: "{{ tomcat.home }}/../.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
   when:
     - patch_info is defined

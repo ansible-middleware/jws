@@ -8,25 +8,31 @@
     quiet: true
     fail_msg: "{{ tomcat.install_method }} does not exist or is not supported. Supported methods are: {{ tomcat.supported_install_method }}"
 
-- ansible.builtin.debug:
+- name: "Display install method"
+  ansible.builtin.debug:
     msg: "Install method: {{ tomcat.install_method }}"
 
-- ansible.builtin.include_tasks: install/rhn.yml
+- name: "Include installation tasks for rhn_zipfiles method"
+  ansible.builtin.include_tasks: install/rhn.yml
   when:
     - tomcat.install_method == 'rhn_zipfiles'
 
-- ansible.builtin.include_tasks: install/url.yml
+- name: "Include installation tasks for zipfiles method"
+  ansible.builtin.include_tasks: install/url.yml
   when:
     - tomcat.install_method == 'zipfiles'
 
-- ansible.builtin.include_tasks: install/local.yml
+- name: "Include installation tasks for local_zipfiles method"
+  ansible.builtin.include_tasks: install/local.yml
   when:
     - tomcat.install_method == 'local_zipfiles'
 
-- ansible.builtin.include_tasks: install/zipfiles.yml
+- name: "Include installation tasks for zip operations"
+  ansible.builtin.include_tasks: install/zipfiles.yml
   when:
     - tomcat.install_method != 'rpm'
 
-- ansible.builtin.include_tasks: install/rpm.yml
+- name: "Include installation tasks for rpm method"
+  ansible.builtin.include_tasks: install/rpm.yml
   when:
     - tomcat.install_method == 'rpm'
