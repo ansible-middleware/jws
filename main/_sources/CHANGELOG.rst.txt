@@ -6,8 +6,8 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
-v1.1.1
-======
+v1.1.2-devel
+============
 
 Minor Changes
 -------------
@@ -18,6 +18,9 @@ Bugfixes
 --------
 
 - Fix JWS native archive installation `#132 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/132>`_
+
+v1.1.1
+======
 
 v1.1.0
 ======
