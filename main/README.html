@@ -372,7 +372,7 @@ rhn_password: eatmeiamacookie
 <h3>How to enable mod_cluster listener<a class="headerlink" href="#how-to-enable-mod-cluster-listener" title="Permalink to this heading"></a></h3>
 <p>All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_enable</span></code> (Set to True to enable the listener)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_enabled</span></code> (Set to True to enable the listener)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_ip</span></code> (Set the ip of the mod_cluster instance)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_port</span></code> (Set the port of the mod_cluster instance)</p></li>
 </ul>
@@ -409,14 +409,18 @@ rhn_password: eatmeiamacookie
 </pre></div>
 </div>
 <p>Another option is to use the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html">copy:</a> module that allow to deploy a file from the Ansible controller to the target:</p>
-<p>ansible.builtin.copy:
-src: files/jolokia-war-1.7.1.war
-dest: “{{ tomcat_home }}/webapps/”</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- ansible.builtin.copy:
+   src: files/jolokia-war-1.7.1.war
+   dest: &quot;{{ tomcat_home }}/webapps/&quot;
+</pre></div>
+</div>
 <p>This module can also be used if the file already exists on the target host:</p>
-<p>ansible.builtin.copy:
-src: files/jolokia-war-1.7.1.war
-dest: “{{ tomcat_home }}/webapps/”
-remote_src: yes</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- ansible.builtin.copy:
+   src: files/jolokia-war-1.7.1.war
+   dest: &quot;{{ tomcat_home }}/webapps/&quot;
+   remote_src: yes
+</pre></div>
+</div>
 <p>However, to avoid duplicating the files, a symlink or hardlink can also be used instead using the module <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html">file:</a>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- ansible.builtin.file:
     src: /apps/jolokia-war-1.7.1.war
@@ -429,10 +433,6 @@ remote_src: yes</p>
 <section id="running-playbook">
 <h2>Running Playbook<a class="headerlink" href="#running-playbook" title="Permalink to this heading"></a></h2>
 <p>Once all values are updated, you can then run the playbook against your nodes.</p>
-<!-- First of all export CATALINA_HOME:
-```
-$ export CATALINA_HOME=/opt/apache-tomcat-9.0.40/
-``` -->
 <p>Playbook executed as root user - with ssh key:</p>
 <div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml</span><span class="w"></span>
 </pre></div>
