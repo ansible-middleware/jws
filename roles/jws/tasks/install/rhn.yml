@@ -15,10 +15,10 @@
 
 - name: Set filename for JWS native zipfile
   ansible.builtin.set_fact:
-    native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
+    tomcat_native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
   when:
     - tomcat_native is defined
-    - not native_zipfile is defined
+    - not tomcat_native_zipfile is defined or tomcat_native_zipfile | length == 0
     - jws_version is defined
     - ansible_facts is defined
     - ansible_facts['distribution_major_version'] is defined
@@ -35,8 +35,8 @@
 - name: "Include fetch and unarchive from RHN tasks"
   ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
   vars:
-    zipfile: "{{ native_zipfile }}"
+    zipfile: "{{ tomcat_native_zipfile }}"
     zipfile_url: "{{ tomcat.rhn.native_zipfile_url }}"
-    path_to_zipfile: "{{ tomcat_install_dir }}/{{ native_zipfile }}"
+    path_to_zipfile: "{{ tomcat_install_dir }}/{{ tomcat_native_zipfile }}"
   when:
-    - native_zipfile is defined
+    - tomcat_native_zipfile is defined
