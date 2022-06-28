@@ -14,11 +14,11 @@
 
 - name: Add native zipfile to unarchive list
   ansible.builtin.set_fact:
-    zipfiles: "{{ zipfiles + [{ 'src': tomcat_native_zipfile, 'creates': tomcat.home + '/lib/libtcnative-1.so' }] }}"
+    zipfiles: "{{ zipfiles + [{ 'src': native_zipfile, 'creates': tomcat.home + '/lib/libtcnative-1.so' }] }}"
   when:
     - tomcat_native
-    - tomcat_native_zipfile is defined
-    - tomcat_native_zipfile | length > 0
+    - native_zipfile is defined
+    - native_zipfile | length > 0
 
 - name: "Install {{ tomcat.service.hr_name }} and required binaries from local zipfiles (install method: {{ tomcat.install_method }})"
   ansible.builtin.unarchive:

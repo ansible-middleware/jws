@@ -36,7 +36,7 @@
   ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
   vars:
     zipfile: "{{ native_zipfile }}"
-    zipfile_url: "{{ tomcat.rhn.server_zipfile_url }}"
-    path_to_zipfile: "{{ tomcat_install_dir }}/{{ tomcat_zipfile }}"
+    zipfile_url: "{{ tomcat.rhn.native_zipfile_url }}"
+    path_to_zipfile: "{{ tomcat_install_dir }}/{{ native_zipfile }}"
   when:
     - native_zipfile is defined
