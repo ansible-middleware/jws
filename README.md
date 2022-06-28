@@ -188,7 +188,7 @@ Allows communication between Apache Tomcat and the Apache HTTP Server's mod_prox
 ### How to enable mod_cluster listener
 
 All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:
-- `tomcat_modcluster_enable` (Set to True to enable the listener)
+- `tomcat_modcluster_enabled` (Set to True to enable the listener)
 - `tomcat_modcluster_ip` (Set the ip of the mod_cluster instance)
 - `tomcat_modcluster_port` (Set the port of the mod_cluster instance)
 
@@ -227,13 +227,13 @@ Simply use Ansible existing module! For instance, you can use the [get_url:](htt
 
 Another option is to use the [copy:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) module that allow to deploy a file from the Ansible controller to the target:
 
-   ansible.builtin.copy:
+    - ansible.builtin.copy:
        src: files/jolokia-war-1.7.1.war
        dest: "{{ tomcat_home }}/webapps/"
 
 This module can also be used if the file already exists on the target host:
 
-   ansible.builtin.copy:
+    - ansible.builtin.copy:
        src: files/jolokia-war-1.7.1.war
        dest: "{{ tomcat_home }}/webapps/"
        remote_src: yes
@@ -250,10 +250,6 @@ Bottom line: Ansible has many features to help deploy webapps into the appropria
 ## Running Playbook
 
 Once all values are updated, you can then run the playbook against your nodes.
-<!-- First of all export CATALINA_HOME:
-```
-$ export CATALINA_HOME=/opt/apache-tomcat-9.0.40/
-``` -->
 
 Playbook executed as root user - with ssh key:
 
