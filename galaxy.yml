@@ -1,7 +1,7 @@
 ---
 namespace: middleware_automation
 name: jws
-version: "1.1.1"
+version: "1.1.2"
 readme: README.md
 authors:
   - George Zaronikas <gzaronik@redhat.com>
