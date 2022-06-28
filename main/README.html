@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -113,16 +114,16 @@
            <div itemprop="articleBody">
              
   <section id="ansible-collection-middleware-automation-jws">
-<h1>Ansible Collection - middleware_automation.jws<a class="headerlink" href="#ansible-collection-middleware-automation-jws" title="Permalink to this headline"></a></h1>
+<h1>Ansible Collection - middleware_automation.jws<a class="headerlink" href="#ansible-collection-middleware-automation-jws" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/actions/workflows/ci.yml"><img alt="Build Status" src="https://github.com/ansible-middleware/jws-ansible-playbook/workflows/CI/badge.svg?branch=main" /></a></p>
 <p>This repository contains the ansible roles and playbooks to setup <a class="reference external" href="https://www.redhat.com/en/technologies/jboss-middleware/web-server">Red Hat JBoss Web Server</a>.</p>
 <section id="ansible-version-compatibility">
-<h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Permalink to this headline"></a></h2>
+<h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Permalink to this heading"></a></h2>
 <p>This collection has been tested against following Ansible versions: <strong>&gt;=2.9.10</strong>.</p>
 <p>Plugins and modules within a collection may be tested with only specific Ansible versions. A collection may contain metadata that identifies these versions.</p>
 <!--end requires_ansible-->
 <section id="dependencies">
-<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h3>
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">middleware_automation.redhat_csp_download</span></code></p>
 <ul>
@@ -134,9 +135,9 @@
 </section>
 </section>
 <section id="included-content">
-<h2>Included content<a class="headerlink" href="#included-content" title="Permalink to this headline"></a></h2>
+<h2>Included content<a class="headerlink" href="#included-content" title="Permalink to this heading"></a></h2>
 <section id="roles">
-<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline"></a></h3>
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>The <span class="xref myst">jws</span> role which:</p>
 <ul>
@@ -152,9 +153,9 @@
 </section>
 </section>
 <section id="installation-and-usage">
-<h2>Installation and Usage<a class="headerlink" href="#installation-and-usage" title="Permalink to this headline"></a></h2>
+<h2>Installation and Usage<a class="headerlink" href="#installation-and-usage" title="Permalink to this heading"></a></h2>
 <section id="how-to-use-this-playbook">
-<h3>How to use this playbook<a class="headerlink" href="#how-to-use-this-playbook" title="Permalink to this headline"></a></h3>
+<h3>How to use this playbook<a class="headerlink" href="#how-to-use-this-playbook" title="Permalink to this heading"></a></h3>
 <p>The use of the playbook will vary on the installation method you choose. The following options are available:</p>
 <ul class="simple">
 <li><p>local zipfile</p></li>
@@ -164,7 +165,7 @@
 </ul>
 </section>
 <section id="prerequisite">
-<h3>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this headline"></a></h3>
+<h3>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this heading"></a></h3>
 <p>You can the playbook directly from this folder for demostration purpose, however, the proper way to install the collection is to build it and install it :</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ansible-galaxy collection build .
 $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
@@ -172,7 +173,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </div>
 </section>
 <section id="install-tomcat-community-version">
-<h3>Install tomcat community version<a class="headerlink" href="#install-tomcat-community-version" title="Permalink to this headline"></a></h3>
+<h3>Install tomcat community version<a class="headerlink" href="#install-tomcat-community-version" title="Permalink to this heading"></a></h3>
 <p>After adding the following variables, the playbook will download tomcat from github and install the requested version of tomcat:</p>
 <div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">vars</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">tomcat_install_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zipfiles</span><span class="w"></span>
@@ -182,7 +183,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </div>
 </section>
 <section id="using-jws-from-red-hat-customer-portal">
-<h3>Using JWS from Red Hat Customer Portal<a class="headerlink" href="#using-jws-from-red-hat-customer-portal" title="Permalink to this headline"></a></h3>
+<h3>Using JWS from Red Hat Customer Portal<a class="headerlink" href="#using-jws-from-red-hat-customer-portal" title="Permalink to this heading"></a></h3>
 <p>To use JWS, set the install method to rhn_zipfiles:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
    ...
@@ -196,7 +197,7 @@ rhn_password: eatmeiamacookie
 </div>
 </section>
 <section id="using-jws-local-zipfiles">
-<h3>Using JWS local zipfiles<a class="headerlink" href="#using-jws-local-zipfiles" title="Permalink to this headline"></a></h3>
+<h3>Using JWS local zipfiles<a class="headerlink" href="#using-jws-local-zipfiles" title="Permalink to this heading"></a></h3>
 <p>It is possible to skip the download (ie. for offline installations) by making the downloaded archives available on the playbook directory on the controller.</p>
 <p>Download the requires zipfiles from your Red Hat account:</p>
 <ul class="simple">
@@ -221,7 +222,7 @@ rhn_password: eatmeiamacookie
 <p>Note: if you provide the <code class="docutils literal notranslate"><span class="pre">jws_version</span></code> and set <code class="docutils literal notranslate"><span class="pre">tomcat_native</span></code> to True, then the collection will compute the value of native_zipfile for you.</p>
 </section>
 <section id="jws-versions">
-<h3>JWS Versions<a class="headerlink" href="#jws-versions" title="Permalink to this headline"></a></h3>
+<h3>JWS Versions<a class="headerlink" href="#jws-versions" title="Permalink to this heading"></a></h3>
 <table class="colwidths-auto docutils align-default">
 <thead>
 <tr class="row-odd"><th class="text-left head"><p>JWS VERSION</p></th>
@@ -272,7 +273,7 @@ rhn_password: eatmeiamacookie
 </table>
 </section>
 <section id="jws-patching">
-<h3>JWS Patching<a class="headerlink" href="#jws-patching" title="Permalink to this headline"></a></h3>
+<h3>JWS Patching<a class="headerlink" href="#jws-patching" title="Permalink to this heading"></a></h3>
 <p>When variable <code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>), the role will automatically apply the latest cumulative patch for the selected base version.</p>
 <table class="colwidths-auto docutils align-default">
 <thead>
@@ -308,7 +309,7 @@ rhn_password: eatmeiamacookie
 <p>Refer to <a class="reference external" href="https://access.redhat.com/articles/111723">JBoss Web Server Component Details</a> for additional details.</p>
 </section>
 <section id="using-rpm">
-<h3>Using RPM<a class="headerlink" href="#using-rpm" title="Permalink to this headline"></a></h3>
+<h3>Using RPM<a class="headerlink" href="#using-rpm" title="Permalink to this heading"></a></h3>
 <p>Change the default install method to RPM and provide the appropriate Tomcat HOME in the playbooks:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
@@ -318,7 +319,7 @@ rhn_password: eatmeiamacookie
 </div>
 </section>
 <section id="using-a-custom-download-url">
-<h3>Using a custom download URL<a class="headerlink" href="#using-a-custom-download-url" title="Permalink to this headline"></a></h3>
+<h3>Using a custom download URL<a class="headerlink" href="#using-a-custom-download-url" title="Permalink to this heading"></a></h3>
 <p>To use the install method zipfiles, downloading from a custom URL, set :</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
    ...
@@ -329,7 +330,7 @@ rhn_password: eatmeiamacookie
 </div>
 </section>
 <section id="running-the-play-books">
-<h3>Running the play books<a class="headerlink" href="#running-the-play-books" title="Permalink to this headline"></a></h3>
+<h3>Running the play books<a class="headerlink" href="#running-the-play-books" title="Permalink to this heading"></a></h3>
 <ol class="arabic">
 <li><p>Configure the install method as described above!</p></li>
 <li><p>Update your inventory, e.g.:</p>
@@ -352,13 +353,13 @@ rhn_password: eatmeiamacookie
 </section>
 </section>
 <section id="mod-cluster-listener">
-<h2>Mod Cluster Listener<a class="headerlink" href="#mod-cluster-listener" title="Permalink to this headline"></a></h2>
+<h2>Mod Cluster Listener<a class="headerlink" href="#mod-cluster-listener" title="Permalink to this heading"></a></h2>
 <section id="what-does-the-mod-cluster-listener-do">
-<h3>What does the mod_cluster listener do<a class="headerlink" href="#what-does-the-mod-cluster-listener-do" title="Permalink to this headline"></a></h3>
+<h3>What does the mod_cluster listener do<a class="headerlink" href="#what-does-the-mod-cluster-listener-do" title="Permalink to this heading"></a></h3>
 <p>Allows communication between Apache Tomcat and the Apache HTTP Server’s mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/">HTTP Connectors and Load Balancing Guide</a>.</p>
 </section>
 <section id="how-to-enable-mod-cluster-listener">
-<h3>How to enable mod_cluster listener<a class="headerlink" href="#how-to-enable-mod-cluster-listener" title="Permalink to this headline"></a></h3>
+<h3>How to enable mod_cluster listener<a class="headerlink" href="#how-to-enable-mod-cluster-listener" title="Permalink to this heading"></a></h3>
 <p>All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_enable</span></code> (Set to True to enable the listener)</p></li>
@@ -369,7 +370,7 @@ rhn_password: eatmeiamacookie
 </section>
 </section>
 <section id="enable-https">
-<h2>Enable HTTPS<a class="headerlink" href="#enable-https" title="Permalink to this headline"></a></h2>
+<h2>Enable HTTPS<a class="headerlink" href="#enable-https" title="Permalink to this heading"></a></h2>
 <p>The default template for server.xml provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the requires SSH keys and Java Keystore. It expects it to be already installed and available.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tomcat_listen_https_enabled: True
 # uncomment the following line to change the default value for the java keystore path
@@ -381,7 +382,7 @@ rhn_password: eatmeiamacookie
 <p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/https">Molecule scenario</a> )</p>
 </section>
 <section id="overriding-the-default-template-for-server-xml">
-<h2>Overriding the default template for server.xml<a class="headerlink" href="#overriding-the-default-template-for-server-xml" title="Permalink to this headline"></a></h2>
+<h2>Overriding the default template for server.xml<a class="headerlink" href="#overriding-the-default-template-for-server-xml" title="Permalink to this heading"></a></h2>
 <p>The provided template for the server.xml.j2 covers the most basic use case of the server. It’s most likely that a user will need to replace this template by its own, it order to deploy a fine-grained configuration, suiting one’s use case. To do so, just change of this default variable:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tomcat_conf_templates_server: path/to/my_template_for_server_xml.j2
 </pre></div>
@@ -389,7 +390,7 @@ rhn_password: eatmeiamacookie
 <p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/override_server_xml">Molecule scenario</a> )</p>
 </section>
 <section id="how-to-deploy-webapps">
-<h2>How to deploy webapps?<a class="headerlink" href="#how-to-deploy-webapps" title="Permalink to this headline"></a></h2>
+<h2>How to deploy webapps?<a class="headerlink" href="#how-to-deploy-webapps" title="Permalink to this heading"></a></h2>
 <p>Simply use Ansible existing module! For instance, you can use the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html">get_url:</a> module to deploy a webapp downloaded from a repository:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- name: Download App
   get_url:
@@ -416,7 +417,7 @@ remote_src: yes</p>
 <p>Bottom line: Ansible has many features to help deploy webapps into the appropriate directory for the server!</p>
 </section>
 <section id="running-playbook">
-<h2>Running Playbook<a class="headerlink" href="#running-playbook" title="Permalink to this headline"></a></h2>
+<h2>Running Playbook<a class="headerlink" href="#running-playbook" title="Permalink to this heading"></a></h2>
 <p>Once all values are updated, you can then run the playbook against your nodes.</p>
 <!-- First of all export CATALINA_HOME:
 ```
@@ -445,11 +446,11 @@ $ export CATALINA_HOME=/opt/apache-tomcat-9.0.40/
 <p>Execution should be successful without errors</p>
 </section>
 <section id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline"></a></h2>
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading"></a></h2>
 <p>jws collection is a Beta release and for <a class="reference external" href="https://access.redhat.com/support/offerings/techpreview">Technical Preview</a>. If you have any issues or questions related to collection, please don’t hesitate to contact us on <a class="reference external" href="mailto:Ansible-middleware-core&#37;&#52;&#48;redhat&#46;com">Ansible-middleware-core<span>&#64;</span>redhat<span>&#46;</span>com</a> or open an issue on https://github.com/ansible-middleware/jws-ansible-playbook/issues</p>
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
 <p>Apache License v2.0 or later</p>
 <p>See <span class="xref myst">LICENCE</span> to view the full text.</p>
 </section>
