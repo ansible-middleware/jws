@@ -4,6 +4,7 @@
   become: true
   vars:
     ansible_distribution: 'RedHat'
+    #tomcat_home: "/opt/jws-{{ jboss_web_version }}/tomcat/"
     #tomcat_service_name: jws
   roles:
     - jws_validation
