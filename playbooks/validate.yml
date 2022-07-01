@@ -4,5 +4,6 @@
   become: true
   vars:
     ansible_distribution: 'RedHat'
+    #tomcat_service_name: jws
   roles:
     - jws_validation
