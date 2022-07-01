@@ -17,7 +17,7 @@
     #tomcat_install_method: local_zipfiles
     #tomcat_install_dir: /opt
     #tomcat_zipfile: "jws-{{ jboss_web_version }}.0-application-server.zip"
-    #tomcat_native_zipfile: "jws-{{ jboss_web_version }}-application-server-RHEL8-x86_64.zip"
+    #tomcat_native_zipfile: "jws-{{ jboss_web_version }}.0-application-server-RHEL8-x86_64.zip"
     #tomcat_native: True
 
     # Use Case 3 - Using JWS, installed from zipfiles, provided in the playbook path or downloaded from RHN (JWS)
