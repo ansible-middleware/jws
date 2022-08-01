@@ -56,6 +56,7 @@
     mode: 0640
   register: new_native_version_downloaded
   when:
+    - tomcat_native is defined and tomcat_native_zipfile | length > 0
     - not native_archive_path.stat.exists
     - local_native_archive_path.stat is defined
     - local_native_archive_path.stat.exists
