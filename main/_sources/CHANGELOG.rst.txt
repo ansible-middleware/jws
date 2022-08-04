@@ -12,8 +12,8 @@ v1.1.2-devel
 Minor Changes
 -------------
 
-- Downstream CI Fix `#146 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/146>`_
 - Name all tasks `#133 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/133>`_
+- Remove native tests and ensure that native zipfile existence is only checked if native is on `#146 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/146>`_
 
 Bugfixes
 --------
