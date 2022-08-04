@@ -36,6 +36,8 @@
     ansible_distribution: 'RedHat'
   collections:
     - middleware_automation.redhat_csp_download
-  roles:
-    - redhat_csp_download
-    - jws
+  tasks:
+    - ansible.builtin.include_role:
+        name: redhat_csp_download
+    - ansible.builtin.include_role:
+        name: jws
