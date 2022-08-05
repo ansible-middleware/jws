@@ -1,6 +1,8 @@
 ---
 - name: Verify
   hosts: instance
+  collections:
+    - middleware_automation.jws
   tasks:
     - name: "Verify that state is consistent"
       include_role:
