@@ -4,11 +4,11 @@
   tasks:
 
     - name: Display Ansible version
-      debug:
+      ansible.builtin.debug:
         msg: "Ansible version is  {{ ansible_version.full }}"
 
     - name: "Deploy https certificate"
-      copy:
+      ansible.builtin.copy:
         src: "{{ item }}"
         dest: /etc/ssl/
       loop:
