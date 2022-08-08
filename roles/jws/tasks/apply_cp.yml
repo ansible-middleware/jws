@@ -18,7 +18,7 @@
 
 - name: "Set native zipfile when distribution data unavailable"
   ansible.builtin.set_fact:
-    patch_native_bundle: "{{ tomcat.rhn.patch_native_bundle }}"
+    patch_native_bundle: "{{ jws_patch_native_bundle | default(tomcat.rhn.patch_native_bundle) }}"
   when:
     - jws_version is defined
     - not ansible_facts is defined or not ansible_facts['distribution_major_version'] is defined
@@ -31,7 +31,7 @@
 
 - name: Check downloaded archive
   ansible.builtin.stat:
-    path: "{{ local_path.stat.path }}/{{ tomcat.rhn.patch_bundle }}"
+    path: "{{ local_path.stat.path }}/{{ jws_patch_bundle | default(tomcat.rhn.patch_bundle) }}"
   register: local_archive_path
   delegate_to: localhost
 
