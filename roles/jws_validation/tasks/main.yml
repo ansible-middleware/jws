@@ -1,19 +1,23 @@
 ---
-- ansible.builtin.include_tasks: user.yml
+- name: "Verify user exists."
+  ansible.builtin.include_tasks: user.yml
   when:
     - tomcat_user is defined
     - tomcat_uid is defined
 
-- ansible.builtin.include_tasks: group.yml
+- name: "Verify group exists."
+  ansible.builtin.include_tasks: group.yml
   when:
     - tomcat_group is defined
     - tomcat_gid is defined
 
-- ansible.builtin.include_tasks: service_status.yml
+- name: "Verify taht service is running."
+  ansible.builtin.include_tasks: service_status.yml
   when:
     - tomcat_service_name is defined
 
-- ansible.builtin.include_tasks: catalina_out.yml
+- name: "Verify that main server's logfile exists."
+  ansible.builtin.include_tasks: catalina_out.yml
   when:
     - tomcat_catalina_logfile is defined
 

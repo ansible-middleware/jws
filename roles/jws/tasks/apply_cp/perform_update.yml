@@ -10,7 +10,7 @@
         group: "{{ tomcat.group | default(omit) }}"
         mode: 0750
       notify:
-      - Restart Tomcat service
+        - Restart Tomcat service
 
     - name: Set checksum file
       ansible.builtin.copy:
@@ -22,5 +22,6 @@
   when:
     - not last_patch_status.stat.exists
   rescue:
-    - ansible.builtin.debug:
+    - name: "Reports issue to user."
+      ansible.builtin.debug:
         msg: "This should NEVER happen, something is wrong."
