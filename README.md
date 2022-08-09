@@ -13,13 +13,6 @@ Plugins and modules within a collection may be tested with only specific Ansible
 <!--end requires_ansible-->
 
 
-### Dependencies
-
-- `middleware_automation.redhat_csp_download`
-    - This collection is required to download resources from Red Hat Customer Portal.
-    - Documentation for the collection can be found at <https://github.com/ansible-middleware/redhat-csp-download>
-
-
 ## Included content
 
 ### Roles
@@ -41,7 +34,6 @@ The use of the playbook will vary on the installation method you choose. The fol
 
 - local zipfile
 - rpm
-- using your RHN credentials to retrieve the JWS zipfiles provided by Red Hat
 - setting a custom URL for downloading the tomcat/JWS archives
 
 
@@ -73,11 +65,6 @@ To use JWS, set the install method to rhn_zipfiles:
     vars:
        ...
        tomcat_install_method: rhn_zipfiles
-
-To automatically download the JWS archives from Red Hat Customer Portal, provide your RHN credentials (as extra argument, in variable file, or better loaded from vault):
-
-    rhn_username: alice@wonderland.org
-    rhn_password: eatmeiamacookie
 
 
 ### Using JWS local zipfiles

@@ -12,8 +12,6 @@ authors:
 description: This collection contains the ansible playbook to setup JWS.
 license_file: "LICENSE"
 tags: [java, tomcat, server, apache, jws, modcluster, infrastructure, linux]
-dependencies:
-  middleware_automation.redhat_csp_download: '>=1.2.1'
 repository: https://github.com/ansible-middleware/jws-ansible-playbook
 documentation: https://ansible-middleware.github.io/jws-ansible-playbook
 homepage: https://github.com/ansible-middleware/jws-ansible-playbook

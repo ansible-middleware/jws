@@ -13,10 +13,6 @@
 
     # workaround issue on Github actions
     ansible_distribution: 'RedHat'
-  collections:
-    - middleware_automation.redhat_csp_download
-  roles:
-    - redhat_csp_download
   tasks:
     - ansible.builtin.include_role:
         name: jws

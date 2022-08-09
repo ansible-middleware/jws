@@ -34,5 +34,4 @@ Welcome to JWS Collection documentation
    Wildfly / Red Hat JBoss EAP <https://ansible-middleware.github.io/wildfly/>
    Tomcat / Red Hat JWS <https://ansible-middleware.github.io/jws-ansible-playbook/>
    ActiveMQ / Red Hat AMQ <https://ansible-middleware.github.io/amq/>
-   Red Hat CSP Download <https://ansible-middleware.github.io/redhat-csp-download/>
    JCliff <https://ansible-middleware.github.io/ansible_collections_jcliff/>

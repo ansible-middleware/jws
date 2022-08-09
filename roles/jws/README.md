@@ -4,13 +4,6 @@ middleware_automation.jws.jws
 This role contains the ansible playbook to setup JWS.
 
 
-Dependency
---------------
-- middleware_automation.redhat_csp_download
-    - This collection is required to download resources from RedHat Customer Portal.
-    - Documentation to collection can be found at <https://github.com/ansible-middleware/redhat-csp-download>
-
-
 Versions
 --------
 

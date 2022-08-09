@@ -26,18 +26,6 @@
   register: local_archive_path
   delegate_to: localhost
 
-- name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
-  redhat_csp_download:
-    url: "{{ zipfile_url }}"
-    dest: "{{ zipfile }}"
-    username: "{{ tomcat.rhn.username }}"
-    password: "{{ tomcat.rhn.password }}"
-  delegate_to: localhost
-  register: new_version_downloaded
-  when:
-    - not archive_path.stat.exists
-    - not local_archive_path.stat.exists
-
 - name: "Copy archives to target nodes: {{ tomcat_install_dir }}/{{ zipfile }}"
   ansible.builtin.copy:
     src: "{{ local_path.stat.path }}/{{ zipfile }}"

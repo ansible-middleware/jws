@@ -57,34 +57,6 @@
     path: "{{ patch_native_archive }}"
   register: patch_native_archive_path
 
-- name: Perform patch download from RHN
-  middleware_automation.redhat_csp_download.redhat_csp_download:
-    url: "{{ tomcat.rhn.cpatch_zipfile_url }}"
-    dest: "{{ local_path.stat.path }}/{{ tomcat.rhn.patch_bundle }}"
-    username: "{{ rhn_username }}"
-    password: "{{ rhn_password }}"
-  no_log: "{{ omit_rhn_output | default(true) }}"
-  delegate_to: localhost
-  when:
-    - patch_archive_path is defined
-    - patch_archive_path.stat is defined
-    - not patch_archive_path.stat.exists
-    - not local_archive_path.stat.exists
-
-- name: Perform native patch download from RHN
-  middleware_automation.redhat_csp_download.redhat_csp_download:
-    url: "{{ tomcat.rhn.cpatch_native_zipfile_url }}"
-    dest: "{{ local_path.stat.path }}/{{ patch_native_bundle }}"
-    username: "{{ rhn_username }}"
-    password: "{{ rhn_password }}"
-  no_log: "{{ omit_rhn_output | default(true) }}"
-  delegate_to: localhost
-  when:
-    - patch_native_archive_path is defined
-    - patch_native_archive_path.stat is defined
-    - not patch_native_archive_path.stat.exists
-    - not local_native_archive_path.stat.exists
-
 ## copy and unpack
 - name: Copy patch archive to target nodes
   ansible.builtin.copy:

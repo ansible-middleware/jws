@@ -1,7 +1,4 @@
 ---
-collections:
-  - middleware_automation.redhat_csp_download
-
 galaxy_info:
   role_name: jws
   namespace: middleware_automation
