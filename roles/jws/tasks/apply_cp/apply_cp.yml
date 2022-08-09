@@ -1,0 +1,174 @@
+---
+- name: "Ensure required parameters are provided."
+  ansible.builtin.assert:
+    that:
+      - patch_bundle_home is defined
+      - download_url is defined
+      - tomcat is defined
+      - tomcat.home is defined
+      - tomcat.install_dir is defined
+    quiet: True
+
+- name: "Load server home directory information: {{ tomcat.home }}."
+  ansible.builtin.stat:
+    path: "{{ tomcat.home }}"
+  register: tomcat_home_state
+
+- name: "Ensures server home directory exits."
+  ansible.builtin.assert:
+    that:
+      - tomcat_home_state is defined
+      - tomcat_home_state.stat is defined
+      - tomcat_home_state.stat.exits is defined
+      - tomcat_home_state.stat.exits
+      - tomcat_home_state.stat.isdir is defined
+      - tomcat_home_state.stat.isdir
+
+- name: "Ensure download directory for CPs exists."
+  ansible.builtin.file:
+    path: "{{ patch_bundle_home }}"
+    state: directory
+  delegate_to: localhost
+
+- name: "Set archive filename when distribution data unavailable"
+  ansible.builtin.set_fact:
+    patch_bundle: "{{ jws_patch_bundle | default(tomcat.rhn.patch_native_bundle) }}"
+  when:
+    - jws_version is defined
+    - not ansible_facts is defined or not ansible_facts['distribution_major_version'] is defined
+
+- name: "Set archive filename if distribution data are available."
+  ansible.builtin.set_fact:
+    patch_version: "{{ jws.rhn_ids[jws_version].latest_cp.v }}"
+    patch_bundle: "jws-{{ patch_version }}-{{ archive_file_suffix | default('.zip') }}"
+  when:
+    - not patch_bundle is defined
+    - jws_version is defined
+    - ansible_facts is defined
+    - ansible_facts['distribution_major_version'] is defined
+    - not jws_patch_native_bundle is defined
+
+- name: "Check that patch version has been provided."
+  ansible.builtin.assert:
+    that:
+      - patch_version is defined
+    quiet: True
+
+- name: "Set path to local patch bundle"
+  ansible.builtin.set_fact:
+    downloaded_patch_bundle_file: "{{ patch_bundle_home }}/{{ patch_bundle }}"
+  when:
+    - not downloaded_patch_bundle_file is defined
+
+- name: "Ensure file {{ downloaded_patch_bundle_file }}."
+  ansible.builtin.stat:
+    path: "{{ downloaded_patch_bundle_file }}"
+  register: downloaded_patch_bundle
+
+- name: "Perform patch download from RHN (if credentials provided)"
+  middleware_automation.redhat_csp_download.redhat_csp_download:
+    url: "{{ download_url }}"
+    dest: "{{ downloaded_patch_bundle_file }}"
+    username: "{{ rhn_username }}"
+    password: "{{ rhn_password }}"
+  no_log: "{{ omit_rhn_output | default(true) }}"
+  delegate_to: localhost
+  when:
+    - patch_archive_path is defined
+    - downloaded_patch_bundle.stat is defined
+    - not downloaded_patch_bundle.stat.exists
+
+- name: "Set path to patch bundle file archive on target (i not set)."
+  ansible.builtin.set_fact:
+    patch_to_patch_bundle_on_target: "/opt/{{ {{ patch_bundle }}"
+  when:
+    - not patch_to_patch_bundle_on_target is defined
+
+- name: "Patch checksum has been provided, ensure downloaded file checksum matches."
+  block:
+    - name: "Load data on downloaded file: {{ downloaded_patch_bundle_file }}."
+      ansible.builtin.stat:
+        path: "{{ downloaded_patch_bundle_file }}"
+      register: downloaded_file_metadata
+
+    - name: "Compare file checksum {{ downloaded_file_metadata.stat.checksum }} with provided one: {{ patch_checksum }}."
+      ansible.builtin.assert:
+        that:
+          - downloaded_file_metadata is defined
+          - downloaded_file_metadata.stat is defined
+          - downloaded_file_metadata.stat.checksum is defined
+          - downloaded_file_metadata.stat.checksum == patch_checksum
+  when:
+    - patch_checksum is defined
+    - patch_checksum | length > 0
+
+- name: "Load data on target's file (if exists)"
+  ansible.builtin.stat:
+    path: "{{ patch_to_patch_bundle_on_target }}"
+  register: patch_archive_path
+
+- name: "Copy patch archive {{ downloaded_patch_bundle_file }} to target nodes"
+  ansible.builtin.copy:
+    src: "{{ downloaded_patch_bundle_file }}"
+    dest: "{{ patch_to_patch_bundle_on_target }}"
+    owner: "{{ tomcat.user | default(omit) }}"
+    group: "{{ tomcat.group | default(omit) }}"
+    mode: 0640
+  register: new_version_downloaded
+  # Romain: not sure we want to be root to deploy the patch,
+  # some users managed their JWS instance as the JWS user...
+  become: yes
+  when:
+    - patch_archive_path is defined
+    - patch_archive_path.stat is defined
+    - not patch_archive_path.stat.exists
+
+- name: "Check deployed patch state"
+  ansible.builtin.stat:
+    path: "{{ patch_to_patch_bundle_on_target }}"
+  register: patch_info
+
+- name: "Set patch checksum"
+  ansible.builtin.set_fact:
+    patch_checksum_file: "{{ tomcat.home }}/../.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
+  when:
+    - patch_info is defined
+    - patch_info.stat is defined
+    - patch_info.stat.checksum is defined
+
+- name: "Check {{ patch_checksum_file }} state"
+  ansible.builtin.stat:
+    path: "{{ patch_checksum_file }}"
+  register: last_patch_status
+
+- name: "Print information message if patch has already been applied"
+  ansible.builtin.debug:
+    msg: "Patch v{{ patch_version }} (checksum {{ patch_info.stat.checksum }}) has already been applied."
+  when:
+    - last_patch_status.stat.exists
+
+- name: "Apply patch {{ patch_to_patch_bundle_on_target }} on {{ tomcat.home }}."
+  block:
+    - name: "Update {{ tomcat.home }} with downloaded Cumulative Patch {{ patch_to_patch_bundle_on_target }}."
+      ansible.builtin.unarchive:
+        src: "{{ patch_to_patch_bundle_on_target }}"
+        dest: "{{ tomcat.install_dir }}"
+        remote_src: yes
+        owner: "{{ tomcat.user | default(omit) }}"
+        group: "{{ tomcat.group | default(omit) }}"
+        mode: 0750
+      notify:
+      - Restart Tomcat service
+
+    - name: Set checksum file
+      ansible.builtin.copy:
+        dest: "{{ patch_checksum_file }}"
+        content: "Patch v{{ patch_version_for_msg | default(jws.rhn_ids[jws_version].latest_cp.v) }}"
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0640
+  when:
+    - not last_patch_status.stat.exists
+  rescue:
+    - ansible.builtin.debug:
+        msg: "This should NEVER happen, something is wrong."

@@ -1,0 +1,45 @@
+---
+- name: "Check required parameter(s) are provided"
+  ansible.builtin.assert:
+    that:
+      - tomcat.install_dir is defined
+    quiet: true
+    fail_msg: "One or more required parameters for cumulative patch application is missing."
+
+- name: "Define patch bundle home to controller PWD (if not provided)."
+  ansible.builtin.stat:
+    path: "{{ default(lookup('env', 'PWD') }}"
+  when:
+    - not patch_bundle_home is defined
+  register: local_path
+  delegate_to: localhost
+
+- name: "Check that local path have been retrieved"
+  ansible.builtin.assert:
+    that:
+      - local_path is defined
+      - local_path.stat is defined
+      - local_path.stat.path is defined
+    quiet: True
+
+- name: "Download patch from RHN (if credentials provided)."
+  ansible.builtin.include_tasks: download_cp_from_rhn.yml
+  vars:
+    download_url: "{{ tomcat.rhn.cpatch_zipfile_url }}"
+
+- block:
+    - name: "Set target architecture for native patch."
+      ansible.builtin.set_fact:
+        native_patch_arch: "{{ native_patch_target_arch | default('x86_64') }}"
+
+    - name: "Download native patch from RHN (if credentials provided)."
+      ansible.builtin.include_tasks: download_cp_from_rhn.yml
+      vars:
+        download_url: "{{ tomcat.rhn.cpatch_native_zipfile_url }}"
+        suffix: "application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-{{ native_patch_arch }}.zip"
+  when:
+    - patch_native is defined
+    - patch_native
+    - jws_version is defined
+    - ansible_facts is defined
+    - ansible_facts['distribution_major_version'] is defined
