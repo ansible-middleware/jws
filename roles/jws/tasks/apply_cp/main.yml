@@ -6,7 +6,7 @@
     quiet: true
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 
-- name: "Define patch bundle home to controller PWD (if not provided)."
+- name: "Set patch bundle home to controller PWD (if not provided)."
   ansible.builtin.stat:
     path: "{{ lookup('env', 'PWD') }}"
   when:
@@ -22,7 +22,7 @@
       - local_path.stat.path is defined
     quiet: True
 
-- name: "Define patch bundle home to PWD (if not defined)."
+- name: "Set patch bundle home to PWD (if not defined)."
   ansible.builtin.set_fact:
     patch_bundle_home: "{{ local_path.stat.path }}"
 
@@ -32,7 +32,8 @@
     download_url: "{{ tomcat.rhn.cpatch_zipfile_url }}"
     archive_file_suffix: "-application-server.zip"
 
-- block:
+- name: "Download native patch from RHN (if credentials provided)."
+  block:
     - name: "Set target architecture for native patch."
       ansible.builtin.set_fact:
         native_patch_arch: "{{ native_patch_target_arch | default('x86_64') }}"

@@ -36,7 +36,8 @@
         path: /opt/rh/jws5/enable
         state: absent
 
-    - ansible.builtin.include_tasks: install/rpm.yml
+    - name: "Ensure rpms have been removed."
+      ansible.builtin.include_tasks: install/rpm.yml
       vars:
         dnf_command: 'groupremove'
   when:

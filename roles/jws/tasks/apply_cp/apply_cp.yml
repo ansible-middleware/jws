@@ -8,7 +8,7 @@
 - name: "Download patches from RHN if requested."
   ansible.builtin.include_tasks: download_from_rhn.yml
 
-- name: "Patch checksum has been provided, ensure downloaded file checksum matches."
+- name: "Verify that patch checksum, if provided, matches."
   ansible.builtin.include_tasks: checksum.yml
 
 - name: "Deploy file on target and check if its applied already."
