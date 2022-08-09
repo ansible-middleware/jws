@@ -1,0 +1,30 @@
+---
+- name: "Set archive filename when distribution data unavailable"
+  ansible.builtin.set_fact:
+    patch_bundle: "{{ jws_patch_bundle | default(tomcat.rhn.patch_native_bundle) }}"
+  when:
+    - jws_version is defined
+    - not ansible_facts is defined or not ansible_facts['distribution_major_version'] is defined
+
+- name: "Set archive filename if distribution data are available."
+  ansible.builtin.set_fact:
+    patch_version: "{{ jws.rhn_ids[jws_version].latest_cp.v }}"
+    patch_bundle: "jws-{{ patch_version }}{{ archive_file_suffix | default('.zip') }}"
+  when:
+    - not patch_bundle is defined
+    - jws_version is defined
+    - ansible_facts is defined
+    - ansible_facts['distribution_major_version'] is defined
+    - not jws_patch_native_bundle is defined
+
+- name: "Check that patch version has been provided or defined."
+  ansible.builtin.assert:
+    that:
+      - patch_version is defined
+    quiet: True
+
+- name: "Set path to local patch bundle"
+  ansible.builtin.set_fact:
+    downloaded_patch_bundle_file: "{{ patch_bundle_home }}/{{ patch_bundle }}"
+  when:
+    - not downloaded_patch_bundle_file is defined

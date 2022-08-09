@@ -1,0 +1,18 @@
+---
+- name: "Patch checksum has been provided, ensure downloaded file checksum matches."
+  block:
+    - name: "Load data on downloaded file: {{ downloaded_patch_bundle_file }}."
+      ansible.builtin.stat:
+        path: "{{ downloaded_patch_bundle_file }}"
+      register: downloaded_file_metadata
+
+    - name: "Compare file checksum {{ downloaded_file_metadata.stat.checksum }} with provided one: {{ patch_checksum }}."
+      ansible.builtin.assert:
+        that:
+          - downloaded_file_metadata is defined
+          - downloaded_file_metadata.stat is defined
+          - downloaded_file_metadata.stat.checksum is defined
+          - downloaded_file_metadata.stat.checksum == patch_checksum
+  when:
+    - patch_checksum is defined
+    - patch_checksum | length > 0
