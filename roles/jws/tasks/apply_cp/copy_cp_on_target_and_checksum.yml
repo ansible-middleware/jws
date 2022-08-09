@@ -1,0 +1,45 @@
+---
+- name: "Load data on target's file (if exists)"
+  ansible.builtin.stat:
+    path: "{{ path_to_patch_bundle_on_target }}"
+  register: patch_archive_path
+
+- name: "Copy patch archive {{ downloaded_patch_bundle_file }} to target nodes"
+  ansible.builtin.copy:
+    src: "{{ downloaded_patch_bundle_file }}"
+    dest: "{{ path_to_patch_bundle_on_target }}"
+    owner: "{{ tomcat.user | default(omit) }}"
+    group: "{{ tomcat.group | default(omit) }}"
+    mode: 0640
+  register: new_version_downloaded
+  # Romain: not sure we want to be root to deploy the patch,
+  # some users managed their JWS instance as the JWS user...
+  become: yes
+  when:
+    - patch_archive_path is defined
+    - patch_archive_path.stat is defined
+    - not patch_archive_path.stat.exists
+
+- name: "Check deployed patch state"
+  ansible.builtin.stat:
+    path: "{{ path_to_patch_bundle_on_target }}"
+  register: patch_info
+
+- name: "Set patch checksum"
+  ansible.builtin.set_fact:
+    patch_checksum_file: "{{ tomcat.home }}/../.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
+  when:
+    - patch_info is defined
+    - patch_info.stat is defined
+    - patch_info.stat.checksum is defined
+
+- name: "Check {{ patch_checksum_file }} state"
+  ansible.builtin.stat:
+    path: "{{ patch_checksum_file }}"
+  register: last_patch_status
+
+- name: "Print information message if patch has already been applied"
+  ansible.builtin.debug:
+    msg: "Patch v{{ patch_version }} (checksum {{ patch_info.stat.checksum }}) has already been applied."
+  when:
+    - last_patch_status.stat.exists

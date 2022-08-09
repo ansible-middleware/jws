@@ -1,0 +1,26 @@
+---
+- name: "Apply patch {{ path_to_patch_bundle_on_target }} on {{ tomcat.home }}."
+  block:
+    - name: "Update {{ tomcat.home }} with downloaded Cumulative Patch {{ path_to_patch_bundle_on_target }}."
+      ansible.builtin.unarchive:
+        src: "{{ path_to_patch_bundle_on_target }}"
+        dest: "{{ tomcat.install_dir }}"
+        remote_src: yes
+        owner: "{{ tomcat.user | default(omit) }}"
+        group: "{{ tomcat.group | default(omit) }}"
+        mode: 0750
+      notify:
+      - Restart Tomcat service
+
+    - name: Set checksum file
+      ansible.builtin.copy:
+        dest: "{{ patch_checksum_file }}"
+        content: "Patch v{{ patch_version_for_msg | default(jws.rhn_ids[jws_version].latest_cp.v) }}"
+        owner: "{{ tomcat.user }}"
+        group: "{{ tomcat.group }}"
+        mode: 0640
+  when:
+    - not last_patch_status.stat.exists
+  rescue:
+    - ansible.builtin.debug:
+        msg: "This should NEVER happen, something is wrong."

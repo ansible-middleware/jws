@@ -8,7 +8,7 @@
 
 - name: "Define patch bundle home to controller PWD (if not provided)."
   ansible.builtin.stat:
-    path: "{{ default(lookup('env', 'PWD') }}"
+    path: "{{ lookup('env', 'PWD') }}"
   when:
     - not patch_bundle_home is defined
   register: local_path
@@ -22,10 +22,15 @@
       - local_path.stat.path is defined
     quiet: True
 
+- name: "Define patch bundle home to PWD (if not defined)."
+  ansible.builtin.set_fact:
+    patch_bundle_home: "{{ local_path.stat.path }}"
+
 - name: "Download patch from RHN (if credentials provided)."
-  ansible.builtin.include_tasks: download_cp_from_rhn.yml
+  ansible.builtin.include_tasks: apply_cp/apply_cp.yml
   vars:
     download_url: "{{ tomcat.rhn.cpatch_zipfile_url }}"
+    archive_file_suffix: "-application-server.zip"
 
 - block:
     - name: "Set target architecture for native patch."
@@ -33,10 +38,10 @@
         native_patch_arch: "{{ native_patch_target_arch | default('x86_64') }}"
 
     - name: "Download native patch from RHN (if credentials provided)."
-      ansible.builtin.include_tasks: download_cp_from_rhn.yml
+      ansible.builtin.include_tasks: apply_cp/apply_cp.yml
       vars:
         download_url: "{{ tomcat.rhn.cpatch_native_zipfile_url }}"
-        suffix: "application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-{{ native_patch_arch }}.zip"
+        archive_file_suffix: "-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-{{ native_patch_arch }}.zip"
   when:
     - patch_native is defined
     - patch_native

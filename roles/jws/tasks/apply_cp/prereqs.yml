@@ -1,0 +1,30 @@
+---
+- name: "Ensure required parameters are provided."
+  ansible.builtin.assert:
+    that:
+      - download_url is defined
+      - tomcat is defined
+      - tomcat.home is defined
+      - tomcat.install_dir is defined
+    quiet: True
+
+- name: "Load server home directory information: {{ tomcat.home }}."
+  ansible.builtin.stat:
+    path: "{{ tomcat.home }}"
+  register: tomcat_home_state
+
+- name: "Ensures server home directory exists."
+  ansible.builtin.assert:
+    that:
+      - tomcat_home_state is defined
+      - tomcat_home_state.stat is defined
+      - tomcat_home_state.stat.exists is defined
+      - tomcat_home_state.stat.exists
+      - tomcat_home_state.stat.isdir is defined
+      - tomcat_home_state.stat.isdir
+
+- name: "Ensure download directory for CPs exists."
+  ansible.builtin.file:
+    path: "{{ patch_bundle_home }}"
+    state: directory
+  delegate_to: localhost
