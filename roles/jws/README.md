@@ -113,7 +113,7 @@ Role Defaults
 |`jws_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ jws_systemd_script_interpreter }}` |
 |`jws_service_name`| Name for the systemd unit | `tomcat` |
 |`tomcat_service_conf`| Absolute path to tomcat.conf | `{{ jws_home }}/conf/tomcat.conf` |
-|`tomcat_service_script`| Tomcat sysVinit script | `{{ jws_home }}/bin/systemd-service.sh` |
+|`jws_service_script`| Tomcat sysVinit script | `{{ jws_home }}/bin/systemd-service.sh` |
 |`jws_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |
 |`jws_service_systemd_pidfile`| Absolute path to tomcat PIDfile | `{{ jws_home }}/tomcat.pidfile` |
 |`jws_service_systemd_type`| Systemd unit type | `simple` |

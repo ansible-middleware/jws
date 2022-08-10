@@ -341,7 +341,7 @@ argument_specs:
                 default: "{{ jws_home }}/conf/tomcat.conf"
                 description: "Absolute path to tomcat.conf"
                 type: "str"
-            tomcat_service_script:
+            jws_service_script:
                 # line 57 of jws/defaults/main.yml
                 default: "{{ jws_home }}/bin/systemd-service.sh"
                 description: "Tomcat sysVinit script"
