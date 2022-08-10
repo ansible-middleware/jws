@@ -53,7 +53,7 @@ argument_specs:
                 default: "8009"
                 description: "Tomcat ajp listen port"
                 type: "str"
-            tomcat_native:
+            jws_native:
                 type: "bool"
                 default: False
                 description: "Whether to check for correct startup using native libraries"

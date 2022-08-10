@@ -96,7 +96,7 @@ Provide the path to those zipfiles:
       jws_install_method: rhn_zipfiles
       jws_version: 5.6.0
       tomcat_zipfile: jws-5.6.0-application-server.zip
-      tomcat_native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
+      jws_native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
 
 Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:
 
@@ -105,7 +105,7 @@ Note that if you respect the naming convention above for the file name, which is
       jws_version: 5.6.0
 
 
-Note: if you provide the `jws_version` and set `tomcat_native` to True, then the collection will compute the value of tomcat_native_zipfile for you.
+Note: if you provide the `jws_version` and set `jws_native` to True, then the collection will compute the value of jws_native_zipfile for you.
 
 
 ### JWS Versions
