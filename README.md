@@ -62,7 +62,7 @@ After adding the following variables, the playbook will download tomcat from git
     vars:
       jws_install_method: zipfiles
       tomcat_version: 9.0.50
-      tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+      tomcat_home: "{{ jws_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 ```
 
 

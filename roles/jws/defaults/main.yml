@@ -21,7 +21,7 @@ jws_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ jws_version.s
 jws_native: False
 
 jws_version: 5.6.0
-jws_home: "{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
+jws_home: "{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
 jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
 # if True automatically apply the most recent cumulative patch
 jws_apply_patches: False

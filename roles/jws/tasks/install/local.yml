@@ -1,12 +1,12 @@
 ---
 - name: Check download archive path
   ansible.builtin.stat:
-    path: "{{ tomcat_install_dir }}/{{ tomcat_zipfile }}"
+    path: "{{ jws_install_dir }}/{{ tomcat_zipfile }}"
   register: archive_path
 
 - name: Check download native archive path
   ansible.builtin.stat:
-    path: "{{ tomcat_install_dir }}/{{ tomcat_native_zipfile }}"
+    path: "{{ jws_install_dir }}/{{ tomcat_native_zipfile }}"
   when:
     - tomcat_native
     - tomcat_native_zipfile | length > 0
@@ -36,7 +36,7 @@
 - name: Copy archive to target nodes
   ansible.builtin.copy:
     src: "{{ local_path.stat.path }}/{{ tomcat_zipfile }}"
-    dest: "{{ tomcat_install_dir }}/{{ tomcat_zipfile }}"
+    dest: "{{ jws_install_dir }}/{{ tomcat_zipfile }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
     mode: 0640
@@ -50,7 +50,7 @@
 - name: Copy native archive to target nodes
   ansible.builtin.copy:
     src: "{{ local_path.stat.path }}/{{ tomcat_native_zipfile }}"
-    dest: "{{ tomcat_install_dir }}/{{ tomcat_native_zipfile }}"
+    dest: "{{ jws_install_dir }}/{{ tomcat_native_zipfile }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
     mode: 0640

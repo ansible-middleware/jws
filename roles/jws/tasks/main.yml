@@ -55,14 +55,14 @@
 
 - name: Perform setup
   block:
-    - name: "Check state of install_dir: {{ tomcat_install_dir }}"
+    - name: "Check state of install_dir: {{ jws_install_dir }}"
       ansible.builtin.stat:
-        path: "{{ tomcat_install_dir }}"
+        path: "{{ jws_install_dir }}"
       register: install_path
 
-    - name: "Ensure install dir is created: {{ tomcat_install_dir }}"
+    - name: "Ensure install dir is created: {{ jws_install_dir }}"
       ansible.builtin.file:
-        path: "{{ tomcat_install_dir }}"
+        path: "{{ jws_install_dir }}"
         state: directory
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"

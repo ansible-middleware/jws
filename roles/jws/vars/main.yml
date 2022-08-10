@@ -2,7 +2,7 @@
 tomcat:
   supported_install_method: [local_zipfiles, rhn_zipfiles, zipfiles, rpm]
   install_method: "{{ jws_install_method }}"
-  install_dir: "{{ tomcat_install_dir }}"
+  install_dir: "{{ jws_install_dir }}"
   rpm: "{{ tomcat_rpm }}"
   rpm_root_dir: "{{ tomcat_rpm_root_dir }}"
   rhn:
