@@ -68,11 +68,11 @@ argument_specs:
                 default: "https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
                 description: "Custom URL for tomcat/jws archive download"
                 type: "str"
-            tomcat_native:
+            jws_native:
                 default: False
                 description: "Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version"
                 type: "bool"
-            tomcat_native_zipfile:
+            jws_native_zipfile:
                 default: ""
                 type: "str"
                 description: "Filename for native binaries tomcat archive"
