@@ -69,17 +69,17 @@ Role Defaults
 | Variable | Description | Default |
 |:---------|:------------|:--------|
 |`jws_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
-|`tomcat_catalina_base`| Tomcat catalina base env variable | `{{ lookup('env','CATALINA_BASE') }}` |
-|`tomcat_conf_properties`| Path for tomcat configuration | `./conf/catalina.properties` |
-|`tomcat_conf_policy`| Path for tomcat policy configuration | `./conf/catalina.policy` |
-|`tomcat_conf_loggging`| Path for logging configuration | `./conf/logging.properties` |
-|`tomcat_conf_context`| Relative path to context.xml | `./conf/context.xml` |
-|`tomcat_conf_server`| Relative path to server.xml | `./conf/server.xml` |
-|`tomcat_conf_web`| Relative path to web.xml | `./conf/web.xml` |
-|`tomcat_conf_templates_context`| Template to use for context.xml | `templates/context.xml.j2` |
-|`tomcat_conf_templates_server`| Template to use for server.xml | `templates/server.xml.j2` |
-|`tomcat_conf_templates_web`| Template to use for web.xml | `templates/web.xml.j2` |
-|`tomcat_conf_templates_catalina_properties`| Template to use for catalina.properties | `templates/catalina.properties.j2` |
+|`jws_catalina_base`| Tomcat catalina base env variable | `{{ lookup('env','CATALINA_BASE') }}` |
+|`jws_conf_properties`| Path for tomcat configuration | `./conf/catalina.properties` |
+|`jws_conf_policy`| Path for tomcat policy configuration | `./conf/catalina.policy` |
+|`jws_conf_loggging`| Path for logging configuration | `./conf/logging.properties` |
+|`jws_conf_context`| Relative path to context.xml | `./conf/context.xml` |
+|`jws_conf_server`| Relative path to server.xml | `./conf/server.xml` |
+|`jws_conf_web`| Relative path to web.xml | `./conf/web.xml` |
+|`jws_conf_templates_context`| Template to use for context.xml | `templates/context.xml.j2` |
+|`jws_conf_templates_server`| Template to use for server.xml | `templates/server.xml.j2` |
+|`jws_conf_templates_web`| Template to use for web.xml | `templates/web.xml.j2` |
+|`jws_conf_templates_catalina_properties`| Template to use for catalina.properties | `templates/catalina.properties.j2` |
 |`jws_shutdown_port`| Tomcat shutdown port | `8005` |
 |`jws_listen_http_port`| Tomcat http listen port | `8080` |
 |`jws_listen_http_bind_address`| Service bind address | `localhost` |
