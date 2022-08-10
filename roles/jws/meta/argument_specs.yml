@@ -376,7 +376,7 @@ argument_specs:
                 default: "{{ tomcat_home }}/tomcat.pidfile"
                 description: "Absolute path to tomcat PIDfile"
                 type: "str"
-            tomcat_service_systemd_type:
+            jws_service_systemd_type:
                 # line 60 of jws/defaults/main.yml
                 default: "simple"
                 description: "Systemd unit type"
