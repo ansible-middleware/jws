@@ -33,7 +33,7 @@ tomcat:
       web: "{{ tomcat_conf_templates_web }}"
       catalina_properties: "{{ tomcat_conf_templates_catalina_properties }}"
   apps:
-    to_remove: "{{ tomcat_apps_to_remove.split(',') }}"
+    to_remove: "{{ jws_apps_to_remove.split(',') }}"
   shutdown:
     port: "{{ tomcat_shutdown_port }}"
   listen:

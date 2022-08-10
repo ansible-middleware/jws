@@ -11,7 +11,7 @@ argument_specs:
                 default: "True"
                 description: "Indicates if the server should be also configure by Ansible, default is True."
                 type: "str"
-            tomcat_apps_to_remove:
+            jws_apps_to_remove:
                 # line 2 of jws/defaults/main.yml
                 default: "docs,ROOT,examples"
                 description: "Comma separated list of apps to undeploy"
