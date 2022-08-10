@@ -25,7 +25,7 @@
 
     # Activate extra features
     # A) install java using RPM:
-    tomcat_java_version: 1.8.0
+    jws_java_version: 1.8.0
     tomcat_listen_http_bind_address: 127.0.0.1
     # B) uncomment to also start tomcat as a service under Systemd
     tomcat_systemd_enabled: True
