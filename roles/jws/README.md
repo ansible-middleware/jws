@@ -66,7 +66,7 @@ Role Defaults
 |`tomcat_native`| Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version | `False` |
 |`tomcat_native_zipfile`| Tomcat native binaries archive filename | `''` |
 |`tomcat_version`| Tomcat version to download | `9.0.60` |
-|`tomcat_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
+|`jws_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
 
 
 * Service configuration

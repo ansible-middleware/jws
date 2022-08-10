@@ -85,7 +85,7 @@ argument_specs:
                 default: "53"
                 description: "posix user UID for service"
                 type: "int"
-            tomcat_force_install:
+            jws_force_install:
                 description: "Whether to stop any running tomcat process and continue installation"
                 default: false
                 type: "bool"

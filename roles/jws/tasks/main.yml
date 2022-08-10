@@ -45,13 +45,13 @@
     - name: "Inform of process owned by {{ tomcat.user }} already running"
       ansible.builtin.assert:
         that:
-          - tomcat_force_install
-        fail_msg: "Found a process owned by {{ tomcat.user }} and tomcat_force_install is false, aborting installation"
-        success_msg: "Found a process owned by {{ tomcat.user }} and tomcat_force_install is true, continuing installation anyway"
+          - jws_force_install
+        fail_msg: "Found a process owned by {{ tomcat.user }} and jws_force_install is false, aborting installation"
+        success_msg: "Found a process owned by {{ tomcat.user }} and jws_force_install is true, continuing installation anyway"
 
     - name: "Include force install steps"
       include_tasks: install/force_install.yml
-      when: tomcat_force_install
+      when: jws_force_install
 
 - name: Perform setup
   block:
