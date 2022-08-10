@@ -22,7 +22,7 @@
 
 - name: "Include tasks for java jvm installation"
   ansible.builtin.include_tasks: java_install.yml
-  when: tomcat_java_version is defined
+  when: jws_java_version is defined
 
 - name: Check user/groups and whether force install needed
   block:

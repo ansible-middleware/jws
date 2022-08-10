@@ -108,7 +108,7 @@ argument_specs:
                 default: "{{ jws_home if jws_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
                 description: "Target installation directory"
                 type: "str"
-            tomcat_java_version:
+            jws_java_version:
                 required: False
                 description: "Tomcat java version to install"
                 type: "str"

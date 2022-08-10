@@ -3,7 +3,7 @@
   block:
     - name: Set rpm name with version
       ansible.builtin.set_fact:
-        tomcat_java_packages_el: "java-{{ tomcat_java_version }}-openjdk-headless"
+        tomcat_java_packages_el: "java-{{ jws_java_version }}-openjdk-headless"
 
     - name: "Install {{ tomcat_java_packages_el }}"
       include_tasks: fastpackage.yml
@@ -19,5 +19,5 @@
       changed_when: False
       register: rpm_java_home
   when:
-    - tomcat_java_version is defined
+    - jws_java_version is defined
     - ansible_os_family == "RedHat"

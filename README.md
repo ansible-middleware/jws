@@ -167,7 +167,7 @@ To use the install method zipfiles, downloading from a custom URL, set :
     ```
 3) Update variables in playbook file, the variables are as follow:
     - `jws_version` or `tomcat_version` (which version of jws or tomcat to install)
-    - `tomcat_java_version` (which version of java to install, ie. name of the JVM rpm package)
+    - `jws_java_version` (which version of java to install, ie. name of the JVM rpm package)
     - `tomcat_listen_http_port` and `tomcat_listen_https_port` (which http/https ports to listen on)
     - `tomcat_listen_ajp_enabled` and `tomcat_listen_ajp_*` (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)
 
