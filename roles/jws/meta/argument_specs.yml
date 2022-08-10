@@ -336,7 +336,7 @@ argument_specs:
                 default: "tomcat"
                 description: "Name for the systemd unit"
                 type: "str"
-            tomcat_service_conf:
+            jws_service_conf:
                 # line 56 of jws/defaults/main.yml
                 default: "{{ jws_home }}/conf/tomcat.conf"
                 description: "Absolute path to tomcat.conf"

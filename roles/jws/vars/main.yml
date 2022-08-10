@@ -84,7 +84,7 @@ tomcat:
   service:
     enabled: "{{ jws_systemd_enabled }}"
     name: "{{ jws_service_name }}"
-    conf: "{{ tomcat_service_conf }}"
+    conf: "{{ jws_service_conf }}"
     script: "{{ jws_service_script }}"
     systemd: "{{ jws_service_systemd }}"
     pidfile: "{{ jws_service_systemd_pidfile }}"
