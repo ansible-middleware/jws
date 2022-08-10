@@ -56,3 +56,6 @@ argument_specs:
                 type: "bool"
                 default: False
                 description: "Whether to check for correct startup using native libraries"
+            tomcat_version:
+                type: "str"
+                description: "Tomcat version (only usefull if Apache Tomcat and not JWS is used)"
