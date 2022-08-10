@@ -83,7 +83,7 @@ tomcat:
     stickySessionRemove: "{{ tomcat_modcluster_sticky_session_remove | string | lower }}"
   service:
     enabled: "{{ jws_systemd_enabled }}"
-    name: "{{ tomcat_service_name }}"
+    name: "{{ jws_service_name }}"
     conf: "{{ tomcat_service_conf }}"
     script: "{{ tomcat_service_script }}"
     systemd: "{{ tomcat_service_systemd }}"

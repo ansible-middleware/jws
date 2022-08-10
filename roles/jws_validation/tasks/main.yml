@@ -14,7 +14,7 @@
 - name: "Verify taht service is running."
   ansible.builtin.include_tasks: service_status.yml
   when:
-    - tomcat_service_name is defined
+    - jws_service_name is defined
 
 - name: "Verify that main server's logfile exists."
   ansible.builtin.include_tasks: catalina_out.yml

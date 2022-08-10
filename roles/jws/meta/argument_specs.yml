@@ -351,7 +351,7 @@ argument_specs:
                 default: "#!/bin/{{ tomcat_systemd_script_interpreter }}"
                 description: "Customize sysVinit script sheband"
                 type: "str"
-            tomcat_service_name:
+            jws_service_name:
                 # line 55 of jws/defaults/main.yml
                 default: "tomcat"
                 description: "Name for the systemd unit"
