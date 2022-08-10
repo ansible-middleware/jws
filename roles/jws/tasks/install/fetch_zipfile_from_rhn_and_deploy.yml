@@ -38,10 +38,10 @@
     - not archive_path.stat.exists
     - not local_archive_path.stat.exists
 
-- name: "Copy archives to target nodes: {{ tomcat_install_dir }}/{{ zipfile }}"
+- name: "Copy archives to target nodes: {{ jws_install_dir }}/{{ zipfile }}"
   ansible.builtin.copy:
     src: "{{ local_path.stat.path }}/{{ zipfile }}"
-    dest: "{{ tomcat_install_dir }}/{{ zipfile }}"
+    dest: "{{ jws_install_dir }}/{{ zipfile }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
     mode: 0640

@@ -23,8 +23,8 @@
 - name: "Install {{ tomcat.service.hr_name }} and required binaries from local zipfiles (install method: {{ tomcat.install_method }})"
   ansible.builtin.unarchive:
     remote_src: yes
-    src: "{{ tomcat_install_dir }}/{{ item.src }}"
-    dest: "{{ tomcat_install_dir }}"
+    src: "{{ jws_install_dir }}/{{ item.src }}"
+    dest: "{{ jws_install_dir }}"
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"
     mode: 0750

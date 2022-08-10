@@ -28,7 +28,7 @@
   vars:
     zipfile: "{{ tomcat_zipfile }}"
     zipfile_url: "{{ tomcat.rhn.server_zipfile_url }}"
-    path_to_zipfile: "{{ tomcat_install_dir }}/{{ tomcat_zipfile }}"
+    path_to_zipfile: "{{ jws_install_dir }}/{{ tomcat_zipfile }}"
   when:
     - tomcat_zipfile is defined
 
@@ -37,6 +37,6 @@
   vars:
     zipfile: "{{ tomcat_native_zipfile }}"
     zipfile_url: "{{ tomcat.rhn.native_zipfile_url }}"
-    path_to_zipfile: "{{ tomcat_install_dir }}/{{ tomcat_native_zipfile }}"
+    path_to_zipfile: "{{ jws_install_dir }}/{{ tomcat_native_zipfile }}"
   when:
     - tomcat_native_zipfile is defined

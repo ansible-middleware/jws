@@ -2,7 +2,7 @@
 argument_specs:
     main:
         options:
-            tomcat_install_dir:
+            jws_install_dir:
                 # line 4 of jws/defaults/main.yml
                 default: "/opt"
                 description: "JWS/tomcat installation path"
@@ -42,7 +42,7 @@ argument_specs:
                 type: "str"
             jws_home:
                 # line 19 of jws/defaults/main.yml
-                default: "{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
+                default: "{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
                 description: "Default installation path for JWS archives"
                 type: "str"
             jws_apply_patches:
@@ -100,7 +100,7 @@ argument_specs:
                 type: "int"
             tomcat_zipfile_home:
                 # line 9 of jws/defaults/main.yml
-                default: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+                default: "{{ jws_install_dir }}/apache-tomcat-{{ tomcat_version }}"
                 description: "Default target installation directory for tomcat zipfile"
                 type: "str"
             tomcat_home:
