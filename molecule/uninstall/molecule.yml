@@ -37,7 +37,7 @@ provisioner:
         ansible_python_interpreter: "{{ ansible_playbook_python }}"
       instance:
         jws_listen_https_enabled: False
-        tomcat_listen_ajp_enabled: False
+        jws_listen_ajp_enabled: False
 verifier:
   name: ansible
 scenario:

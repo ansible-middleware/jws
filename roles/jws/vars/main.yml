@@ -58,11 +58,11 @@ tomcat:
       client:
         auth: "{{ jws_listen_https_client_auth }}"
     ajp:
-      enabled: "{{ tomcat_listen_ajp_enabled }}"
-      address: "{{ tomcat_listen_ajp_address }}"
-      port: "{{ tomcat_listen_ajp_port }}"
-      secretRequired: "{{ tomcat_listen_ajp_secret_required }}"
-      secret: "{{ tomcat_listen_ajp_secret }}"
+      enabled: "{{ jws_listen_ajp_enabled }}"
+      address: "{{ jws_listen_ajp_address }}"
+      port: "{{ jws_listen_ajp_port }}"
+      secretRequired: "{{ jws_listen_ajp_secret_required }}"
+      secret: "{{ jws_listen_ajp_secret }}"
   vault:
     name: "{{ tomcat_vault_name }}"
     enable: "{{ tomcat_vault_enabled }}"

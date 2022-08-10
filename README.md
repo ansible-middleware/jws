@@ -169,7 +169,7 @@ To use the install method zipfiles, downloading from a custom URL, set :
     - `jws_version` or `tomcat_version` (which version of jws or tomcat to install)
     - `jws_java_version` (which version of java to install, ie. name of the JVM rpm package)
     - `jws_listen_http_port` and `jws_listen_https_port` (which http/https ports to listen on)
-    - `tomcat_listen_ajp_enabled` and `tomcat_listen_ajp_*` (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)
+    - `jws_listen_ajp_enabled` and `jws_listen_ajp_*` (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)
 
 Note: If you are using a non root remote user, then set username and enable sudo:
     ```

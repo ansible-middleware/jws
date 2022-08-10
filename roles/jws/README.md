@@ -92,11 +92,11 @@ Role Defaults
 |`jws_listen_https_port`| Enable listening on https port | `8443` |
 |`jws_listen_https_bind_address`| Bind address for https | `::1` |
 |`jws_listen_https_enabled`| Enable listening on https port | `false` |
-|`tomcat_listen_ajp_enabled`| Enable listening on ajp port | `False` |
-|`tomcat_listen_ajp_address`| Bind address for ajp | `::1` |
-|`tomcat_listen_ajp_port`| Tomcat ajp listen port | `8009` |
-|`tomcat_listen_ajp_secret_required`| Enable loading secret from vault | `True` |
-|`tomcat_listen_ajp_secret`| Passphrase for vault secret | `secret` |
+|`jws_listen_ajp_enabled`| Enable listening on ajp port | `False` |
+|`jws_listen_ajp_address`| Bind address for ajp | `::1` |
+|`jws_listen_ajp_port`| Tomcat ajp listen port | `8009` |
+|`jws_listen_ajp_secret_required`| Enable loading secret from vault | `True` |
+|`jws_listen_ajp_secret`| Passphrase for vault secret | `secret` |
 |`tomcat_vault_name`| vault keystore filename, made available in playbook files lookup paths | `vault.keystore` |
 |`tomcat_vault_enabled`| Enable value | `False` |
 |`tomcat_vault_alias`| Alias for loading from vault | `my_vault` |

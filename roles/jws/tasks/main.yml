@@ -126,7 +126,7 @@
       ansible.builtin.include_tasks: sanity_checks/ajp.yml
       when:
         - tomcat.listen.ajp.enabled is defined
-        - tomcat_listen_ajp_enabled
+        - jws_listen_ajp_enabled
 
     - name: "Include https sanity check tasks"
       ansible.builtin.include_tasks: sanity_checks/https.yml

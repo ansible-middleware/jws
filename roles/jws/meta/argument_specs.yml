@@ -231,27 +231,27 @@ argument_specs:
                 default: "False"
                 description: "HTTPS Connector client auth enable"
                 type: "bool"
-            tomcat_listen_ajp_enabled:
+            jws_listen_ajp_enabled:
                 # line 28 of jws/defaults/main.yml
                 default: "False"
                 description: "Enable listening on ajp port"
                 type: "str"
-            tomcat_listen_ajp_address:
+            jws_listen_ajp_address:
                 # line 29 of jws/defaults/main.yml
                 default: "::1"
                 description: "Bind address for ajp"
                 type: "str"
-            tomcat_listen_ajp_port:
+            jws_listen_ajp_port:
                 # line 30 of jws/defaults/main.yml
                 default: "8009"
                 description: "Tomcat ajp listen port"
                 type: "str"
-            tomcat_listen_ajp_secret_required:
+            jws_listen_ajp_secret_required:
                 # line 31 of jws/defaults/main.yml
                 default: True
                 description: "Enable loading secret from vault"
                 type: "bool"
-            tomcat_listen_ajp_secret:
+            jws_listen_ajp_secret:
                 # line 32 of jws/defaults/main.yml
                 default: "secret"
                 description: "Passphrase for vault secret"
