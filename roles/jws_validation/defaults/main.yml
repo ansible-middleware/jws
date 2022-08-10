@@ -10,7 +10,7 @@ tomcat_catalina_logfile: logs/catalina.out
 jws_service_name: tomcat
 
 jws_listen_http_bind_address: 127.0.0.1
-tomcat_listen_http_port: 8080
+jws_listen_http_port: 8080
 
 tomcat_listen_ajp_enabled: False
 tomcat_listen_ajp_address: '::1'

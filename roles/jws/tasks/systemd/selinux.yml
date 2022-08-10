@@ -31,8 +31,8 @@
 - name: Allow tomcat to listen to port
   community.general.seport:
     ports:
-      - "{{ tomcat_listen_http_port }}"
-      - "{{ tomcat_listen_https_port }}"
+      - "{{ jws_listen_http_port }}"
+      - "{{ jws_listen_https_port }}"
       - "{{ tomcat_listen_ajp_port }}"
       - "{{ jws_shutdown_port }}"
     proto: tcp

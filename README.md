@@ -168,7 +168,7 @@ To use the install method zipfiles, downloading from a custom URL, set :
 3) Update variables in playbook file, the variables are as follow:
     - `jws_version` or `tomcat_version` (which version of jws or tomcat to install)
     - `jws_java_version` (which version of java to install, ie. name of the JVM rpm package)
-    - `tomcat_listen_http_port` and `tomcat_listen_https_port` (which http/https ports to listen on)
+    - `jws_listen_http_port` and `jws_listen_https_port` (which http/https ports to listen on)
     - `tomcat_listen_ajp_enabled` and `tomcat_listen_ajp_*` (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)
 
 Note: If you are using a non root remote user, then set username and enable sudo:
@@ -198,9 +198,9 @@ All that you have to do to enable a mod_cluster listener for jws is to edit the 
 
 The default template for server.xml provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the requires SSH keys and Java Keystore. It expects it to be already installed and available.
 
-    tomcat_listen_https_enabled: True
+    jws_listen_https_enabled: True
     # uncomment the following line to change the default value for the java keystore path
-    #tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
+    #jws_listen_https_keystore_file: /etc/ssl/keystore.jks
 
 Please refers to the [server documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more details on the setup and configuration of this feature.
 

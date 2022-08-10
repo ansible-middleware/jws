@@ -131,8 +131,8 @@
     - name: "Include https sanity check tasks"
       ansible.builtin.include_tasks: sanity_checks/https.yml
       when:
-        - tomcat_listen_https_enabled is defined
-        - tomcat_listen_https_enabled
+        - jws_listen_https_enabled is defined
+        - jws_listen_https_enabled
 
     - name: "Deploy custom configuration files"
       ansible.builtin.template:

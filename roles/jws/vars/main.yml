@@ -38,25 +38,25 @@ tomcat:
     port: "{{ jws_shutdown_port }}"
   listen:
     http:
-      port: "{{ tomcat_listen_http_port }}"
+      port: "{{ jws_listen_http_port }}"
       bind_address: "{{ jws_listen_http_bind_address }}"
-      enabled: "{{ tomcat_listen_http_enabled }}"
+      enabled: "{{ jws_listen_http_enabled }}"
     https:
-      port: "{{ tomcat_listen_https_port }}"
-      bind_address: "{{ tomcat_listen_https_bind_address }}"
-      enabled: "{{ tomcat_listen_https_enabled }}"
-      servername: "{{ tomcat_listen_https_servername }}"
+      port: "{{ jws_listen_https_port }}"
+      bind_address: "{{ jws_listen_https_bind_address }}"
+      enabled: "{{ jws_listen_https_enabled }}"
+      servername: "{{ jws_listen_https_servername }}"
       threads:
-        max: "{{ tomcat_listen_https_threads_max }}"
+        max: "{{ jws_listen_https_threads_max }}"
       connection:
-        timeout: "{{ tomcat_listen_https_connection_timeout }}"
+        timeout: "{{ jws_listen_https_connection_timeout }}"
       headers:
-        max_size: "{{ tomcat_listen_https_headers_size }}"
+        max_size: "{{ jws_listen_https_headers_size }}"
       keystore:
-        file: "{{ tomcat_listen_https_keystore_file }}"
-        password: "{{ tomcat_listen_https_keystore_password }}"
+        file: "{{ jws_listen_https_keystore_file }}"
+        password: "{{ jws_listen_https_keystore_password }}"
       client:
-        auth: "{{ tomcat_listen_https_client_auth }}"
+        auth: "{{ jws_listen_https_client_auth }}"
     ajp:
       enabled: "{{ tomcat_listen_ajp_enabled }}"
       address: "{{ tomcat_listen_ajp_address }}"

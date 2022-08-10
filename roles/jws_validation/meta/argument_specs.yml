@@ -6,7 +6,7 @@ argument_specs:
                 default: "localhost"
                 description: "Service bind address"
                 type: "str"
-            tomcat_listen_http_port:
+            jws_listen_http_port:
                 default: "8080"
                 description: "Tomcat http listen port"
                 type: "str"
