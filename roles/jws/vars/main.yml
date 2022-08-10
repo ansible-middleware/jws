@@ -18,7 +18,7 @@ tomcat:
   uid: "{{ jws_uid }}"
   group: "{{ jws_group }}"
   gid: "{{ jws_gid }}"
-  home: "{{ tomcat_home }}"
+  home: "{{ jws_home }}"
   base: "{{ tomcat_catalina_base }}"
   conf:
     properties: "{{ tomcat_conf_properties  }}"

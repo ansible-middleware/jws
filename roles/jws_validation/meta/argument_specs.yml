@@ -34,8 +34,7 @@ argument_specs:
                 default: 'logs/catalina.out'
                 description: "Path relative to tomcat home for catalina.out"
                 type: "str"
-            tomcat_home:
-                default: /opt/apache-tomcat-9.0.50;
+            jws_home:
                 type: "str"
                 description: "home of tomcat/jws installation"
             jws_listen_ajp_enabled:

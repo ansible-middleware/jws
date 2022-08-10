@@ -58,16 +58,6 @@ argument_specs:
                 default: "9.0.60"
                 description: "Version of tomcat to install"
                 type: "str"
-            tomcat_zipfile:
-                # line 7 of jws/defaults/main.yml
-                default: "apache-tomcat-{{ tomcat_version }}.zip"
-                description: "Filename for tomcat archive"
-                type: "str"
-            tomcat_zipfile_url:
-                # line 7 of jws/defaults/main.yml
-                default: "https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
-                description: "Custom URL for tomcat/jws archive download"
-                type: "str"
             jws_native:
                 default: False
                 description: "Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version"
@@ -98,16 +88,6 @@ argument_specs:
                 default: "53"
                 description: "posix group GID for service"
                 type: "int"
-            tomcat_zipfile_home:
-                # line 9 of jws/defaults/main.yml
-                default: "{{ jws_install_dir }}/apache-tomcat-{{ tomcat_version }}"
-                description: "Default target installation directory for tomcat zipfile"
-                type: "str"
-            tomcat_home:
-                # line 9 of jws/defaults/main.yml
-                default: "{{ jws_home if jws_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
-                description: "Target installation directory"
-                type: "str"
             jws_java_version:
                 required: False
                 description: "Tomcat java version to install"
@@ -358,12 +338,12 @@ argument_specs:
                 type: "str"
             tomcat_service_conf:
                 # line 56 of jws/defaults/main.yml
-                default: "{{ tomcat_home }}/conf/tomcat.conf"
+                default: "{{ jws_home }}/conf/tomcat.conf"
                 description: "Absolute path to tomcat.conf"
                 type: "str"
             tomcat_service_script:
                 # line 57 of jws/defaults/main.yml
-                default: "{{ tomcat_home }}/bin/systemd-service.sh"
+                default: "{{ jws_home }}/bin/systemd-service.sh"
                 description: "Tomcat sysVinit script"
                 type: "str"
             tomcat_service_systemd:
@@ -373,7 +353,7 @@ argument_specs:
                 type: "str"
             tomcat_service_systemd_pidfile:
                 # line 59 of jws/defaults/main.yml
-                default: "{{ tomcat_home }}/tomcat.pidfile"
+                default: "{{ jws_home }}/tomcat.pidfile"
                 description: "Absolute path to tomcat PIDfile"
                 type: "str"
             jws_service_systemd_type:
