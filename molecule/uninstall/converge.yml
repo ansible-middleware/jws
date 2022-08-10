@@ -9,4 +9,4 @@
         tasks_from: uninstall.yml
       vars:
         jws_service_name: tomcat
-        tomcat_home: /opt/apache-tomcat-9.0.50
+        jws_home: /opt/apache-tomcat-{{ tomcat_version }}

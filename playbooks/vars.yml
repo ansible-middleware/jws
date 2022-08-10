@@ -6,4 +6,5 @@ jws_listen_http_bind_address: 127.0.0.1
 jws_systemd_enabled: True
 jws_service_name: tomcat
 jws_service_systemd_type: forking
+# workaround issue on Github actions
 ansible_distribution: 'RedHat'

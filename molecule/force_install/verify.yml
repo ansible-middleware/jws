@@ -1,6 +1,8 @@
 ---
 - name: Verify
   hosts: instance
+  vars:
+    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
   tasks:
     - name: "Verify that state is consistent"
       include_role:

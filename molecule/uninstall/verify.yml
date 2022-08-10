@@ -1,12 +1,13 @@
 ---
 - name: Verify
-  hosts: instance
+  hosts: all
   vars:
-    tomcat_home: /opt/apache-tomcat-9.0.50
+    tomcat_version: 9.0.65
+    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
   tasks:
-    - name: "Read info on server home: {{ tomcat_home }}"
+    - name: "Read info on server home: {{ jws_home }}"
       stat:
-        path: "{{ tomcat_home }}/lib"
+        path: "{{ jws_home }}/lib"
       register: tc_home
 
     - name: "Check that server home has been removed"
