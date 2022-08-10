@@ -87,7 +87,7 @@ tomcat:
     conf: "{{ tomcat_service_conf }}"
     script: "{{ tomcat_service_script }}"
     systemd: "{{ tomcat_service_systemd }}"
-    pidfile: "{{ tomcat_service_systemd_pidfile }}"
+    pidfile: "{{ jws_service_systemd_pidfile }}"
     type: "{{ jws_service_systemd_type }}"
     hr_name: "{{ 'Jboss Web Server' if jws_install_method is defined and jws_install_method in ['rhn_zipfiles','rpm'] else 'Tomcat' }}"
 
