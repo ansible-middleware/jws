@@ -346,7 +346,7 @@ argument_specs:
                 default: "{{ jws_home }}/bin/systemd-service.sh"
                 description: "Tomcat sysVinit script"
                 type: "str"
-            tomcat_service_systemd:
+            jws_service_systemd:
                 # line 58 of jws/defaults/main.yml
                 default: "/usr/lib/systemd/system/tomcat.service"
                 description: "Tomcat systemd unit"
