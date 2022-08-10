@@ -113,7 +113,7 @@ Role Defaults
 |`tomcat_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
 |`tomcat_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
 |`tomcat_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
-|`tomcat_systemd_enabled`| Enable tomcat systemd unit | `False` |
+|`jws_systemd_enabled`| Enable tomcat systemd unit | `False` |
 |`tomcat_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
 |`tomcat_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ tomcat_systemd_script_interpreter }}` |
 |`tomcat_service_name`| Name for the systemd unit | `tomcat` |

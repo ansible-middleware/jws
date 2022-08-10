@@ -11,7 +11,7 @@
 - name: "Stop and disable systemd service if running"
   ansible.builtin.include_tasks: systemd/disable.yml
   when:
-    - tomcat_systemd_enabled is defined
+    - jws_systemd_enabled is defined
 
 - name: "Delete files from server home {{ tomcat.home }}"
   block:
