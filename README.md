@@ -212,7 +212,7 @@ Note: There other collections and modules available to automate the creation of 
 
 The provided template for the server.xml.j2 covers the most basic use case of the server. It's most likely that a user will need to replace this template by its own, it order to deploy a fine-grained configuration, suiting one's use case. To do so, just change of this default variable:
 
-    tomcat_conf_templates_server: path/to/my_template_for_server_xml.j2
+    jws_conf_templates_server: path/to/my_template_for_server_xml.j2
 
 (This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/override_server_xml) )
 

@@ -96,57 +96,57 @@ argument_specs:
                 required: False
                 description: "JAVA_HOME to use for starting Tomcat"
                 type: "str"
-            tomcat_catalina_base:
+            jws_catalina_base:
                 # line 10 of jws/defaults/main.yml
                 default: "{{ lookup('env','CATALINA_BASE') }}"
                 description: "Tomcat catalina base env variable"
                 type: "str"
-            tomcat_conf_properties:
+            jws_conf_properties:
                 # line 11 of jws/defaults/main.yml
                 default: "./conf/catalina.properties"
                 description: "Path for tomcat configuration"
                 type: "str"
-            tomcat_conf_policy:
+            jws_conf_policy:
                 # line 12 of jws/defaults/main.yml
                 default: "./conf/catalina.policy"
                 description: "Path for tomcat policy configuration"
                 type: "str"
-            tomcat_conf_loggging:
+            jws_conf_loggging:
                 # line 13 of jws/defaults/main.yml
                 default: "./conf/logging.properties"
                 description: "Path for logging configuration"
                 type: "str"
-            tomcat_conf_context:
+            jws_conf_context:
                 # line 14 of jws/defaults/main.yml
                 default: "./conf/context.xml"
                 description: "Relative path to context.xml"
                 type: "str"
-            tomcat_conf_server:
+            jws_conf_server:
                 # line 15 of jws/defaults/main.yml
                 default: "./conf/server.xml"
                 description: "Relative path to server.xml"
                 type: "str"
-            tomcat_conf_web:
+            jws_conf_web:
                 # line 16 of jws/defaults/main.yml
                 default: "./conf/web.xml"
                 description: "Relative path to web.xml"
                 type: "str"
-            tomcat_conf_templates_context:
+            jws_conf_templates_context:
                 # line 18 of jws/defaults/main.yml
                 default: "templates/context.xml.j2"
                 description: "Template to use for context.xml"
                 type: "str"
-            tomcat_conf_templates_server:
+            jws_conf_templates_server:
                 # line 19 of jws/defaults/main.yml
                 default: "templates/server.xml.j2"
                 description: "Template to use for server.xml"
                 type: "str"
-            tomcat_conf_templates_web:
+            jws_conf_templates_web:
                 # line 20 of jws/defaults/main.yml
                 default: "templates/web.xml.j2"
                 description: "Template to use for web.xml"
                 type: "str"
-            tomcat_conf_templates_catalina_properties:
+            jws_conf_templates_catalina_properties:
                 # line 21 of jws/defaults/main.yml
                 default: "templates/catalina.properties.j2"
                 description: "Template to use for catalina.properties"
