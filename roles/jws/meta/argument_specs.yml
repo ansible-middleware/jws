@@ -170,7 +170,7 @@ argument_specs:
                 # line 21 of jws/defaults/main.yml
                 default: "templates/catalina.properties.j2"
                 description: "Template to use for catalina.properties"
-            tomcat_shutdown_port:
+            jws_shutdown_port:
                 # line 22 of jws/defaults/main.yml
                 default: "8005"
                 description: "Tomcat shutdown port"
