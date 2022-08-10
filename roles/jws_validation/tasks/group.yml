@@ -1,14 +1,14 @@
 ---
 - name: "Check that group account was properly created"
   ansible.builtin.group:
-    name: "{{ tomcat_group }}"
-    gid: "{{ tomcat_gid }}"
-  register: tomcat_group_check
+    name: "{{ jws_group }}"
+    gid: "{{ jws_gid }}"
+  register: jws_group_check
 
 - name: "Fail if group has been updated"
   ansible.builtin.assert:
     that:
-      - tomcat_group_check is defined
-      - not tomcat_group_check.changed
+      - jws_group_check is defined
+      - not jws_group_check.changed
     quiet: true
-    fail_msg: "Group {{ tomcat_group }} has not been properly configured."
+    fail_msg: "Group {{ jws_group }} has not been properly configured."

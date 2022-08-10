@@ -76,12 +76,12 @@ argument_specs:
                 default: ""
                 type: "str"
                 description: "Filename for native binaries tomcat archive"
-            tomcat_user:
+            jws_user:
                 # line 7 of jws/defaults/main.yml
                 default: "tomcat"
                 description: "posix user account for service"
                 type: "str"
-            tomcat_uid:
+            jws_uid:
                 default: "53"
                 description: "posix user UID for service"
                 type: "int"
@@ -89,12 +89,12 @@ argument_specs:
                 description: "Whether to stop any running tomcat process and continue installation"
                 default: false
                 type: "bool"
-            tomcat_group:
+            jws_group:
                 # line 8 of jws/defaults/main.yml
                 default: "tomcat"
                 description: "posix group for service"
                 type: "str"
-            tomcat_gid:
+            jws_gid:
                 default: "53"
                 description: "posix group GID for service"
                 type: "int"

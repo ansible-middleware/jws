@@ -57,10 +57,10 @@ Role Defaults
 |`jws_selinux_enabled` | Enable selinux policy enforcement for JWS | `True` |
 |`jws_home`| Default installation path for JWS archives | `{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat` |
 |`tomcat_home`| Target installation directory, defaulting to tomcat or JWS archive path, or can be overridden | `{{ jws_home if jws_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}` |
-|`tomcat_user`| posix user account for service | `tomcat` |
-|`tomcat_uid`| posix UID user account for service | `tomcat` |
-|`tomcat_group`| posix group for service | `tomcat` |
-|`tomcat_gid`| posix GID user account for service | `tomcat` |
+|`jws_user`| posix user account for service | `tomcat` |
+|`jws_uid`| posix UID user account for service | `tomcat` |
+|`jws_group`| posix group for service | `tomcat` |
+|`jws_gid`| posix GID user account for service | `tomcat` |
 |`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
 |`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split(".")[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
 |`jws_native`| Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version | `False` |
