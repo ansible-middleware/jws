@@ -5,9 +5,7 @@
   vars_files:
     - vars.yml
   collections:
-    - middleware_automation.redhat_csp_download
+    - middleware_automation.jws
   tasks:
-    - ansible.builtin.include_role:
-        name: redhat_csp_download
     - ansible.builtin.include_role:
         name: jws
