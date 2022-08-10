@@ -21,12 +21,12 @@ argument_specs:
                 default: "local_zipfiles"
                 description: "Installation method"
                 type: "str"
-            tomcat_rpm:
+            jws_rpm:
                 # line 4 of jws/defaults/main.yml
                 default: "jws5"
                 description: "Installation RPM version"
                 type: "str"
-            tomcat_rpm_root_dir:
+            jws_rpm_root_dir:
                 default: "/opt/rh/jws5/"
                 description: "Path to the install dir used by RPM (do not override unless you relocate the RPM"
                 type: "str"
