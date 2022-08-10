@@ -12,8 +12,8 @@ jws_service_name: tomcat
 jws_listen_http_bind_address: 127.0.0.1
 jws_listen_http_port: 8080
 
-tomcat_listen_ajp_enabled: False
-tomcat_listen_ajp_address: '::1'
-tomcat_listen_ajp_port: '8009'
+jws_listen_ajp_enabled: False
+jws_listen_ajp_address: '::1'
+jws_listen_ajp_port: '8009'
 
 jws_native: False

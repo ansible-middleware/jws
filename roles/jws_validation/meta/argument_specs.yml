@@ -38,17 +38,17 @@ argument_specs:
                 default: /opt/apache-tomcat-9.0.50;
                 type: "str"
                 description: "home of tomcat/jws installation"
-            tomcat_listen_ajp_enabled:
+            jws_listen_ajp_enabled:
                 # line 28 of jws/defaults/main.yml
                 default: "False"
                 description: "Enable listening on ajp port"
                 type: "str"
-            tomcat_listen_ajp_address:
+            jws_listen_ajp_address:
                 # line 29 of jws/defaults/main.yml
                 default: "::1"
                 description: "Bind address for ajp"
                 type: "str"
-            tomcat_listen_ajp_port:
+            jws_listen_ajp_port:
                 # line 30 of jws/defaults/main.yml
                 default: "8009"
                 description: "Tomcat ajp listen port"

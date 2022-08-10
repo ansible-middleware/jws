@@ -43,9 +43,9 @@
 - name: "Ensure Tomcat AJP connector is started and listen to the appropriate port"
   ansible.builtin.include_tasks: check_connector_port.yml
   vars:
-    bind_address: "{{  tomcat_listen_ajp_bind_address }}"
-    listen_port: "{{  tomcat_listen_ajp_port }}"
+    bind_address: "{{  jws_listen_ajp_bind_address }}"
+    listen_port: "{{  jws_listen_ajp_port }}"
   when:
-    - tomcat_listen_ajp_enabled is defined
-    - tomcat_listen_ajp_bind_address is defined
-    - tomcat_listen_ajp_port is defined
+    - jws_listen_ajp_enabled is defined
+    - jws_listen_ajp_bind_address is defined
+    - jws_listen_ajp_port is defined
