@@ -7,9 +7,9 @@
     that:
       - ansible_facts is defined
       - ansible_facts.services is defined
-      - ansible_facts.services["{{ tomcat_service_name }}.service"] is defined
-      - ansible_facts.services["{{ tomcat_service_name }}.service"]['state'] is defined
-      - ansible_facts.services["{{ tomcat_service_name }}.service"]['state'] == 'running'
-      - ansible_facts.services["{{ tomcat_service_name }}.service"]['status'] == 'enabled'
+      - ansible_facts.services["{{ jws_service_name }}.service"] is defined
+      - ansible_facts.services["{{ jws_service_name }}.service"]['state'] is defined
+      - ansible_facts.services["{{ jws_service_name }}.service"]['state'] == 'running'
+      - ansible_facts.services["{{ jws_service_name }}.service"]['status'] == 'enabled'
     quiet: true
     fail_msg: "Service is not started."
