@@ -34,8 +34,15 @@
   loop:
     - zip
     - unzip
+
+- name: "Install required dependencies for natives"
+  include_tasks: fastpackage.yml
+  vars:
+    package_name: "{{ item }}"
+  loop:
     - openssl
     - apr
+  when: jws_native
 
 - name: "Ensure tomcatjss rpm is not installed"
   ansible.builtin.dnf:
