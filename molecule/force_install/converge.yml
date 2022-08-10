@@ -12,7 +12,7 @@
   roles:
     - role: jws
       tomcat_version: 9.0.50
-      tomcat_install_method: zipfiles
+      jws_install_method: zipfiles
       tomcat_home: /opt/apache-tomcat-{{ tomcat_version }}
 
 - name: "Red Hat JBoss Web Server update"
@@ -29,5 +29,5 @@
   roles:
     - role: jws
       tomcat_version: 9.0.60
-      tomcat_install_method: zipfiles
+      jws_install_method: zipfiles
       tomcat_home: /opt/apache-tomcat-{{ tomcat_version }}

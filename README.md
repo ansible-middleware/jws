@@ -60,7 +60,7 @@ After adding the following variables, the playbook will download tomcat from git
 
 ```
     vars:
-      tomcat_install_method: zipfiles
+      jws_install_method: zipfiles
       tomcat_version: 9.0.50
       tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 ```
@@ -72,7 +72,7 @@ To use JWS, set the install method to rhn_zipfiles:
 
     vars:
        ...
-       tomcat_install_method: rhn_zipfiles
+       jws_install_method: rhn_zipfiles
 
 To automatically download the JWS archives from Red Hat Customer Portal, provide your RHN credentials (as extra argument, in variable file, or better loaded from vault):
 
@@ -93,7 +93,7 @@ Provide the path to those zipfiles:
 
     vars:
       ...
-      tomcat_install_method: rhn_zipfiles
+      jws_install_method: rhn_zipfiles
       jws_version: 5.6.0
       tomcat_zipfile: jws-5.6.0-application-server.zip
       tomcat_native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
@@ -142,7 +142,7 @@ Change the default install method to RPM and provide the appropriate Tomcat HOME
     vars:
       ...
       tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
-      tomcat_install_method: rpm
+      jws_install_method: rpm
 
 
 ### Using a custom download URL
@@ -151,7 +151,7 @@ To use the install method zipfiles, downloading from a custom URL, set :
 
     vars:
        ...
-       tomcat_install_method: zipfiles
+       jws_install_method: zipfiles
        tomcat_zipfile: tomcat-x.y.z.zip
        tomcat_zipfile_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
 

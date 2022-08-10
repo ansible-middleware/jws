@@ -16,7 +16,7 @@ argument_specs:
                 default: "docs,ROOT,examples"
                 description: "Comma separated list of apps to undeploy"
                 type: "str"
-            tomcat_install_method:
+            jws_install_method:
                 # line 3 of jws/defaults/main.yml
                 default: "local_zipfiles"
                 description: "Installation method"
@@ -105,7 +105,7 @@ argument_specs:
                 type: "str"
             tomcat_home:
                 # line 9 of jws/defaults/main.yml
-                default: "{{ jws_home if tomcat_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
+                default: "{{ jws_home if jws_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
                 description: "Target installation directory"
                 type: "str"
             tomcat_java_version:
