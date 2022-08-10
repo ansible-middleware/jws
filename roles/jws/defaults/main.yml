@@ -4,7 +4,6 @@ jws_apps_to_remove: 'docs,ROOT,examples'
 # root directory of installation
 jws_install_dir: /opt
 jws_rpm: jws5
-jws_rpm_root_dir: /opt/rh/jws5/
 
 # if True continue installing even if a running tomcat is found
 jws_force_install: False
