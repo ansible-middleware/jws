@@ -35,7 +35,7 @@ tomcat:
   apps:
     to_remove: "{{ jws_apps_to_remove.split(',') }}"
   shutdown:
-    port: "{{ tomcat_shutdown_port }}"
+    port: "{{ jws_shutdown_port }}"
   listen:
     http:
       port: "{{ tomcat_listen_http_port }}"
