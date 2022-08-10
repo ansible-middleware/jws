@@ -1,7 +1,7 @@
 ---
 - name: Read the content of catalina.out
   ansible.builtin.slurp:
-    src: "{{ jws_home }}/{{ tomcat_catalina_logfile }}"
+    src: "{{ jws_home }}/{{ catalina_logfile }}"
   register: catalina_out
 
 - name: Print the content of catalina.out
