@@ -30,7 +30,7 @@
     # B) uncomment to also start tomcat as a service under Systemd
     jws_systemd_enabled: True
     jws_service_name: tomcat
-    tomcat_service_systemd_type: forking
+    jws_service_systemd_type: forking
 
     # workaround issue on Github actions
     ansible_distribution: 'RedHat'

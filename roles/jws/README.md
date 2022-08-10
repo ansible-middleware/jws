@@ -121,7 +121,7 @@ Role Defaults
 |`tomcat_service_script`| Tomcat sysVinit script | `{{ tomcat_home }}/bin/systemd-service.sh` |
 |`tomcat_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |
 |`tomcat_service_systemd_pidfile`| Absolute path to tomcat PIDfile | `{{ tomcat_home }}/tomcat.pidfile` |
-|`tomcat_service_systemd_type`| Systemd unit type | `simple` |
+|`jws_service_systemd_type`| Systemd unit type | `simple` |
 
 
 Role Variables
