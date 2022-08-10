@@ -30,7 +30,7 @@ argument_specs:
                 default: "tomcat.service"
                 description: "Name for the systemd unit"
                 type: "str"
-            tomcat_catalina_logfile:
+            catalina_logfile:
                 default: 'logs/catalina.out'
                 description: "Path relative to tomcat home for catalina.out"
                 type: "str"

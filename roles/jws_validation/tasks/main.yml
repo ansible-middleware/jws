@@ -19,7 +19,7 @@
 - name: "Verify that main server's logfile exists."
   ansible.builtin.include_tasks: catalina_out.yml
   when:
-    - tomcat_catalina_logfile is defined
+    - catalina_logfile is defined
 
 - name: "Ensure Tomcat HTTP connector is started and listen to the appropriate port"
   ansible.builtin.include_tasks: check_connector_port.yml
