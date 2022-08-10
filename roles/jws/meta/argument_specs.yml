@@ -296,42 +296,42 @@ argument_specs:
                 default: "VAULT.dat"
                 description: "vault.data filename"
                 type: "str"
-            tomcat_modcluster_enabled:
+            jws_modcluster_enabled:
                 # line 42 of jws/defaults/main.yml
                 default: False
                 description: "Enable mod_cluster module"
                 type: "bool"
-            tomcat_modcluster_ip:
+            jws_modcluster_ip:
                 # line 43 of jws/defaults/main.yml
                 default: "127.0.0.1"
                 description: "Bind address for mod_cluster"
                 type: "str"
-            tomcat_modcluster_port:
+            jws_modcluster_port:
                 # line 44 of jws/defaults/main.yml
                 default: "6666"
                 description: "mod_cluster port"
                 type: "str"
-            tomcat_modcluster_connector_port:
+            jws_modcluster_connector_port:
                 # line 45 of jws/defaults/main.yml
                 default: "6666"
                 description: "mod_cluster connector port"
                 type: "str"
-            tomcat_modcluster_advertise:
+            jws_modcluster_advertise:
                 # line 46 of jws/defaults/main.yml
                 default: False
                 description: "Enable mod_cluster advertising"
                 type: "bool"
-            tomcat_modcluster_sticky_session:
+            jws_modcluster_sticky_session:
                 # line 48 of jws/defaults/main.yml
                 default: True
                 description: "Enable mod_cluster sticky sessions"
                 type: "bool"
-            tomcat_modcluster_sticky_session_force:
+            jws_modcluster_sticky_session_force:
                 # line 49 of jws/defaults/main.yml
                 default: False
                 description: "Force use of sticky sessions"
                 type: "bool"
-            tomcat_modcluster_sticky_session_remove:
+            jws_modcluster_sticky_session_remove:
                 # line 50 of jws/defaults/main.yml
                 default: True
                 description: "Remove sticky session from cookies"
