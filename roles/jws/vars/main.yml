@@ -3,8 +3,8 @@ tomcat:
   supported_install_method: [local_zipfiles, rhn_zipfiles, zipfiles, rpm]
   install_method: "{{ jws_install_method }}"
   install_dir: "{{ jws_install_dir }}"
-  rpm: "{{ tomcat_rpm }}"
-  rpm_root_dir: "{{ tomcat_rpm_root_dir }}"
+  rpm: "{{ jws_rpm }}"
+  rpm_root_dir: "{{ jws_rpm_root_dir }}"
   rhn:
     server_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].id }}"
     native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].native }}"

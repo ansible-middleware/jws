@@ -49,7 +49,7 @@ Role Defaults
 |:---------|:------------|:--------|
 |`jws_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
 |`jws_install_dir`| Installation path for JWS/tomcat | `/opt` |
-|`tomcat_rpm`| Installation RPM version | `jws5` |
+|`jws_rpm`| Installation RPM version | `jws5` |
 |`tomcat_zipfile_home`| Default installation path for tomcat archives | `{{ jws_install_dir }}/apache-tomcat-{{ tomcat_version }}` |
 |`jws_rhn_base_url`| Customer Portal Base URL for archive download | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=` |
 |`jws_version`| Version of JWS to install | `5.6.0` |

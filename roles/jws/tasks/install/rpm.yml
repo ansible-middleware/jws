@@ -41,6 +41,6 @@
 - name: "Perform {{ info_msg }}"
   ansible.builtin.command:
     cmd: "dnf {{ dnf_command | default('groupinstall') }} -y {{ tomcat.rpm }}"
-    creates: "{{ tomcat_rpm_root_dir }}/enable"
+    creates: "{{ jws_rpm_root_dir }}/enable"
   notify:
     - Ensure Tomcat runs under systemd
