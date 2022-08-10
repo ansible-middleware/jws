@@ -13,7 +13,7 @@
   ansible.builtin.command: "kill -15 {{ running_processes.stdout_lines | join(' ') }}"
   become: yes
   when:
-    - tomcat_force_install
+    - jws_force_install
     - running_processes.stdout_lines|length > 0
 
 - name: "Check foreign processes owned by {{ tomcat.user }} user"
@@ -31,7 +31,7 @@
   ansible.builtin.command: "kill -9 {{ running_processes.stdout_lines | join(' ') }}"
   become: yes
   when:
-    - tomcat_force_install
+    - jws_force_install
     - running_processes.stdout_lines|length > 0
 
 - name: "Create group: {{ tomcat.group }}"
@@ -39,7 +39,7 @@
     name: "{{ tomcat.group }}"
     gid: "{{ tomcat.gid }}"
     system: yes
-  when: tomcat_force_install
+  when: jws_force_install
 
 - name: "Create user for tomcat: {{ tomcat.user }}"
   ansible.builtin.user:
@@ -50,4 +50,4 @@
     home: "{{ tomcat.home }}"
     shell: /sbin/nologin
     comment: "User for Apache Tomcat"
-  when: tomcat_force_install
+  when: jws_force_install

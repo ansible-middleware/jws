@@ -24,7 +24,7 @@
     jws_service_name: tomcat
     jws_service_systemd_type: forking
     ansible_distribution: 'RedHat'
-    tomcat_force_install: true
+    jws_force_install: true
     jws_java_version: 11
   roles:
     - role: jws
