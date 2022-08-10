@@ -11,15 +11,14 @@ jws_force_install: False
 # installation method: ['local_zipfiles','rhn_zipfiles','zipfiles','rpm']
 jws_install_method: local_zipfiles
 
-jws_version: 9.0.60
-jws_zipfile_home: "{{ jws_install_dir }}/apache-tomcat-{{ jws_version }}"
-jws_zipfile: "apache-tomcat-{{ jws_version }}.zip"
+#
+tomcat_version: 9.0.60
+# TODO remove unused vars
+#jws_zipfile_home: "{{ jws_install_dir }}/apache-tomcat-{{ jws_version }}"
 jws_native_zipfile: ''
-jws_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ jws_version.split('.')[0] }}/v{{ jws_version }}/bin/{{ jws_zipfile }}"
 # Switch to True if you want to also download native bits
 jws_native: False
 
-jws_version: 5.6.0
 jws_home: "{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
 jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
 # if True automatically apply the most recent cumulative patch
@@ -32,7 +31,6 @@ jws_group: tomcat
 jws_gid: 53
 
 # use default paths for tomcat or jws zipfiles depending on install_method; or can be overriden
-tomcat_home: "{{ jws_home if jws_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
 jws_setup: True
 
 tomcat_catalina_base: "{{ lookup('env','CATALINA_BASE') }}"

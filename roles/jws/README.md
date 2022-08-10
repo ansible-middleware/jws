@@ -50,22 +50,17 @@ Role Defaults
 |`jws_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
 |`jws_install_dir`| Installation path for JWS/tomcat | `/opt` |
 |`jws_rpm`| Installation RPM version | `jws5` |
-|`tomcat_zipfile_home`| Default installation path for tomcat archives | `{{ jws_install_dir }}/apache-tomcat-{{ tomcat_version }}` |
 |`jws_rhn_base_url`| Customer Portal Base URL for archive download | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=` |
 |`jws_version`| Version of JWS to install | `5.6.0` |
 |`jws_apply_patches`| Install JWS most recent cumulative patch for requested version | `False` |
 |`jws_selinux_enabled` | Enable selinux policy enforcement for JWS | `True` |
 |`jws_home`| Default installation path for JWS archives | `{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat` |
-|`tomcat_home`| Target installation directory, defaulting to tomcat or JWS archive path, or can be overridden | `{{ jws_home if jws_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}` |
 |`jws_user`| posix user account for service | `tomcat` |
 |`jws_uid`| posix UID user account for service | `tomcat` |
 |`jws_group`| posix group for service | `tomcat` |
 |`jws_gid`| posix GID user account for service | `tomcat` |
-|`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
-|`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split(".")[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
 |`jws_native`| Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version | `False` |
 |`jws_native_zipfile`| Tomcat native binaries archive filename | `''` |
-|`tomcat_version`| Tomcat version to download | `9.0.60` |
 |`jws_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
 
 
@@ -117,10 +112,10 @@ Role Defaults
 |`jws_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
 |`jws_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ jws_systemd_script_interpreter }}` |
 |`jws_service_name`| Name for the systemd unit | `tomcat` |
-|`tomcat_service_conf`| Absolute path to tomcat.conf | `{{ tomcat_home }}/conf/tomcat.conf` |
-|`tomcat_service_script`| Tomcat sysVinit script | `{{ tomcat_home }}/bin/systemd-service.sh` |
+|`tomcat_service_conf`| Absolute path to tomcat.conf | `{{ jws_home }}/conf/tomcat.conf` |
+|`tomcat_service_script`| Tomcat sysVinit script | `{{ jws_home }}/bin/systemd-service.sh` |
 |`tomcat_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |
-|`tomcat_service_systemd_pidfile`| Absolute path to tomcat PIDfile | `{{ tomcat_home }}/tomcat.pidfile` |
+|`tomcat_service_systemd_pidfile`| Absolute path to tomcat PIDfile | `{{ jws_home }}/tomcat.pidfile` |
 |`jws_service_systemd_type`| Systemd unit type | `simple` |
 
 

@@ -11,17 +11,17 @@
 - name: "Load server home directory information: {{ tomcat.home }}."
   ansible.builtin.stat:
     path: "{{ tomcat.home }}"
-  register: tomcat_home_state
+  register: jws_home_state
 
 - name: "Ensure server home directory exists."
   ansible.builtin.assert:
     that:
-      - tomcat_home_state is defined
-      - tomcat_home_state.stat is defined
-      - tomcat_home_state.stat.exists is defined
-      - tomcat_home_state.stat.exists
-      - tomcat_home_state.stat.isdir is defined
-      - tomcat_home_state.stat.isdir
+      - jws_home_state is defined
+      - jws_home_state.stat is defined
+      - jws_home_state.stat.exists is defined
+      - jws_home_state.stat.exists
+      - jws_home_state.stat.isdir is defined
+      - jws_home_state.stat.isdir
 
 - name: "Ensure download directory for CPs exists."
   ansible.builtin.file:
