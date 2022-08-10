@@ -1,7 +1,7 @@
 ---
-- name: "Apply patch {{ path_to_patch_bundle_on_target }} on {{ tomcat.home }}."
+- name: "Apply patch {{ path_to_patch_bundle_on_target }} on {{ jws_home }}."
   block:
-    - name: "Update {{ tomcat.home }} with downloaded Cumulative Patch {{ path_to_patch_bundle_on_target }}."
+    - name: "Update {{ jws_home }} with downloaded Cumulative Patch {{ path_to_patch_bundle_on_target }}."
       ansible.builtin.unarchive:
         src: "{{ path_to_patch_bundle_on_target }}"
         dest: "{{ tomcat.install_dir }}"

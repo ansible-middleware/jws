@@ -4,13 +4,13 @@
     that:
       - download_url is defined
       - tomcat is defined
-      - tomcat.home is defined
+      - jws_home is defined
       - tomcat.install_dir is defined
     quiet: True
 
-- name: "Load server home directory information: {{ tomcat.home }}."
+- name: "Load server home directory information: {{ jws_home }}."
   ansible.builtin.stat:
-    path: "{{ tomcat.home }}"
+    path: "{{ jws_home }}"
   register: jws_home_state
 
 - name: "Ensure server home directory exists."

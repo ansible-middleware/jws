@@ -36,13 +36,9 @@ argument_specs:
                 description: "Customer Portal Base URL for archive download"
                 type: "str"
             jws_version:
-                # line 7 of jws/defaults/main.yml
-                default: "5.6.0"
                 description: "Version of JWS to install"
                 type: "str"
             jws_home:
-                # line 19 of jws/defaults/main.yml
-                default: "{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
                 description: "Default installation path for JWS archives"
                 type: "str"
             jws_apply_patches:
@@ -337,13 +333,9 @@ argument_specs:
                 description: "Name for the systemd unit"
                 type: "str"
             jws_service_conf:
-                # line 56 of jws/defaults/main.yml
-                default: "{{ jws_home }}/conf/tomcat.conf"
                 description: "Absolute path to tomcat.conf"
                 type: "str"
             jws_service_script:
-                # line 57 of jws/defaults/main.yml
-                default: "{{ jws_home }}/bin/systemd-service.sh"
                 description: "Tomcat sysVinit script"
                 type: "str"
             jws_service_systemd:
@@ -351,9 +343,7 @@ argument_specs:
                 default: "/usr/lib/systemd/system/tomcat.service"
                 description: "Tomcat systemd unit"
                 type: "str"
-            jws_service_systemd_pidfile:
-                # line 59 of jws/defaults/main.yml
-                default: "{{ jws_home }}/tomcat.pidfile"
+            jws_service_pidfile:
                 description: "Absolute path to tomcat PIDfile"
                 type: "str"
             jws_service_systemd_type:

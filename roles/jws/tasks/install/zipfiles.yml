@@ -2,19 +2,19 @@
 - name: Check arguments
   ansible.builtin.assert:
     that:
-      - tomcat_zipfile is defined
-      - tomcat_zipfile != ""
+      - zipfile_name is defined
+      - zipfile_name != ""
     quiet: true
-    fail_msg: "With {{ tomcat.install_method }} install method, 'tomcat_zipfile' needs to be defined (or at least jws_version)"
+    fail_msg: "With {{ tomcat.install_method }} install method, 'zipfile_name' needs to be defined (or at least jws_version)"
 
 - name: Add zipfile to unarchive list
   ansible.builtin.set_fact:
     zipfiles:
-      - { src: "{{ tomcat_zipfile }}", creates: "{{ tomcat.home }}/bin" }
+      - { src: "{{ zipfile_name }}", creates: "{{ jws_home }}/bin" }
 
 - name: Add native zipfile to unarchive list
   ansible.builtin.set_fact:
-    zipfiles: "{{ zipfiles + [{ 'src': jws_native_zipfile, 'creates': tomcat.home + '/lib/libtcnative-1.so' }] }}"
+    zipfiles: "{{ zipfiles + [{ 'src': jws_native_zipfile, 'creates': jws_home + '/lib/libtcnative-1.so' }] }}"
   when:
     - jws_native
     - jws_native_zipfile is defined

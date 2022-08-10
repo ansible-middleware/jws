@@ -12,15 +12,12 @@ jws_force_install: False
 # installation method: ['local_zipfiles','rhn_zipfiles','zipfiles','rpm']
 jws_install_method: local_zipfiles
 
-#
-tomcat_version: 9.0.60
-# TODO remove unused vars
-#jws_zipfile_home: "{{ jws_install_dir }}/apache-tomcat-{{ jws_version }}"
-jws_native_zipfile: ''
+# Default version of Apache Tomcat to use if no version is provided
+tomcat_version: 9.0.65
 # Switch to True if you want to also download native bits
 jws_native: False
+jws_native_zipfile: ''
 
-jws_home: "{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
 jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
 # if True automatically apply the most recent cumulative patch
 jws_apply_patches: False
@@ -98,8 +95,5 @@ jws_systemd_enabled: False
 jws_systemd_script_interpreter: 'bash'
 jws_systemd_script_shebang: "#!/bin/{{ jws_systemd_script_interpreter }}"
 jws_service_name: 'jws5-tomcat'
-jws_service_conf: "{{ jws_home }}/conf/{{ jws_service_name }}.conf"
-jws_service_script: "{{ jws_home }}/bin/systemd-service.sh"
 jws_service_systemd: "/usr/lib/systemd/system/{{ jws_service_name }}.service"
-jws_service_systemd_pidfile: "{{ jws_home }}/{{ jws_service_name }}.pidfile"
 jws_service_systemd_type: "simple"

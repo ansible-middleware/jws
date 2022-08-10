@@ -19,8 +19,8 @@ TOMCAT_CFG_LOADED="1"
 JAVA_HOME={{ tomcat_java_home  | default(jws_rpm_java_home, true) }}
 
 # Where your tomcat installation lives
-CATALINA_BASE="{{ tomcat.home }}"
-CATALINA_HOME="{{ tomcat.home }}"
+CATALINA_BASE="{{ jws_home }}"
+CATALINA_HOME="{{ jws_home }}"
 {% if tomcat.tmpdir is defined %}
 CATALINA_TMPDIR="{{ tomcat.tmpdir }}"
 {% endif %}
@@ -62,7 +62,7 @@ SECURITY_MANAGER="false"
 # put your own definitions here
 # (i.e. LD_LIBRARY_PATH for some jdbc drivers)
 {% if jws_native %}
-LD_LIBRARY_PATH="{{ tomcat.home }}/lib"
+LD_LIBRARY_PATH="{{ jws_home }}/lib"
 {% endif %}
 
 # Add the JAVA 9 specific start-up parameters required by Tomcat

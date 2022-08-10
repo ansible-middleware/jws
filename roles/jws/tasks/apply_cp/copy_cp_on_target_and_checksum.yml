@@ -27,7 +27,7 @@
 
 - name: "Set patch checksum"
   ansible.builtin.set_fact:
-    patch_checksum_file: "{{ tomcat.home }}/../.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
+    patch_checksum_file: "{{ jws_home }}/../.applied_patch_checksum_{{ patch_info.stat.checksum }}.txt"
   when:
     - patch_info is defined
     - patch_info.stat is defined

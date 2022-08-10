@@ -95,7 +95,7 @@ Provide the path to those zipfiles:
       ...
       jws_install_method: rhn_zipfiles
       jws_version: 5.6.0
-      tomcat_zipfile: jws-5.6.0-application-server.zip
+      zipfile_name: jws-5.6.0-application-server.zip
       jws_native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
 
 Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:
@@ -152,8 +152,8 @@ To use the install method zipfiles, downloading from a custom URL, set :
     vars:
        ...
        jws_install_method: zipfiles
-       tomcat_zipfile: tomcat-x.y.z.zip
-       tomcat_zipfile_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
+       zipfile_name: tomcat-x.y.z.zip
+       zipfile_name_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
 
 
 ### Running the play books

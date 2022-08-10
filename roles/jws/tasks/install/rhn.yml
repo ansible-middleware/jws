@@ -9,7 +9,7 @@
 
 - name: Set filename for JWS zipfile
   ansible.builtin.set_fact:
-    tomcat_zipfile: "jws-{{ jws_version }}-application-server.zip"
+    zipfile_name: "jws-{{ jws_version }}-application-server.zip"
   when:
     - jws_version is defined
 
@@ -26,11 +26,11 @@
 - name: "Include fetch and unarchive from RHN tasks"
   ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
   vars:
-    zipfile: "{{ tomcat_zipfile }}"
+    zipfile: "{{ zipfile_name }}"
     zipfile_url: "{{ tomcat.rhn.server_zipfile_url }}"
-    path_to_zipfile: "{{ jws_install_dir }}/{{ tomcat_zipfile }}"
+    path_to_zipfile: "{{ jws_install_dir }}/{{ zipfile_name }}"
   when:
-    - tomcat_zipfile is defined
+    - zipfile_name is defined
 
 - name: "Include fetch and unarchive from RHN tasks"
   ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
