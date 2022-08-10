@@ -10,19 +10,19 @@ argument_specs:
                 default: "8080"
                 description: "Tomcat http listen port"
                 type: "str"
-            tomcat_user:
+            jws_user:
                 default: "tomcat"
                 description: "posix user account for service"
                 type: "str"
-            tomcat_uid:
+            jws_uid:
                 default: "53"
                 description: "posix user UID for service"
                 type: "int"
-            tomcat_group:
+            jws_group:
                 default: "tomcat"
                 description: "posix group for service"
                 type: "str"
-            tomcat_gid:
+            jws_gid:
                 default: "53"
                 description: "posix group GID for service"
                 type: "int"

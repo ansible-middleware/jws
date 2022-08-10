@@ -1,8 +1,8 @@
 ---
-- name: "Check that user account {{ tomcat_user }} was properly created"
+- name: "Check that user account {{ jws_user }} was properly created"
   ansible.builtin.user:
-    name: "{{ tomcat_user }}"
-    uid: "{{ tomcat_uid }}"
+    name: "{{ jws_user }}"
+    uid: "{{ jws_uid }}"
   register: tomcat_account_check
 
 - name: "Fail if user account has been changed"
@@ -11,4 +11,4 @@
       - tomcat_account_check is defined
       - not tomcat_account_check.changed
     quiet: true
-    fail_msg: "User account {{ tomcat_user }} has not been properly configured."
+    fail_msg: "User account {{ jws_user }} has not been properly configured."

@@ -2,14 +2,14 @@
 - name: "Verify user exists."
   ansible.builtin.include_tasks: user.yml
   when:
-    - tomcat_user is defined
-    - tomcat_uid is defined
+    - jws_user is defined
+    - jws_uid is defined
 
 - name: "Verify group exists."
   ansible.builtin.include_tasks: group.yml
   when:
-    - tomcat_group is defined
-    - tomcat_gid is defined
+    - jws_group is defined
+    - jws_gid is defined
 
 - name: "Verify taht service is running."
   ansible.builtin.include_tasks: service_status.yml
