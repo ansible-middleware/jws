@@ -2,8 +2,8 @@
 - name: Verify
   hosts: instance
   vars:
-    tomcat_listen_https_port: 8443
-    tomcat_listen_https_bind_address: localhost
+    jws_listen_https_port: 8443
+    jws_listen_https_bind_address: localhost
     tomcat_version: 9.0.50
     tomcat_home: "/opt/apache-tomcat-{{ tomcat_version }}"
     tomcat_ajp_flush_attribute_name: 'ajpFlush'
