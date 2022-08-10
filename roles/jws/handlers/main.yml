@@ -37,7 +37,7 @@
 - name: Install selinux policy
   ansible.builtin.command: semodule -i jws5-tomcat.pp
   args:
-    chdir: "{{ tomcat.home }}/selinux"
+    chdir: "{{ jws_home }}/selinux"
   listen: "Selinux policy created"
 
 - name: Apply selinux policy

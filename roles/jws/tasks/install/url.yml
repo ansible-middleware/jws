@@ -1,10 +1,10 @@
 ---
 - name: Download archive from custom url
   ansible.builtin.get_url:
-    url: "{{ tomcat_zipfile_url }}"
-    dest: "{{ jws_install_dir }}/{{ tomcat_zipfile }}"
-    username: "{{ tomcat_zipfile_url_username | default(omit) }}"
-    password: "{{ tomcat_zipfile_url_password | default(omit) }}"
+    url: "{{ zipfile_url }}"
+    dest: "{{ jws_install_dir }}/{{ zipfile_name }}"
+    username: "{{ zipfile_url_username | default(omit) }}"
+    password: "{{ zipfile_url_password | default(omit) }}"
     mode: 0640
     owner: "{{ tomcat.user }}"
     group: "{{ tomcat.group }}"

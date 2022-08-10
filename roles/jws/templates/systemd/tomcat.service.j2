@@ -6,9 +6,9 @@ After=syslog.target network.target
 
 [Service]
 Type={{ tomcat.service.type }}
-EnvironmentFile={{ tomcat.service.conf }}
-ExecStart={{ tomcat.service.script }} start
-PIDFile={{ tomcat.service.pidfile }}
+EnvironmentFile={{ jws_service_conf }}
+ExecStart={{ jws_service_script }} start
+PIDFile={{ jws_service_pidfile }}
 #SuccessExitStatus=143
 User={{ tomcat.user }}
 UMask=027

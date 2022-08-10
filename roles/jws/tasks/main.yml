@@ -1,9 +1,31 @@
 ---
-- name: "Check that tomcat.home has been defined."
+# The following is only for upstream: if jws_version is not defined
+# we use the latest version of Apache Tomcat
+- name: "Set defaults values (if jws_version is not provided)"
+  ansible.builtin.set_fact:
+    zipfile_name: "apache-tomcat-{{ tomcat_version }}.zip"
+  when:
+    - not jws_version is defined
+
+- name: "Set defaults values (if jws_version is not provided)"
+  ansible.builtin.set_fact:
+    zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ zipfile_name }}"
+    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}/"
+  when:
+    - not jws_version is defined
+
+- name: "Set jws_home if not already defined."
+  ansible.builtin.set_fact:
+    jws_home: "{{ tomcat.install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
+  when:
+    - not jws_home is defined
+    - jws_version is defined
+
+- name: "Check that jws_home has been defined."
   ansible.builtin.assert:
     that:
-      - tomcat.home is defined
-      - tomcat.home | length > 0
+      - jws_home is defined
+      - jws_home | length > 0
 
 - name: "Install required dependencies"
   include_tasks: fastpackage.yml
@@ -38,7 +60,7 @@
         uid: "{{ tomcat.uid }}"
         system: yes
         groups: "{{ tomcat.group }}"
-        home: "{{ tomcat.home }}"
+        home: "{{ jws_home }}"
         shell: /sbin/nologin
         comment: "User for Apache Tomcat"
   rescue:
@@ -95,9 +117,9 @@
         - jws.rhn_ids[jws_version].latest_cp.id is defined
         - jws.rhn_ids[jws_version].latest_cp.v is defined
 
-    - name: "Ensure {{ tomcat.home }}/ directories have appropriate privileges"
+    - name: "Ensure {{ jws_home }}/ directories have appropriate privileges"
       ansible.builtin.file:
-        path: "{{ tomcat.home }}/{{ item }}/"
+        path: "{{ jws_home }}/{{ item }}/"
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
         mode: 0750
@@ -109,9 +131,9 @@
         - webapps
         - bin
 
-    - name: "Ensure {{ tomcat.home }}/ files have the recommended priviliges, owner and group"
+    - name: "Ensure {{ jws_home }}/ files have the recommended priviliges, owner and group"
       ansible.builtin.file:
-        path: "{{ tomcat.home }}/{{ item }}"
+        path: "{{ jws_home }}/{{ item }}"
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
         mode: 0600
@@ -142,10 +164,10 @@
         group: "{{ tomcat.group }}"
         mode: 0600
       loop:
-        - { template: "{{ tomcat.conf.templates.server }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.server }}" }
-        - { template: "{{ tomcat.conf.templates.web }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.web }}" }
-        - { template: "{{ tomcat.conf.templates.context }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.context }}" }
-        - { template: "{{ tomcat.conf.templates.catalina_properties }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.properties }}" }
+        - { template: "{{ tomcat.conf.templates.server }}", dest: "{{ jws_home }}/{{ tomcat.conf.server }}" }
+        - { template: "{{ tomcat.conf.templates.web }}", dest: "{{ jws_home }}/{{ tomcat.conf.web }}" }
+        - { template: "{{ tomcat.conf.templates.context }}", dest: "{{ jws_home }}/{{ tomcat.conf.context }}" }
+        - { template: "{{ tomcat.conf.templates.catalina_properties }}", dest: "{{ jws_home }}/{{ tomcat.conf.properties }}" }
       notify:
         - Restart Tomcat service
 
@@ -158,7 +180,7 @@
 
     - name: "Remove apps"
       ansible.builtin.file:
-        path: "{{ tomcat.home }}/webapps/{{ item }}"
+        path: "{{ jws_home }}/webapps/{{ item }}"
         state: absent
       loop: "{{ tomcat.apps.to_remove }}"
       when: tomcat.apps.to_remove is defined
@@ -168,7 +190,7 @@
         - name: "Copy {{ tomcat.service.hr_name }} vault keystore from control node to remote"
           ansible.builtin.copy:
             src: "{{ tomcat.vault.name }}"
-            dest: "{{ tomcat.home }}"
+            dest: "{{ jws_home }}"
             owner: "{{ tomcat.user }}"
             group: "{{ tomcat.group }}"
             mode: 0640
@@ -176,7 +198,7 @@
         - name: "Copy {{ tomcat.service.hr_name }} vault properties file from control node to remote"
           ansible.builtin.copy:
             src: "{{ tomcat.vault.properties }}"
-            dest: "{{ tomcat.home }}/conf/"
+            dest: "{{ jws_home }}/conf/"
             owner: "{{ tomcat.user }}"
             group: "{{ tomcat.group }}"
             mode: 0640
@@ -184,7 +206,7 @@
         - name: "Copy {{ tomcat.service.hr_name }} vault data file from control node to remote"
           ansible.builtin.copy:
             src: "{{ tomcat.vault.data }}"
-            dest: "{{ tomcat.home }}"
+            dest: "{{ jws_home }}"
             owner: "{{ tomcat.user }}"
             group: "{{ tomcat.group }}"
             mode: 0640

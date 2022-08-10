@@ -16,11 +16,11 @@
   when:
     - ansible_os_family is defined
 
-- name: "Verify tomcat home"
+- name: "Verify jws_home"
   ansible.builtin.assert:
     that:
-      - tomcat.home is defined
-      - tomcat.home == "/opt/rh/jws5/root/usr/share/tomcat/"
+      - jws_home is defined
+      - jws_home == "/opt/rh/jws5/root/usr/share/tomcat/"
     quiet: true
     fail_msg: "{{ tomcat.service.hr_name }} HOME does not match the one provided by RPM."
 

@@ -3,8 +3,8 @@
 
 readonly MAIN_CLASS='org.apache.catalina.startup.Bootstrap'
 
-{% if tomcat.home is defined %}
-readonly CATALINA_BASE='{{ tomcat.home }}'
+{% if jws_home is defined %}
+readonly CATALINA_BASE='{{ jws_home }}'
 export CATALINA_BASE
 {% endif %}
 
@@ -12,15 +12,15 @@ readonly COMMAND=${1:-'status'}
 
 case "${COMMAND}" in
   status)
-    if [ -e "{{ tomcat.service.pidfile }}" ]; then
+    if [ -e "{{ jws_service_pidfile }}" ]; then
       echo "Tomcat has no PIDfile, service is not running."
     else
-      echo "Tomcat PID is $(cat {{ tomcat.service.pidfile }})."
+      echo "Tomcat PID is $(cat {{ jws_service_pidfile }})."
     fi
     ;;
   start)
     options="-Dcatalina.base={{ tomcat.base }} \
-    {% if tomcat.home is defined %} -Dcatalina.home=${CATALINA_BASE} {% endif %} \
+    {% if jws_home is defined %} -Dcatalina.home=${CATALINA_BASE} {% endif %} \
     {% if tomcat.java is defined and tomcat.java.endorsed_dirs is defined %}-Djava.endorsed.dirs=${JAVA_ENDORSED_DIRS} {% endif %} \
     {% if tomcat.tmpdir is defined %}-Djava.io.tmpdir={{ tomcat.tmpdir }} {% endif %} \
     {% if tomcat.conf.properties is defined %}-Djava.util.logging.config.file={{ tomcat.conf.properties }} {% endif %}\
@@ -30,13 +30,13 @@ case "${COMMAND}" in
     if [ "${SECURITY_MANAGER}" = "true" ] ; then
       options="${options} -Djava.security.manager -Djava.security.policy==${CATALINA_BASE}/conf/catalina.policy"
     fi
-    {{ tomcat.home }}/bin/startup.sh
+    {{ jws_home }}/bin/startup.sh
     readonly PID=$(ps -F | grep org.apache.catalina.startup.Bootstrap | sed -e '/grep/d' | sed -e 's/^[^ ]* *//' -e 's/  *.*$//')
     echo "Tomcat runs with PID: ${PID}"
-    echo "${PID}" > "{{ tomcat.service.pidfile }}"
+    echo "${PID}" > "{{ jws_service_pidfile }}"
     ;;
   stop)
-    {{ tomcat.home }}/bin/shutdown.sh
-    rm -f "{{ tomcat.service.pidfile }}"
+    {{ jws_home }}/bin/shutdown.sh
+    rm -f "{{ jws_service_pidfile }}"
     ;;
 esac

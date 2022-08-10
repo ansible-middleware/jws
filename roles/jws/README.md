@@ -115,7 +115,7 @@ Role Defaults
 |`jws_service_conf`| Absolute path to tomcat.conf | `{{ jws_home }}/conf/tomcat.conf` |
 |`jws_service_script`| Tomcat sysVinit script | `{{ jws_home }}/bin/systemd-service.sh` |
 |`jws_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |
-|`jws_service_systemd_pidfile`| Absolute path to tomcat PIDfile | `{{ jws_home }}/tomcat.pidfile` |
+|`jws_service_pidfile`| Absolute path to tomcat PIDfile | `{{ jws_home }}/tomcat.pidfile` |
 |`jws_service_systemd_type`| Systemd unit type | `simple` |
 
 
