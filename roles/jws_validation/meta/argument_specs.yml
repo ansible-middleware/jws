@@ -2,7 +2,7 @@
 argument_specs:
     main:
         options:
-            tomcat_listen_http_bind_address:
+            jws_listen_http_bind_address:
                 default: "localhost"
                 description: "Service bind address"
                 type: "str"

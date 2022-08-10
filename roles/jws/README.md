@@ -87,7 +87,7 @@ Role Defaults
 |`tomcat_conf_templates_catalina_properties`| Template to use for catalina.properties | `templates/catalina.properties.j2` |
 |`tomcat_shutdown_port`| Tomcat shutdown port | `8005` |
 |`tomcat_listen_http_port`| Tomcat http listen port | `8080` |
-|`tomcat_listen_http_bind_address`| Service bind address | `localhost` |
+|`jws_listen_http_bind_address`| Service bind address | `localhost` |
 |`tomcat_listen_http_enabled`| Enable listening on http port | `yes` |
 |`tomcat_listen_https_port`| Enable listening on https port | `8443` |
 |`tomcat_listen_https_bind_address`| Bind address for https | `::1` |

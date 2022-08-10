@@ -39,7 +39,7 @@ tomcat:
   listen:
     http:
       port: "{{ tomcat_listen_http_port }}"
-      bind_address: "{{ tomcat_listen_http_bind_address }}"
+      bind_address: "{{ jws_listen_http_bind_address }}"
       enabled: "{{ tomcat_listen_http_enabled }}"
     https:
       port: "{{ tomcat_listen_https_port }}"

@@ -24,10 +24,10 @@
 - name: "Ensure Tomcat HTTP connector is started and listen to the appropriate port"
   ansible.builtin.include_tasks: check_connector_port.yml
   vars:
-    bind_address: "{{ tomcat_listen_http_bind_address }}"
+    bind_address: "{{ jws_listen_http_bind_address }}"
     listen_port: "{{ tomcat_listen_http_port }}"
   when:
-    - tomcat_listen_http_bind_address is defined
+    - jws_listen_http_bind_address is defined
     - tomcat_listen_http_port is defined
 
 - name: "Ensure Tomcat HTTPS connector is started and listen to the appropriate port"
