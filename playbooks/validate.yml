@@ -4,8 +4,7 @@
   become: true
   vars:
     ansible_distribution: 'RedHat'
-    #tomcat_home: "/opt/jws-5.6/tomcat/"
-    #jws_service_name: jws
+    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
   tasks:
     - ansible.builtin.include_role:
         name: jws_validation
