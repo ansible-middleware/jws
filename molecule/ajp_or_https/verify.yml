@@ -2,6 +2,7 @@
 - name: Verify
   hosts: instance
   vars:
+    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
     jws_listen_https_port: 8443
     jws_listen_https_bind_address: localhost
   tasks:

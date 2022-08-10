@@ -1,6 +1,10 @@
 ---
 - name: Verify
   hosts: instance
+  vars_files:
+    - ../../playbooks/vars.yml
+  vars:
+    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
   collections:
     - middleware_automation.jws
   tasks:

@@ -1,2 +1,11 @@
 ---
-- import_playbook: playbook.yml
+- name: "Red Hat JBoss Web Server installation and configuration"
+  hosts: all
+  become: true
+  vars_files:
+    - ../../playbooks/vars.yml
+  collections:
+    - middleware_automation.jws
+  tasks:
+    - ansible.builtin.include_role:
+        name: jws
