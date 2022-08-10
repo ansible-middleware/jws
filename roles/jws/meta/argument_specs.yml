@@ -7,7 +7,7 @@ argument_specs:
                 default: "/opt"
                 description: "JWS/tomcat installation path"
                 type: "str"
-            tomcat_setup:
+            jws_setup:
                 default: "True"
                 description: "Indicates if the server should be also configure by Ansible, default is True."
                 type: "str"

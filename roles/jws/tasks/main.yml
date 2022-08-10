@@ -190,4 +190,4 @@
             mode: 0640
 
       when: tomcat.vault.enable
-  when: tomcat_setup
+  when: jws_setup
