@@ -105,14 +105,14 @@ Role Defaults
 |`tomcat_vault_salt`| Salt for encrypting tomcat vault | `1234abcd` |
 |`tomcat_vault_properties`| vault.properties filename, made available in playbook files lookup paths | `vault.properties` |
 |`tomcat_vault_data`| vault.data filename, made available in playbook files lookup paths | `VAULT.dat` |
-|`tomcat_modcluster_enable`| Enable mod_cluster module | `False` |
-|`tomcat_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
-|`tomcat_modcluster_port`| mod_cluster port | `6666` |
-|`tomcat_modcluster_connector_port`| mod_cluster connector port | `6666` |
-|`tomcat_modcluster_advertise`| Enable mod_cluster advertising | `false` |
-|`tomcat_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
-|`tomcat_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
-|`tomcat_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
+|`jws_modcluster_enable`| Enable mod_cluster module | `False` |
+|`jws_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
+|`jws_modcluster_port`| mod_cluster port | `6666` |
+|`jws_modcluster_connector_port`| mod_cluster connector port | `6666` |
+|`jws_modcluster_advertise`| Enable mod_cluster advertising | `false` |
+|`jws_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
+|`jws_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
+|`jws_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
 |`jws_systemd_enabled`| Enable tomcat systemd unit | `False` |
 |`tomcat_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
 |`tomcat_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ tomcat_systemd_script_interpreter }}` |

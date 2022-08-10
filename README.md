@@ -188,9 +188,9 @@ Allows communication between Apache Tomcat and the Apache HTTP Server's mod_prox
 ### How to enable mod_cluster listener
 
 All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:
-- `tomcat_modcluster_enabled` (Set to True to enable the listener)
-- `tomcat_modcluster_ip` (Set the ip of the mod_cluster instance)
-- `tomcat_modcluster_port` (Set the port of the mod_cluster instance)
+- `jws_modcluster_enabled` (Set to True to enable the listener)
+- `jws_modcluster_ip` (Set the ip of the mod_cluster instance)
+- `jws_modcluster_port` (Set the port of the mod_cluster instance)
 
 (This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/ajp) )
 
