@@ -1,10 +1,10 @@
 ---
-tomcat_setup: true
-tomcat_install_method: zipfiles
-tomcat_version: 9.0.50
-tomcat_java_version: 1.8.0
-tomcat_listen_http_bind_address: 127.0.0.1
-tomcat_systemd_enabled: True
-tomcat_service_name: tomcat
-tomcat_service_systemd_type: forking
+jws_setup: true
+jws_install_method: zipfiles
+jws_version: 9.0.50
+jws_java_version: 1.8.0
+jws_listen_http_bind_address: 127.0.0.1
+jws_systemd_enabled: True
+jws_service_name: tomcat
+jws_service_systemd_type: forking
 ansible_distribution: 'RedHat'

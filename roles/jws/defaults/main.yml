@@ -1,24 +1,24 @@
 ---
 # comma separated list of wars to undeploy
-tomcat_apps_to_remove: 'docs,ROOT,examples'
+jws_apps_to_remove: 'docs,ROOT,examples'
 # root directory of installation
-tomcat_install_dir: /opt
-tomcat_rpm: jws5
-tomcat_rpm_root_dir: /opt/rh/jws5/
+jws_install_dir: /opt
+jws_rpm: jws5
+jws_rpm_root_dir: /opt/rh/jws5/
 
 # if True continue installing even if a running tomcat is found
-tomcat_force_install: False
+jws_force_install: False
 
 # installation method: ['local_zipfiles','rhn_zipfiles','zipfiles','rpm']
-tomcat_install_method: local_zipfiles
+jws_install_method: local_zipfiles
 
-tomcat_version: 9.0.60
-tomcat_zipfile_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
-tomcat_zipfile: "apache-tomcat-{{ tomcat_version }}.zip"
-tomcat_native_zipfile: ''
-tomcat_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}"
+jws_version: 9.0.60
+jws_zipfile_home: "{{ jws_install_dir }}/apache-tomcat-{{ jws_version }}"
+jws_zipfile: "apache-tomcat-{{ jws_version }}.zip"
+jws_native_zipfile: ''
+jws_zipfile_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ jws_version.split('.')[0] }}/v{{ jws_version }}/bin/{{ jws_zipfile }}"
 # Switch to True if you want to also download native bits
-tomcat_native: False
+jws_native: False
 
 jws_version: 5.6.0
 jws_home: "{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
@@ -27,14 +27,14 @@ jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDown
 jws_apply_patches: False
 jws_selinux_enabled: True
 
-tomcat_user: tomcat
-tomcat_uid: 53
-tomcat_group: tomcat
-tomcat_gid: 53
+jws_user: tomcat
+jws_uid: 53
+jws_group: tomcat
+jws_gid: 53
 
 # use default paths for tomcat or jws zipfiles depending on install_method; or can be overriden
 tomcat_home: "{{ jws_home if tomcat_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
-tomcat_setup: True
+jws_setup: True
 
 tomcat_catalina_base: "{{ lookup('env','CATALINA_BASE') }}"
 tomcat_conf_properties: './conf/catalina.properties'
@@ -48,31 +48,31 @@ tomcat_conf_templates_server: 'templates/server.xml.j2'
 tomcat_conf_templates_web: 'templates/web.xml.j2'
 tomcat_conf_templates_catalina_properties: 'templates/catalina.properties.j2'
 
-tomcat_shutdown_port: '8005'
+jws_shutdown_port: '8005'
 
 # HTTP Connector config
-tomcat_listen_http_port: '8080'
-tomcat_listen_http_bind_address: 'localhost'
-tomcat_listen_http_enabled: True
+jws_listen_http_port: '8080'
+jws_listen_http_bind_address: 'localhost'
+jws_listen_http_enabled: True
 
 # HTTPS Connector Config
-tomcat_listen_https_enabled: False
-tomcat_listen_https_port: '8443'
-tomcat_listen_https_bind_address: 'localhost'
-tomcat_listen_https_servername: 'My Server'
-tomcat_listen_https_threads_max: 150
-tomcat_listen_https_connection_timeout: 6000
-tomcat_listen_https_headers_size: 8192
-tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
-tomcat_listen_https_keystore_password: changeit
-tomcat_listen_https_client_auth: false
+jws_listen_https_enabled: False
+jws_listen_https_port: '8443'
+jws_listen_https_bind_address: 'localhost'
+jws_listen_https_servername: 'My Server'
+jws_listen_https_threads_max: 150
+jws_listen_https_connection_timeout: 6000
+jws_listen_https_headers_size: 8192
+jws_listen_https_keystore_file: /etc/ssl/keystore.jks
+jws_listen_https_keystore_password: changeit
+jws_listen_https_client_auth: false
 
 # tomcat AJP Connector Config
-tomcat_listen_ajp_enabled: False
-tomcat_listen_ajp_address: '::1'
-tomcat_listen_ajp_port: '8009'
-tomcat_listen_ajp_secret_required: True
-tomcat_listen_ajp_secret: 'secret'
+jws_listen_ajp_enabled: False
+jws_listen_ajp_address: '::1'
+jws_listen_ajp_port: '8009'
+jws_listen_ajp_secret_required: True
+jws_listen_ajp_secret: 'secret'
 
 # vault configuration
 tomcat_vault_name: 'vault.keystore'
@@ -85,23 +85,23 @@ tomcat_vault_properties: 'vault.properties'
 tomcat_vault_data: 'VAULT.dat'
 
 # modcluster configuration
-tomcat_modcluster_enabled: False
-tomcat_modcluster_ip: '127.0.0.1'
-tomcat_modcluster_port: '6666'
-tomcat_modcluster_connector_port: '6666'
-tomcat_modcluster_advertise: 'false'
+jws_modcluster_enabled: False
+jws_modcluster_ip: '127.0.0.1'
+jws_modcluster_port: '6666'
+jws_modcluster_connector_port: '6666'
+jws_modcluster_advertise: 'false'
 # modcluster session configuration
-tomcat_modcluster_sticky_session: True
-tomcat_modcluster_sticky_session_force: False
-tomcat_modcluster_sticky_session_remove: True
+jws_modcluster_sticky_session: True
+jws_modcluster_sticky_session_force: False
+jws_modcluster_sticky_session_remove: True
 
 # systemd/service settings
-tomcat_systemd_enabled: False
-tomcat_systemd_script_interpreter: 'bash'
-tomcat_systemd_script_shebang: "#!/bin/{{ tomcat_systemd_script_interpreter }}"
-tomcat_service_name: 'jws5-tomcat'
-tomcat_service_conf: "{{ tomcat_home }}/conf/{{ tomcat_service_name }}.conf"
-tomcat_service_script: "{{ tomcat_home }}/bin/systemd-service.sh"
-tomcat_service_systemd: "/usr/lib/systemd/system/{{ tomcat_service_name }}.service"
-tomcat_service_systemd_pidfile: "{{ tomcat_home }}/{{ tomcat_service_name }}.pidfile"
-tomcat_service_systemd_type: "simple"
+jws_systemd_enabled: False
+jws_systemd_script_interpreter: 'bash'
+jws_systemd_script_shebang: "#!/bin/{{ jws_systemd_script_interpreter }}"
+jws_service_name: 'jws5-tomcat'
+jws_service_conf: "{{ jws_home }}/conf/{{ jws_service_name }}.conf"
+jws_service_script: "{{ jws_home }}/bin/systemd-service.sh"
+jws_service_systemd: "/usr/lib/systemd/system/{{ jws_service_name }}.service"
+jws_service_systemd_pidfile: "{{ jws_home }}/{{ jws_service_name }}.pidfile"
+jws_service_systemd_type: "simple"
