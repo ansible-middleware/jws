@@ -9,7 +9,7 @@ tomcat_home: /opt/apache-tomcat-9.0.50
 tomcat_catalina_logfile: logs/catalina.out
 tomcat_service_name: tomcat
 
-tomcat_listen_http_bind_address: 127.0.0.1
+jws_listen_http_bind_address: 127.0.0.1
 tomcat_listen_http_port: 8080
 
 tomcat_listen_ajp_enabled: False

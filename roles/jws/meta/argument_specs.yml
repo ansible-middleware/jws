@@ -180,7 +180,7 @@ argument_specs:
                 default: "8080"
                 description: "Tomcat http listen port"
                 type: "str"
-            tomcat_listen_http_bind_address:
+            jws_listen_http_bind_address:
                 # line 24 of jws/defaults/main.yml
                 default: "localhost"
                 description: "Service bind address"
