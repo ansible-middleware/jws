@@ -33,7 +33,7 @@ jws_group: tomcat
 jws_gid: 53
 
 # use default paths for tomcat or jws zipfiles depending on install_method; or can be overriden
-tomcat_home: "{{ jws_home if tomcat_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
+tomcat_home: "{{ jws_home if jws_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}"
 jws_setup: True
 
 tomcat_catalina_base: "{{ lookup('env','CATALINA_BASE') }}"

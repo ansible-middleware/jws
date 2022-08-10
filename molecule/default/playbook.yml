@@ -7,7 +7,7 @@
 
     # Use Case 1 - Downloading and Using Apache Tomcat from Apache
     #
-    tomcat_install_method: zipfiles
+    jws_install_method: zipfiles
     tomcat_version: 9.0.50
 
     # Use Case 2 - Using Apache Tomcat from local zipfiles
@@ -16,11 +16,11 @@
 
     # Use Case 3 - Using JWS, installed from zipfiles, provided in the playbook path or downloaded from RHN (JWS)
     # downloading requires credentials for RHN to be defined: rhn_username and rhn_password
-    # tomcat_install_method: rhn_zipfiles
+    # jws_install_method: rhn_zipfiles
 
     # Use Case 4 - Using JWS RPMs on a RHEL system
     #
-    # tomcat_install_method: rpm
+    # jws_install_method: rpm
     # tomcat_home: /opt/rh/root/usr/share/tomcat/
 
     # Activate extra features

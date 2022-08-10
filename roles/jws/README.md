@@ -47,7 +47,7 @@ Role Defaults
 
 | Variable | Description | Default |
 |:---------|:------------|:--------|
-|`tomcat_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
+|`jws_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
 |`tomcat_install_dir`| Installation path for JWS/tomcat | `/opt` |
 |`tomcat_rpm`| Installation RPM version | `jws5` |
 |`tomcat_zipfile_home`| Default installation path for tomcat archives | `{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}` |
@@ -56,7 +56,7 @@ Role Defaults
 |`jws_apply_patches`| Install JWS most recent cumulative patch for requested version | `False` |
 |`jws_selinux_enabled` | Enable selinux policy enforcement for JWS | `True` |
 |`jws_home`| Default installation path for JWS archives | `{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat` |
-|`tomcat_home`| Target installation directory, defaulting to tomcat or JWS archive path, or can be overridden | `{{ jws_home if tomcat_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}` |
+|`tomcat_home`| Target installation directory, defaulting to tomcat or JWS archive path, or can be overridden | `{{ jws_home if jws_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}` |
 |`tomcat_user`| posix user account for service | `tomcat` |
 |`tomcat_uid`| posix UID user account for service | `tomcat` |
 |`tomcat_group`| posix group for service | `tomcat` |
