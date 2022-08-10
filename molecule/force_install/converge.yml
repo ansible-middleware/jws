@@ -5,7 +5,7 @@
     jws_setup: true
     jws_java_version: 1.8.0
     jws_listen_http_bind_address: 127.0.0.1
-    tomcat_systemd_enabled: True
+    jws_systemd_enabled: True
     tomcat_service_name: tomcat
     tomcat_service_systemd_type: forking
     ansible_distribution: 'RedHat'
@@ -20,7 +20,7 @@
   vars:
     jws_setup: true
     jws_listen_http_bind_address: 127.0.0.1
-    tomcat_systemd_enabled: True
+    jws_systemd_enabled: True
     tomcat_service_name: tomcat
     tomcat_service_systemd_type: forking
     ansible_distribution: 'RedHat'

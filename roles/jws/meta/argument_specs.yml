@@ -336,7 +336,7 @@ argument_specs:
                 default: True
                 description: "Remove sticky session from cookies"
                 type: "bool"
-            tomcat_systemd_enabled:
+            jws_systemd_enabled:
                 # line 52 of jws/defaults/main.yml
                 default: False
                 description: "Enable tomcat systemd unit"
