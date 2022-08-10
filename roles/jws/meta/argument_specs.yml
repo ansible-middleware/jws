@@ -341,14 +341,14 @@ argument_specs:
                 default: False
                 description: "Enable tomcat systemd unit"
                 type: "bool"
-            tomcat_systemd_script_interpreter:
+            jws_systemd_script_interpreter:
                 # line 53 of jws/defaults/main.yml
                 default: "bash"
                 description: "Interpreter for systemd unit"
                 type: "str"
-            tomcat_systemd_script_shebang:
+            jws_systemd_script_shebang:
                 # line 54 of jws/defaults/main.yml
-                default: "#!/bin/{{ tomcat_systemd_script_interpreter }}"
+                default: "#!/bin/{{ jws_systemd_script_interpreter }}"
                 description: "Customize sysVinit script sheband"
                 type: "str"
             jws_service_name:
