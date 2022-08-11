@@ -3,6 +3,8 @@
   hosts: all
   vars_files:
     - ../../playbooks/vars.yml
+  collections:
+    - middleware_automation.jws
   roles:
     - role: jws
       tomcat_version: 9.0.60
@@ -16,6 +18,8 @@
   vars:
     jws_force_install: true
     jws_java_version: 11
+  collections:
+    - middleware_automation.jws
   roles:
     - role: jws
       tomcat_version: 9.0.65
