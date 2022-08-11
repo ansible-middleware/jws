@@ -1,6 +1,6 @@
 ---
-- import_playbook: playbook.yml
+- import_playbook: ../../playbooks/playbook.yml
   vars:
-    jws_conf_templates_server: override_server_xml_template.xml.j2
+    jws_conf_templates_server: ./../molecule/override_server_xml/templates/override_server_xml_template.xml.j2
     jws_listen_ajp_enabled: True
-    tomcat_ajp_flush: True
+    jws_ajp_flush: True

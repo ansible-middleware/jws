@@ -1,6 +1,6 @@
 ---
 - name: Verify
-  hosts: instance
+  hosts: all
   collections:
     - middleware_automation.jws
   vars:

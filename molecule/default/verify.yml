@@ -1,6 +1,6 @@
 ---
 - name: Verify
-  hosts: instance
+  hosts: all
   vars_files:
     - ../../playbooks/vars.yml
   vars:

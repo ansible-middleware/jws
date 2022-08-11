@@ -1,6 +1,6 @@
 ---
 - name: Verify
-  hosts: instance
+  hosts: all
   vars:
     jws_listen_https_port: 8443
     jws_listen_https_bind_address: localhost
