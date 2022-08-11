@@ -7,6 +7,8 @@
     tomcat_version: 9.0.65
     jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
     tomcat_ajp_flush_attribute_name: 'ajpFlush'
+  collections:
+    - middleware_automation.jws
   tasks:
     - include_role:
         name: jws_validation
