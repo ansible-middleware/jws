@@ -3,6 +3,8 @@
   hosts: instance
   vars:
     jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
+  collections:
+    - middleware_automation.jws
   tasks:
     - name: "Verify that state is consistent"
       include_role:

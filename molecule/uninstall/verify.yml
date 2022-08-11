@@ -4,6 +4,8 @@
   vars:
     tomcat_version: 9.0.65
     jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
+  collections:
+    - middleware_automation.jws
   tasks:
     - name: "Read info on server home: {{ jws_home }}"
       stat:
