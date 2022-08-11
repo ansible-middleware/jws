@@ -16,7 +16,7 @@
 
 - name: "Set jws_home if not already defined."
   ansible.builtin.set_fact:
-    jws_home: "{{ tomcat.install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
+    jws_home: "{{ jws.install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
   when:
     - not jws_home is defined
     - jws_version is defined
