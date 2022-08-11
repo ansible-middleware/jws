@@ -4,10 +4,10 @@
     - name: "Update {{ jws_home }} with downloaded Cumulative Patch {{ path_to_patch_bundle_on_target }}."
       ansible.builtin.unarchive:
         src: "{{ path_to_patch_bundle_on_target }}"
-        dest: "{{ tomcat.install_dir }}"
+        dest: "{{ jws.install_dir }}"
         remote_src: yes
-        owner: "{{ tomcat.user | default(omit) }}"
-        group: "{{ tomcat.group | default(omit) }}"
+        owner: "{{ jws.user | default(omit) }}"
+        group: "{{ jws.group | default(omit) }}"
         mode: 0750
       notify:
         - Restart Tomcat service
@@ -16,8 +16,8 @@
       ansible.builtin.copy:
         dest: "{{ patch_checksum_file }}"
         content: "Patch v{{ patch_version_for_msg | default(jws.rhn_ids[jws_version].latest_cp.v) }}"
-        owner: "{{ tomcat.user }}"
-        group: "{{ tomcat.group }}"
+        owner: "{{ jws.user }}"
+        group: "{{ jws.group }}"
         mode: 0640
   when:
     - not last_patch_status.stat.exists

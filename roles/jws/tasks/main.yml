@@ -44,9 +44,9 @@
     - apr
   when: jws_native
 
-- name: "Ensure tomcatjss rpm is not installed"
+- name: "Ensure jws.ss rpm is not installed"
   ansible.builtin.dnf:
-    name: tomcatjss
+    name: jws.ss
     state: absent
 
 - name: "Include tasks for java jvm installation"
@@ -55,28 +55,28 @@
 
 - name: Check user/groups and whether force install needed
   block:
-    - name: "Create group: {{ tomcat.group }}"
+    - name: "Create group: {{ jws.group }}"
       ansible.builtin.group:
-        name: "{{ tomcat.group }}"
-        gid: "{{ tomcat.gid }}"
+        name: "{{ jws.group }}"
+        gid: "{{ jws.gid }}"
         system: yes
 
-    - name: "Create user for tomcat: {{ tomcat.user }}"
+    - name: "Create user for jws. {{ jws.user }}"
       ansible.builtin.user:
-        name: "{{ tomcat.user }}"
-        uid: "{{ tomcat.uid }}"
+        name: "{{ jws.user }}"
+        uid: "{{ jws.uid }}"
         system: yes
-        groups: "{{ tomcat.group }}"
+        groups: "{{ jws.group }}"
         home: "{{ jws_home }}"
         shell: /sbin/nologin
         comment: "User for Apache Tomcat"
   rescue:
-    - name: "Inform of process owned by {{ tomcat.user }} already running"
+    - name: "Inform of process owned by {{ jws.user }} already running"
       ansible.builtin.assert:
         that:
           - jws_force_install
-        fail_msg: "Found a process owned by {{ tomcat.user }} and jws_force_install is false, aborting installation"
-        success_msg: "Found a process owned by {{ tomcat.user }} and jws_force_install is true, continuing installation anyway"
+        fail_msg: "Found a process owned by {{ jws.user }} and jws_force_install is false, aborting installation"
+        success_msg: "Found a process owned by {{ jws.user }} and jws_force_install is true, continuing installation anyway"
 
     - name: "Include force install steps"
       include_tasks: install/force_install.yml
@@ -93,33 +93,33 @@
       ansible.builtin.file:
         path: "{{ jws_install_dir }}"
         state: directory
-        owner: "{{ tomcat.user }}"
-        group: "{{ tomcat.group }}"
+        owner: "{{ jws.user }}"
+        group: "{{ jws.group }}"
         mode: 0750
       when:
         - not install_path.stat.exists
-        - tomcat.install_method is defined
-        - tomcat.install_method != "rpm"
+        - jws.install_method is defined
+        - jws.install_method != "rpm"
 
     - name: "Include install tasks"
       ansible.builtin.include_tasks: install.yml
       when:
-        - tomcat.install_method is defined
+        - jws.install_method is defined
 
     - name: "Include systemd tasks"
       ansible.builtin.include_tasks: systemd/systemd.yml
       when:
-        - tomcat.install_method is defined
-        - tomcat.install_method != "rpm"
-        - tomcat.service is defined
-        - tomcat.service.enabled is defined
-        - tomcat.service.enabled
+        - jws.install_method is defined
+        - jws.install_method != "rpm"
+        - jws.service is defined
+        - jws.service.enabled is defined
+        - jws.service.enabled
 
     - name: Include patch install tasks
       ansible.builtin.include_tasks: apply_cp.yml
       when:
         - jws_apply_patches
-        - tomcat.install_method == "rhn_zipfiles"
+        - jws.install_method == "rhn_zipfiles"
         - jws.rhn_ids[jws_version].latest_cp is defined
         - jws.rhn_ids[jws_version].latest_cp.id is defined
         - jws.rhn_ids[jws_version].latest_cp.v is defined
@@ -127,8 +127,8 @@
     - name: "Ensure {{ jws_home }}/ directories have appropriate privileges"
       ansible.builtin.file:
         path: "{{ jws_home }}/{{ item }}/"
-        owner: "{{ tomcat.user }}"
-        group: "{{ tomcat.group }}"
+        owner: "{{ jws.user }}"
+        group: "{{ jws.group }}"
         mode: 0750
         state: directory
       loop:
@@ -141,20 +141,20 @@
     - name: "Ensure {{ jws_home }}/ files have the recommended priviliges, owner and group"
       ansible.builtin.file:
         path: "{{ jws_home }}/{{ item }}"
-        owner: "{{ tomcat.user }}"
-        group: "{{ tomcat.group }}"
+        owner: "{{ jws.user }}"
+        group: "{{ jws.group }}"
         mode: 0600
       loop:
-        - "{{ tomcat.conf.properties }}"
-        - "{{ tomcat.conf.policy }}"
-        - "{{ tomcat.conf.logging }}"
-        - "conf/tomcat-users.xml"
-        - "conf/jaspic-providers.xml"
+        - "{{ jws.conf.properties }}"
+        - "{{ jws.conf.policy }}"
+        - "{{ jws.conf.logging }}"
+        - "{{ jws.conf.jaspic_providers }}"
+        - "{{ jws.conf.users }}"
 
     - name: "Include ajp sanity check tasks"
       ansible.builtin.include_tasks: sanity_checks/ajp.yml
       when:
-        - tomcat.listen.ajp.enabled is defined
+        - jws.listen.ajp.enabled is defined
         - jws_listen_ajp_enabled
 
     - name: "Include https sanity check tasks"
@@ -167,56 +167,56 @@
       ansible.builtin.template:
         src: "{{ item.template }}"
         dest: "{{ item.dest }}"
-        owner: "{{ tomcat.user }}"
-        group: "{{ tomcat.group }}"
+        owner: "{{ jws.user }}"
+        group: "{{ jws.group }}"
         mode: 0600
       loop:
-        - { template: "{{ tomcat.conf.templates.server }}", dest: "{{ jws_home }}/{{ tomcat.conf.server }}" }
-        - { template: "{{ tomcat.conf.templates.web }}", dest: "{{ jws_home }}/{{ tomcat.conf.web }}" }
-        - { template: "{{ tomcat.conf.templates.context }}", dest: "{{ jws_home }}/{{ tomcat.conf.context }}" }
-        - { template: "{{ tomcat.conf.templates.catalina_properties }}", dest: "{{ jws_home }}/{{ tomcat.conf.properties }}" }
+        - { template: "{{ jws.conf.templates.server }}", dest: "{{ jws_home }}/{{ jws.conf.server }}" }
+        - { template: "{{ jws.conf.templates.web }}", dest: "{{ jws_home }}/{{ jws.conf.web }}" }
+        - { template: "{{ jws.conf.templates.context }}", dest: "{{ jws_home }}/{{ jws.conf.context }}" }
+        - { template: "{{ jws.conf.templates.catalina_properties }}", dest: "{{ jws_home }}/{{ jws.conf.properties }}" }
       notify:
         - Restart Tomcat service
 
     - name: "Include selinux configuration tasks"
       ansible.builtin.include_tasks: systemd/selinux.yml
       when:
-        - tomcat.install_method is defined
-        - tomcat.install_method != "rpm"
-        - jws_selinux_enabled and tomcat.install_method == "rhn_zipfiles"
+        - jws.install_method is defined
+        - jws.install_method != "rpm"
+        - jws_selinux_enabled and jws.install_method == "rhn_zipfiles"
 
     - name: "Remove apps"
       ansible.builtin.file:
         path: "{{ jws_home }}/webapps/{{ item }}"
         state: absent
-      loop: "{{ tomcat.apps.to_remove }}"
-      when: tomcat.apps.to_remove is defined
+      loop: "{{ jws.apps.to_remove }}"
+      when: jws.apps.to_remove is defined
 
     - name: "Create vault configuration"
       block:
-        - name: "Copy {{ tomcat.service.hr_name }} vault keystore from control node to remote"
+        - name: "Copy {{ jws.service.hr_name }} vault keystore from control node to remote"
           ansible.builtin.copy:
-            src: "{{ tomcat.vault.name }}"
+            src: "{{ jws.vault.name }}"
             dest: "{{ jws_home }}"
-            owner: "{{ tomcat.user }}"
-            group: "{{ tomcat.group }}"
+            owner: "{{ jws.user }}"
+            group: "{{ jws.group }}"
             mode: 0640
 
-        - name: "Copy {{ tomcat.service.hr_name }} vault properties file from control node to remote"
+        - name: "Copy {{ jws.service.hr_name }} vault properties file from control node to remote"
           ansible.builtin.copy:
-            src: "{{ tomcat.vault.properties }}"
+            src: "{{ jws.vault.properties }}"
             dest: "{{ jws_home }}/conf/"
-            owner: "{{ tomcat.user }}"
-            group: "{{ tomcat.group }}"
+            owner: "{{ jws.user }}"
+            group: "{{ jws.group }}"
             mode: 0640
 
-        - name: "Copy {{ tomcat.service.hr_name }} vault data file from control node to remote"
+        - name: "Copy {{ jws.service.hr_name }} vault data file from control node to remote"
           ansible.builtin.copy:
-            src: "{{ tomcat.vault.data }}"
+            src: "{{ jws.vault.data }}"
             dest: "{{ jws_home }}"
-            owner: "{{ tomcat.user }}"
-            group: "{{ tomcat.group }}"
+            owner: "{{ jws.user }}"
+            group: "{{ jws.group }}"
             mode: 0640
 
-      when: tomcat.vault.enable
+      when: jws.vault.enable
   when: jws_setup

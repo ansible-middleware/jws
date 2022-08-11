@@ -2,7 +2,7 @@
 - name: "Check required parameter(s) are provided"
   ansible.builtin.assert:
     that:
-      - tomcat.install_dir is defined
+      - jws.install_dir is defined
     quiet: true
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 

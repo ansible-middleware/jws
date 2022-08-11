@@ -2,27 +2,27 @@
 - name: "Ensure required parameters for AJP connector have been provided."
   ansible.builtin.assert:
     that:
-      - tomcat.listen.https is defined
-      - tomcat.listen.https.bind_address is defined
-      - tomcat.listen.https.bind_address != ""
-      - tomcat.listen.https.threads.max is defined
-      - tomcat.listen.https.threads.max > 0
-      - tomcat.listen.https.servername is defined
-      - tomcat.listen.https.servername != ""
-      - tomcat.listen.https.connection.timeout is defined
-      - tomcat.listen.https.headers.max_size is defined
-      - tomcat.listen.https.headers.max_size > 0
-      - tomcat.listen.https.keystore.file is defined
-      - tomcat.listen.https.keystore.file != ""
-      - tomcat.listen.https.keystore.password is defined
-      - tomcat.listen.https.keystore.password != ""
-      - tomcat.listen.https.client.auth is defined
+      - jws.listen.https is defined
+      - jws.listen.https.bind_address is defined
+      - jws.listen.https.bind_address != ""
+      - jws.listen.https.threads.max is defined
+      - jws.listen.https.threads.max > 0
+      - jws.listen.https.servername is defined
+      - jws.listen.https.servername != ""
+      - jws.listen.https.connection.timeout is defined
+      - jws.listen.https.headers.max_size is defined
+      - jws.listen.https.headers.max_size > 0
+      - jws.listen.https.keystore.file is defined
+      - jws.listen.https.keystore.file != ""
+      - jws.listen.https.keystore.password is defined
+      - jws.listen.https.keystore.password != ""
+      - jws.listen.https.client.auth is defined
     quiet: true
     fail_msg: "Required parameters for AJP connector have not been provided"
 
-- name: "Load metadata to provided Java Keystore path: {{ tomcat.listen.https.keystore.file }}"
+- name: "Load metadata to provided Java Keystore path: {{ jws.listen.https.keystore.file }}"
   ansible.builtin.stat:
-    path: "{{ tomcat.listen.https.keystore.file }}"
+    path: "{{ jws.listen.https.keystore.file }}"
   register: java_keystore_location
 
 - name: "Check that java_keystore location is valid and exist."
@@ -33,4 +33,4 @@
       - java_keystore_location.stat.exists is defined
       - java_keystore_location.stat.exists
     quiet: true
-    fail_msg: "Invalid path to Java Keystore provided: {{ tomcat.listen.https.keystore.file }}"
+    fail_msg: "Invalid path to Java Keystore provided: {{ jws.listen.https.keystore.file }}"

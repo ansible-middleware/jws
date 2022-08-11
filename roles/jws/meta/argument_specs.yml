@@ -123,9 +123,16 @@ argument_specs:
                 description: "Relative path to server.xml"
                 type: "str"
             jws_conf_web:
-                # line 16 of jws/defaults/main.yml
                 default: "./conf/web.xml"
                 description: "Relative path to web.xml"
+                type: "str"
+            jws_conf_users:
+                default: "conf/tomcat-users.xml"
+                description: "Relative path to tomcat-users.xml"
+                type: "str"
+            jws_conf_jaspic_providers:
+                default: "conf/jaspic-providers.xml"
+                description: "Relative path to jaspic-providers.xml"
                 type: "str"
             jws_conf_templates_context:
                 # line 18 of jws/defaults/main.yml

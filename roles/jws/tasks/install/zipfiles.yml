@@ -5,7 +5,7 @@
       - zipfile_name is defined
       - zipfile_name != ""
     quiet: true
-    fail_msg: "With {{ tomcat.install_method }} install method, 'zipfile_name' needs to be defined (or at least jws_version)"
+    fail_msg: "With {{ jws.install_method }} install method, 'zipfile_name' needs to be defined (or at least jws_version)"
 
 - name: Add zipfile to unarchive list
   ansible.builtin.set_fact:
@@ -20,13 +20,13 @@
     - jws_native_zipfile is defined
     - jws_native_zipfile | length > 0
 
-- name: "Install {{ tomcat.service.hr_name }} and required binaries from local zipfiles (install method: {{ tomcat.install_method }})"
+- name: "Install {{ jws.service.hr_name }} and required binaries from local zipfiles (install method: {{ jws.install_method }})"
   ansible.builtin.unarchive:
     remote_src: yes
     src: "{{ jws_install_dir }}/{{ item.src }}"
     dest: "{{ jws_install_dir }}"
-    owner: "{{ tomcat.user }}"
-    group: "{{ tomcat.group }}"
+    owner: "{{ jws.user }}"
+    group: "{{ jws.group }}"
     mode: 0750
     creates: "{{ item.creates }}"
   loop: "{{ zipfiles }}"

@@ -3,9 +3,9 @@
   ansible.builtin.assert:
     that:
       - download_url is defined
-      - tomcat is defined
+      - jws is defined
       - jws_home is defined
-      - tomcat.install_dir is defined
+      - jws.install_dir is defined
     quiet: True
 
 - name: "Load server home directory information: {{ jws_home }}."
