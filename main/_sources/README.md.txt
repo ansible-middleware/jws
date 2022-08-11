@@ -60,9 +60,9 @@ After adding the following variables, the playbook will download tomcat from git
 
 ```
     vars:
-      tomcat_install_method: zipfiles
+      jws_install_method: zipfiles
       tomcat_version: 9.0.50
-      tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+      tomcat_home: "{{ jws_install_dir }}/apache-tomcat-{{ tomcat_version }}"
 ```
 
 
@@ -72,7 +72,7 @@ To use JWS, set the install method to rhn_zipfiles:
 
     vars:
        ...
-       tomcat_install_method: rhn_zipfiles
+       jws_install_method: rhn_zipfiles
 
 To automatically download the JWS archives from Red Hat Customer Portal, provide your RHN credentials (as extra argument, in variable file, or better loaded from vault):
 
@@ -93,10 +93,10 @@ Provide the path to those zipfiles:
 
     vars:
       ...
-      tomcat_install_method: rhn_zipfiles
+      jws_install_method: rhn_zipfiles
       jws_version: 5.6.0
-      tomcat_zipfile: jws-5.6.0-application-server.zip
-      tomcat_native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
+      zipfile_name: jws-5.6.0-application-server.zip
+      jws_native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
 
 Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:
 
@@ -105,7 +105,7 @@ Note that if you respect the naming convention above for the file name, which is
       jws_version: 5.6.0
 
 
-Note: if you provide the `jws_version` and set `tomcat_native` to True, then the collection will compute the value of tomcat_native_zipfile for you.
+Note: if you provide the `jws_version` and set `jws_native` to True, then the collection will compute the value of jws_native_zipfile for you.
 
 
 ### JWS Versions
@@ -142,7 +142,7 @@ Change the default install method to RPM and provide the appropriate Tomcat HOME
     vars:
       ...
       tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
-      tomcat_install_method: rpm
+      jws_install_method: rpm
 
 
 ### Using a custom download URL
@@ -151,9 +151,9 @@ To use the install method zipfiles, downloading from a custom URL, set :
 
     vars:
        ...
-       tomcat_install_method: zipfiles
-       tomcat_zipfile: tomcat-x.y.z.zip
-       tomcat_zipfile_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
+       jws_install_method: zipfiles
+       zipfile_name: tomcat-x.y.z.zip
+       zipfile_name_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
 
 
 ### Running the play books
@@ -167,9 +167,9 @@ To use the install method zipfiles, downloading from a custom URL, set :
     ```
 3) Update variables in playbook file, the variables are as follow:
     - `jws_version` or `tomcat_version` (which version of jws or tomcat to install)
-    - `tomcat_java_version` (which version of java to install, ie. name of the JVM rpm package)
-    - `tomcat_listen_http_port` and `tomcat_listen_https_port` (which http/https ports to listen on)
-    - `tomcat_listen_ajp_enabled` and `tomcat_listen_ajp_*` (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)
+    - `jws_java_version` (which version of java to install, ie. name of the JVM rpm package)
+    - `jws_listen_http_port` and `jws_listen_https_port` (which http/https ports to listen on)
+    - `jws_listen_ajp_enabled` and `jws_listen_ajp_*` (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)
 
 Note: If you are using a non root remote user, then set username and enable sudo:
     ```
@@ -188,9 +188,9 @@ Allows communication between Apache Tomcat and the Apache HTTP Server's mod_prox
 ### How to enable mod_cluster listener
 
 All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:
-- `tomcat_modcluster_enabled` (Set to True to enable the listener)
-- `tomcat_modcluster_ip` (Set the ip of the mod_cluster instance)
-- `tomcat_modcluster_port` (Set the port of the mod_cluster instance)
+- `jws_modcluster_enabled` (Set to True to enable the listener)
+- `jws_modcluster_ip` (Set the ip of the mod_cluster instance)
+- `jws_modcluster_port` (Set the port of the mod_cluster instance)
 
 (This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/ajp) )
 
@@ -198,9 +198,9 @@ All that you have to do to enable a mod_cluster listener for jws is to edit the 
 
 The default template for server.xml provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the requires SSH keys and Java Keystore. It expects it to be already installed and available.
 
-    tomcat_listen_https_enabled: True
+    jws_listen_https_enabled: True
     # uncomment the following line to change the default value for the java keystore path
-    #tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
+    #jws_listen_https_keystore_file: /etc/ssl/keystore.jks
 
 Please refers to the [server documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more details on the setup and configuration of this feature.
 
@@ -212,7 +212,7 @@ Note: There other collections and modules available to automate the creation of 
 
 The provided template for the server.xml.j2 covers the most basic use case of the server. It's most likely that a user will need to replace this template by its own, it order to deploy a fine-grained configuration, suiting one's use case. To do so, just change of this default variable:
 
-    tomcat_conf_templates_server: path/to/my_template_for_server_xml.j2
+    jws_conf_templates_server: path/to/my_template_for_server_xml.j2
 
 (This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/override_server_xml) )
 

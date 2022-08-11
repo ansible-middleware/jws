@@ -217,83 +217,63 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_install_method</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_install_method</span></code></p></td>
 <td class="text-left"><p>Installation method, allowed values: <code class="docutils literal notranslate"><span class="pre">['local_zipfiles','rhn_zipfiles','zipfiles','rpm']</span></code></p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">local_zipfiles</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_install_dir</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_install_dir</span></code></p></td>
 <td class="text-left"><p>Installation path for JWS/tomcat</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">/opt</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_rpm</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_rpm</span></code></p></td>
 <td class="text-left"><p>Installation RPM version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws5</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile_home</span></code></p></td>
-<td class="text-left"><p>Default installation path for tomcat archives</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_install_dir</span> <span class="pre">}}/apache-tomcat-{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_rhn_base_url</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_rhn_base_url</span></code></p></td>
 <td class="text-left"><p>Customer Portal Base URL for archive download</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code></p></td>
 <td class="text-left"><p>Version of JWS to install</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.0</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code></p></td>
 <td class="text-left"><p>Install JWS most recent cumulative patch for requested version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_selinux_enabled</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_selinux_enabled</span></code></p></td>
 <td class="text-left"><p>Enable selinux policy enforcement for JWS</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_home</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_home</span></code></p></td>
 <td class="text-left"><p>Default installation path for JWS archives</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_install_dir</span> <span class="pre">}}/jws-{{</span> <span class="pre">jws_version.split('.')[0]</span> <span class="pre">}}.{{</span> <span class="pre">jws_version.split('.')[1]</span> <span class="pre">}}/tomcat</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">jws_install_dir</span> <span class="pre">}}/jws-{{</span> <span class="pre">jws_version.split('.')[0]</span> <span class="pre">}}.{{</span> <span class="pre">jws_version.split('.')[1]</span> <span class="pre">}}/tomcat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_home</span></code></p></td>
-<td class="text-left"><p>Target installation directory, defaulting to tomcat or JWS archive path, or can be overridden</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">jws_home</span> <span class="pre">if</span> <span class="pre">tomcat_install_method</span> <span class="pre">==</span> <span class="pre">'rhn_zipfiles'</span> <span class="pre">else</span> <span class="pre">tomcat_zipfile_home</span> <span class="pre">}}</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_user</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_user</span></code></p></td>
 <td class="text-left"><p>posix user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_uid</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_uid</span></code></p></td>
 <td class="text-left"><p>posix UID user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_group</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_group</span></code></p></td>
 <td class="text-left"><p>posix group for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_gid</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_gid</span></code></p></td>
 <td class="text-left"><p>posix GID user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile</span></code></p></td>
-<td class="text-left"><p>Tomcat archive filename</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">apache-tomcat-{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}.zip</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_zipfile_url</span></code></p></td>
-<td class="text-left"><p>Alternative download URL</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://dlcdn.apache.org/tomcat/tomcat-{{</span> <span class="pre">tomcat_version.split(&quot;.&quot;)[0]</span> <span class="pre">}}/v{{</span> <span class="pre">tomcat_version</span> <span class="pre">}}/bin/{{</span> <span class="pre">tomcat_zipfile</span> <span class="pre">}}</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_native</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_native</span></code></p></td>
 <td class="text-left"><p>Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_native_zipfile</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_native_zipfile</span></code></p></td>
 <td class="text-left"><p>Tomcat native binaries archive filename</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">''</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_version</span></code></p></td>
-<td class="text-left"><p>Tomcat version to download</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9.0.60</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_force_install</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_force_install</span></code></p></td>
 <td class="text-left"><p>Whether to stop any running tomcat process and continue installation</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
@@ -310,99 +290,99 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_apps_to_remove</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_apps_to_remove</span></code></p></td>
 <td class="text-left"><p>Comma separated list of apps to undeploy</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">docs,ROOT,examples</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_catalina_base</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_catalina_base</span></code></p></td>
 <td class="text-left"><p>Tomcat catalina base env variable</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">lookup('env','CATALINA_BASE')</span> <span class="pre">}}</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_properties</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_properties</span></code></p></td>
 <td class="text-left"><p>Path for tomcat configuration</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/catalina.properties</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_policy</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_policy</span></code></p></td>
 <td class="text-left"><p>Path for tomcat policy configuration</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/catalina.policy</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_loggging</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_loggging</span></code></p></td>
 <td class="text-left"><p>Path for logging configuration</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/logging.properties</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_context</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_context</span></code></p></td>
 <td class="text-left"><p>Relative path to context.xml</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/context.xml</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_server</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_server</span></code></p></td>
 <td class="text-left"><p>Relative path to server.xml</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/server.xml</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_web</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_web</span></code></p></td>
 <td class="text-left"><p>Relative path to web.xml</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./conf/web.xml</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_context</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_templates_context</span></code></p></td>
 <td class="text-left"><p>Template to use for context.xml</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">templates/context.xml.j2</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_server</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_templates_server</span></code></p></td>
 <td class="text-left"><p>Template to use for server.xml</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">templates/server.xml.j2</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_web</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_templates_web</span></code></p></td>
 <td class="text-left"><p>Template to use for web.xml</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">templates/web.xml.j2</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_conf_templates_catalina_properties</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_conf_templates_catalina_properties</span></code></p></td>
 <td class="text-left"><p>Template to use for catalina.properties</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">templates/catalina.properties.j2</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_shutdown_port</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_shutdown_port</span></code></p></td>
 <td class="text-left"><p>Tomcat shutdown port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8005</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_port</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_http_port</span></code></p></td>
 <td class="text-left"><p>Tomcat http listen port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8080</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_bind_address</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_http_bind_address</span></code></p></td>
 <td class="text-left"><p>Service bind address</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">localhost</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_enabled</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_http_enabled</span></code></p></td>
 <td class="text-left"><p>Enable listening on http port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">yes</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_port</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_port</span></code></p></td>
 <td class="text-left"><p>Enable listening on https port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8443</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_bind_address</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_bind_address</span></code></p></td>
 <td class="text-left"><p>Bind address for https</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">::1</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_enabled</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_enabled</span></code></p></td>
 <td class="text-left"><p>Enable listening on https port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_enabled</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_ajp_enabled</span></code></p></td>
 <td class="text-left"><p>Enable listening on ajp port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_address</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_ajp_address</span></code></p></td>
 <td class="text-left"><p>Bind address for ajp</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">::1</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_port</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_ajp_port</span></code></p></td>
 <td class="text-left"><p>Tomcat ajp listen port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8009</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_secret_required</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_ajp_secret_required</span></code></p></td>
 <td class="text-left"><p>Enable loading secret from vault</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_secret</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_ajp_secret</span></code></p></td>
 <td class="text-left"><p>Passphrase for vault secret</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">secret</span></code></p></td>
 </tr>
@@ -438,71 +418,71 @@
 <td class="text-left"><p>vault.data filename, made available in playbook files lookup paths</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VAULT.dat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_enable</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_enable</span></code></p></td>
 <td class="text-left"><p>Enable mod_cluster module</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_ip</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_ip</span></code></p></td>
 <td class="text-left"><p>Bind address for mod_cluster</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_port</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_port</span></code></p></td>
 <td class="text-left"><p>mod_cluster port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6666</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_connector_port</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_connector_port</span></code></p></td>
 <td class="text-left"><p>mod_cluster connector port</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6666</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_advertise</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_advertise</span></code></p></td>
 <td class="text-left"><p>Enable mod_cluster advertising</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_sticky_session</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_sticky_session</span></code></p></td>
 <td class="text-left"><p>Enable mod_cluster sticky sessions</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_sticky_session_force</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_sticky_session_force</span></code></p></td>
 <td class="text-left"><p>Force use of sticky sessions</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_sticky_session_remove</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_sticky_session_remove</span></code></p></td>
 <td class="text-left"><p>Remove sticky session from cookies</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_systemd_enabled</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_systemd_enabled</span></code></p></td>
 <td class="text-left"><p>Enable tomcat systemd unit</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_systemd_script_interpreter</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_systemd_script_interpreter</span></code></p></td>
 <td class="text-left"><p>Interpreter for systemd unit</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">bash</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_systemd_script_shebang</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_systemd_script_shebang</span></code></p></td>
 <td class="text-left"><p>Customize sysVinit script shebang</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">#!/bin/{{</span> <span class="pre">tomcat_systemd_script_interpreter</span> <span class="pre">}}</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">#!/bin/{{</span> <span class="pre">jws_systemd_script_interpreter</span> <span class="pre">}}</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_name</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_service_name</span></code></p></td>
 <td class="text-left"><p>Name for the systemd unit</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_conf</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_service_conf</span></code></p></td>
 <td class="text-left"><p>Absolute path to tomcat.conf</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/conf/tomcat.conf</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">jws_home</span> <span class="pre">}}/conf/tomcat.conf</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_script</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_service_script</span></code></p></td>
 <td class="text-left"><p>Tomcat sysVinit script</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/bin/systemd-service.sh</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">jws_home</span> <span class="pre">}}/bin/systemd-service.sh</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_service_systemd</span></code></p></td>
 <td class="text-left"><p>Tomcat systemd unit</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">/usr/lib/systemd/system/tomcat.service</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd_pidfile</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_service_pidfile</span></code></p></td>
 <td class="text-left"><p>Absolute path to tomcat PIDfile</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">tomcat_home</span> <span class="pre">}}/tomcat.pidfile</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">jws_home</span> <span class="pre">}}/tomcat.pidfile</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_service_systemd_type</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_service_systemd_type</span></code></p></td>
 <td class="text-left"><p>Systemd unit type</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">simple</span></code></p></td>
 </tr>
@@ -519,12 +499,12 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_java_version</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_java_version</span></code></p></td>
 <td class="text-left"><p>Version of java openjdk RPM to install for Tomcat, by default nothing is installed</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">No</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat_java_home</span></code></p></td>
-<td class="text-left"><p>JAVA_HOME to use for starting Tomcat, inferred from <code class="docutils literal notranslate"><span class="pre">tomcat_java_version</span></code> if used, <code class="docutils literal notranslate"><span class="pre">/usr/lib/jvm/java</span></code> otherwise</p></td>
+<td class="text-left"><p>JAVA_HOME to use for starting Tomcat, inferred from <code class="docutils literal notranslate"><span class="pre">jws_java_version</span></code> if used, <code class="docutils literal notranslate"><span class="pre">/usr/lib/jvm/java</span></code> otherwise</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">No</span></code></p></td>
 </tr>
 </tbody>

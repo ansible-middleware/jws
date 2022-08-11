@@ -47,56 +47,51 @@ Role Defaults
 
 | Variable | Description | Default |
 |:---------|:------------|:--------|
-|`tomcat_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
-|`tomcat_install_dir`| Installation path for JWS/tomcat | `/opt` |
-|`tomcat_rpm`| Installation RPM version | `jws5` |
-|`tomcat_zipfile_home`| Default installation path for tomcat archives | `{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}` |
+|`jws_install_method`| Installation method, allowed values: `['local_zipfiles','rhn_zipfiles','zipfiles','rpm']` | `local_zipfiles` |
+|`jws_install_dir`| Installation path for JWS/tomcat | `/opt` |
+|`jws_rpm`| Installation RPM version | `jws5` |
 |`jws_rhn_base_url`| Customer Portal Base URL for archive download | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=` |
 |`jws_version`| Version of JWS to install | `5.6.0` |
 |`jws_apply_patches`| Install JWS most recent cumulative patch for requested version | `False` |
 |`jws_selinux_enabled` | Enable selinux policy enforcement for JWS | `True` |
-|`jws_home`| Default installation path for JWS archives | `{{ tomcat_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat` |
-|`tomcat_home`| Target installation directory, defaulting to tomcat or JWS archive path, or can be overridden | `{{ jws_home if tomcat_install_method == 'rhn_zipfiles' else tomcat_zipfile_home }}` |
-|`tomcat_user`| posix user account for service | `tomcat` |
-|`tomcat_uid`| posix UID user account for service | `tomcat` |
-|`tomcat_group`| posix group for service | `tomcat` |
-|`tomcat_gid`| posix GID user account for service | `tomcat` |
-|`tomcat_zipfile`| Tomcat archive filename | `apache-tomcat-{{ tomcat_version }}.zip` |
-|`tomcat_zipfile_url`| Alternative download URL | `https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_version.split(".")[0] }}/v{{ tomcat_version }}/bin/{{ tomcat_zipfile }}` |
-|`tomcat_native`| Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version | `False` |
-|`tomcat_native_zipfile`| Tomcat native binaries archive filename | `''` |
-|`tomcat_version`| Tomcat version to download | `9.0.60` |
-|`tomcat_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
+|`jws_home`| Default installation path for JWS archives | `{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat` |
+|`jws_user`| posix user account for service | `tomcat` |
+|`jws_uid`| posix UID user account for service | `tomcat` |
+|`jws_group`| posix group for service | `tomcat` |
+|`jws_gid`| posix GID user account for service | `tomcat` |
+|`jws_native`| Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version | `False` |
+|`jws_native_zipfile`| Tomcat native binaries archive filename | `''` |
+|`jws_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
 
 
 * Service configuration
 
 | Variable | Description | Default |
 |:---------|:------------|:--------|
-|`tomcat_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
-|`tomcat_catalina_base`| Tomcat catalina base env variable | `{{ lookup('env','CATALINA_BASE') }}` |
-|`tomcat_conf_properties`| Path for tomcat configuration | `./conf/catalina.properties` |
-|`tomcat_conf_policy`| Path for tomcat policy configuration | `./conf/catalina.policy` |
-|`tomcat_conf_loggging`| Path for logging configuration | `./conf/logging.properties` |
-|`tomcat_conf_context`| Relative path to context.xml | `./conf/context.xml` |
-|`tomcat_conf_server`| Relative path to server.xml | `./conf/server.xml` |
-|`tomcat_conf_web`| Relative path to web.xml | `./conf/web.xml` |
-|`tomcat_conf_templates_context`| Template to use for context.xml | `templates/context.xml.j2` |
-|`tomcat_conf_templates_server`| Template to use for server.xml | `templates/server.xml.j2` |
-|`tomcat_conf_templates_web`| Template to use for web.xml | `templates/web.xml.j2` |
-|`tomcat_conf_templates_catalina_properties`| Template to use for catalina.properties | `templates/catalina.properties.j2` |
-|`tomcat_shutdown_port`| Tomcat shutdown port | `8005` |
-|`tomcat_listen_http_port`| Tomcat http listen port | `8080` |
-|`tomcat_listen_http_bind_address`| Service bind address | `localhost` |
-|`tomcat_listen_http_enabled`| Enable listening on http port | `yes` |
-|`tomcat_listen_https_port`| Enable listening on https port | `8443` |
-|`tomcat_listen_https_bind_address`| Bind address for https | `::1` |
-|`tomcat_listen_https_enabled`| Enable listening on https port | `false` |
-|`tomcat_listen_ajp_enabled`| Enable listening on ajp port | `False` |
-|`tomcat_listen_ajp_address`| Bind address for ajp | `::1` |
-|`tomcat_listen_ajp_port`| Tomcat ajp listen port | `8009` |
-|`tomcat_listen_ajp_secret_required`| Enable loading secret from vault | `True` |
-|`tomcat_listen_ajp_secret`| Passphrase for vault secret | `secret` |
+|`jws_apps_to_remove`| Comma separated list of apps to undeploy | `docs,ROOT,examples` |
+|`jws_catalina_base`| Tomcat catalina base env variable | `{{ lookup('env','CATALINA_BASE') }}` |
+|`jws_conf_properties`| Path for tomcat configuration | `./conf/catalina.properties` |
+|`jws_conf_policy`| Path for tomcat policy configuration | `./conf/catalina.policy` |
+|`jws_conf_loggging`| Path for logging configuration | `./conf/logging.properties` |
+|`jws_conf_context`| Relative path to context.xml | `./conf/context.xml` |
+|`jws_conf_server`| Relative path to server.xml | `./conf/server.xml` |
+|`jws_conf_web`| Relative path to web.xml | `./conf/web.xml` |
+|`jws_conf_templates_context`| Template to use for context.xml | `templates/context.xml.j2` |
+|`jws_conf_templates_server`| Template to use for server.xml | `templates/server.xml.j2` |
+|`jws_conf_templates_web`| Template to use for web.xml | `templates/web.xml.j2` |
+|`jws_conf_templates_catalina_properties`| Template to use for catalina.properties | `templates/catalina.properties.j2` |
+|`jws_shutdown_port`| Tomcat shutdown port | `8005` |
+|`jws_listen_http_port`| Tomcat http listen port | `8080` |
+|`jws_listen_http_bind_address`| Service bind address | `localhost` |
+|`jws_listen_http_enabled`| Enable listening on http port | `yes` |
+|`jws_listen_https_port`| Enable listening on https port | `8443` |
+|`jws_listen_https_bind_address`| Bind address for https | `::1` |
+|`jws_listen_https_enabled`| Enable listening on https port | `false` |
+|`jws_listen_ajp_enabled`| Enable listening on ajp port | `False` |
+|`jws_listen_ajp_address`| Bind address for ajp | `::1` |
+|`jws_listen_ajp_port`| Tomcat ajp listen port | `8009` |
+|`jws_listen_ajp_secret_required`| Enable loading secret from vault | `True` |
+|`jws_listen_ajp_secret`| Passphrase for vault secret | `secret` |
 |`tomcat_vault_name`| vault keystore filename, made available in playbook files lookup paths | `vault.keystore` |
 |`tomcat_vault_enabled`| Enable value | `False` |
 |`tomcat_vault_alias`| Alias for loading from vault | `my_vault` |
@@ -105,23 +100,23 @@ Role Defaults
 |`tomcat_vault_salt`| Salt for encrypting tomcat vault | `1234abcd` |
 |`tomcat_vault_properties`| vault.properties filename, made available in playbook files lookup paths | `vault.properties` |
 |`tomcat_vault_data`| vault.data filename, made available in playbook files lookup paths | `VAULT.dat` |
-|`tomcat_modcluster_enable`| Enable mod_cluster module | `False` |
-|`tomcat_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
-|`tomcat_modcluster_port`| mod_cluster port | `6666` |
-|`tomcat_modcluster_connector_port`| mod_cluster connector port | `6666` |
-|`tomcat_modcluster_advertise`| Enable mod_cluster advertising | `false` |
-|`tomcat_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
-|`tomcat_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
-|`tomcat_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
-|`tomcat_systemd_enabled`| Enable tomcat systemd unit | `False` |
-|`tomcat_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
-|`tomcat_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ tomcat_systemd_script_interpreter }}` |
-|`tomcat_service_name`| Name for the systemd unit | `tomcat` |
-|`tomcat_service_conf`| Absolute path to tomcat.conf | `{{ tomcat_home }}/conf/tomcat.conf` |
-|`tomcat_service_script`| Tomcat sysVinit script | `{{ tomcat_home }}/bin/systemd-service.sh` |
-|`tomcat_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |
-|`tomcat_service_systemd_pidfile`| Absolute path to tomcat PIDfile | `{{ tomcat_home }}/tomcat.pidfile` |
-|`tomcat_service_systemd_type`| Systemd unit type | `simple` |
+|`jws_modcluster_enable`| Enable mod_cluster module | `False` |
+|`jws_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
+|`jws_modcluster_port`| mod_cluster port | `6666` |
+|`jws_modcluster_connector_port`| mod_cluster connector port | `6666` |
+|`jws_modcluster_advertise`| Enable mod_cluster advertising | `false` |
+|`jws_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
+|`jws_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
+|`jws_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
+|`jws_systemd_enabled`| Enable tomcat systemd unit | `False` |
+|`jws_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
+|`jws_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ jws_systemd_script_interpreter }}` |
+|`jws_service_name`| Name for the systemd unit | `tomcat` |
+|`jws_service_conf`| Absolute path to tomcat.conf | `{{ jws_home }}/conf/tomcat.conf` |
+|`jws_service_script`| Tomcat sysVinit script | `{{ jws_home }}/bin/systemd-service.sh` |
+|`jws_service_systemd`| Tomcat systemd unit | `/usr/lib/systemd/system/tomcat.service` |
+|`jws_service_pidfile`| Absolute path to tomcat PIDfile | `{{ jws_home }}/tomcat.pidfile` |
+|`jws_service_systemd_type`| Systemd unit type | `simple` |
 
 
 Role Variables
@@ -129,8 +124,8 @@ Role Variables
 
 | Variable | Description | Required |
 |:---------|:------------|:---------|
-|`tomcat_java_version`| Version of java openjdk RPM to install for Tomcat, by default nothing is installed | `No` |
-|`tomcat_java_home`| JAVA_HOME to use for starting Tomcat, inferred from `tomcat_java_version` if used, `/usr/lib/jvm/java` otherwise | `No` |
+|`jws_java_version`| Version of java openjdk RPM to install for Tomcat, by default nothing is installed | `No` |
+|`tomcat_java_home`| JAVA_HOME to use for starting Tomcat, inferred from `jws_java_version` if used, `/usr/lib/jvm/java` otherwise | `No` |
 <!--end argument_specs-->
 
 

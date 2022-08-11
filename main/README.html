@@ -186,9 +186,9 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <h3>Install tomcat community version<a class="headerlink" href="#install-tomcat-community-version" title="Permalink to this heading"></a></h3>
 <p>After adding the following variables, the playbook will download tomcat from github and install the requested version of tomcat:</p>
 <div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">vars</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">tomcat_install_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zipfiles</span><span class="w"></span>
+<span class="w">      </span><span class="nt">jws_install_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zipfiles</span><span class="w"></span>
 <span class="w">      </span><span class="nt">tomcat_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9.0.50</span><span class="w"></span>
-<span class="w">      </span><span class="nt">tomcat_home</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">tomcat_install_dir</span> <span class="cp">}}</span><span class="s">/apache-tomcat-</span><span class="cp">{{</span> <span class="nv">tomcat_version</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">tomcat_home</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">jws_install_dir</span> <span class="cp">}}</span><span class="s">/apache-tomcat-</span><span class="cp">{{</span> <span class="nv">tomcat_version</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -197,7 +197,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <p>To use JWS, set the install method to rhn_zipfiles:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
    ...
-   tomcat_install_method: rhn_zipfiles
+   jws_install_method: rhn_zipfiles
 </pre></div>
 </div>
 <p>To automatically download the JWS archives from Red Hat Customer Portal, provide your RHN credentials (as extra argument, in variable file, or better loaded from vault):</p>
@@ -217,10 +217,10 @@ rhn_password: eatmeiamacookie
 <p>Provide the path to those zipfiles:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
-  tomcat_install_method: rhn_zipfiles
+  jws_install_method: rhn_zipfiles
   jws_version: 5.6.0
-  tomcat_zipfile: jws-5.6.0-application-server.zip
-  tomcat_native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
+  zipfile_name: jws-5.6.0-application-server.zip
+  jws_native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip
 </pre></div>
 </div>
 <p>Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:</p>
@@ -229,7 +229,7 @@ rhn_password: eatmeiamacookie
   jws_version: 5.6.0
 </pre></div>
 </div>
-<p>Note: if you provide the <code class="docutils literal notranslate"><span class="pre">jws_version</span></code> and set <code class="docutils literal notranslate"><span class="pre">tomcat_native</span></code> to True, then the collection will compute the value of tomcat_native_zipfile for you.</p>
+<p>Note: if you provide the <code class="docutils literal notranslate"><span class="pre">jws_version</span></code> and set <code class="docutils literal notranslate"><span class="pre">jws_native</span></code> to True, then the collection will compute the value of jws_native_zipfile for you.</p>
 </section>
 <section id="jws-versions">
 <h3>JWS Versions<a class="headerlink" href="#jws-versions" title="Permalink to this heading"></a></h3>
@@ -324,7 +324,7 @@ rhn_password: eatmeiamacookie
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
   tomcat_home: /opt/rh/jws5/root/usr/share/tomcat/
-  tomcat_install_method: rpm
+  jws_install_method: rpm
 </pre></div>
 </div>
 </section>
@@ -333,9 +333,9 @@ rhn_password: eatmeiamacookie
 <p>To use the install method zipfiles, downloading from a custom URL, set :</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
    ...
-   tomcat_install_method: zipfiles
-   tomcat_zipfile: tomcat-x.y.z.zip
-   tomcat_zipfile_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
+   jws_install_method: zipfiles
+   zipfile_name: tomcat-x.y.z.zip
+   zipfile_name_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
 </pre></div>
 </div>
 </section>
@@ -352,9 +352,9 @@ rhn_password: eatmeiamacookie
 <li><p>Update variables in playbook file, the variables are as follow:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code> or <code class="docutils literal notranslate"><span class="pre">tomcat_version</span></code> (which version of jws or tomcat to install)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_java_version</span></code> (which version of java to install, ie. name of the JVM rpm package)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_http_port</span></code> and <code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_port</span></code> (which http/https ports to listen on)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_enabled</span></code> and <code class="docutils literal notranslate"><span class="pre">tomcat_listen_ajp_*</span></code> (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_java_version</span></code> (which version of java to install, ie. name of the JVM rpm package)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_listen_http_port</span></code> and <code class="docutils literal notranslate"><span class="pre">jws_listen_https_port</span></code> (which http/https ports to listen on)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_listen_ajp_enabled</span></code> and <code class="docutils literal notranslate"><span class="pre">jws_listen_ajp_*</span></code> (Whether to use ajp and if yes configure the address, port, where to use a secret etc.)</p></li>
 </ul>
 </li>
 </ol>
@@ -372,9 +372,9 @@ rhn_password: eatmeiamacookie
 <h3>How to enable mod_cluster listener<a class="headerlink" href="#how-to-enable-mod-cluster-listener" title="Permalink to this heading"></a></h3>
 <p>All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the playbook:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_enabled</span></code> (Set to True to enable the listener)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_ip</span></code> (Set the ip of the mod_cluster instance)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tomcat_modcluster_port</span></code> (Set the port of the mod_cluster instance)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_enabled</span></code> (Set to True to enable the listener)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_ip</span></code> (Set the ip of the mod_cluster instance)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_port</span></code> (Set the port of the mod_cluster instance)</p></li>
 </ul>
 <p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/ajp">Molecule scenario</a> )</p>
 </section>
@@ -382,9 +382,9 @@ rhn_password: eatmeiamacookie
 <section id="enable-https">
 <h2>Enable HTTPS<a class="headerlink" href="#enable-https" title="Permalink to this heading"></a></h2>
 <p>The default template for server.xml provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the requires SSH keys and Java Keystore. It expects it to be already installed and available.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tomcat_listen_https_enabled: True
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>jws_listen_https_enabled: True
 # uncomment the following line to change the default value for the java keystore path
-#tomcat_listen_https_keystore_file: /etc/ssl/keystore.jks
+#jws_listen_https_keystore_file: /etc/ssl/keystore.jks
 </pre></div>
 </div>
 <p>Please refers to the <a class="reference external" href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start">server documentation</a> for more details on the setup and configuration of this feature.</p>
@@ -394,7 +394,7 @@ rhn_password: eatmeiamacookie
 <section id="overriding-the-default-template-for-server-xml">
 <h2>Overriding the default template for server.xml<a class="headerlink" href="#overriding-the-default-template-for-server-xml" title="Permalink to this heading"></a></h2>
 <p>The provided template for the server.xml.j2 covers the most basic use case of the server. It’s most likely that a user will need to replace this template by its own, it order to deploy a fine-grained configuration, suiting one’s use case. To do so, just change of this default variable:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tomcat_conf_templates_server: path/to/my_template_for_server_xml.j2
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>jws_conf_templates_server: path/to/my_template_for_server_xml.j2
 </pre></div>
 </div>
 <p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/override_server_xml">Molecule scenario</a> )</p>
