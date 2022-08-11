@@ -6,5 +6,5 @@
     username: "{{ zipfile_url_username | default(omit) }}"
     password: "{{ zipfile_url_password | default(omit) }}"
     mode: 0640
-    owner: "{{ tomcat.user }}"
-    group: "{{ tomcat.group }}"
+    owner: "{{ jws.user }}"
+    group: "{{ jws.group }}"

@@ -209,7 +209,7 @@ tomcat.util.buf.StringCache.byte.enabled=true
 #tomcat.util.buf.StringCache.trainThreshold=500000
 #tomcat.util.buf.StringCache.cacheSize=5000
 
-{% if tomcat.vault.enable  %}
+{% if jws.vault.enable  %}
 org.apache.tomcat.util.digester.PROPERTY_SOURCE=org.apache.tomcat.vault.util.PropertySourceVault
 org.apache.tomcat.util.digester.REPLACE_SYSTEM_PROPERTIES=true
 {% endif %}

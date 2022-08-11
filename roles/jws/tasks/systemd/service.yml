@@ -2,15 +2,15 @@
 - name: Check arguments
   ansible.builtin.assert:
     that:
-      - tomcat.service.name is defined
+      - jws.service.name is defined
     quiet: true
 
-- name: "Enable tomcat service"
+- name: "Enable jws.service"
   ansible.builtin.service:
-    name: "{{ tomcat.service.name }}"
+    name: "{{ jws.service.name }}"
     enabled: yes
 
-- name: "Start tomcat service"
+- name: "Start jws.service"
   ansible.builtin.service:
-    name: "{{ tomcat.service.name }}"
+    name: "{{ jws.service.name }}"
     state: started

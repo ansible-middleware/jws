@@ -30,8 +30,8 @@
   redhat_csp_download:
     url: "{{ zipfile_url }}"
     dest: "{{ zipfile }}"
-    username: "{{ tomcat.rhn.username }}"
-    password: "{{ tomcat.rhn.password }}"
+    username: "{{ jws.rhn.username }}"
+    password: "{{ jws.rhn.password }}"
   delegate_to: localhost
   register: new_version_downloaded
   when:
@@ -42,8 +42,8 @@
   ansible.builtin.copy:
     src: "{{ local_path.stat.path }}/{{ zipfile }}"
     dest: "{{ jws_install_dir }}/{{ zipfile }}"
-    owner: "{{ tomcat.user }}"
-    group: "{{ tomcat.group }}"
+    owner: "{{ jws.user }}"
+    group: "{{ jws.group }}"
     mode: 0640
   register: new_version_downloaded
   when:

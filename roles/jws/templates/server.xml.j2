@@ -19,15 +19,15 @@
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
  -->
-<Server port="{{ tomcat.shutdown.port }}" shutdown="SHUTDOWN">
-  {% if tomcat.mod_cluster.enable  %}
+<Server port="{{ jws.shutdown.port }}" shutdown="SHUTDOWN">
+  {% if jws.mod_cluster.enable  %}
   <Listener className="org.jboss.modcluster.container.catalina.standalone.ModClusterListener"
-        connectorPort="{{ tomcat.mod_cluster.connector_port }}"
-        advertise="{{ tomcat.mod_cluster.advertise }}"
-        stickySession="{{ tomcat.mod_cluster.stickySession }}"
-        stickySessionForce="{{ tomcat.mod_cluster.stickySessionForce }}"
-        stickySessionRemove="{{ tomcat.mod_cluster.stickySessionRemove }}"
-        proxyList='{{ tomcat.mod_cluster.ip }}:{{ tomcat.mod_cluster.port }}'/>
+        connectorPort="{{ jws.mod_cluster.connector_port }}"
+        advertise="{{ jws.mod_cluster.advertise }}"
+        stickySession="{{ jws.mod_cluster.stickySession }}"
+        stickySessionForce="{{ jws.mod_cluster.stickySessionForce }}"
+        stickySessionRemove="{{ jws.mod_cluster.stickySessionRemove }}"
+        proxyList='{{ jws.mod_cluster.ip }}:{{ jws.mod_cluster.port }}'/>
   {% endif %}
   <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
   <!-- Security listener. Documentation at /docs/config/listeners.html
@@ -75,17 +75,17 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector port="{{ tomcat.listen.http.port }}"
+    <Connector port="{{ jws.listen.http.port }}"
                protocol="HTTP/1.1"
                allowTrace="false"
-{% if tomcat.listen.http.bind_address is defined %}               address="{{ tomcat.listen.http.bind_address }}"
+{% if jws.listen.http.bind_address is defined %}               address="{{ jws.listen.http.bind_address }}"
 {% endif %}
                connectionTimeout="20000"
                xpoweredBy="false"
                server="My Server"
                clientAuth="true"
                maxHttpHeaderSize="8192"
-               redirectPort="{{ tomcat.listen.https.port }}"/>
+               redirectPort="{{ jws.listen.https.port }}"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -101,24 +101,24 @@
          Either JSSE or OpenSSL style configuration may be used regardless of
          the SSLImplementation selected. JSSE style configuration is used below.
     -->
-{% if tomcat.listen.https.enabled is defined and tomcat.listen.https.enabled %}
-    <Connector port="{{ tomcat.listen.https.port }}"
+{% if jws.listen.https.enabled is defined and jws.listen.https.enabled %}
+    <Connector port="{{ jws.listen.https.port }}"
                protocol="org.apache.coyote.http11.Http11NioProtocol"
-{% if tomcat.listen.https.bind_address is defined %}               address="{{ tomcat.listen.https.bind_address }}"
+{% if jws.listen.https.bind_address is defined %}               address="{{ jws.listen.https.bind_address }}"
 {% endif %}
-               maxThreads="{{ tomcat.listen.https.threads.max }}"
+               maxThreads="{{ jws.listen.https.threads.max }}"
                SSLEnabled="true"
                sslProtocol="TLS"
 	           allowTrace="false"
 	           scheme="https"
                secure="true"
                xpoweredBy="false"
-               server="{{ tomcat.listen.https.servername }}"
-               connectionTimeout="{{ tomcat.listen.https.connection.timeout }}"
-               maxHttpHeaderSize="{{ tomcat.listen.https.headers.max_size }}"
-               keystoreFile="{{ tomcat.listen.https.keystore.file }}"
-               keystorePass="{{ tomcat.listen.https.keystore.password }}"
-               clientAuth="{{ tomcat.listen.https.client.auth }}"/>
+               server="{{ jws.listen.https.servername }}"
+               connectionTimeout="{{ jws.listen.https.connection.timeout }}"
+               maxHttpHeaderSize="{{ jws.listen.https.headers.max_size }}"
+               keystoreFile="{{ jws.listen.https.keystore.file }}"
+               keystorePass="{{ jws.listen.https.keystore.password }}"
+               clientAuth="{{ jws.listen.https.client.auth }}"/>
 {% endif %}
     <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
          This connector uses the APR/native implementation which always uses
@@ -146,19 +146,19 @@
                port="8009"
                redirectPort="8443" />
     -->
-{% if tomcat.listen.ajp.enabled  %}
-{% if tomcat.listen.ajp.secretRequired  %}
+{% if jws.listen.ajp.enabled  %}
+{% if jws.listen.ajp.secretRequired  %}
     <Connector protocol="AJP/1.3"
-               address="{{ tomcat.listen.ajp.address }}"
-               port="{{ tomcat.listen.ajp.port }}"
-               redirectPort="{{ tomcat.listen.https.port }}"
-	       secret="{{ tomcat.listen.ajp.secret }}"
+               address="{{ jws.listen.ajp.address }}"
+               port="{{ jws.listen.ajp.port }}"
+               redirectPort="{{ jws.listen.https.port }}"
+	       secret="{{ jws.listen.ajp.secret }}"
 	       allowTrace="false"/>
 {% else %}
     <Connector protocol="AJP/1.3"
-               address="{{ tomcat.listen.ajp.address }}"
-               port="{{ tomcat.listen.ajp.port }}"
-               redirectPort="{{ tomcat.listen.https.port }}"
+               address="{{ jws.listen.ajp.address }}"
+               port="{{ jws.listen.ajp.port }}"
+               redirectPort="{{ jws.listen.https.port }}"
 	       secretRequired="false"
 	       allowTrace="false"/>
 {% endif %}

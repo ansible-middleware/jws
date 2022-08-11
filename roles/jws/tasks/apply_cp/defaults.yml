@@ -1,7 +1,7 @@
 ---
 - name: "Set archive filename when distribution data unavailable"
   ansible.builtin.set_fact:
-    patch_bundle: "{{ jws_patch_bundle | default(tomcat.rhn.patch_native_bundle) }}"
+    patch_bundle: "{{ jws_patch_bundle | default(jws.rhn.patch_native_bundle) }}"
   when:
     - jws_version is defined
     - not ansible_facts is defined or not ansible_facts['distribution_major_version'] is defined

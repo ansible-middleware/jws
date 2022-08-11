@@ -21,8 +21,8 @@
   ansible.builtin.copy:
     src: "{{ path_to_zipfile_local }}"
     dest: "{{ path_to_zipfile_on_target }}"
-    owner: "{{ tomcat.user | default(omit) }}"
-    group: "{{ tomcat.group | default(omit) }}"
+    owner: "{{ jws.user | default(omit) }}"
+    group: "{{ jws.group | default(omit) }}"
     mode: 0640
   when:
     - not archive_path.stat.exists

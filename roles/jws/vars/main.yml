@@ -1,5 +1,5 @@
 ---
-tomcat:
+jws:
   supported_install_method: [local_zipfiles, rhn_zipfiles, zipfiles, rpm]
   install_method: "{{ jws_install_method }}"
   install_dir: "{{ jws_install_dir }}"
@@ -17,6 +17,8 @@ tomcat:
     context: "{{ jws_conf_context }}"
     server: "{{ jws_conf_server }}"
     web: "{{ jws_conf_web }}"
+    users: "{{ jws_conf_users }}"
+    jaspic_providers: "{{ jws_conf_jaspic_providers }}"
     templates:
       context: "{{ jws_conf_templates_context }}"
       server: "{{ jws_conf_templates_server }}"
@@ -77,8 +79,6 @@ tomcat:
     systemd: "{{ jws_service_systemd }}"
     type: "{{ jws_service_systemd_type }}"
     hr_name: "{{ 'Jboss Web Server' if jws_install_method is defined and jws_install_method in ['rhn_zipfiles','rpm'] else 'Tomcat' }}"
-
-jws:
   rhn_ids:
     '5.6.0':  # noqa vars_in_vars_files_have_valid_names
       id: '103663'

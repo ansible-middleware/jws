@@ -8,8 +8,8 @@
   ansible.builtin.copy:
     src: "{{ downloaded_patch_bundle_file }}"
     dest: "{{ path_to_patch_bundle_on_target }}"
-    owner: "{{ tomcat.user | default(omit) }}"
-    group: "{{ tomcat.group | default(omit) }}"
+    owner: "{{ jws.user | default(omit) }}"
+    group: "{{ jws.group | default(omit) }}"
     mode: 0640
   register: new_version_downloaded
   # Romain: not sure we want to be root to deploy the patch,

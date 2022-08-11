@@ -2,11 +2,11 @@
 - name: Check that required parameters has been defined
   ansible.builtin.assert:
     that:
-      - tomcat is defined
-      - tomcat.install_method is defined
-      - tomcat.install_method in tomcat.supported_install_method
+      - jws is defined
+      - jws.install_method is defined
+      - jws.install_method in jws.supported_install_method
     quiet: true
-    fail_msg: "{{ tomcat.install_method }} does not exist or is not supported. Supported methods are: {{ tomcat.supported_install_method }}"
+    fail_msg: "{{ jws.install_method }} does not exist or is not supported. Supported methods are: {{ jws.supported_install_method }}"
 
 - name: "Stop and disable systemd service if running"
   ansible.builtin.include_tasks: systemd/disable.yml
@@ -26,8 +26,8 @@
         path: "{{ jws_home }}"
         state: absent
   when:
-    - tomcat.install_method == 'zipfiles' or tomcat.install_method == 'local_zipfiles'
-    - tomcat.install_method != 'rpm'
+    - jws.install_method == 'zipfiles' or jws.install_method == 'local_zipfiles'
+    - jws.install_method != 'rpm'
 
 - name: "Perform rpm uninstall"
   block:
@@ -41,4 +41,4 @@
       vars:
         dnf_command: 'groupremove'
   when:
-    - tomcat.install_method == 'rpm'
+    - jws.install_method == 'rpm'

@@ -19,11 +19,11 @@ case "${COMMAND}" in
     fi
     ;;
   start)
-    options="-Dcatalina.base={{ tomcat.base }} \
+    options="-Dcatalina.base={{ jws.base }} \
     {% if jws_home is defined %} -Dcatalina.home=${CATALINA_BASE} {% endif %} \
-    {% if tomcat.java is defined and tomcat.java.endorsed_dirs is defined %}-Djava.endorsed.dirs=${JAVA_ENDORSED_DIRS} {% endif %} \
-    {% if tomcat.tmpdir is defined %}-Djava.io.tmpdir={{ tomcat.tmpdir }} {% endif %} \
-    {% if tomcat.conf.properties is defined %}-Djava.util.logging.config.file={{ tomcat.conf.properties }} {% endif %}\
+    {% if jws.java is defined and jws.java.endorsed_dirs is defined %}-Djava.endorsed.dirs=${JAVA_ENDORSED_DIRS} {% endif %} \
+    {% if jws.tmpdir is defined %}-Djava.io.tmpdir={{ jws.tmpdir }} {% endif %} \
+    {% if jws.conf.properties is defined %}-Djava.util.logging.config.file={{ jws.conf.properties }} {% endif %}\
     -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 
     flags="$JAVA_OPTS $CATALINA_OPTS"
