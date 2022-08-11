@@ -4,6 +4,8 @@
   become: true
   vars_files:
     - ../../playbooks/vars.yml
+  collections:
+    - middleware_automation.jws
   tasks:
     - ansible.builtin.include_role:
         name: jws

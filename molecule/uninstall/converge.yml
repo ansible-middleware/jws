@@ -3,6 +3,8 @@
 
 - name: "Red Hat JBoss Web Server uninstallation"
   hosts: all
+  collections:
+    - middleware_automation.jws
   post_tasks:
     - include_role:
         name: jws
