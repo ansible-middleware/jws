@@ -14,10 +14,21 @@
         - not jws_native_zipfile_arch is defined
 
     - name: "Set RHEL major version based on facts (if not provided)."
-      ansible.builtin.set_fact:
-        jws_native_rhel_major_version: "{{ ansible_facts['distribution_major_version'] | default('8') }}"
+      block:
+        - name: "Use facts if available to assert RHEL major version."
+          ansible.builtin.set_fact:
+            jws_native_rhel_major_version: "{{ ansible_facts['distribution_major_version'] }}"
+          when:
+            - ansible_facts is defined
+            - ansible_facts['distribution_major_version'] is defined
+
+        - name: "Use 8 as a default otherwise."
+          ansible.builtin.set_fact:
+            jws_native_rhel_major_version: '8'
+          when:
+            - not jws_native_rhel_major_version is defined
       when:
-        - not jws_native_rhel_major_version
+        - not jws_native_rhel_major_version is defined
 
     - name: Set filename for JWS native zipfile
       ansible.builtin.set_fact:
