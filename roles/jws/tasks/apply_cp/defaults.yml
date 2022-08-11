@@ -21,6 +21,47 @@
     - ansible_facts is defined
     - ansible_facts['distribution_major_version'] is defined
 
+- name: "Set download URLs variables (if not provided)."
+  block:
+    - name: "Set zipfile download URL."
+      block:
+        - name: "Ensure version {{ jws_version }} exists in available metadatas."
+          ansible.builtin.assert:
+            that:
+              - jws.rhn_ids[jws_version] is defined
+              - jws.rhn_ids[jws_version].id is defined
+              - jws_rhn_base_url is defined
+            quiet: True
+            fail_msg: "No version {{ jws_version }} within the metadata of this collection."
+
+        - name: "Set zipfile URL"
+          ansible.builtin.set_fact:
+            rhn_cpatch_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.id | default('') }}"
+      when:
+        - not rhn_cpatch_zipfile_url is defined
+
+    - name: "Set download URL for native (if requested)."
+      block:
+        - name: "Ensure version {{ jws_version }} exists in available metadatas."
+          ansible.builtin.assert:
+            that:
+              - jws.rhn_ids[jws_version] is defined
+              - jws.rhn_ids[jws_version].native is defined
+              - jws_rhn_base_url is defined
+            quiet: True
+            fail_msg: "No version {{ jws_version }} within the metadata of this collection."
+
+        - name: "Set zipfile URL for native patch"
+          ansible.builtin.set_fact:
+            rhn_cpatch_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.native | default('') }}"
+      when:
+        - rhn_native_zipfile_url
+        - jws_native is defined
+        - jws_native
+  when:
+    - jws_version is defined
+    - jws.rhn_ids is defined
+
 - name: "Check that patch version has been provided or defined."
   ansible.builtin.assert:
     that:
