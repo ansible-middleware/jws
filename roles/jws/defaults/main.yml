@@ -70,14 +70,14 @@ jws_listen_ajp_secret_required: True
 jws_listen_ajp_secret: 'secret'
 
 # vault configuration
-tomcat_vault_name: 'vault.keystore'
-tomcat_vault_enabled: False
-tomcat_vault_alias: 'my_vault'
-tomcat_vault_storepass: '123456'
-tomcat_vault_iteration: '44'
-tomcat_vault_salt: '1234abcd'
-tomcat_vault_properties: 'vault.properties'
-tomcat_vault_data: 'VAULT.dat'
+jws_tomcat_vault_name: 'vault.keystore'
+jws_tomcat_vault_enabled: False
+jws_tomcat_vault_alias: 'my_vault'
+jws_tomcat_vault_storepass: '123456'
+jws_tomcat_vault_iteration: '44'
+jws_tomcat_vault_salt: '1234abcd'
+jws_tomcat_vault_properties: 'vault.properties'
+jws_tomcat_vault_data: 'VAULT.dat'
 
 # modcluster configuration
 jws_modcluster_enabled: False

@@ -232,42 +232,42 @@ argument_specs:
                 default: "secret"
                 description: "Passphrase for vault secret"
                 type: "str"
-            tomcat_vault_name:
+            jws_tomcat_vault_name:
                 # line 34 of jws/defaults/main.yml
                 default: "vault.keystore"
                 description: "vault keystore filename"
                 type: "str"
-            tomcat_vault_enabled:
+            jws_tomcat_vault_enabled:
                 # line 35 of jws/defaults/main.yml
                 default: False
                 description: "Enable value"
                 type: "bool"
-            tomcat_vault_alias:
+            jws_tomcat_vault_alias:
                 # line 36 of jws/defaults/main.yml
                 default: "my_vault"
                 description: "Alias for loading from vault"
                 type: "str"
-            tomcat_vault_storepass:
+            jws_tomcat_vault_storepass:
                 # line 37 of jws/defaults/main.yml
                 default: "123456"
                 description: "Tomcat keystore password"
                 type: "str"
-            tomcat_vault_iteration:
+            jws_tomcat_vault_iteration:
                 # line 38 of jws/defaults/main.yml
                 default: "44"
                 description: "TODO document argument"
                 type: "str"
-            tomcat_vault_salt:
+            jws_tomcat_vault_salt:
                 # line 39 of jws/defaults/main.yml
                 default: "1234abcd"
                 description: "Salt for encrypting tomcat vault"
                 type: "str"
-            tomcat_vault_properties:
+            jws_tomcat_vault_properties:
                 # line 40 of jws/defaults/main.yml
                 default: "/conf/vault.properties"
                 description: "vault.properties filename"
                 type: "str"
-            tomcat_vault_data:
+            jws_tomcat_vault_data:
                 # line 41 of jws/defaults/main.yml
                 default: "VAULT.dat"
                 description: "vault.data filename"
