@@ -41,7 +41,7 @@
     system: yes
   when: jws_force_install
 
-- name: "Create user for jws. {{ jws.user }}"
+- name: "Create user: {{ jws.user }}"
   ansible.builtin.user:
     name: "{{ jws.user }}"
     uid: "{{ jws.uid }}"
