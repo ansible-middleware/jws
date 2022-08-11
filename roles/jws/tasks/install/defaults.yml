@@ -1,0 +1,29 @@
+---
+- name: "Set defaults based on jws_version (if provided)."
+  block:
+    - name: Set filename for JWS zipfile
+      ansible.builtin.set_fact:
+        zipfile_name: "jws-{{ jws_version }}-application-server.zip"
+      when:
+        - not zipfile_name is defined
+
+    - name: "Set native zipfile architecture (if not provided)"
+      ansible.builtin.set_fact:
+        jws_native_zipfile_arch: "{{ ansible_architecture | default('x86_64') }}"
+      when:
+        - not jws_native_zipfile_arch is defined
+
+    - name: "Set RHEL major version based on facts (if not provided)."
+      ansible.builtin.set_fact:
+        jws_native_rhel_major_version: "{{ ansible_facts['distribution_major_version'] | default('8') }}"
+      when:
+        - not jws_native_rhel_major_version
+
+    - name: Set filename for JWS native zipfile
+      ansible.builtin.set_fact:
+        jws_native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ jws_native_rhel_major_version }}-{{ jws_native_zipfile_arch }}.zip"
+      when:
+        - jws_native is defined
+        - not jws_native_zipfile is defined or jws_native_zipfile | length == 0
+  when:
+    - jws_version is defined

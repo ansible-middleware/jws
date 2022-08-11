@@ -12,6 +12,9 @@
   ansible.builtin.debug:
     msg: "Install method: {{ tomcat.install_method }}"
 
+- name: "Set defaults values based on facts (if values not provided)"
+  ansible.builtin.include_tasks: install/defaults.yml
+
 - name: "Include installation tasks for rhn_zipfiles method"
   ansible.builtin.include_tasks: install/rhn.yml
   when:

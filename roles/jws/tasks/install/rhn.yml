@@ -7,22 +7,6 @@
     quiet: true
     fail_msg: "You need to provide"
 
-- name: Set filename for JWS zipfile
-  ansible.builtin.set_fact:
-    zipfile_name: "jws-{{ jws_version }}-application-server.zip"
-  when:
-    - jws_version is defined
-
-- name: Set filename for JWS native zipfile
-  ansible.builtin.set_fact:
-    jws_native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-x86_64.zip"
-  when:
-    - jws_native is defined
-    - not jws_native_zipfile is defined or jws_native_zipfile | length == 0
-    - jws_version is defined
-    - ansible_facts is defined
-    - ansible_facts['distribution_major_version'] is defined
-
 - name: "Include fetch and unarchive from RHN tasks"
   ansible.builtin.include_tasks: fetch_zipfile_from_rhn_and_deploy.yml
   vars:
