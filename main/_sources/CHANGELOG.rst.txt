@@ -17,6 +17,7 @@ Major Changes
 Minor Changes
 -------------
 
+- Conditionally install openssl and apr, only when tomcat-native is installed `#159 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/159>`_
 - Name all tasks `#133 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/133>`_
 - Refactor apply_cp (provide patch to patch, reduce code duplication, add checksum file for native and checksum verification) `#153 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/153>`_
 - Remove native tests and ensure that native zipfile existence is only checked if native is on `#146 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/146>`_
