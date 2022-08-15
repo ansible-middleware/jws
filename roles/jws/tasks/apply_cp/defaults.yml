@@ -55,7 +55,6 @@
           ansible.builtin.set_fact:
             rhn_cpatch_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.native | default('') }}"
       when:
-        - rhn_native_zipfile_url
         - jws_native is defined
         - jws_native
   when:
