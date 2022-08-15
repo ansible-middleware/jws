@@ -29,7 +29,7 @@
 - name: "Apply CPs (if information provided.)."
   ansible.builtin.include_tasks: apply_cp/apply_cp.yml
   vars:
-    download_url: "{{ rhn_cpatch_zipfile_url }}"
+    download_url: "{{ rhn_cpatch_zipfile_url | default('') }}"
     archive_file_suffix: "-application-server.zip"
 
 - name: "Download native patch from RHN (if credentials provided)."
@@ -41,7 +41,7 @@
     - name: "Download native patch from RHN (if credentials provided)."
       ansible.builtin.include_tasks: apply_cp/apply_cp.yml
       vars:
-        download_url: "{{ rhn_cpatch_native_zipfile_url }}"
+        download_url: "{{ rhn_cpatch_native_zipfile_url | default('') }}"
         archive_file_suffix: "-application-server-RHEL{{ ansible_facts['distribution_major_version'] }}-{{ native_patch_arch }}.zip"
   when:
     - patch_native is defined
