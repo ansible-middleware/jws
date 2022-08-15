@@ -26,7 +26,7 @@
   ansible.builtin.set_fact:
     patch_bundle_home: "{{ local_path.stat.path }}"
 
-- name: "Download patch from RHN (if credentials provided)."
+- name: "Apply CPs (if information provided.)."
   ansible.builtin.include_tasks: apply_cp/apply_cp.yml
   vars:
     download_url: "{{ rhn_cpatch_zipfile_url }}"
