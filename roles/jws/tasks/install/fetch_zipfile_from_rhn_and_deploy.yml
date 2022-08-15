@@ -7,7 +7,6 @@
       - zipfile_url | length > 0
       - path_to_zipfile is defined
     quiet: true
-    fail_msg: "You need to provide"
 
 - name: "Check download archive path: {{ path_to_zipfile }}"
   ansible.builtin.stat:
