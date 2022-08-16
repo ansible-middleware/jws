@@ -183,7 +183,7 @@
       when:
         - jws.install_method is defined
         - jws.install_method != "rpm"
-        - jws_selinux_enabled and jws.install_method == "rhn_zipfiles"
+        - jws_selinux_enabled
 
     - name: "Remove apps"
       ansible.builtin.file:
