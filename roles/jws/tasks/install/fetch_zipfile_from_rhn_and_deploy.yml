@@ -25,14 +25,23 @@
   register: local_archive_path
   delegate_to: localhost
 
-- name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
-  redhat_csp_download:
-    url: "{{ zipfile_url }}"
-    dest: "{{ zipfile }}"
-    username: "{{ jws.rhn.username }}"
-    password: "{{ jws.rhn.password }}"
-  delegate_to: localhost
-  register: new_version_downloaded
+- name: "Retrieve zipfile from RHN"
+  block:
+
+    - name: "Checking RHN credentials have been set before attemping to download archives."
+      ansible.builtin.assert:
+        that:
+          - rhn_username is defined
+          - rhn_password is defined
+        quiet: True
+
+    - name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
+      redhat_csp_download:
+        url: "{{ zipfile_url }}"
+        dest: "{{ path_to_zipfile }}"
+        username: "{{ rhn_username }}"
+        password: "{{ rhn_password }}"
+      delegate_to: localhost
   when:
     - not archive_path.stat.exists
     - not local_archive_path.stat.exists
@@ -44,7 +53,6 @@
     owner: "{{ jws.user }}"
     group: "{{ jws.group }}"
     mode: 0640
-  register: new_version_downloaded
   when:
     - not archive_path.stat.exists
     - local_archive_path.stat is defined
