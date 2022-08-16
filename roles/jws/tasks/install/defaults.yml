@@ -73,8 +73,5 @@
             - jws_native is defined
             - jws_native
             - not rhn_native_zipfile_url is defined
-      when:
-        - rhn_username is defined
-        - rhn_password is defined
   when:
     - jws_version is defined
