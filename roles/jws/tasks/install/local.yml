@@ -1,15 +1,9 @@
 ---
-- name: Check local download archive path
-  ansible.builtin.stat:
-    path: "{{ lookup('env', 'PWD') }}"
-  register: local_path
-  delegate_to: localhost
-
 - name: "Deploy {{ zipfile_name }} to target."
   ansible.builtin.include_tasks: install/deploy_local_archive.yml
   vars:
     path_to_zipfile_on_target: "{{ jws_install_dir }}/{{ zipfile_name }}"
-    path_to_zipfile_local: "{{ local_path.stat.path }}/{{ zipfile_name }}"
+    path_to_zipfile_local: "{{ jws_archive_repository }}/{{ zipfile_name }}"
   when:
     - zipfile_name is defined
     - zipfile_name | length > 0
@@ -18,7 +12,7 @@
   ansible.builtin.include_tasks: install/deploy_local_archive.yml
   vars:
     path_to_zipfile_on_target: "{{ jws_install_dir }}/{{ jws_native_zipfile }}"
-    path_to_zipfile_local: "{{ local_path.stat.path }}/{{ jws_native_zipfile }}"
+    path_to_zipfile_local: "{{ jws_archive_repository }}/{{ jws_native_zipfile }}"
   when:
     - jws_native
     - jws_native_zipfile | length > 0

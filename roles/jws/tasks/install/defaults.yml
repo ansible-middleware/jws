@@ -1,4 +1,27 @@
 ---
+- name: "Set local repository for archive files (if not defined)."
+  block:
+    - name: "Use current working directory as local repository"
+      ansible.builtin.stat:
+        path: "{{ lookup('env', 'PWD') }}"
+      register: local_path
+      delegate_to: localhost
+      become: no
+
+    - name: "Check that local path have been retrieved"
+      ansible.builtin.assert:
+        that:
+          - local_path is defined
+          - local_path.stat is defined
+          - local_path.stat.path is defined
+        quiet: True
+
+    - name: "Set patch bundle home to PWD (if not defined)."
+      ansible.builtin.set_fact:
+        jws_archive_repository: "{{ local_path.stat.path }}"
+  when:
+    - not jws_archive_repository is defined
+
 - name: "Set defaults based on jws_version (if provided)."
   block:
     - name: Set filename for JWS zipfile

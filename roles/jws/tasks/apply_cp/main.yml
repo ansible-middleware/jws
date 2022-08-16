@@ -7,24 +7,25 @@
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 
 - name: "Set patch bundle home to controller PWD (if not provided)."
-  ansible.builtin.stat:
-    path: "{{ lookup('env', 'PWD') }}"
+  block:
+    - ansible.builtin.stat:
+        path: "{{ lookup('env', 'PWD') }}"
+      register: local_path
+      delegate_to: localhost
+
+    - name: "Check that local path have been retrieved"
+      ansible.builtin.assert:
+        that:
+          - local_path is defined
+          - local_path.stat is defined
+          - local_path.stat.path is defined
+        quiet: True
+
+    - name: "Set patch bundle home to PWD (if not defined)."
+      ansible.builtin.set_fact:
+        patch_bundle_home: "{{ local_path.stat.path }}"
   when:
     - not patch_bundle_home is defined
-  register: local_path
-  delegate_to: localhost
-
-- name: "Check that local path have been retrieved"
-  ansible.builtin.assert:
-    that:
-      - local_path is defined
-      - local_path.stat is defined
-      - local_path.stat.path is defined
-    quiet: True
-
-- name: "Set patch bundle home to PWD (if not defined)."
-  ansible.builtin.set_fact:
-    patch_bundle_home: "{{ local_path.stat.path }}"
 
 - name: "Apply CPs (if information provided.)."
   ansible.builtin.include_tasks: apply_cp/apply_cp.yml
