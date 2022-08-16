@@ -1,5 +1,5 @@
 ---
-- name: "Ensure required parameters for AJP connector have been provided."
+- name: "Ensure required parameters for HTTPS connector have been provided."
   ansible.builtin.assert:
     that:
       - jws.listen.https is defined
@@ -18,7 +18,7 @@
       - jws.listen.https.keystore.password != ""
       - jws.listen.https.client.auth is defined
     quiet: true
-    fail_msg: "Required parameters for AJP connector have not been provided"
+    fail_msg: "Required parameters for HTTPS connector have not been provided"
 
 - name: "Load metadata to provided Java Keystore path: {{ jws.listen.https.keystore.file }}"
   ansible.builtin.stat:
