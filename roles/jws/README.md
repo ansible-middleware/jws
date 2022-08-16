@@ -103,7 +103,7 @@ Role Defaults
 |`jws_modcluster_enable`| Enable mod_cluster module | `False` |
 |`jws_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
 |`jws_modcluster_port`| mod_cluster port | `6666` |
-|`jws_modcluster_connector_port`| mod_cluster connector port | `6666` |
+|`jws_modcluster_connector_port`| mod_cluster connector port | `8080` |
 |`jws_modcluster_advertise`| Enable mod_cluster advertising | `false` |
 |`jws_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
 |`jws_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
