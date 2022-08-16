@@ -1,4 +1,14 @@
 ---
+- name: "Ensure required parameters are provided."
+  ansible.builtin.assert:
+    that:
+      - jws_home is defined
+      - jws_listen_http_port is defined
+      - jws_listen_https_port is defined
+      - jws_listen_ajp_port is defined
+      - jws_shutdown_port is defined
+    quiet: True
+
 - name: Check if archive contains a selinux policy
   ansible.builtin.stat:
     path: "{{ jws_home }}/selinux/jws5-jws.if"
