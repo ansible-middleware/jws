@@ -1,0 +1,25 @@
+---
+- name: "Verify that required parameters are provided."
+  ansible.builtin.assert:
+    that:
+      - jws_validation_version
+      - jws_home
+    quiet: True
+
+
+- name: "Slurp Version files"
+  ansible.builtin.slurp:
+    src: "{{ jws_home }}/../version.txt"
+  register: install_jws_version
+
+- name: "Convert output to text"
+  ansible.builtin.set_fact:
+    version_file_content: "{{ install_jws_version['content'] | b64decode }}"
+
+- name: "Extract version line from file content."
+  ansible.builtin.set_fact:
+    version_line: "{{ version_file_content.splitlines() | first  }}"
+
+- name: "Check that version matches {{ jws_validation_version }}"
+  ansible.builtin.debug:
+    msg: "TODO. {{ jws_validation_version }} == {{ version_line }}"
