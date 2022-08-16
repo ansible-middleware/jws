@@ -15,10 +15,27 @@
     quiet: true
     fail_msg: "Catalina logfile contains SEVERE error lines."
 
-- name: Fail if native is installed but fails to start
-  ansible.builtin.assert:
-    that:
-      - "{{ 'Loaded Apache Tomcat Native library' in catalina_out.content | b64decode }}"
-    quiet: true
-    fail_msg: "Tomcat native extensions failed to load."
-  when: jws_native
+- name: "Test JWS specific features"
+  block:
+
+    - name: Fail if native is installed but fails to start
+      ansible.builtin.assert:
+        that:
+          - "{{ 'Loaded Apache Tomcat Native library' in catalina_out.content | b64decode }}"
+        quiet: true
+        fail_msg: "Tomcat native extensions failed to load."
+      when:
+        - jws_native is defined
+        - jws_native
+
+    - name: "Check that ModCluster Listener is loaded (if enabled)."
+      ansible.builtin.assert:
+        that:
+          - catalina_out['content'] | b64decode | regex_findall('Initializing mod_cluster version', multiline=True) | length != 0
+        success_msg: "ModCluster Listener is loaded."
+        fail_msg: "ModCluster listener is not loaded!"
+      when:
+        - jws_modcluster_enabled is defined
+        - jws_modcluster_enabled
+  when:
+    - jws_version is defined

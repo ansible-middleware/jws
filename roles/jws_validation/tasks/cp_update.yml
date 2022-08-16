@@ -1,0 +1,22 @@
+---
+- name: Check that required parameters are provided
+  ansible.builtin.assert:
+    that:
+      - jws_home is defined
+    quiet: True
+
+- name: Check SP update status
+  block:
+
+    - name: "Check {{ checksum_file_name }} file exists"
+      ansible.builtin.stat:
+        path: "{{ jws_home }}/../{{ checksum_file_name }}"
+      register: applied_patch_file
+
+    - name: "Ensure required parameters are set."
+      ansible.builtin.assert:
+        that:
+          - applied_patch_file.stat.exists == True
+        quiet: True
+  when:
+    - checksum_file_name is defined

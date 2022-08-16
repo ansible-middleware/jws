@@ -1,0 +1,31 @@
+---
+- name: "Check that required paramters have been provided."
+  ansible.builtin.assert:
+    that:
+      - jws_rpm is defined
+      - jws_rpm | length > 0
+      - jws_home is defined
+      - jws_home | lenght > 0
+    quiet: True
+
+- name: "Check that RPM package was installed"
+  ansible.builtin.command: "rpm -q {{ jws_rpm }}-runtime"
+  changed_when: False
+  tags:
+    - skip_ansible_lint
+
+- name: "Load information on {{ jws_home }}"
+  ansible.builtin.stat:
+    path: "{{ jws_home }}"
+  register: jws_home_path
+
+- name: "Check that {{ jws_home }} does exists."
+  ansible.builtin.assert:
+    that:
+      - jws_home_path is defined
+      - jws_home_path.stat is defined
+      - jws_home_path.stat.exists is defined
+      - jws_home_path.stat.exists
+      - jws_home_path.stat.isdir is defined
+      - jws_home_path.stat.isdir
+    quiet: True

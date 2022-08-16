@@ -1,4 +1,10 @@
 ---
+- name: "Verify RPM installed (if used)."
+  ansible.builtin.include_tasks: rpm.yml
+  when:
+    - jws_install_method is defined
+    - jws_install_method == 'rpm'
+
 - name: "Verify user exists."
   ansible.builtin.include_tasks: user.yml
   when:
@@ -11,7 +17,7 @@
     - jws_group is defined
     - jws_gid is defined
 
-- name: "Verify taht service is running."
+- name: "Verify that service is running."
   ansible.builtin.include_tasks: service_status.yml
   when:
     - jws_service_name is defined
@@ -54,3 +60,19 @@
     - jws_listen_ajp_enabled is defined
     - jws_listen_ajp_bind_address is defined
     - jws_listen_ajp_port is defined
+
+- name: "Check JWS specific features (if used)"
+  block:
+    - name: "Check tomcat_vault is operantional (if enabled)."
+      ansible.builtin.include_tasks: tomcat_vault.yml
+      when:
+        - jws_tomcat_vault_enabled is defined
+        - jws_tomcat_vault_enabled
+    - name: "Check that CP have been properly applied (if enabled)."
+      ansible.builtin.include_tasks: apply_cp.yml
+      when:
+        - jws_apply_patches is defined
+        - jws_apply_patches
+  when:
+    - jws_version is defined
+    - jws_version | length > 0
