@@ -85,7 +85,7 @@ jws_tomcat_vault_data: 'VAULT.dat'
 jws_modcluster_enabled: False
 jws_modcluster_ip: '127.0.0.1'
 jws_modcluster_port: '6666'
-jws_modcluster_connector_port: '6666'
+jws_modcluster_connector_port: '8080'
 jws_modcluster_advertise: 'false'
 # modcluster session configuration
 jws_modcluster_sticky_session: True
