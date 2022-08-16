@@ -22,4 +22,5 @@
     zipfile_url: "{{ rhn_native_zipfile_url }}"
     path_to_zipfile: "{{ jws_install_dir }}/{{ jws_native_zipfile }}"
   when:
-    - jws_native_zipfile is defined
+    - jws_native is defined
+    - jws_native
