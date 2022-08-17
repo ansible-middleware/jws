@@ -15,10 +15,10 @@
 - name: "Set defaults values based on facts (if values not provided)"
   ansible.builtin.include_tasks: install/defaults.yml
 
-- name: "Include installation tasks for local_zipfiles method"
+- name: "Include installation tasks using zipfiles method"
   ansible.builtin.include_tasks: install/local.yml
   when:
-    - jws.install_method == 'local_zipfiles'
+    - jws.install_method == 'zipfiles'
 
 - name: "Include installation tasks for zip operations"
   ansible.builtin.include_tasks: install/zipfiles.yml

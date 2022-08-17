@@ -17,8 +17,7 @@ argument_specs:
                 description: "Comma separated list of apps to undeploy"
                 type: "str"
             jws_install_method:
-                # line 3 of jws/defaults/main.yml
-                default: "local_zipfiles"
+                default: "zipfiles"
                 description: "Installation method"
                 type: "str"
             jws_rpm:
