@@ -15,11 +15,6 @@
 - name: "Set defaults values based on facts (if values not provided)"
   ansible.builtin.include_tasks: install/defaults.yml
 
-- name: "Include installation tasks for rhn_zipfiles method"
-  ansible.builtin.include_tasks: install/rhn.yml
-  when:
-    - jws.install_method == 'rhn_zipfiles'
-
 - name: "Include installation tasks for zipfiles method"
   ansible.builtin.include_tasks: install/url.yml
   when:

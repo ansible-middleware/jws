@@ -1,6 +1,6 @@
 ---
 jws:
-  supported_install_method: [local_zipfiles, rhn_zipfiles, zipfiles, rpm]
+  supported_install_method: [local_zipfiles, zipfiles, rpm]
   install_method: "{{ jws_install_method }}"
   install_dir: "{{ jws_install_dir }}"
   rpm: "{{ jws_rpm }}"
@@ -78,7 +78,7 @@ jws:
     name: "{{ jws_service_name }}"
     systemd: "{{ jws_service_systemd }}"
     type: "{{ jws_service_systemd_type }}"
-    hr_name: "{{ 'Jboss Web Server' if jws_install_method is defined and jws_install_method in ['rhn_zipfiles','rpm'] else 'Tomcat' }}"
+    hr_name: "{{ 'Jboss Web Server' if jws_version is defined else 'Tomcat' }}"
   rhn_ids:
     '5.6.0':  # noqa vars_in_vars_files_have_valid_names
       id: '103663'

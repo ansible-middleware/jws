@@ -2,25 +2,29 @@
 - name: Check arguments
   ansible.builtin.assert:
     that:
-      - zipfile is defined
-      - zipfile_url is defined
-      - zipfile_url | length > 0
+      - path_to_zipfile_on_target is defined
       - path_to_zipfile is defined
     quiet: true
 
-- name: "Check download archive path: {{ path_to_zipfile }}"
+- name: "Check downloaded archive on controller: {{ path_to_zipfile_local }}"
+  ansible.builtin.stat:
+    path: "{{ path_to_zipfile_local }}"
+  register: local_archive_path
+  delegate_to: localhost
+
+- name: "Check download archive path on target: {{ path_to_zipfile }}"
   ansible.builtin.stat:
     path: "{{ path_to_zipfile }}"
   register: archive_path
 
-- name: "Retrieve zipfile from RHN"
+- name: "Retrieve zipfile from RHN (if credentials provided)"
   block:
 
     - name: "Checking RHN credentials have been set before attemping to download archives."
       ansible.builtin.assert:
         that:
-          - rhn_username is defined
-          - rhn_password is defined
+          - zipfile_url is defined
+          - zipfile_url | length > 0
         quiet: True
 
     - name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
@@ -31,17 +35,20 @@
         password: "{{ rhn_password }}"
       delegate_to: localhost
   when:
-    - not archive_path.stat.exists
+    - rhn_username is defined and rhn_username | length > 0
+    - rhn_password is defined and rhn_password | length > 0
     - not local_archive_path.stat.exists
 
-- name: "Copy archives to target nodes: {{ jws_install_dir }}/{{ zipfile }}"
+- name: "Copy archives to target nodes: {{ path_to_zipfile_on_target }}"
   ansible.builtin.copy:
     src: "{{ path_to_zipfile }}"
-    dest: "{{ jws_install_dir }}/{{ zipfile }}"
+    dest: "{{ path_to_zipfile_on_target }}"
     owner: "{{ jws.user }}"
     group: "{{ jws.group }}"
     mode: 0640
   when:
+    - archive_path is defined
+    - archive_path.stat is defined
     - not archive_path.stat.exists
     - local_archive_path.stat is defined
     - local_archive_path.stat.exists
