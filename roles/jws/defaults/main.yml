@@ -9,8 +9,8 @@ jws_rpm_root_dir: /opt/rh/jws5/
 # if True continue installing even if a running tomcat is found
 jws_force_install: False
 
-# installation method: ['local_zipfiles', 'rpm']
-jws_install_method: local_zipfiles
+# installation method: ['zipfiles', 'rpm']
+jws_install_method: zipfiles
 
 # Default version of Apache Tomcat to use if no version is provided
 tomcat_version: 9.0.65

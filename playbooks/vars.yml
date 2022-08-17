@@ -1,6 +1,5 @@
 ---
 jws_setup: true
-jws_install_method: local_zipfiles
 jws_java_version: 1.8.0
 jws_listen_http_bind_address: 127.0.0.1
 jws_systemd_enabled: True
