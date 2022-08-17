@@ -26,7 +26,6 @@
         path: "{{ jws_home }}"
         state: absent
   when:
-    - jws.install_method == 'zipfiles' or jws.install_method == 'local_zipfiles'
     - jws.install_method != 'rpm'
 
 - name: "Perform rpm uninstall"

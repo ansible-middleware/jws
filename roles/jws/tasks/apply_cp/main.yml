@@ -8,7 +8,8 @@
 
 - name: "Set patch bundle home to controller PWD (if not provided)."
   block:
-    - ansible.builtin.stat:
+    - name: "Retrieve current working directory (pwd) from environment."
+      ansible.builtin.stat:
         path: "{{ lookup('env', 'PWD') }}"
       register: local_path
       delegate_to: localhost

@@ -1,6 +1,6 @@
 ---
 jws:
-  supported_install_method: [local_zipfiles, zipfiles, rpm]
+  supported_install_method: [local_zipfiles, rpm]
   install_method: "{{ jws_install_method }}"
   install_dir: "{{ jws_install_dir }}"
   rpm: "{{ jws_rpm }}"
