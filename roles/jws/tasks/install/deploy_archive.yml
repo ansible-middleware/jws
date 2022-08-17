@@ -3,7 +3,7 @@
   ansible.builtin.assert:
     that:
       - path_to_zipfile_on_target is defined
-      - path_to_zipfile is defined
+      - path_to_zipfile_local is defined
     quiet: true
 
 - name: "Check downloaded archive on controller: {{ path_to_zipfile_local }}"
@@ -14,7 +14,7 @@
 
 - name: "Check download archive path on target: {{ path_to_zipfile }}"
   ansible.builtin.stat:
-    path: "{{ path_to_zipfile }}"
+    path: "{{ path_to_zipfile_on_target }}"
   register: archive_path
 
 - name: "Retrieve zipfile from RHN (if credentials provided)"
@@ -30,7 +30,7 @@
     - name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
       redhat_csp_download:
         url: "{{ zipfile_url }}"
-        dest: "{{ path_to_zipfile }}"
+        dest: "{{ path_to_zipfile_local }}"
         username: "{{ rhn_username }}"
         password: "{{ rhn_password }}"
       delegate_to: localhost
@@ -41,7 +41,7 @@
 
 - name: "Copy archives to target nodes: {{ path_to_zipfile_on_target }}"
   ansible.builtin.copy:
-    src: "{{ path_to_zipfile }}"
+    src: "{{ path_to_zipfile_local }}"
     dest: "{{ path_to_zipfile_on_target }}"
     owner: "{{ jws.user }}"
     group: "{{ jws.group }}"
