@@ -12,6 +12,7 @@ v1.1.2-devel
 Major Changes
 -------------
 
+- Remove zipfiles and rhn_zipfiles install method `#172 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/172>`_
 - Rename vars `#154 <https://github.com/ansible-middleware/jws-ansible-playbook/pull/154>`_
 
 Minor Changes
