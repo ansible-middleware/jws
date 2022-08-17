@@ -51,7 +51,8 @@
 
 - name: "Include tasks for java jvm installation"
   ansible.builtin.include_tasks: java_install.yml
-  when: jws_java_version is defined
+  when:
+    - jws_java_version is defined
 
 - name: Check user/groups and whether force install needed
   block:
@@ -118,11 +119,8 @@
     - name: Include patch install tasks
       ansible.builtin.include_tasks: apply_cp/main.yml
       when:
+        - jws_apply_patches is defined
         - jws_apply_patches
-        - jws.install_method == "rhn_zipfiles"
-        - jws.rhn_ids[jws_version].latest_cp is defined
-        - jws.rhn_ids[jws_version].latest_cp.id is defined
-        - jws.rhn_ids[jws_version].latest_cp.v is defined
 
     - name: "Ensure {{ jws_home }}/ directories have appropriate privileges"
       ansible.builtin.file:
