@@ -13,6 +13,8 @@
   no_log: "{{ omit_rhn_output | default(true) }}"
   delegate_to: localhost
   when:
+    - rhn_username is defined and rhn_username | length > 0
+    - rhn_password is defined and rhn_password | length > 0
     - patch_archive_path is defined
     - downloaded_patch_bundle.stat is defined
     - not downloaded_patch_bundle.stat.exists
