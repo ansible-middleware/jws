@@ -46,3 +46,30 @@
         - jws_modcluster_enabled
   when:
     - jws_version is defined
+
+- name: "Search for specific strings that should in {{ catalina_logfile }}, if provided, and fails if not found"
+  ansible.builtin.assert:
+    that:
+      - string_in_log in catalina_out.content
+    quiet: True
+    fail_msg: "String {{ string_in_log }} has NOT been found in {{ catalina_out.content }}."
+
+  loop: "{{ jws_validation_strings_in_catalina }}"
+  loop_control:
+    loop_var: string_in_log
+  when:
+    - jws_validation_strings_in_catalina is defined
+    - jws_validation_strings_in_catalina | length > 0
+
+- name: "Search for specific strings that should NOT be in {{ catalina_logfile }}, if provided, and fails if found"
+  ansible.builtin.assert:
+    that:
+      - string_not_in_log in catalina_out.content
+    quiet: True
+    fail_msg: "String {{ string_not_in_log }} has been FOUND in {{ catalina_out.content }}"
+  loop: "{{ jws_validation_strings_not_in_catalina }}"
+  loop_control:
+    loop_var: string_not_in_log
+  when:
+    - jws_validation_strings_not_in_catalina is defined
+    - jws_validation_strings_not_in_catalina | length > 0
