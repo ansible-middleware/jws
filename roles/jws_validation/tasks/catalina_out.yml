@@ -4,9 +4,16 @@
     src: "{{ jws_home }}/{{ catalina_logfile }}"
   register: catalina_out
 
-- name: Print the content of catalina.out
-  ansible.builtin.debug:
-    msg: "{{ catalina_out['content'] | b64decode | length }}"
+- name: "Count number of characters in {{ catalina_logfile }}"
+  ansible.builtin.set_fact:
+    nb_chars_in_catalina_log: "{{ catalina_out['content'] | b64decode | length }}"
+
+- name: "Check that {{ catalina_logfile }} is not empty."
+  ansible.builtin.assert:
+    that:
+      - nb_chars_in_catalina_log is defined
+      - nb_chars_in_catalina_log | int > jws_validation_catalina_out_min_size
+    quiet: True
 
 - name: Fail if logfile contains ERRORs
   ansible.builtin.assert:

@@ -17,3 +17,5 @@ jws_listen_ajp_address: '::1'
 jws_listen_ajp_port: '8009'
 
 jws_native: False
+
+jws_validation_catalina_out_min_size: 500
