@@ -6,6 +6,7 @@
 
 - name: "Count number of characters in {{ catalina_logfile }}"
   ansible.builtin.set_fact:
+    catalina_out_content: "{{ catalina_out['content'] | b64decode }}"
     nb_chars_in_catalina_log: "{{ catalina_out['content'] | b64decode | length }}"
 
 - name: "Check that {{ catalina_logfile }} is not empty."
@@ -15,20 +16,28 @@
       - nb_chars_in_catalina_log | int > jws_validation_catalina_out_min_size
     quiet: True
 
+- name: "Set expected string for fail error message."
+  ansible.builtin.set_fact:
+    severe_error_label: "SEVERE"
+
 - name: Fail if logfile contains ERRORs
   ansible.builtin.assert:
     that:
-      - "{{ 'SEVERE' not in catalina_out.content }}"
+      - not severe_error_label in catalina_out_content
     quiet: true
     fail_msg: "Catalina logfile contains SEVERE error lines."
 
 - name: "Test JWS specific features"
   block:
+    - name: "Set expected strings"
+      ansible.builtin.set_fact:
+        loaded_native_libs: "Loaded Apache Tomcat Native library"
+
 
     - name: Fail if native is installed but fails to start
       ansible.builtin.assert:
         that:
-          - "{{ 'Loaded Apache Tomcat Native library' in catalina_out.content | b64decode }}"
+          - loaded_native_libs in catalina_out_content
         quiet: true
         fail_msg: "Tomcat native extensions failed to load."
       when:
@@ -38,7 +47,7 @@
     - name: "Check that ModCluster Listener is loaded (if enabled)."
       ansible.builtin.assert:
         that:
-          - catalina_out['content'] | b64decode | regex_findall('Initializing mod_cluster version', multiline=True) | length != 0
+          - catalina_out_content | regex_findall('Initializing mod_cluster version', multiline=True) | length != 0
         success_msg: "ModCluster Listener is loaded."
         fail_msg: "ModCluster listener is not loaded!"
       when:
@@ -50,9 +59,9 @@
 - name: "Search for specific strings that should in {{ catalina_logfile }}, if provided, and fails if not found"
   ansible.builtin.assert:
     that:
-      - string_in_log in catalina_out.content
+      - string_in_log in catalina_out_content
     quiet: True
-    fail_msg: "String {{ string_in_log }} has NOT been found in {{ catalina_out.content }}."
+    fail_msg: "String {{ string_in_log }} has NOT been found in {{ catalina_logfile }}."
 
   loop: "{{ jws_validation_strings_in_catalina }}"
   loop_control:
@@ -64,9 +73,9 @@
 - name: "Search for specific strings that should NOT be in {{ catalina_logfile }}, if provided, and fails if found"
   ansible.builtin.assert:
     that:
-      - string_not_in_log in catalina_out.content
+      - string_not_in_log in catalina_out_content
     quiet: True
-    fail_msg: "String {{ string_not_in_log }} has been FOUND in {{ catalina_out.content }}"
+    fail_msg: "String {{ string_not_in_log }} has been FOUND in {{ catalina_logfile }}"
   loop: "{{ jws_validation_strings_not_in_catalina }}"
   loop_control:
     loop_var: string_not_in_log

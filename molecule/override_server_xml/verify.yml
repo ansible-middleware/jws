@@ -6,7 +6,7 @@
     jws_listen_https_bind_address: localhost
     tomcat_version: 9.0.65
     jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
-    tomcat_ajp_flush_attribute_name: 'ajpFlush'
+    jvm_route: jvm_route_1
   collections:
     - middleware_automation.jws
   tasks:
@@ -21,11 +21,11 @@
         src: "{{ path_to_server_xml }}"
       register: slurped_server_xml
 
-    - name: "Extract content for slurped file and search for {{ tomcat_ajp_flush_attribute_name }}."
+    - name: "Extract content for slurped file and search for {{ jvm_route }}."
       set_fact:
-        matches: "{{ slurped_server_xml['content'] | b64decode | regex_findall(tomcat_ajp_flush_attribute_name)}}"
+        matches: "{{ slurped_server_xml['content'] | b64decode | regex_findall(jvm_route)}}"
 
-    - name: "Checks that occurence of {{ tomcat_ajp_flush_attribute_name }} was found."
+    - name: "Checks that occurence of {{ jvm_route }} was found."
       assert:
         that:
           - matches is defined
