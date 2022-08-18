@@ -1,5 +1,5 @@
 ---
-- name: "Ensure file {{ downloaded_patch_bundle_file }}."
+- name: "Ensure file that patch bundle archive exits: {{ downloaded_patch_bundle_file }}."
   ansible.builtin.stat:
     path: "{{ downloaded_patch_bundle_file }}"
   register: downloaded_patch_bundle
