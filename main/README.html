@@ -64,6 +64,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#how-to-enable-modcluster-listener">How to enable ModCluster Listener</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#vault-for-jws">Vault for JWS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-does-tomcat-vault-do">What does tomcat-vault do</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-enable-tomcat-vault">How to enable tomcat-vault</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#enable-https">Enable HTTPS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overriding-the-default-template-for-server-xml">Overriding the default template for server.xml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-deploy-webapps">How to deploy webapps?</a></li>
@@ -256,6 +261,24 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <li><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_port</span></code> (Set the port of the mod_cluster instance)</p></li>
 </ul>
 <p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/ajp">Molecule scenario</a> )</p>
+</section>
+</section>
+<section id="vault-for-jws">
+<h2>Vault for JWS<a class="headerlink" href="#vault-for-jws" title="Permalink to this heading"></a></h2>
+<section id="what-does-tomcat-vault-do">
+<h3>What does tomcat-vault do<a class="headerlink" href="#what-does-tomcat-vault-do" title="Permalink to this heading"></a></h3>
+<p>Allows users to mask passwords and other sensitive strings, and store them in an encrypted Java keystore. Using the vault enables you to stop storing clear-text passwords in your Tomcat configuration files, because Tomcat can lookup passwords and other sensitive strings from a keystore using the vault.</p>
+</section>
+<section id="how-to-enable-tomcat-vault">
+<h3>How to enable tomcat-vault<a class="headerlink" href="#how-to-enable-tomcat-vault" title="Permalink to this heading"></a></h3>
+<p>Before you can enable the tomcat-vault feature, you must follow our documentation on how to create the required files for the feature to function. Please visit the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html-single/installation_guide/index#vault_for_jws">JWS Installation Guide, Chapter 6</a> for next steps, and return here once you’ve generated your vault files.</p>
+<p>Once you have your vault files (<code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code>, <code class="docutils literal notranslate"><span class="pre">VAULT.dat</span></code>, and <code class="docutils literal notranslate"><span class="pre">vault.properties</span></code>) then you’ll need to copy them into your <code class="docutils literal notranslate"><span class="pre">playbooks</span></code> directory. Once that’s done, you can turn on the vault feature by setting <code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_enabled</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> in your <code class="docutils literal notranslate"><span class="pre">vars.yml</span></code> file. In addition to that, you need to provide several other bits of information from the tomcat-vault configuration step in Chapter 6. You’ll need to set the following variables to match the values used in your tomcat-vault configuration:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_alias</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_storepass</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_iteration</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_salt</span></code></p></li>
+</ul>
 </section>
 </section>
 <section id="enable-https">
