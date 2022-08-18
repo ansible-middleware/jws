@@ -238,7 +238,7 @@ argument_specs:
                 default: "secret"
                 description: "Passphrase for vault secret"
                 type: "str"
-            jws_tomcat_vault_name:
+            jws_tomcat_vault_keystore:
                 # line 34 of jws/defaults/main.yml
                 default: "vault.keystore"
                 description: "vault keystore filename"

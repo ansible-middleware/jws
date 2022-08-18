@@ -106,7 +106,7 @@ Role Defaults
 
 | Variable | Description | Default |
 |:---------|:------------|:--------|
-|`jws_tomcat_vault_name`| vault keystore filename, made available in playbook files lookup paths | `vault.keystore` |
+|`jws_tomcat_vault_keystore`| vault keystore filename, made available in playbook files lookup paths | `vault.keystore` |
 |`jws_tomcat_vault_enabled`| Enable value | `False` |
 |`jws_tomcat_vault_alias`| Alias for loading from vault | `my_vault` |
 |`jws_tomcat_vault_storepass`| Tomcat keystore password | `123456` |

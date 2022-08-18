@@ -72,7 +72,7 @@ jws_listen_ajp_secret_required: True
 jws_listen_ajp_secret: 'secret'
 
 # vault configuration
-jws_tomcat_vault_name: 'vault.keystore'
+jws_tomcat_vault_keystore: 'vault.keystore'
 jws_tomcat_vault_enabled: False
 jws_tomcat_vault_alias: 'my_vault'
 jws_tomcat_vault_storepass: '123456'
