@@ -43,7 +43,7 @@ Refer to [JBoss Web Server Component Details](https://access.redhat.com/articles
 Role Defaults
 -------------
 
-* Download and install parameters
+### Download and install parameters
 
 | Variable | Description | Default |
 |:---------|:------------|:--------|
@@ -64,7 +64,7 @@ Role Defaults
 |`jws_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
 
 
-* Service configuration
+### Service configuration
 
 | Variable | Description | Default |
 |:---------|:------------|:--------|
@@ -92,22 +92,6 @@ Role Defaults
 |`jws_listen_ajp_port`| Tomcat ajp listen port | `8009` |
 |`jws_listen_ajp_secret_required`| Enable loading secret from vault | `True` |
 |`jws_listen_ajp_secret`| Passphrase for vault secret | `secret` |
-|`jws_tomcat_vault_name`| vault keystore filename, made available in playbook files lookup paths | `vault.keystore` |
-|`jws_tomcat_vault_enabled`| Enable value | `False` |
-|`jws_tomcat_vault_alias`| Alias for loading from vault | `my_vault` |
-|`jws_tomcat_vault_storepass`| Tomcat keystore password | `123456` |
-|`jws_tomcat_vault_iteration`| Number of iteration for vault encryption | `44` |
-|`jws_tomcat_vault_salt`| Salt for encrypting tomcat vault | `1234abcd` |
-|`jws_tomcat_vault_properties`| vault.properties filename, made available in playbook files lookup paths | `vault.properties` |
-|`jws_tomcat_vault_data`| vault.data filename, made available in playbook files lookup paths | `VAULT.dat` |
-|`jws_modcluster_enable`| Enable mod_cluster module | `False` |
-|`jws_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
-|`jws_modcluster_port`| mod_cluster port | `6666` |
-|`jws_modcluster_connector_port`| mod_cluster connector port | `8080` |
-|`jws_modcluster_advertise`| Enable mod_cluster advertising | `false` |
-|`jws_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
-|`jws_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
-|`jws_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
 |`jws_systemd_enabled`| Enable tomcat systemd unit | `False` |
 |`jws_systemd_script_interpreter`| Interpreter for systemd unit | `bash` |
 |`jws_systemd_script_shebang`| Customize sysVinit script shebang | `#!/bin/{{ jws_systemd_script_interpreter }}` |
@@ -118,6 +102,31 @@ Role Defaults
 |`jws_service_pidfile`| Absolute path to tomcat PIDfile | `{{ jws_home }}/tomcat.pidfile` |
 |`jws_service_systemd_type`| Systemd unit type | `simple` |
 
+### tomcat-vault configuration
+
+| Variable | Description | Default |
+|:---------|:------------|:--------|
+|`jws_tomcat_vault_name`| vault keystore filename, made available in playbook files lookup paths | `vault.keystore` |
+|`jws_tomcat_vault_enabled`| Enable value | `False` |
+|`jws_tomcat_vault_alias`| Alias for loading from vault | `my_vault` |
+|`jws_tomcat_vault_storepass`| Tomcat keystore password | `123456` |
+|`jws_tomcat_vault_iteration`| Number of iteration for vault encryption | `44` |
+|`jws_tomcat_vault_salt`| Salt for encrypting tomcat vault | `1234abcd` |
+|`jws_tomcat_vault_properties`| vault.properties filename, made available in playbook files lookup paths | `vault.properties` |
+|`jws_tomcat_vault_data`| vault.data filename, made available in playbook files lookup paths | `VAULT.dat` |
+
+### mod_cluster configuration
+
+| Variable | Description | Default |
+|:---------|:------------|:--------|
+|`jws_modcluster_enable`| Enable mod_cluster module | `False` |
+|`jws_modcluster_ip`| Bind address for mod_cluster | `127.0.0.1` |
+|`jws_modcluster_port`| mod_cluster port | `6666` |
+|`jws_modcluster_connector_port`| mod_cluster connector port | `8080` |
+|`jws_modcluster_advertise`| Enable mod_cluster advertising | `false` |
+|`jws_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
+|`jws_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
+|`jws_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
 
 Role Variables
 --------------
@@ -135,7 +144,7 @@ Example Playbook
 ---
 - hosts: all
   tasks:
-    - name: "Include tomcat"
+    - name: "Include JWS"
       include_role:
         name: "jws"
 ```
