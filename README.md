@@ -146,7 +146,19 @@ Allows users to mask passwords and other sensitive strings, and store them in an
 
 Before you can enable the tomcat-vault feature, you must follow our documentation on how to create the required files for the feature to function. Please visit the [JWS Installation Guide, Chapter 6](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html-single/installation_guide/index#vault_for_jws) for next steps, and return here once you've generated your vault files.
 
-Once you have your vault files (`vault.keystore`, `VAULT.dat`, and `vault.properties`) then you'll need to copy them into your `playbooks` directory. Once that's done, you can turn on the vault feature by setting `jws_tomcat_vault_enabled` to `True` in your `vars.yml` file. In addition to that, you need to provide several other bits of information from the tomcat-vault configuration step in Chapter 6. You'll need to set the following variables to match the values used in your tomcat-vault configuration:
+Once you have your vault files (`vault.keystore`, `VAULT.dat`, and `vault.properties`), you'll need to set the following variables to point to each file:
+
+    ~~~
+    ...
+    jws_vault_name: ./vault_files/vault.keystore
+    jws_vault_data: ./vault_files/VAULT.dat
+    jws_vault_properties: ./vault_files/vault.properties
+    ...
+    ~~~
+
+With this configuration done, you can turn on the vault feature by setting `jws_tomcat_vault_enabled` to `True` in your `vars.yml` file.
+
+In addition to that, you need to provide several other bits of information from the tomcat-vault configuration step in Chapter 6. You'll need to set the following variables to match the values used in your tomcat-vault configuration:
 
 * `jws_tomcat_vault_alias`
 * `jws_tomcat_vault_storepass`
