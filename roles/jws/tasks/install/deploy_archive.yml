@@ -1,5 +1,5 @@
 ---
-- name: Check arguments
+- name: "Check that required parameters have been provided."
   ansible.builtin.assert:
     that:
       - path_to_zipfile_on_target is defined
@@ -13,7 +13,7 @@
   delegate_to: localhost
   become: no
 
-- name: "Check download archive path on target: {{ path_to_zipfile }}"
+- name: "Check download archive path on target: {{ path_to_zipfile_on_target }}"
   ansible.builtin.stat:
     path: "{{ path_to_zipfile_on_target }}"
   register: archive_path
@@ -35,7 +35,7 @@
   when:
     - not local_archive_path.stat.exists
 
-- name: "Copy archives to target nodes: {{ path_to_zipfile_on_target }}"
+- name: "Copy archives {{ path_to_zipfile_local }} to target nodes: {{ path_to_zipfile_on_target }}"
   ansible.builtin.copy:
     src: "{{ path_to_zipfile_local }}"
     dest: "{{ path_to_zipfile_on_target }}"
