@@ -26,13 +26,14 @@
       - not severe_error_label in catalina_out_content
     quiet: true
     fail_msg: "Catalina logfile contains SEVERE error lines."
+  when:
+    - not jws_validation_allow_errors_in_catalina_log is defined
 
 - name: "Test JWS specific features"
   block:
     - name: "Set expected strings"
       ansible.builtin.set_fact:
         loaded_native_libs: "Loaded Apache Tomcat Native library"
-
 
     - name: Fail if native is installed but fails to start
       ansible.builtin.assert:
