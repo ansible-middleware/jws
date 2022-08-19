@@ -1,6 +1,7 @@
 ---
 # comma separated list of wars to undeploy
-jws_apps_to_remove: 'docs,ROOT,examples'
+# ex: jws_apps_to_remove: 'docs,ROOT,examples'
+jws_apps_to_remove: 'examples'
 # root directory of installation
 jws_install_dir: /opt
 jws_rpm: jws5

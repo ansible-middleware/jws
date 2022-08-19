@@ -13,8 +13,8 @@ argument_specs:
                 type: "str"
             jws_apps_to_remove:
                 # line 2 of jws/defaults/main.yml
-                default: "docs,ROOT,examples"
-                description: "Comma separated list of apps to undeploy"
+                default: "examples"
+                description: "Comma separated list of apps to undeploy (ex: 'docs,ROOT,examples')"
                 type: "str"
             jws_install_method:
                 default: "zipfiles"
