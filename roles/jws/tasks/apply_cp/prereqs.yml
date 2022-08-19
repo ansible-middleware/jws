@@ -25,7 +25,7 @@
 
 - name: "Ensure download directory for CPs exists."
   ansible.builtin.file:
-    path: "{{ patch_bundle_home }}"
+    path: "{{ jws_patch_bundle_repository }}"
     state: directory
     mode: 0755
   delegate_to: localhost

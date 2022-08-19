@@ -24,9 +24,9 @@
 
     - name: "Set patch bundle home to PWD (if not defined)."
       ansible.builtin.set_fact:
-        patch_bundle_home: "{{ local_path.stat.path }}"
+        jws_patch_bundle_repository: "{{ local_path.stat.path }}"
   when:
-    - not patch_bundle_home is defined
+    - not jws_patch_bundle_repository is defined
 
 - name: "Apply CPs (if information provided.)."
   ansible.builtin.include_tasks: apply_cp/apply_cp.yml

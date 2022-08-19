@@ -69,6 +69,6 @@
 
 - name: "Set path to local patch bundle"
   ansible.builtin.set_fact:
-    downloaded_patch_bundle_file: "{{ patch_bundle_home }}/{{ patch_bundle }}"
+    downloaded_patch_bundle_file: "{{ jws_patch_bundle_repository }}/{{ patch_bundle }}"
   when:
     - not downloaded_patch_bundle_file is defined
