@@ -3,6 +3,7 @@ jws:
   supported_install_method: [zipfiles, rpm]
   install_method: "{{ jws_install_method }}"
   install_dir: "{{ jws_install_dir }}"
+  check_jws_ss_absent: "{{ jws_check_jws_ss_absent | default(True) }}"
   rpm: "{{ jws_rpm }}"
   rpm_root_dir: "{{ jws_rpm_root_dir }}"
   user: "{{ jws_user }}"
