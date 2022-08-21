@@ -48,6 +48,9 @@
   ansible.builtin.dnf:
     name: jws.ss
     state: absent
+  when:
+    - jws.check_jws_ss_absent is defined
+    - jws.check_jws_ss_absent
 
 - name: "Include tasks for java jvm installation"
   ansible.builtin.include_tasks: java_install.yml
