@@ -17,7 +17,7 @@
 
 - name: "Extract version line from file content."
   ansible.builtin.set_fact:
-    version_line: "{{ version_file_content.splitlines() | first  }}"
+    version_line: "{{ version_file_content.splitlines() | first }}"
 
 - name: "Check that version matches {{ jws_validation_version }}"
   ansible.builtin.assert:

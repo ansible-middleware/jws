@@ -11,7 +11,7 @@ jws:
   gid: "{{ jws_gid }}"
   base: "{{ jws_catalina_base }}"
   conf:
-    properties: "{{ jws_conf_properties  }}"
+    properties: "{{ jws_conf_properties }}"
     policy: "{{ jws_conf_policy }}"
     logging: "{{ jws_conf_loggging }}"
     context: "{{ jws_conf_context }}"
