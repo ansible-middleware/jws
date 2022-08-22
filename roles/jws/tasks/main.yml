@@ -144,7 +144,7 @@
         path: "{{ jws_home }}/{{ item }}"
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
-        mode: 0600
+        mode: "{{ jws_config_files_mask | default('0640') }}"
       loop:
         - "{{ jws.conf.properties }}"
         - "{{ jws.conf.policy }}"
@@ -170,7 +170,7 @@
         dest: "{{ item.dest }}"
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
-        mode: 0600
+        mode: "{{ jws_config_files_mask | default('0640') }}"
       loop:
         - { template: "{{ jws.conf.templates.server }}", dest: "{{ jws_home }}/{{ jws.conf.server }}" }
         - { template: "{{ jws.conf.templates.web }}", dest: "{{ jws_home }}/{{ jws.conf.web }}" }
