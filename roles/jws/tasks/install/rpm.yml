@@ -37,7 +37,7 @@
     info_msg: "remove {{ tomcat.rpm }}"
   when:
     - dnf_command is defined
-    - dnf_command != "groupinstall"
+    - dnf_command != "'groupinstall'"
 
 - name: "Perform {{ info_msg }}"
   ansible.builtin.command:
