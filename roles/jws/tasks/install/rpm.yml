@@ -45,3 +45,12 @@
     creates: "{{ tomcat_rpm_root_dir }}/enable"
   notify:
     - Ensure Tomcat runs under systemd
+
+- name: "Install tomcat vault extra packages, if requested."
+  block:
+    - name: "Install package for tomcat_vault: {{ tomcat.vault.package_name }}"
+      ansible.builtin.package:
+        name: "{{ tomcat.vault.package_name }}"
+        state: present
+  when:
+    - jws_tomcat_vault_enabled is defined and jws_tomcat_vault_enabled

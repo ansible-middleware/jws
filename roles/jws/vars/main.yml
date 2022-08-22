@@ -64,6 +64,7 @@ tomcat:
       secretRequired: "{{ tomcat_listen_ajp_secret_required }}"
       secret: "{{ tomcat_listen_ajp_secret }}"
   vault:
+    package_name: "{{ tomcat_vault_rpm_name }}"
     name: "{{ tomcat_vault_name }}"
     enable: "{{ tomcat_vault_enabled }}"
     alias: "{{ tomcat_vault_alias }}"

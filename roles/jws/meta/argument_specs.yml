@@ -292,6 +292,10 @@ argument_specs:
                 default: "VAULT.dat"
                 description: "vault.data filename"
                 type: "str"
+            tomcat_vault_rpm_name:
+                default: "jws5-tomcat-vault"
+                description: "RPM package to install for tomcat vault (only used if install method is 'rpm')."
+                type: "str"
             tomcat_modcluster_enabled:
                 # line 42 of jws/defaults/main.yml
                 default: False

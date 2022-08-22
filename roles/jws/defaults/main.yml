@@ -82,6 +82,7 @@ tomcat_vault_iteration: '44'
 tomcat_vault_salt: '1234abcd'
 tomcat_vault_properties: 'vault.properties'
 tomcat_vault_data: 'VAULT.dat'
+tomcat_vault_rpm_name: 'jws5-tomcat-vault'
 
 # modcluster configuration
 tomcat_modcluster_enabled: False
