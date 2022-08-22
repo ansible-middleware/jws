@@ -4,7 +4,7 @@
     src: "{{ jws_home }}/{{ catalina_logfile }}"
   register: catalina_out
 
-- name: "Count number of characters in {{ catalina_logfile }}"
+- name: "Set number of characters in {{ catalina_logfile }}"
   ansible.builtin.set_fact:
     catalina_out_content: "{{ catalina_out['content'] | b64decode }}"
     nb_chars_in_catalina_log: "{{ catalina_out['content'] | b64decode | length }}"
@@ -57,7 +57,7 @@
   when:
     - jws_version is defined
 
-- name: "Search for specific strings that should in {{ catalina_logfile }}, if provided, and fails if not found"
+- name: "Check that expected, specific strings are in {{ catalina_logfile }}, if provided, and fails if not found"
   ansible.builtin.assert:
     that:
       - string_in_log in catalina_out_content
@@ -71,7 +71,7 @@
     - jws_validation_strings_in_catalina is defined
     - jws_validation_strings_in_catalina | length > 0
 
-- name: "Search for specific strings that should NOT be in {{ catalina_logfile }}, if provided, and fails if found"
+- name: "Check that unexpected, provided strings are NOT in {{ catalina_logfile }}, and fails if found"
   ansible.builtin.assert:
     that:
       - string_not_in_log in catalina_out_content

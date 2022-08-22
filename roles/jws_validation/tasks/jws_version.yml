@@ -6,13 +6,12 @@
       - jws_home
     quiet: True
 
-
-- name: "Slurp Version files"
+- name: "Load Version files"
   ansible.builtin.slurp:
     src: "{{ jws_home }}/../version.txt"
   register: install_jws_version
 
-- name: "Convert output to text"
+- name: "Extract output to text"
   ansible.builtin.set_fact:
     version_file_content: "{{ install_jws_version['content'] | b64decode }}"
 
