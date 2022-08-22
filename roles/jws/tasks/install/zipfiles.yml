@@ -14,7 +14,7 @@
 
 - name: Add native zipfile to unarchive list
   ansible.builtin.set_fact:
-    zipfiles: "{{ zipfiles + [{ 'src':jws_native_zipfile, 'creates':jws_home + '/lib/libtcnative-1.so' }] }}"
+    zipfiles: "{{ zipfiles + [{'src':jws_native_zipfile, 'creates':jws_home + '/lib/libtcnative-1.so'}] }}"
   when:
     - jws_native
     - jws_native_zipfile is defined
