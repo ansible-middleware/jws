@@ -1,0 +1,24 @@
+---
+- name: "Copy {{ jws.service.hr_name }} vault keystore from control node to remote"
+  ansible.builtin.copy:
+    src: "{{ jws.vault.keystore }}"
+    dest: "{{ jws_home }}"
+    owner: "{{ jws.user }}"
+    group: "{{ jws.group }}"
+    mode: 0640
+
+- name: "Copy {{ jws.service.hr_name }} vault properties file from control node to remote"
+  ansible.builtin.copy:
+    src: "{{ jws.vault.properties }}"
+    dest: "{{ jws_home }}/conf/"
+    owner: "{{ jws.user }}"
+    group: "{{ jws.group }}"
+    mode: 0640
+
+- name: "Copy {{ jws.service.hr_name }} vault data file from control node to remote"
+  ansible.builtin.copy:
+    src: "{{ jws.vault.data }}"
+    dest: "{{ jws_home }}"
+    owner: "{{ jws.user }}"
+    group: "{{ jws.group }}"
+    mode: 0640

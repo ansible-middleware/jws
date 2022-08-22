@@ -193,31 +193,8 @@
       loop: "{{ jws.apps.to_remove }}"
       when: jws.apps.to_remove is defined
 
-    - name: "Create vault configuration"
-      block:
-        - name: "Copy {{ jws.service.hr_name }} vault keystore from control node to remote"
-          ansible.builtin.copy:
-            src: "{{ jws.vault.keystore }}"
-            dest: "{{ jws_home }}"
-            owner: "{{ jws.user }}"
-            group: "{{ jws.group }}"
-            mode: 0640
-
-        - name: "Copy {{ jws.service.hr_name }} vault properties file from control node to remote"
-          ansible.builtin.copy:
-            src: "{{ jws.vault.properties }}"
-            dest: "{{ jws_home }}/conf/"
-            owner: "{{ jws.user }}"
-            group: "{{ jws.group }}"
-            mode: 0640
-
-        - name: "Copy {{ jws.service.hr_name }} vault data file from control node to remote"
-          ansible.builtin.copy:
-            src: "{{ jws.vault.data }}"
-            dest: "{{ jws_home }}"
-            owner: "{{ jws.user }}"
-            group: "{{ jws.group }}"
-            mode: 0640
-
-      when: jws.vault.enable
+    - name: "Create vault configuration (if enabled)"
+      ansible.builtin.include_tasks: tomcat_vault.yml
+      when:
+        - jws.vault.enable
   when: jws_setup
