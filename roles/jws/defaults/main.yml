@@ -1,6 +1,6 @@
 ---
 # comma separated list of wars to undeploy
-tomcat_apps_to_remove: 'docs,ROOT,examples'
+tomcat_apps_to_remove: 'examples'
 # root directory of installation
 tomcat_install_dir: /opt
 tomcat_rpm: jws5
