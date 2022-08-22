@@ -58,7 +58,7 @@ jws:
       secret: "{{ jws_listen_ajp_secret }}"
   vault:
     package_name: "{{ jws_tomcat_vault_rpm_name }}"
-    name: "{{ jws_tomcat_vault_keystore }}"
+    keystore: "{{ jws_tomcat_vault_keystore }}"
     enable: "{{ jws_tomcat_vault_enabled }}"
     alias: "{{ jws_tomcat_vault_alias }}"
     storepass: "{{ jws_tomcat_vault_storepass }}"

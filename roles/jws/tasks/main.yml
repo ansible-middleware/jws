@@ -197,7 +197,7 @@
       block:
         - name: "Copy {{ jws.service.hr_name }} vault keystore from control node to remote"
           ansible.builtin.copy:
-            src: "{{ jws.vault.name }}"
+            src: "{{ jws.vault.keystore }}"
             dest: "{{ jws_home }}"
             owner: "{{ jws.user }}"
             group: "{{ jws.group }}"
