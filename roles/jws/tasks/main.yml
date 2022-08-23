@@ -46,7 +46,7 @@
 
 - name: "Ensure jws.ss rpm is not installed"
   ansible.builtin.dnf:
-    name: jws.ss
+    name: tomcatjss
     state: absent
   when:
     - jws.check_jws_ss_absent is defined
