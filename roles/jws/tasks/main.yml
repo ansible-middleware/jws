@@ -111,7 +111,7 @@
         path: "{{ tomcat.home }}/{{ item }}"
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
-        mode: 0600
+        mode: "{{ jws_config_files_mask | default('0640') }}"
       loop:
         - "{{ tomcat.conf.properties }}"
         - "{{ tomcat.conf.policy }}"
@@ -135,7 +135,7 @@
         dest: "{{ item.dest }}"
         owner: "{{ tomcat.user }}"
         group: "{{ tomcat.group }}"
-        mode: 0600
+        mode: "{{ jws_config_files_mask | default('0640') }}"
       loop:
         - { template: "{{ tomcat.conf.templates.server }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.server }}" }
         - { template: "{{ tomcat.conf.templates.web }}", dest: "{{ tomcat.home }}/{{ tomcat.conf.web }}" }
