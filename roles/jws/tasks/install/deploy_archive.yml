@@ -21,13 +21,13 @@
 - name: "Retrieve zipfiles (if missing)"
   block:
     - name: "Retrieve zipfiles, if missing, from RHN (if credentials provided)"
-      ansible.builtin.include_tasks: install/download_from_rhn.yml
+      ansible.builtin.include_tasks: download_from_rhn.yml
       when:
         - rhn_username is defined and rhn_username | length > 0
         - rhn_password is defined and rhn_password | length > 0
 
     - name: "Retrieve zipfiles from URL (if provided)."
-      ansible.builtin.include_tasks: install/url.yml
+      ansible.builtin.include_tasks: url.yml
       when:
         - not rhn_username is defined
         - not rhn_password is defined

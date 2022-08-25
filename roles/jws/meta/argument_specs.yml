@@ -40,10 +40,6 @@ argument_specs:
             jws_home:
                 description: "Default installation path for JWS archives"
                 type: "str"
-            jws_apply_patches:
-                default: False
-                description: "Install JWS most recent cumulative patch for requested version"
-                type: "bool"
             jws_selinux_enabled:
                 # line 27 of jws/defaults/main.yml
                 default: True
@@ -361,3 +357,17 @@ argument_specs:
                 default: "simple"
                 description: "Systemd unit type"
                 type: "str"
+            jws_apply_patches:
+                default: False
+                description: "Install JWS most recent cumulative patch for requested version"
+                type: "bool"
+    downstream:
+        options:
+            jws_version:
+                default: "5.6.0"
+                description: "JWS version to install"
+                type: "str"
+            jws_apply_patches:
+                default: False
+                description: "Install JWS most recent cumulative patch for requested version"
+                type: "bool"

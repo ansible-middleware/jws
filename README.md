@@ -1,6 +1,6 @@
 # Ansible Collection - middleware_automation.jws
 
-[![Build Status](https://github.com/ansible-middleware/jws-ansible-playbook/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/jws-ansible-playbook/actions/workflows/ci.yml)
+[![Build Status](https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/jws/actions/workflows/ci.yml)
 
 This repository contains the Ansible roles and playbooks to setup [Red Hat JBoss Web Server (JWS)](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
 
@@ -134,7 +134,7 @@ All that you have to do to enable a mod_cluster listener for jws is to edit the 
 - `jws_modcluster_ip` (Set the ip of the mod_cluster instance)
 - `jws_modcluster_port` (Set the port of the mod_cluster instance)
 
-(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/ajp) )
+(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp) )
 
 ## Vault for JWS
 
@@ -177,7 +177,7 @@ Please refers to the [server documentation](https://tomcat.apache.org/tomcat-9.0
 
 Note: There other collections and modules available to automate the creation of those files (such as [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), [Ansible Collection Community Crytpo](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html)). Please refers to those in order to automate this part.
 
-(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/https) )
+(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/https) )
 
 ## Overriding the default template for server.xml
 
@@ -185,7 +185,7 @@ The provided template for the `server.xml.j2` covers the most basic use case of 
 
     jws_conf_templates_server: path/to/my_template_for_server_xml.j2
 
-(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/override_server_xml) )
+(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/override_server_xml) )
 
 ## How to deploy webapps?
 
@@ -257,7 +257,7 @@ Execution should be successful without errors
 
 ## Support
 
-This collection is a Beta release and for [Technical Preview](https://access.redhat.com/support/offerings/techpreview). If you have any issues or questions related to collection, please don't hesitate to contact us on <Ansible-middleware-core@redhat.com> or open an issue on https://github.com/ansible-middleware/jws-ansible-playbook/issues
+This collection is a Beta release and for [Technical Preview](https://access.redhat.com/support/offerings/techpreview). If you have any issues or questions related to collection, please don't hesitate to contact us on <Ansible-middleware-core@redhat.com> or open an issue on https://github.com/ansible-middleware/jws/issues
 
 
 ## License

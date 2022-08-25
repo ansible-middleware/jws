@@ -44,7 +44,7 @@
     - apr
   when: jws_native
 
-- name: "Ensure jws.ss rpm is not installed"
+- name: "Ensure tomcatjss rpm is not installed"
   ansible.builtin.dnf:
     name: tomcatjss
     state: absent
