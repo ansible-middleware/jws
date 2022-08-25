@@ -12,8 +12,8 @@ v1.2.0-devel
 Major Changes
 -------------
 
+- Reduce install methods to either 'zipfiles' or 'rpm' `#172 <https://github.com/ansible-middleware/jws/pull/172>`_
 - Refactor and cleanup around tomcat_vault feature `#179 <https://github.com/ansible-middleware/jws/pull/179>`_
-- Remove zipfiles and rhn_zipfiles install method `#172 <https://github.com/ansible-middleware/jws/pull/172>`_
 - Rename vars `#154 <https://github.com/ansible-middleware/jws/pull/154>`_
 
 Minor Changes
@@ -22,7 +22,6 @@ Minor Changes
 - Conditionally install openssl and apr, only when tomcat-native is installed `#159 <https://github.com/ansible-middleware/jws/pull/159>`_
 - Fix string mismatch with groupinstall `#173 <https://github.com/ansible-middleware/jws/pull/173>`_
 - Name all tasks `#133 <https://github.com/ansible-middleware/jws/pull/133>`_
-- Refactor apply_cp (provide patch to patch, reduce code duplication, add checksum file for native and checksum verification) `#153 <https://github.com/ansible-middleware/jws/pull/153>`_
 - Remove native tests and ensure that native zipfile existence is only checked if native is on `#146 <https://github.com/ansible-middleware/jws/pull/146>`_
 - Update modcluster connector port default `#169 <https://github.com/ansible-middleware/jws/pull/169>`_
 - Use explicit include_role: in playbooks `#148 <https://github.com/ansible-middleware/jws/pull/148>`_
