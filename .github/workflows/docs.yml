@@ -16,7 +16,7 @@ env:
 jobs:
   docs:
     runs-on: ubuntu-latest
-    if: github.repository == 'ansible-middleware/jws-ansible-playbook'
+    if: github.repository == 'ansible-middleware/jws'
     permissions:
       actions: write
       checks: write
@@ -51,7 +51,7 @@ jobs:
         uses: ansible-middleware/collection-docs-action@main
         with:
           collection_fqcn: middleware_automation.jws
-          collection_repo: ansible-middleware/jws-ansible-playbook
+          collection_repo: ansible-middleware/jws
           dependencies: false
           commit_changelog: false
           commit_ghpages: true

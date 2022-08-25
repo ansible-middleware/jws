@@ -33,6 +33,7 @@ warn_list:
   - task_has_valid_name
   - internal-error
   - load-failure
+  - jinja[spacing]
 
 use_default_rules: true
 parseable: true
