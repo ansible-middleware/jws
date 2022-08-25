@@ -6,6 +6,34 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v1.2.0
+======
+
+Major Changes
+-------------
+
+- Reduce install methods to either 'zipfiles' or 'rpm' `#172 <https://github.com/ansible-middleware/jws/pull/172>`_
+- Refactor and cleanup around tomcat_vault feature `#179 <https://github.com/ansible-middleware/jws/pull/179>`_
+- Rename vars `#154 <https://github.com/ansible-middleware/jws/pull/154>`_
+
+Minor Changes
+-------------
+
+- Conditionally install openssl and apr, only when tomcat-native is installed `#159 <https://github.com/ansible-middleware/jws/pull/159>`_
+- Fix string mismatch with groupinstall `#173 <https://github.com/ansible-middleware/jws/pull/173>`_
+- Name all tasks `#133 <https://github.com/ansible-middleware/jws/pull/133>`_
+- Remove native tests and ensure that native zipfile existence is only checked if native is on `#146 <https://github.com/ansible-middleware/jws/pull/146>`_
+- Update modcluster connector port default `#169 <https://github.com/ansible-middleware/jws/pull/169>`_
+- Use explicit include_role: in playbooks `#148 <https://github.com/ansible-middleware/jws/pull/148>`_
+- jws: only removes examples webapps by default. `#175 <https://github.com/ansible-middleware/jws/pull/175>`_
+
+Bugfixes
+--------
+
+- Ensure tc_vault pkgs are installed if install_method is rpm `#178 <https://github.com/ansible-middleware/jws/pull/178>`_
+- Fix JWS native archive installation `#132 <https://github.com/ansible-middleware/jws/pull/132>`_
+- jws: set 0640 instead of 0600 for configuration files `#181 <https://github.com/ansible-middleware/jws/pull/181>`_
+
 v1.1.1
 ======
 
