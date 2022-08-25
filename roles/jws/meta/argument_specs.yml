@@ -357,6 +357,10 @@ argument_specs:
                 default: "simple"
                 description: "Systemd unit type"
                 type: "str"
+            jws_apply_patches:
+                default: False
+                description: "Install JWS most recent cumulative patch for requested version"
+                type: "bool"
     downstream:
         options:
             jws_version:

@@ -63,11 +63,11 @@
 
 - name: "Check JWS specific features (if used)"
   block:
-    - name: "Check tomcat_vault is operantional (if enabled)."
-      ansible.builtin.include_tasks: tomcat_vault.yml
-      when:
-        - jws_tomcat_vault_enabled is defined
-        - jws_tomcat_vault_enabled
+    # - name: "Check tomcat_vault is operantional (if enabled)."
+    #   ansible.builtin.include_tasks: tomcat_vault.yml
+    #   when:
+    #     - jws_tomcat_vault_enabled is defined
+    #     - jws_tomcat_vault_enabled
     - name: "Check that CP have been properly applied (if enabled)."
       ansible.builtin.include_tasks: apply_cp.yml
       when:

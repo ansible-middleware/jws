@@ -1,6 +1,6 @@
 ---
 - name: "Deploy {{ zipfile_name }} to target."
-  ansible.builtin.include_tasks: install/deploy_archive.yml
+  ansible.builtin.include_tasks: deploy_archive.yml
   vars:
     path_to_zipfile_on_target: "{{ jws_install_dir }}/{{ zipfile_name }}"
     path_to_zipfile_local: "{{ jws_archive_repository }}/{{ zipfile_name }}"
@@ -9,7 +9,7 @@
     - zipfile_name | length > 0
 
 - name: "Deploy {{ jws_native_zipfile }} to target."
-  ansible.builtin.include_tasks: install/deploy_archive.yml
+  ansible.builtin.include_tasks: deploy_archive.yml
   vars:
     path_to_zipfile_on_target: "{{ jws_install_dir }}/{{ jws_native_zipfile }}"
     path_to_zipfile_local: "{{ jws_archive_repository }}/{{ jws_native_zipfile }}"
