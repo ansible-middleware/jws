@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/infinispan/">Infinispan / Red Hat Data Grid</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/keycloak/">Keycloak / Red Hat Single Sign-On</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/wildfly/">Wildfly / Red Hat JBoss EAP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/jws-ansible-playbook/">Tomcat / Red Hat JWS</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/jws/">Tomcat / Red Hat JWS</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/amq/">ActiveMQ / Red Hat AMQ</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/redhat-csp-download/">Red Hat CSP Download</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/ansible_collections_jcliff/">JCliff</a></li>
@@ -126,7 +126,7 @@
              
   <section id="ansible-collection-middleware-automation-jws">
 <h1>Ansible Collection - middleware_automation.jws<a class="headerlink" href="#ansible-collection-middleware-automation-jws" title="Permalink to this heading"></a></h1>
-<p><a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/actions/workflows/ci.yml"><img alt="Build Status" src="https://github.com/ansible-middleware/jws-ansible-playbook/workflows/CI/badge.svg?branch=main" /></a></p>
+<p><a class="reference external" href="https://github.com/ansible-middleware/jws/actions/workflows/ci.yml"><img alt="Build Status" src="https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main" /></a></p>
 <p>This repository contains the Ansible roles and playbooks to setup <a class="reference external" href="https://www.redhat.com/en/technologies/jboss-middleware/web-server">Red Hat JBoss Web Server (JWS)</a>.</p>
 <section id="ansible-version-compatibility">
 <h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Permalink to this heading"></a></h2>
@@ -260,7 +260,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <li><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_ip</span></code> (Set the ip of the mod_cluster instance)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_port</span></code> (Set the port of the mod_cluster instance)</p></li>
 </ul>
-<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/ajp">Molecule scenario</a> )</p>
+<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/ajp">Molecule scenario</a> )</p>
 </section>
 </section>
 <section id="vault-for-jws">
@@ -302,7 +302,7 @@ jws_vault_properties: ./vault_files/vault.properties
 </div>
 <p>Please refers to the <a class="reference external" href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start">server documentation</a> for more details on the setup and configuration of this feature.</p>
 <p>Note: There other collections and modules available to automate the creation of those files (such as <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html">Ansible OpenSSH Keypair collection</a>, <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html">Ansible Collection Community Crytpo</a> and the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html">Java Keystore module</a>). Please refers to those in order to automate this part.</p>
-<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/https">Molecule scenario</a> )</p>
+<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/https">Molecule scenario</a> )</p>
 </section>
 <section id="overriding-the-default-template-for-server-xml">
 <h2>Overriding the default template for server.xml<a class="headerlink" href="#overriding-the-default-template-for-server-xml" title="Permalink to this heading"></a></h2>
@@ -310,7 +310,7 @@ jws_vault_properties: ./vault_files/vault.properties
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>jws_conf_templates_server: path/to/my_template_for_server_xml.j2
 </pre></div>
 </div>
-<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws-ansible-playbook/tree/main/molecule/override_server_xml">Molecule scenario</a> )</p>
+<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/override_server_xml">Molecule scenario</a> )</p>
 </section>
 <section id="how-to-deploy-webapps">
 <h2>How to deploy webapps?<a class="headerlink" href="#how-to-deploy-webapps" title="Permalink to this heading"></a></h2>
@@ -370,7 +370,7 @@ jws_vault_properties: ./vault_files/vault.properties
 </section>
 <section id="support">
 <h2>Support<a class="headerlink" href="#support" title="Permalink to this heading"></a></h2>
-<p>This collection is a Beta release and for <a class="reference external" href="https://access.redhat.com/support/offerings/techpreview">Technical Preview</a>. If you have any issues or questions related to collection, please don’t hesitate to contact us on <a class="reference external" href="mailto:Ansible-middleware-core&#37;&#52;&#48;redhat&#46;com">Ansible-middleware-core<span>&#64;</span>redhat<span>&#46;</span>com</a> or open an issue on https://github.com/ansible-middleware/jws-ansible-playbook/issues</p>
+<p>This collection is a Beta release and for <a class="reference external" href="https://access.redhat.com/support/offerings/techpreview">Technical Preview</a>. If you have any issues or questions related to collection, please don’t hesitate to contact us on <a class="reference external" href="mailto:Ansible-middleware-core&#37;&#52;&#48;redhat&#46;com">Ansible-middleware-core<span>&#64;</span>redhat<span>&#46;</span>com</a> or open an issue on https://github.com/ansible-middleware/jws/issues</p>
 </section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
