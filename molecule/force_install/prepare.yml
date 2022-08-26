@@ -2,32 +2,13 @@
 - name: Prepare
   hosts: all
   tasks:
-    - name: Display Ansible version
-      debug:
-        msg: "Ansible version is {{ ansible_version.full }}"
 
-    - name: Install sudo
-      ansible.builtin.yum:
-        name: sudo
-        state: present
-
-    - name: "Retrieve assets server from env"
-      ansible.builtin.set_fact:
-        assets_server: "{{ lookup('env','MIDDLEWARE_DOWNLOAD_RELEASE_SERVER_URL') }}"
-
-    - name: "Download and deploy jws zips from {{ assets_server }}"
-      ansible.builtin.get_url:
-        url: "{{ asset }}"
-        dest: "/opt"
-        validate_certs: no
-      loop:
-        - "{{ assets_server }}/webserver/5.5.0/jws-5.5.0-application-server.zip"
-        - "{{ assets_server }}/webserver/5.6.0/jws-5.6.0-application-server.zip"
-      loop_control:
-        loop_var: asset
-      when:
-        - assets_server is defined
-        - assets_server | length > 0
+    - name: "Run preparation common to all scenario"
+      ansible.builtin.include_tasks: ../common_prepare.yml
+      vars:
+        jws_molecule_assets:
+          - "{{ assets_server }}/webserver/5.5.0/jws-5.5.0-application-server.zip"
+          - "{{ assets_server }}/webserver/5.6.0/jws-5.6.0-application-server.zip"
 
 - name: "tomcat 9.0.60 installation"
   hosts: all
