@@ -4,6 +4,7 @@
   become: true
   vars_files:
     - ../../playbooks/vars.yml
+    - vars.yml
   collections:
     - middleware_automation.jws
   tasks:
