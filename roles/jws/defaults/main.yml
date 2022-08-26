@@ -19,11 +19,6 @@ tomcat_version: 9.0.65
 jws_native: False
 jws_native_zipfile: ''
 
-jws_rhn_base_url: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=
-# if True automatically apply the most recent cumulative patch
-jws_apply_patches: False
-jws_selinux_enabled: False
-
 jws_user: tomcat
 jws_uid: 53
 jws_group: tomcat
@@ -98,6 +93,7 @@ jws_modcluster_sticky_session_remove: True
 jws_systemd_enabled: False
 jws_systemd_script_interpreter: 'bash'
 jws_systemd_script_shebang: "#!/bin/{{ jws_systemd_script_interpreter }}"
-jws_service_name: 'jws5-tomcat'
+jws_service_name: 'tomcat'
 jws_service_systemd: "/usr/lib/systemd/system/{{ jws_service_name }}.service"
 jws_service_systemd_type: "simple"
+jws_selinux_enabled: False
