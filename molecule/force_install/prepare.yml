@@ -10,3 +10,13 @@
       ansible.builtin.yum:
         name: sudo
         state: present
+
+- name: "tomcat 9.0.60 installation"
+  hosts: all
+  vars_files:
+    - ../../playbooks/vars.yml
+  collections:
+    - middleware_automation.jws
+  roles:
+    - role: jws
+      tomcat_version: 9.0.60

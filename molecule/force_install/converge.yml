@@ -1,25 +1,13 @@
 ---
-- name: "Red Hat JBoss Web Server installation"
+- name: "tomcat 9.0.65 / jdk 11 update"
   hosts: all
-  vars_files:
-    - ../../playbooks/vars.yml
   collections:
     - middleware_automation.jws
   roles:
     - role: jws
-      tomcat_version: 9.0.60
-      jws_home: /opt/apache-tomcat-{{ tomcat_version }}
-
-- name: "Red Hat JBoss Web Server update"
-  hosts: all
-  vars_files:
-    - ../../playbooks/vars.yml
-  vars:
-    jws_force_install: true
-    jws_java_version: 11
-  collections:
-    - middleware_automation.jws
-  roles:
-    - role: jws
-      tomcat_version: 9.0.65
-      jws_home: /opt/apache-tomcat-{{ tomcat_version }}
+      jws_setup: true
+      jws_listen_http_bind_address: 127.0.0.1
+      jws_systemd_enabled: True
+      jws_service_systemd_type: forking
+      jws_force_install: true
+      jws_java_version: 11

@@ -1,11 +1,10 @@
 ---
 - name: Verify
   hosts: instance
-  vars:
-    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
   collections:
     - middleware_automation.jws
-  tasks:
-    - name: "Verify that state is consistent"
-      include_role:
-        name: jws_validation
+  roles:
+    - role: jws_validation
+      jws_home: /opt/apache-tomcat-9.0.65
+      jws_service_name: tomcat
+      jws_java_version: 11
