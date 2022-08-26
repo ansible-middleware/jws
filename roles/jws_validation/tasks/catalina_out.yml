@@ -29,6 +29,15 @@
   when:
     - not jws_validation_allow_errors_in_catalina_log is defined
 
+- name: Fail if unexpected JVM is found
+  ansible.builtin.assert:
+    that:
+      - "'JVM Version:           {{ jws_java_version }}' in catalina_out_content"
+    quiet: true
+    fail_msg: "The service is not running on the expected JVM."
+  when:
+    - jws_java_version is defined
+
 - name: "Test JWS specific features"
   block:
     - name: "Set expected strings"

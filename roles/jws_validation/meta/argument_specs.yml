@@ -63,3 +63,7 @@ argument_specs:
                 type: "int"
                 description: "Minimal umbers of characters expected in the catalina.out file (for a healthy setup)."
                 default: 500
+            jws_java_version:
+                required: False
+                description: "Whether to check the service is using the specified JVM version"
+                type: "str"
