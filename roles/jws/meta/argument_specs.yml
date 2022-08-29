@@ -353,6 +353,10 @@ argument_specs:
                 default: "simple"
                 description: "Systemd unit type"
                 type: "str"
+            jws_archive_repository:
+                default: "{{ lookup('env', 'PWD') }}"
+                description: "path local to controller for offline/download archive files"
+                type: "str"
     downstream:
         options:
             jws_version:
