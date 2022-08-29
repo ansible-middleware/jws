@@ -12,6 +12,8 @@ jws_force_install: False
 
 # installation method: ['zipfiles', 'rpm']
 jws_install_method: zipfiles
+# path local to controller for offline/download archive files
+jws_archive_repository: "{{ lookup('env', 'PWD') }}"
 
 # Default version of Apache Tomcat to use if no version is provided
 tomcat_version: 9.0.65

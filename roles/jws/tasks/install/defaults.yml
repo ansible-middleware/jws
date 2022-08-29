@@ -1,26 +1,22 @@
 ---
-- name: "Set local repository for archive files (if not defined)."
+- name: "Set local repository for archive files."
   block:
-    - name: "Use current working directory as local repository"
+    - name: "Check working directory for local repository"
       ansible.builtin.stat:
-        path: "{{ lookup('env', 'PWD') }}"
+        path: "{{ jws_archive_repository }}"
       register: local_path
       delegate_to: localhost
       become: no
 
-    - name: "Check that local path have been retrieved"
+    - name: "Check that local path is existing and writable"
       ansible.builtin.assert:
         that:
           - local_path is defined
           - local_path.stat is defined
-          - local_path.stat.path is defined
+          - local_path.stat.isdir
+          - local_path.stat.writeable
         quiet: True
-
-    - name: "Set patch bundle home to PWD (if not defined)."
-      ansible.builtin.set_fact:
-        jws_archive_repository: "{{ local_path.stat.path }}"
-  when:
-    - not jws_archive_repository is defined
+        fail_msg: "Controller path for offline resources or downloaded zipfiles is invalid. Check variable jws_archive_repository"
 
 - name: "Set defaults based on jws_version (if provided)."
   block:

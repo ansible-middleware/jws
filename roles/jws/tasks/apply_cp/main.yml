@@ -6,28 +6,6 @@
     quiet: true
     fail_msg: "One or more required parameters for cumulative patch application is missing."
 
-- name: "Set patch bundle home to controller PWD (if not provided)."
-  block:
-    - name: "Retrieve current working directory (pwd) from environment."
-      ansible.builtin.stat:
-        path: "{{ lookup('env', 'PWD') }}"
-      register: local_path
-      delegate_to: localhost
-
-    - name: "Check that local path have been retrieved"
-      ansible.builtin.assert:
-        that:
-          - local_path is defined
-          - local_path.stat is defined
-          - local_path.stat.path is defined
-        quiet: True
-
-    - name: "Set patch bundle home to PWD (if not defined)."
-      ansible.builtin.set_fact:
-        jws_patch_bundle_repository: "{{ local_path.stat.path }}"
-  when:
-    - not jws_patch_bundle_repository is defined
-
 - name: "Apply CPs (if information provided.)."
   ansible.builtin.include_tasks: apply_cp.yml
   vars:
