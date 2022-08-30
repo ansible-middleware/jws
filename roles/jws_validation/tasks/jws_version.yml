@@ -2,7 +2,7 @@
 - name: "Verify that required parameters are provided."
   ansible.builtin.assert:
     that:
-      - jws_validation_version
+      - jws_version
       - jws_home is defined
     quiet: True
 
@@ -19,11 +19,11 @@
   ansible.builtin.set_fact:
     version_line: "{{ version_file_content.splitlines() | first }}"
 
-- name: "Check that version matches {{ jws_validation_version }}"
+- name: "Check that version matches {{ jws_version }}"
   ansible.builtin.assert:
     that:
       - version_line is defined
       - version_line | length > 0
-      - jws_validation_version in version_line
+      - jws_version in version_line
     quiet: True
-    fail_msg: "Version line '{{ version_line }}' is not defined or does not contain {{ jws_validation_version }}"
+    fail_msg: "Version line '{{ version_line }}' is not defined or does not contain {{ jws_version }}"
