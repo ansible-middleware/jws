@@ -29,7 +29,7 @@
     - not jws_patch_bundle_repository is defined
 
 - name: "Apply CPs (if information provided.)."
-  ansible.builtin.include_tasks: apply_cp.yml
+  ansible.builtin.include_tasks: apply_cp/apply_cp.yml
   vars:
     download_url: "{{ rhn_cpatch_zipfile_url | default('') }}"
     archive_file_suffix: "-application-server.zip"
