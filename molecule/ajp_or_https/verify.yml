@@ -6,7 +6,6 @@
   vars_files:
     - vars.yml
   vars:
-    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
     jws_listen_https_port: 8443
     jws_listen_https_bind_address: localhost
     # ajp config will not work with tomcat and produce errors in catalina.out

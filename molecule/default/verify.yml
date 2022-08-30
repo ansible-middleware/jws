@@ -3,11 +3,7 @@
   hosts: all
   vars_files:
     - ../../playbooks/vars.yml
-  vars:
-    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
   collections:
     - middleware_automation.jws
-  tasks:
-    - name: "Verify that state is consistent"
-      include_role:
-        name: jws_validation
+  roles:
+    - jws_validation

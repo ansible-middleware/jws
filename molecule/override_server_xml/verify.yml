@@ -2,10 +2,9 @@
 - name: Verify
   hosts: all
   vars:
+    jws_home: /opt/custom
     jws_listen_https_port: 8443
     jws_listen_https_bind_address: localhost
-    tomcat_version: 9.0.65
-    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
     jvm_route: jvm_route_1
   collections:
     - middleware_automation.jws

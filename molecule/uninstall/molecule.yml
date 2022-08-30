@@ -29,8 +29,6 @@ provisioner:
     prepare: prepare.yml
     converge: converge.yml
     verify: verify.yml
-  env:
-    CATALINA_HOME: "/opt/apache-tomcat-9.0.50"
   inventory:
     host_vars:
       localhost:
