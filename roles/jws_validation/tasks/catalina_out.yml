@@ -34,7 +34,7 @@
     that:
       - "'JVM Version:           {{ jws_java_version }}' in catalina_out_content"
     quiet: true
-    fail_msg: "The service is not running on the expected JVM. {{ catalina_out_content }}"
+    fail_msg: "The service is not running on the expected JVM."
   when:
     - jws_java_version is defined
 
