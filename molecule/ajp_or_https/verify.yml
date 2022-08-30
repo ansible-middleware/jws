@@ -10,6 +10,5 @@
     jws_listen_https_bind_address: localhost
     # ajp config will not work with tomcat and produce errors in catalina.out
     jws_validation_allow_errors_in_catalina_log: True
-  tasks:
-    - include_role:
-        name: jws_validation
+  roles:
+    - jws_validation

@@ -6,6 +6,5 @@
     - ../../playbooks/vars.yml
   collections:
     - middleware_automation.jws
-  tasks:
-    - ansible.builtin.include_role:
-        name: jws
+  roles:
+    - jws
