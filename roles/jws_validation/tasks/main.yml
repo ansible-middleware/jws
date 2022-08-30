@@ -25,7 +25,7 @@
 - name: "Check that the version install matches expectation (if requested)."
   ansible.builtin.include_tasks: jws_version.yml
   when:
-    - jws_validation_version is defined
+    - jws_version is defined
 
 - name: "Verify that main server's logfile exists."
   ansible.builtin.include_tasks: catalina_out.yml
@@ -54,8 +54,8 @@
 - name: "Ensure Tomcat AJP connector is started and listen to the appropriate port"
   ansible.builtin.include_tasks: check_connector_port.yml
   vars:
-    bind_address: "{{  jws_listen_ajp_bind_address }}"
-    listen_port: "{{  jws_listen_ajp_port }}"
+    bind_address: "{{ jws_listen_ajp_bind_address }}"
+    listen_port: "{{ jws_listen_ajp_port }}"
   when:
     - jws_listen_ajp_enabled is defined
     - jws_listen_ajp_bind_address is defined

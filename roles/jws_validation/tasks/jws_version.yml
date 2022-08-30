@@ -3,7 +3,7 @@
   ansible.builtin.assert:
     that:
       - jws_validation_version
-      - jws_home
+      - jws_home is defined
     quiet: True
 
 - name: "Load Version files"
@@ -26,4 +26,4 @@
       - version_line | length > 0
       - jws_validation_version in version_line
     quiet: True
-    fail_msg: "Version line '{{ version_line }}' is not defined or does not contains {{ jws_validation_version }}"
+    fail_msg: "Version line '{{ version_line }}' is not defined or does not contain {{ jws_validation_version }}"

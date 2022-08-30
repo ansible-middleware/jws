@@ -27,7 +27,7 @@ argument_specs:
                 description: "posix group GID for service"
                 type: "int"
             jws_service_name:
-                default: "tomcat.service"
+                default: "tomcat"
                 description: "Name for the systemd unit"
                 type: "str"
             catalina_logfile:
@@ -37,6 +37,7 @@ argument_specs:
             jws_home:
                 type: "str"
                 description: "home of tomcat/jws installation"
+                default: "/opt/apache-tomcat-{{ tomcat_version }}/"
             jws_listen_ajp_enabled:
                 # line 28 of jws/defaults/main.yml
                 default: "False"
@@ -67,3 +68,21 @@ argument_specs:
                 required: False
                 description: "Whether to check the service is using the specified JVM version"
                 type: "str"
+    downstream:
+        options:
+            jws_version:
+                default: "5.6.0"
+                description: "JWS version to install"
+                type: "str"
+            jws_home:
+                type: "str"
+                description: "home of tomcat/jws installation"
+                default: "/opt/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
+            jws_service_name:
+                default: "jws5-tomcat"
+                description: "Name for the systemd unit"
+                type: "str"
+            jws_apply_patches:
+                default: False
+                description: "Whether to validate cumulative patch for requested version"
+                type: "bool"
