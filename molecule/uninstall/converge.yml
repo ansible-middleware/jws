@@ -9,6 +9,3 @@
     - include_role:
         name: jws
         tasks_from: uninstall.yml
-      vars:
-        jws_service_name: tomcat
-        jws_home: /opt/apache-tomcat-{{ tomcat_version }}

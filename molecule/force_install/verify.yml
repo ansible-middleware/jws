@@ -7,14 +7,7 @@
     - name: "Set JWS version if resource available"
       ansible.builtin.set_fact:
         jws_version: "5.6.0"
-        jws_home: /opt/jws-5.6/tomcat
-        jws_service_name: jws5-tomcat
       when: "'/opt/webserver/5.6.0/jws-5.6.0-application-server.zip' is exists"
-    - name: "Set tomcat checks if resource not available"
-      ansible.builtin.set_fact:
-        jws_home: /opt/apache-tomcat-9.0.65
-        jws_service_name: tomcat
-      when: "'/opt/webserver/5.6.0/jws-5.6.0-application-server.zip' is not exists"
   roles:
     - role: jws_validation
       jws_java_version: 11

@@ -1,6 +1,7 @@
 ---
 - import_playbook: ../../playbooks/playbook.yml
   vars:
+    jws_home: /opt/custom
     jws_conf_templates_server: ./../molecule/override_server_xml/templates/override_server_xml_template.xml.j2
     jws_listen_ajp_enabled: False
     jws_ajp_flush: False
