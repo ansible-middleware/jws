@@ -8,10 +8,9 @@
     jvm_route: jvm_route_1
   collections:
     - middleware_automation.jws
-  tasks:
-    - include_role:
-        name: jws_validation
-
+  roles:
+    - jws_validation
+  post_tasks:
     - set_fact:
         path_to_server_xml: "{{ jws_home }}/conf/server.xml"
 

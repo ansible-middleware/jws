@@ -22,7 +22,7 @@
     - jws.service is defined
     - jws.service.enabled is defined
     - jws.service.enabled
-  listen: "Ensure Tomcat runs under systemd"
+  listen: "Stop Tomcat service"
 
 - name: "Restart {{ jws.service.hr_name }} service"
   ansible.builtin.service:
