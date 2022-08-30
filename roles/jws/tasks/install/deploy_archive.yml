@@ -6,13 +6,6 @@
       - path_to_zipfile_local is defined
     quiet: true
 
-- name: "Check downloaded archive on controller: {{ path_to_zipfile_local }}"
-  ansible.builtin.stat:
-    path: "{{ path_to_zipfile_local }}"
-  register: local_archive_path
-  delegate_to: localhost
-  become: no
-
 - name: "Check download archive path on target: {{ path_to_zipfile_on_target }}"
   ansible.builtin.stat:
     path: "{{ path_to_zipfile_on_target }}"
@@ -33,7 +26,7 @@
         - not rhn_password is defined
         - zipfile_url is defined
   when:
-    - not local_archive_path.stat.exists
+    - not path_to_zipfile_local is exists
 
 - name: "Copy archives {{ path_to_zipfile_local }} to target nodes: {{ path_to_zipfile_on_target }}"
   ansible.builtin.copy:
@@ -46,6 +39,5 @@
     - archive_path is defined
     - archive_path.stat is defined
     - not archive_path.stat.exists
-    - local_archive_path.stat is defined
-    - local_archive_path.stat.exists
+    - path_to_zipfile_local is exists
   become: yes
