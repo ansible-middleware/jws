@@ -10,11 +10,11 @@
 - name: Add zipfile to unarchive list
   ansible.builtin.set_fact:
     zipfiles:
-      - { src: "{{ zipfile_name }}", creates: "{{ jws_home }}/bin" }
+      - { src: "{{ zipfile_name }}", creates: "{{ jws.install_dir }}/{{ zipfile_rootdir }}/bin" }
 
 - name: Add native zipfile to unarchive list
   ansible.builtin.set_fact:
-    zipfiles: "{{ zipfiles + [{'src':jws_native_zipfile, 'creates':jws_home +'/lib/libtcnative-1.so'}] }}"
+    zipfiles: "{{ zipfiles + [{'src':jws_native_zipfile, 'creates': jws.install_dir + '/' + zipfile_rootdir + '/lib/libtcnative-1.so'}] }}"
   when:
     - jws_native
     - jws_native_zipfile is defined
@@ -30,4 +30,20 @@
     mode: 0750
     creates: "{{ item.creates }}"
   loop: "{{ zipfiles }}"
+  register: unarchived_zipfiles
   notify: "Restart Tomcat service"
+
+- name: Configure custom jws_home
+  when:
+    - jws_home != jws.install_dir + '/' + zipfile_rootdir
+    - unarchived_zipfiles.changed
+  block:
+    - name: Move the zipfile extracted directory to custom jws_home
+      ansible.builtin.copy:
+        src: "{{ jws.install_dir }}/{{ zipfile_rootdir }}/"
+        dest: "{{ jws_home }}"
+        owner: "{{ jws.user }}"
+        group: "{{ jws.group }}"
+        remote_src: yes
+        force: yes
+        mode: preserve
