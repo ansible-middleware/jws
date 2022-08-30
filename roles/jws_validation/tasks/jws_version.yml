@@ -26,4 +26,4 @@
       - version_line | length > 0
       - jws_version[0:3] in version_line
     quiet: True
-    fail_msg: "Version line '{{ version_line[0:3] }}' is not defined or does not contain {{ jws_version }}"
+    fail_msg: "Version line {{ version_line[0:3] | default('') }} is not defined or does not contain {{ jws_version }}"

@@ -47,3 +47,13 @@
         remote_src: yes
         force: yes
         mode: preserve
+    - name: Move the version.txt to custom jws_home
+      ansible.builtin.copy:
+        src: "{{ jws.install_dir }}/{{ zipfile_rootdir }}/../version.txt"
+        dest: "{{ jws_home }}/../"
+        owner: "{{ jws.user }}"
+        group: "{{ jws.group }}"
+        remote_src: yes
+        force: yes
+        mode: preserve
+      when: jws_version is defined
