@@ -7,7 +7,7 @@
     - name: "Set JWS version if resource available"
       ansible.builtin.set_fact:
         jws_version: "5.6.0"
-      when: "'/opt/webserver/5.6.0/jws-5.6.0-application-server.zip' is exists"
+      when: "'/opt/jws-5.6.0-application-server.zip' is exists"
   roles:
     - role: jws_validation
       jws_java_version: 11
