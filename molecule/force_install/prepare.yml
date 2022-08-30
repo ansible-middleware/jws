@@ -20,7 +20,7 @@
     - name: "Set JWS version if resource available"
       ansible.builtin.set_fact:
         jws_version: "5.5.0"
-      when: "'jws-5.5.0-application-server.zip' is exists"
+      when: "'/opt/jws-5.5.0-application-server.zip' is exists"
       delegate_to: localhost
   roles:
     - role: jws
