@@ -1,5 +1,5 @@
 ---
-- name: "tomcat 9.0.65 / jdk 11 update"
+- name: "newer version installation / jdk 11 update"
   hosts: all
   collections:
     - middleware_automation.jws
