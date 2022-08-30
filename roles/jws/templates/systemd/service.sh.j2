@@ -31,7 +31,7 @@ case "${COMMAND}" in
       options="${options} -Djava.security.manager -Djava.security.policy==${CATALINA_BASE}/conf/catalina.policy"
     fi
     {{ jws_home }}/bin/startup.sh
-    readonly PID=$(ps -F | grep org.apache.catalina.startup.Bootstrap | sed -e '/grep/d' | sed -e 's/^[^ ]* *//' -e 's/  *.*$//')
+    readonly PID=$(ps -F -ww| grep org.apache.catalina.startup.Bootstrap | grep -v grep | awk '{print $2}')
     echo "Tomcat runs with PID: ${PID}"
     echo "${PID}" > "{{ jws_service_pidfile }}"
     ;;
