@@ -15,7 +15,7 @@
 - name: "Download and deploy jws zips from {{ assets_server }}"
   ansible.builtin.get_url:
     url: "{{ asset }}"
-    dest: "/opt"
+    dest: "{{ lookup('env', 'PWD') | default('/opt') }}/{{ asset }}"
     validate_certs: no
   loop: "{{ jws_molecule_assets }}"
   loop_control:
