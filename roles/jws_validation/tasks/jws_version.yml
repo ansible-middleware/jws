@@ -2,7 +2,7 @@
 - name: "Verify that required parameters are provided."
   ansible.builtin.assert:
     that:
-      - jws_version
+      - jws_version is defined
       - jws_home is defined
     quiet: True
 
@@ -24,6 +24,6 @@
     that:
       - version_line is defined
       - version_line | length > 0
-      - jws_version[0:3] in version_line
+      - (jws_version | string)[0:3] in version_line
     quiet: True
     fail_msg: "Version line {{ version_line[0:3] | default('') }} is not defined or does not contain {{ jws_version }}"
