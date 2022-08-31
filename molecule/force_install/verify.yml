@@ -3,11 +3,6 @@
   hosts: instance
   collections:
     - middleware_automation.jws
-  pre_tasks:
-    - name: "Set JWS version if resource available"
-      ansible.builtin.set_fact:
-        jws_version: 5.6.0
-      when: "(lookup('env', 'PWD') | default('/opt') + '/jws-5.6.0-application-server.zip') is exists"
   roles:
     - role: jws_validation
       jws_java_version: 11
