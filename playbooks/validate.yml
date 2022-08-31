@@ -1,10 +1,10 @@
 ---
-- name: "Red Hat JBoss Web Server installation and configuration"
+- name: "Red Hat JBoss Web Server validation"
   hosts: all
   become: true
-  vars:
-    ansible_distribution: 'RedHat'
-    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
-  tasks:
-    - ansible.builtin.include_role:
-        name: jws_validation
+  vars_files:
+    - vars.yml
+  collections:
+    - middleware_automation.jws
+  roles:
+    - jws_validation
