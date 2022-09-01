@@ -22,7 +22,7 @@
       - jws_home is defined
       - jws_home == "/opt/rh/jws5/root/usr/share/tomcat"
     quiet: true
-    fail_msg: "{{ jws.service.hr_name }} HOME does not match the one provided by RPM."
+    fail_msg: "{{ jws.service.hr_name }} HOME {{ jws_home | default('undefined') }} does not match the one provided by RPM."
 
 - name: "Set dnf command for RPM installation"
   ansible.builtin.set_fact:
