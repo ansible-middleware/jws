@@ -6,6 +6,14 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v1.2.1-devel
+============
+
+Minor Changes
+-------------
+
+- Add variable to config offline/download path on controller `#191 <https://github.com/ansible-middleware/jws/pull/191>`_
+
 v1.2.0
 ======
 
@@ -19,7 +27,6 @@ Major Changes
 Minor Changes
 -------------
 
-- Add variable to config offline/download path on controller `#191 <https://github.com/ansible-middleware/jws/pull/191>`_
 - Conditionally install openssl and apr, only when tomcat-native is installed `#159 <https://github.com/ansible-middleware/jws/pull/159>`_
 - Fix string mismatch with groupinstall `#173 <https://github.com/ansible-middleware/jws/pull/173>`_
 - Name all tasks `#133 <https://github.com/ansible-middleware/jws/pull/133>`_
