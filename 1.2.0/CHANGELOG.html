@@ -58,7 +58,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#bugfixes">Bugfixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v1-1-1">v1.1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-1-1">v1.1.1</a>
+<ul>
+<li><p><a class="reference internal" href="#id12" id="id50">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id51">Bugfixes</a></p></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-1-0">v1.1.0</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id14">Major Changes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id16">Minor Changes</a></li>
@@ -155,25 +160,35 @@
 <h3><a class="toc-backref" href="#id41">Minor Changes</a><a class="headerlink" href="#minor-changes" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Conditionally install openssl and apr, only when tomcat-native is installed <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/159">#159</a></p></li>
-<li><p>Fix string mismatch with groupinstall <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/173">#173</a></p></li>
 <li><p>Name all tasks <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/133">#133</a></p></li>
 <li><p>Remove native tests and ensure that native zipfile existence is only checked if native is on <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/146">#146</a></p></li>
 <li><p>Update modcluster connector port default <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/169">#169</a></p></li>
 <li><p>Use explicit include_role: in playbooks <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/148">#148</a></p></li>
-<li><p>jws: only removes examples webapps by default. <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/175">#175</a></p></li>
 </ul>
 </section>
 <section id="bugfixes">
 <h3><a class="toc-backref" href="#id42">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p>Ensure tc_vault pkgs are installed if install_method is rpm <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/178">#178</a></p></li>
 <li><p>Fix JWS native archive installation <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/132">#132</a></p></li>
-<li><p>jws: set 0640 instead of 0600 for configuration files <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/181">#181</a></p></li>
 </ul>
 </section>
 </section>
 <section id="v1-1-1">
 <h2><a class="toc-backref" href="#id43">v1.1.1</a><a class="headerlink" href="#v1-1-1" title="Permalink to this heading"></a></h2>
+<section id="id12">
+<h3><a class="toc-backref" href="#id50">Minor Changes</a><a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Fix string mismatch with groupinstall <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/173">#173</a></p></li>
+<li><p>jws: only removes examples webapps by default. <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/175">#175</a></p></li>
+</ul>
+</section>
+<section id="id15">
+<h3><a class="toc-backref" href="#id51">Bugfixes</a><a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Ensure tc_vault pkgs are installed if install_method is rpm <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/178">#178</a></p></li>
+<li><p>jws: set 0640 instead of 0600 for configuration files <a class="reference external" href="https://github.com/ansible-middleware/jws/pull/181">#181</a></p></li>
+</ul>
+</section>
 </section>
 <section id="v1-1-0">
 <h2><a class="toc-backref" href="#id44">v1.1.0</a><a class="headerlink" href="#v1-1-0" title="Permalink to this heading"></a></h2>
@@ -238,7 +253,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Red Hat, Inc..</p>
+    <p>&#169; Copyright 2022, Red Hat, Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
