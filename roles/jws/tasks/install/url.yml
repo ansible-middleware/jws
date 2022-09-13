@@ -7,6 +7,11 @@
       - zipfile_name is defined
     quiet: True
 
+- name: Check zipfile existence
+  stat:
+    path: "{{ jws_install_dir }}/{{ zipfile_name }}"
+  register: zipfile_dest
+
 - name: Download archive from custom url
   ansible.builtin.get_url:
     url: "{{ zipfile_url }}"
@@ -16,3 +21,4 @@
     mode: 0640
     owner: "{{ jws.user }}"
     group: "{{ jws.group }}"
+  when: not zipfile_dest.stat.exists
