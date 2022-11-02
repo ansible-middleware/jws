@@ -58,7 +58,7 @@ Provide the path to those zipfiles:
 
     vars:
       ...
-      jws_install_method: rhn_zipfiles
+      jws_install_method: zipfiles
       jws_version: 5.6.0
       zipfile_name: jws-5.6.0-application-server.zip
       native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip$
