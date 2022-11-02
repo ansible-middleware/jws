@@ -13,6 +13,7 @@ Minor Changes
 -------------
 
 - Add variable to config offline/download path on controller `#191 <https://github.com/ansible-middleware/jws/pull/191>`_
+- jws: ensure default server.xml.j2 uses the recommended https config `#196 <https://github.com/ansible-middleware/jws/pull/196>`_
 
 v1.2.0
 ======

@@ -17,6 +17,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -113,8 +114,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Ansible Collection - middleware_automation.jws</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Ansible Collection - middleware_automation.jws</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -184,7 +185,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <p>Provide the path to those zipfiles:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
-  jws_install_method: rhn_zipfiles
+  jws_install_method: zipfiles
   jws_version: 5.6.0
   zipfile_name: jws-5.6.0-application-server.zip
   native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip$
