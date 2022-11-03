@@ -49,7 +49,7 @@ You can run the collection directly from this folder for demostration purpose, h
 
 ### Using local JWS zipfiles
 
-Download the required zipfiles from your Red Hat account, and place them into the playbook directory on the controller:
+Download the required zipfiles from your Red Hat account, and place them into the directory you execute the ansible-playbook command on the controller:
 
 - Red Hat JBoss Web Server 5.6.0 Application Server (the application server itself)
 - Red Hat JBoss Web Server 5.6.0 Application Server for RHEL 8 x86_64 (the native components)
