@@ -170,8 +170,14 @@ In addition to that, you need to provide several other bits of information from 
 The default template for `server.xml` provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the required Java Keystore. It expects it to be already installed and available.
 
     jws_listen_https_enabled: True
-    # uncomment the following line to change the default value for the java keystore path
-    #jws_listen_https_keystore_file: /etc/ssl/keystore.jks
+    # add the following variable to change default port (default: 8443)
+    jws_listen_https_port: '8443'
+    # add the following variable to change default bind address (default: localhost)
+    jws_listen_https_bind_address: 'localhost'
+    # add the following variable to change the default path to the keystore file (default: /etc/ssl/keystore.jks)
+    jws_listen_https_keystore_file: /etc/ssl/keystore.jks
+    # add the following variable to change the default password to the keystore (default: changeit)
+    jws_listen_https_keystore_password: changeit
 
 Please refers to the [server documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more details on the setup and configuration of this feature.
 
