@@ -35,6 +35,7 @@ warn_list:
   - internal-error
   - load-failure
   - jinja[spacing]
+  - name[template]
 
 use_default_rules: true
 parseable: true
