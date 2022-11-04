@@ -53,6 +53,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#service-configuration">Service configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tomcat-vault-configuration">tomcat-vault configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mod-cluster-configuration">mod_cluster configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#https-configuration">HTTPS configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#role-variables">Role Variables</a></li>
@@ -521,6 +522,59 @@
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_sticky_session_remove</span></code></p></td>
 <td class="text-left"><p>Remove sticky session from cookies</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="https-configuration">
+<h3>HTTPS configuration<a class="headerlink" href="#https-configuration" title="Permalink to this heading"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>Variable</p></th>
+<th class="text-left head"><p>Description</p></th>
+<th class="text-left head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_enabled</span></code></p></td>
+<td class="text-left"><p>Enable HTTS connector</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_port</span></code></p></td>
+<td class="text-left"><p>Tomcat HTTPS listen port</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'8443'</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_bind_address</span></code></p></td>
+<td class="text-left"><p>Service HTTPS bind address</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'localhost'</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_servername</span></code></p></td>
+<td class="text-left"><p>Servername associated to the HTTPS connector</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'My</span> <span class="pre">Server'</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_threads_max</span></code></p></td>
+<td class="text-left"><p>Max number of threads for the HTTPS connector</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">150</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_connection_timeout</span></code></p></td>
+<td class="text-left"><p>HTTPS connector timeout</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6000</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_headers_size</span></code></p></td>
+<td class="text-left"><p>HTTPS connector HTTPS header size</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8192</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_keystore_file</span></code></p></td>
+<td class="text-left"><p>Path to keystore file used by HTTPS connector</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">/etc/ssl/keystore.jks</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_keystore_password</span></code></p></td>
+<td class="text-left"><p>Password to keystore file</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">changeit</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_client_auth</span></code></p></td>
+<td class="text-left"><p>Request certificate from client</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
 </tbody>
 </table>

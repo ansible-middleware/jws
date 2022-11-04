@@ -64,7 +64,6 @@ Role Defaults
 |`jws_force_install`| Whether to stop any running tomcat process and continue installation | `false` |
 |`jws_archive_repository`| Path local to controller for offline/download archive files | `{{ lookup('env', 'PWD') | default('/opt') }}` |
 
-
 ### Service configuration
 
 | Variable | Description | Default |
@@ -128,6 +127,21 @@ Role Defaults
 |`jws_modcluster_sticky_session`| Enable mod_cluster sticky sessions | `true` |
 |`jws_modcluster_sticky_session_force`| Force use of sticky sessions | `false` |
 |`jws_modcluster_sticky_session_remove`| Remove sticky session from cookies | `true` |
+
+### HTTPS configuration
+
+| Variable | Description | Default |
+|:---------|:------------|:--------|
+|`jws_listen_https_enabled`| Enable HTTS connector | `False`|
+|`jws_listen_https_port`| Tomcat HTTPS listen port | `'8443'`|
+|`jws_listen_https_bind_address`| Service HTTPS bind address | `'localhost'`|
+|`jws_listen_https_servername`| Servername associated to the HTTPS connector | `'My Server'`|
+|`jws_listen_https_threads_max`| Max number of threads for the HTTPS connector | `150`|
+|`jws_listen_https_connection_timeout`| HTTPS connector timeout | `6000`|
+|`jws_listen_https_headers_size`| HTTPS connector HTTPS header size | `8192`|
+|`jws_listen_https_keystore_file`| Path to keystore file used by HTTPS connector | `/etc/ssl/keystore.jks`|
+|`jws_listen_https_keystore_password`| Password to keystore file | `changeit`|
+|`jws_listen_https_client_auth`| Request certificate from client | `false`|
 
 Role Variables
 --------------
