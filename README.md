@@ -51,24 +51,24 @@ You can run the collection directly from this folder for demostration purpose, h
 
 Download the required zipfiles from your Red Hat account, and place them into the directory you execute the ansible-playbook command on the controller:
 
-- Red Hat JBoss Web Server 5.6.0 Application Server (the application server itself)
-- Red Hat JBoss Web Server 5.6.0 Application Server for RHEL 8 x86_64 (the native components)
+- Red Hat JBoss Web Server 5.7.0 Application Server (the application server itself)
+- Red Hat JBoss Web Server 5.7.0 Application Server for RHEL 8 x86_64 (the native components)
 
 Provide the path to those zipfiles:
 
     vars:
       ...
       jws_install_method: zipfiles
-      jws_version: 5.6.0
-      zipfile_name: jws-5.6.0-application-server.zip
-      native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip$
+      jws_version: 5.7.0
+      zipfile_name: jws-5.7.0-application-server.zip
+      native_zipfile: jws-5.7.0-application-server-RHEL8-x86_64.zip$
       jws_native: True
 
 Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:
 
     vars:
       ...
-      jws_version: 5.6.0
+      jws_version: 5.7.0
 
 
 Note: if you provide the `jws_version` and set `jws_native` to `True`, then the collection will compute the value of `jws_native_zipfile` for you.
@@ -144,7 +144,7 @@ Allows users to mask passwords and other sensitive strings, and store them in an
 
 ### How to enable tomcat-vault
 
-Before you can enable the tomcat-vault feature, you must follow our documentation on how to create the required files for the feature to function. Please visit the [JWS Installation Guide, Chapter 6](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html-single/installation_guide/index#vault_for_jws) for next steps, and return here once you've generated your vault files.
+Before you can enable the tomcat-vault feature, you must follow our documentation on how to create the required files for the feature to function. Please visit the [JWS Installation Guide, Chapter 6](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws) for next steps, and return here once you've generated your vault files.
 
 Once you have your vault files (`vault.keystore`, `VAULT.dat`, and `vault.properties`), you'll need to set the following variables to point to each file:
 
