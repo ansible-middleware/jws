@@ -179,23 +179,23 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <h3>Using local JWS zipfiles<a class="headerlink" href="#using-local-jws-zipfiles" title="Permalink to this heading"></a></h3>
 <p>Download the required zipfiles from your Red Hat account, and place them into the directory you execute the ansible-playbook command on the controller:</p>
 <ul class="simple">
-<li><p>Red Hat JBoss Web Server 5.6.0 Application Server (the application server itself)</p></li>
-<li><p>Red Hat JBoss Web Server 5.6.0 Application Server for RHEL 8 x86_64 (the native components)</p></li>
+<li><p>Red Hat JBoss Web Server 5.7.0 Application Server (the application server itself)</p></li>
+<li><p>Red Hat JBoss Web Server 5.7.0 Application Server for RHEL 8 x86_64 (the native components)</p></li>
 </ul>
 <p>Provide the path to those zipfiles:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
   jws_install_method: zipfiles
-  jws_version: 5.6.0
-  zipfile_name: jws-5.6.0-application-server.zip
-  native_zipfile: jws-5.6.0-application-server-RHEL8-x86_64.zip$
+  jws_version: 5.7.0
+  zipfile_name: jws-5.7.0-application-server.zip
+  native_zipfile: jws-5.7.0-application-server-RHEL8-x86_64.zip$
   jws_native: True
 </pre></div>
 </div>
 <p>Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
   ...
-  jws_version: 5.6.0
+  jws_version: 5.7.0
 </pre></div>
 </div>
 <p>Note: if you provide the <code class="docutils literal notranslate"><span class="pre">jws_version</span></code> and set <code class="docutils literal notranslate"><span class="pre">jws_native</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the collection will compute the value of <code class="docutils literal notranslate"><span class="pre">jws_native_zipfile</span></code> for you.</p>
@@ -272,7 +272,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </section>
 <section id="how-to-enable-tomcat-vault">
 <h3>How to enable tomcat-vault<a class="headerlink" href="#how-to-enable-tomcat-vault" title="Permalink to this heading"></a></h3>
-<p>Before you can enable the tomcat-vault feature, you must follow our documentation on how to create the required files for the feature to function. Please visit the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html-single/installation_guide/index#vault_for_jws">JWS Installation Guide, Chapter 6</a> for next steps, and return here once you’ve generated your vault files.</p>
+<p>Before you can enable the tomcat-vault feature, you must follow our documentation on how to create the required files for the feature to function. Please visit the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws">JWS Installation Guide, Chapter 6</a> for next steps, and return here once you’ve generated your vault files.</p>
 <p>Once you have your vault files (<code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code>, <code class="docutils literal notranslate"><span class="pre">VAULT.dat</span></code>, and <code class="docutils literal notranslate"><span class="pre">vault.properties</span></code>), you’ll need to set the following variables to point to each file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>~~~
 ...
