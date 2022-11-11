@@ -82,6 +82,10 @@ jws:
     type: "{{ jws_service_systemd_type }}"
     hr_name: "{{ 'Jboss Web Server' if jws_version is defined else 'Tomcat' }}"
   rhn_ids:
+    '5.7.0':  # noqa vars_in_vars_files_have_valid_names
+      id: '104841'
+      native: '104844'
+      latest_cp:
     '5.6.0':  # noqa vars_in_vars_files_have_valid_names
       id: '103663'
       native: '103665'
