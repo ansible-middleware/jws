@@ -1,0 +1,12 @@
+---
+- name: "Install with override server.xml"
+  hosts: all
+  vars_files:
+    - vars.yml
+  collections:
+    - middleware_automation.jws
+  roles:
+    - role: jws
+      vars:
+        jws_systemd_enabled: True
+        jws_java_home: "{{ jdk_home }}"

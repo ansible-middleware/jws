@@ -1,0 +1,8 @@
+---
+- name: Verify
+  hosts: all
+  vars:
+  collections:
+    - middleware_automation.jws
+  roles:
+    - jws_validation
