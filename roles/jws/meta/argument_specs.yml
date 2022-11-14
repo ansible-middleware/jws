@@ -357,6 +357,10 @@ argument_specs:
                 default: "{{ lookup('env', 'PWD') | default('/opt') }}"
                 description: "path local to controller for offline/download archive files"
                 type: "str"
+            jws_java_home:
+                required: False
+                description: "path to the JAVA_HOME to be used by the server"
+                type: "str"
     downstream:
         options:
             jws_version:

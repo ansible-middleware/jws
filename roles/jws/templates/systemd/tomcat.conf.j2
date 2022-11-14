@@ -16,7 +16,9 @@
 TOMCAT_CFG_LOADED="1"
 
 # Where your java installation lives
-JAVA_HOME={{ jws.java_home  | default(jws_rpm_java_home, true) }}
+{% if jws_java_home is defined or jws_rpm_java_home is defined %}
+JAVA_HOME={{ jws_java_home | default(jws_rpm_java_home, true) }}
+{% endif %}
 
 # Where your tomcat installation lives
 CATALINA_BASE="{{ jws_home }}"
@@ -34,7 +36,7 @@ CATALINA_TMPDIR="{{ jws.tmpdir }}"
 SECURITY_MANAGER="false"
 
 # DEPRECATED VARIABLES
-# 
+#
 # TOMCAT_USER has been deprecated. To update the tomcat process owner,
 # please see User in jws5-tomcat.service.
 #
