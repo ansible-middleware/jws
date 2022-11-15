@@ -36,15 +36,15 @@
       notify:
         - "Selinux policy created"
         - "Apply selinux policy"
-  when: archive_path_selinux.stat.exists
 
-- name: Allow jws.to listen to port
-  community.general.seport:
-    ports:
-      - "{{ jws_listen_http_port }}"
-      - "{{ jws_listen_https_port }}"
-      - "{{ jws_listen_ajp_port }}"
-      - "{{ jws_shutdown_port }}"
-    proto: tcp
-    setype: http_port_t
-    state: present
+    - name: Allow jws.to listen to port
+      community.general.seport:
+        ports:
+          - "{{ jws_listen_http_port }}"
+          - "{{ jws_listen_https_port }}"
+          - "{{ jws_listen_ajp_port }}"
+          - "{{ jws_shutdown_port }}"
+        proto: tcp
+        setype: http_port_t
+        state: present
+  when: archive_path_selinux.stat.exists
