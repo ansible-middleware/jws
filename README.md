@@ -39,11 +39,14 @@ The use of the collection will vary on the installation method you choose. The f
 
 ### Prerequisites
 
-You can run the collection directly from this folder for demostration purpose, however, the proper way to install the collection is to build it and install it:
+You can run the collection directly from this folder for demonstration purpose, however, the proper way is to install the collection using Galaxy:
+
+    $ ansible-galaxy collection install middleware_automation.jws
+
+For **development purpose**, if you want to test changes to the collection itself, you can build and install it using the following commands:
 
     $ ansible-galaxy collection build .
     $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
-
 
 ## Installing JWS
 
