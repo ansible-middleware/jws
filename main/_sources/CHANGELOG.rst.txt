@@ -9,6 +9,11 @@ This changelog describes changes after version 0.0.3.
 v1.2.1-devel
 ============
 
+Minor Changes
+-------------
+
+- Add 5.7 release to rhn_ids `#205 <https://github.com/ansible-middleware/jws/pull/205>`_
+
 v1.2.0
 ======
 
