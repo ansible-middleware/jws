@@ -6,6 +6,16 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v1.2.2
+======
+
+Minor Changes
+-------------
+
+- Add 5.7 release to rhn_ids `#205 <https://github.com/ansible-middleware/jws/pull/205>`_
+- Add variable to config offline/download path on controller `#191 <https://github.com/ansible-middleware/jws/pull/191>`_
+- jws: ensure default server.xml.j2 uses the recommended https config `#196 <https://github.com/ansible-middleware/jws/pull/196>`_
+
 v1.2.0
 ======
 

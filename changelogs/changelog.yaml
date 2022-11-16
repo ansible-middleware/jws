@@ -93,10 +93,10 @@ releases:
 
         '
       minor_changes:
-      - 'jws: only removes examples webapps by default. `#175 <https://github.com/ansible-middleware/jws/pull/175>`_
+      - 'Fix string mismatch with groupinstall `#173 <https://github.com/ansible-middleware/jws/pull/173>`_
 
         '
-      - 'Fix string mismatch with groupinstall `#173 <https://github.com/ansible-middleware/jws/pull/173>`_
+      - 'jws: only removes examples webapps by default. `#175 <https://github.com/ansible-middleware/jws/pull/175>`_
 
         '
     release_date: '2022-06-02'
@@ -135,3 +135,21 @@ releases:
 
         '
     release_date: '2022-08-25'
+  1.2.2:
+    changes:
+      minor_changes:
+      - 'Add 5.7 release to rhn_ids `#205 <https://github.com/ansible-middleware/jws/pull/205>`_
+
+        '
+      - 'Add variable to config offline/download path on controller `#191 <https://github.com/ansible-middleware/jws/pull/191>`_
+
+        '
+      - 'jws: ensure default server.xml.j2 uses the recommended https config `#196
+        <https://github.com/ansible-middleware/jws/pull/196>`_
+
+        '
+    fragments:
+    - 191.yaml
+    - 196.yaml
+    - 205.yaml
+    release_date: '2022-11-16'
