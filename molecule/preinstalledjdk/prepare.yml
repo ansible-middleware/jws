@@ -21,12 +21,6 @@
       changed_when: False
       register: result_of_update_alternative
 
-
-    - ansible.builtin.command: "ls /opt"
-      register: var
-    - ansible.builtin.debug:
-        var: var
-
     - name: "Ensure new JDK is registered as an alternatives for the java command."
       ansible.builtin.command: "java --version"
       changed_when: False
