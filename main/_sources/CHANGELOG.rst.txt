@@ -14,6 +14,7 @@ Minor Changes
 
 - Add 5.7 release to rhn_ids `#205 <https://github.com/ansible-middleware/jws/pull/205>`_
 - Add variable to config offline/download path on controller `#191 <https://github.com/ansible-middleware/jws/pull/191>`_
+- Reorganize selinux http port labeling task `#211 <https://github.com/ansible-middleware/jws/pull/211>`_
 - jws: ensure default server.xml.j2 uses the recommended https config `#196 <https://github.com/ansible-middleware/jws/pull/196>`_
 
 v1.2.0
