@@ -20,6 +20,7 @@ Minor Changes
 Bugfixes
 --------
 
+- Preinstalled Java `#208 <https://github.com/ansible-middleware/jws/pull/208>`_
 - Revert selinux policy postinstall filenames `#210 <https://github.com/ansible-middleware/jws/pull/210>`_
 
 v1.2.0
