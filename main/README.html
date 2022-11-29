@@ -166,7 +166,11 @@
 </section>
 <section id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
-<p>You can run the collection directly from this folder for demostration purpose, however, the proper way to install the collection is to build it and install it:</p>
+<p>You can run the collection directly from this folder for demonstration purpose, however, the proper way is to install the collection using Galaxy:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ansible-galaxy collection install middleware_automation.jws
+</pre></div>
+</div>
+<p>For <strong>development purpose</strong>, if you want to test changes to the collection itself, you can build and install it using the following commands:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ansible-galaxy collection build .
 $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </pre></div>
