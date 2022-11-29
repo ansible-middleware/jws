@@ -1,5 +1,5 @@
 ---
-- name: "Install with override server.xml"
+- name: "Install JWS using a pre-installed JDK."
   hosts: all
   vars_files:
     - vars.yml
