@@ -48,6 +48,7 @@
     listen_port: "{{ jws_listen_https_port }}"
   when:
     - jws_listen_https_enabled is defined
+    - jws_listen_https_enabled
     - jws_listen_https_bind_address is defined
     - jws_listen_https_port is defined
 
@@ -58,6 +59,7 @@
     listen_port: "{{ jws_listen_ajp_port }}"
   when:
     - jws_listen_ajp_enabled is defined
+    - jws_listen_ajp_enabled
     - jws_listen_ajp_bind_address is defined
     - jws_listen_ajp_port is defined
 
