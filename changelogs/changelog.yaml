@@ -153,3 +153,25 @@ releases:
     - 196.yaml
     - 205.yaml
     release_date: '2022-11-16'
+  1.2.3:
+    changes:
+      bugfixes:
+      - 'Preinstalled Java `#208 <https://github.com/ansible-middleware/jws/pull/208>`_
+
+        '
+      - 'Reorganize selinux http port labeling task `#211 <https://github.com/ansible-middleware/jws/pull/211>`_
+
+        '
+      - 'Revert selinux policy postinstall filenames `#210 <https://github.com/ansible-middleware/jws/pull/210>`_
+
+        '
+      minor_changes:
+      - 'Clarify and separate dev setup from installation `#212 <https://github.com/ansible-middleware/jws/pull/212>`_
+
+        '
+    fragments:
+    - 208.yaml
+    - 210.yaml
+    - 211.yaml
+    - 212.yaml
+    release_date: '2022-12-01'

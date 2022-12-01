@@ -6,6 +6,21 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v1.2.3
+======
+
+Minor Changes
+-------------
+
+- Clarify and separate dev setup from installation `#212 <https://github.com/ansible-middleware/jws/pull/212>`_
+
+Bugfixes
+--------
+
+- Preinstalled Java `#208 <https://github.com/ansible-middleware/jws/pull/208>`_
+- Reorganize selinux http port labeling task `#211 <https://github.com/ansible-middleware/jws/pull/211>`_
+- Revert selinux policy postinstall filenames `#210 <https://github.com/ansible-middleware/jws/pull/210>`_
+
 v1.2.2
 ======
 
