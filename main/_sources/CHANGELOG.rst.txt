@@ -6,6 +6,20 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v1.2.3-devel
+============
+
+Minor Changes
+-------------
+
+- Reorganize selinux http port labeling task `#211 <https://github.com/ansible-middleware/jws/pull/211>`_
+
+Bugfixes
+--------
+
+- Preinstalled Java `#208 <https://github.com/ansible-middleware/jws/pull/208>`_
+- Revert selinux policy postinstall filenames `#210 <https://github.com/ansible-middleware/jws/pull/210>`_
+
 v1.2.2
 ======
 
@@ -14,14 +28,7 @@ Minor Changes
 
 - Add 5.7 release to rhn_ids `#205 <https://github.com/ansible-middleware/jws/pull/205>`_
 - Add variable to config offline/download path on controller `#191 <https://github.com/ansible-middleware/jws/pull/191>`_
-- Reorganize selinux http port labeling task `#211 <https://github.com/ansible-middleware/jws/pull/211>`_
 - jws: ensure default server.xml.j2 uses the recommended https config `#196 <https://github.com/ansible-middleware/jws/pull/196>`_
-
-Bugfixes
---------
-
-- Preinstalled Java `#208 <https://github.com/ansible-middleware/jws/pull/208>`_
-- Revert selinux policy postinstall filenames `#210 <https://github.com/ansible-middleware/jws/pull/210>`_
 
 v1.2.0
 ======
