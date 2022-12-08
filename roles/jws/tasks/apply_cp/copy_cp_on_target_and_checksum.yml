@@ -40,6 +40,6 @@
 
 - name: "Print information message if patch has already been applied"
   ansible.builtin.debug:
-    msg: "Patch v{{ patch_version }} (checksum {{ patch_info.stat.checksum }}) has already been applied."
+    msg: "Patch v{{ patch_version }} (checksum {{ patch_info.stat.checksum }}, arch: {{ native_patch_arch | default('noarch') }}) has already been applied."
   when:
     - last_patch_status.stat.exists

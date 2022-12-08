@@ -15,7 +15,7 @@
     - name: Set checksum file
       ansible.builtin.copy:
         dest: "{{ patch_checksum_file }}"
-        content: "Patch v{{ patch_version_for_msg | default(jws.rhn_ids[jws_version].latest_cp.v) }}"
+        content: "Patch v{{ patch_version_for_msg | default(jws.rhn_ids[jws_version].latest_cp.v) }} (Arch:{{ native_patch_arch | default('noarch') }}"
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
         mode: 0640
