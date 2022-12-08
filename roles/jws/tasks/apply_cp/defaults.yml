@@ -1,12 +1,5 @@
 ---
-- name: "Set archive filename when distribution data unavailable"
-  ansible.builtin.set_fact:
-    patch_bundle: "{{ jws_patch_bundle | default(jws.rhn.patch_native_bundle) }}"
-  when:
-    - jws_version is defined
-    - not ansible_facts is defined or not ansible_facts['distribution_major_version'] is defined
-
-- name: "Set pacth_version and patch_bundle if not provided and distribution data are available."
+- name: "Set patch_version and jws_patch_bundle if not provided and distribution data are available."
   block:
     - name: "Set patch_version using distribution datas."
       ansible.builtin.set_fact:
@@ -14,9 +7,9 @@
 
     - name: "Set patch_bundle using distribution datas."
       ansible.builtin.set_fact:
-        patch_bundle: "jws-{{ patch_version }}{{ archive_file_suffix | default('.zip') }}"
+        jws_patch_bundle: "jws-{{ patch_version }}{{ archive_file_suffix | default('.zip') }}"
   when:
-    - not patch_bundle is defined
+    - not jws_patch_bundle is defined or 'reset' in jws_patch_bundle
     - jws_version is defined
     - ansible_facts is defined
     - ansible_facts['distribution_major_version'] is defined
@@ -51,7 +44,7 @@
             quiet: True
             fail_msg: "No version {{ jws_version }} within the metadata of this collection."
 
-        - name: "Set zipfile URL for native patch"
+        - name: "Set zipfile URL for native patch."
           ansible.builtin.set_fact:
             rhn_cpatch_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.native | default('') }}"
       when:
@@ -69,6 +62,6 @@
 
 - name: "Set path to local patch bundle"
   ansible.builtin.set_fact:
-    downloaded_patch_bundle_file: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+    downloaded_patch_bundle_file: "{{ jws_archive_repository }}/{{ jws_patch_bundle }}"
   when:
-    - not downloaded_patch_bundle_file is defined
+    - not downloaded_patch_bundle_file is defined or 'reset' in downloaded_patch_bundle_file
