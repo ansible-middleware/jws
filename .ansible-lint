@@ -36,6 +36,8 @@ warn_list:
   - load-failure
   - jinja[spacing]
   - name[template]
+  - fqcn[action]
+  - name[casing]
 
 use_default_rules: true
 parseable: true
