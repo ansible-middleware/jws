@@ -5,7 +5,7 @@
       - jws_rpm is defined
       - jws_rpm | length > 0
       - jws_home is defined
-      - jws_home | lenght > 0
+      - jws_home | length > 0
     quiet: True
 
 - name: "Check that RPM package was installed"
