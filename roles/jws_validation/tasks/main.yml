@@ -26,6 +26,7 @@
   ansible.builtin.include_tasks: jws_version.yml
   when:
     - jws_version is defined
+    - not jws_rpm is defined or not jws_rpm
 
 - name: "Verify that main server's logfile exists."
   ansible.builtin.include_tasks: catalina_out.yml
