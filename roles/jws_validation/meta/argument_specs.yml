@@ -2,6 +2,9 @@
 argument_specs:
     main:
         options:
+            jws_validation_strings_in_catalina:
+                description: "Pattern to search for in the catalina logfile."
+                type: "str"
             jws_listen_http_bind_address:
                 default: "localhost"
                 description: "Service bind address"
