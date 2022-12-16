@@ -16,7 +16,7 @@ enable_list:
   - no-log-password  # opt-in
 
 skip_list:
-  - 204
+  - "204"
   - blocked_modules
   - file_is_small_enough
   - vars_should_not_be_used
