@@ -86,6 +86,9 @@ jws:
       id: '104841'
       native: '104844'
       latest_cp:
+        id: '104962'
+        native: '104965'
+        v: '5.7.1'
     '5.6.0':  # noqa vars_in_vars_files_have_valid_names
       id: '103663'
       native: '103665'
