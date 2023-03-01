@@ -199,7 +199,7 @@ Consider the following guidelines:
 | `jws_modcluster_ip` | Specifies the bind address for the `mod_cluster` instance on each target host (by default, `127.0.0.1`) |
 | `jws_modcluster_port` | Specifies the port that the `mod_cluster` instance uses to listen for incoming requests (by default, `6666`) |
 
-The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp) supports the validation and testing of this feature.
+The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) supports the validation and testing of this feature.
 
 ## Using the collection to configure the password vault for JBoss Web Server
 
@@ -263,7 +263,7 @@ Consider the following guidelines:
 
 Refer to the [Apache Tomcat documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more information about setting up and configuring HTTPS support.
 
-The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/https) supports the validation and testing of this feature.
+The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) supports the validation and testing of this feature.
 
 ## Using the collection to override the default template for `server.xml`
 
