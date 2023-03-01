@@ -137,7 +137,7 @@ All that you have to do to enable a mod_cluster listener for jws is to edit the 
 - `jws_modcluster_ip` (Set the ip of the mod_cluster instance)
 - `jws_modcluster_port` (Set the port of the mod_cluster instance)
 
-(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp) )
+(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) )
 
 ## Vault for JWS
 
@@ -186,7 +186,7 @@ Please refers to the [server documentation](https://tomcat.apache.org/tomcat-9.0
 
 Note: There other collections and modules available to automate the creation of those files (such as [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), [Ansible Collection Community Crytpo](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html)). Please refers to those in order to automate this part.
 
-(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/https) )
+(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) )
 
 ## Overriding the default template for server.xml
 
