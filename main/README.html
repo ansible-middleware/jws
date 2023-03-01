@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ansible Collection - middleware_automation.jws &mdash; JWS Ansible Collection  documentation</title>
@@ -12,10 +12,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -30,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> JWS Ansible Collection
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            JWS Ansible Collection
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -114,7 +116,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Ansible Collection - middleware_automation.jws</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
@@ -140,7 +142,7 @@
 <section id="roles">
 <h3>Roles<a class="headerlink" href="#roles" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p>The <span class="xref myst">jws</span> role which:</p>
+<li><p>The <a class="reference internal" href="#roles/jws/README.md"><span class="xref myst">jws</span></a> role which:</p>
 <ul>
 <li><p>Installs JAVA</p></li>
 <li><p>Installs basic packages required for JWS</p></li>
@@ -230,8 +232,8 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <ol class="arabic">
 <li><p>Configure the install method as described above!</p></li>
 <li><p>Update your inventory, e.g.:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">jws</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">192.168.0.1</span><span class="w">      </span><span class="c1"># Remote host to act on</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">jws</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">192.168.0.1</span><span class="w">      </span><span class="c1"># Remote host to act on</span>
 </pre></div>
 </div>
 </li>
@@ -242,11 +244,11 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <li><p><code class="docutils literal notranslate"><span class="pre">jws_listen_http_port</span></code> and/or <code class="docutils literal notranslate"><span class="pre">tomcat_listen_https_port</span></code> (which http/https ports to listen on)</p></li>
 </ul>
 </li>
-<li><p>Run the playbook; see <span class="xref myst">Running the Playbook</span> below!</p></li>
+<li><p>Run the playbook; see <a class="reference internal" href="#running-the-playbook"><span class="xref myst">Running the Playbook</span></a> below!</p></li>
 </ol>
 <p>Note: If you are using a non root remote user, then set username and enable sudo:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
-<span class="nt">become_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sudo</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<span class="nt">become_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sudo</span>
 </pre></div>
 </div>
 </section>
@@ -255,7 +257,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <h2>ModCluster Listener<a class="headerlink" href="#modcluster-listener" title="Permalink to this heading"></a></h2>
 <section id="what-does-the-modcluster-listener-do">
 <h3>What does the ModCluster Listener do<a class="headerlink" href="#what-does-the-modcluster-listener-do" title="Permalink to this heading"></a></h3>
-<p>Allows communication between Apache Tomcat and the Apache HTTP Server’s mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/">HTTP Connectors and Load Balancing Guide</a>.</p>
+<p>Allows communication between Apache Tomcat and the Apache HTTP Server’s mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/" title="HTTP Connectors and Load Balancing Guide">HTTP Connectors and Load Balancing Guide</a>.</p>
 </section>
 <section id="how-to-enable-modcluster-listener">
 <h3>How to enable ModCluster Listener<a class="headerlink" href="#how-to-enable-modcluster-listener" title="Permalink to this heading"></a></h3>
@@ -265,7 +267,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <li><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_ip</span></code> (Set the ip of the mod_cluster instance)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_port</span></code> (Set the port of the mod_cluster instance)</p></li>
 </ul>
-<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/ajp">Molecule scenario</a> )</p>
+<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https">Molecule scenario</a> )</p>
 </section>
 </section>
 <section id="vault-for-jws">
@@ -313,7 +315,7 @@ jws_listen_https_keystore_password: changeit
 </div>
 <p>Please refers to the <a class="reference external" href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start">server documentation</a> for more details on the setup and configuration of this feature.</p>
 <p>Note: There other collections and modules available to automate the creation of those files (such as <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html">Ansible OpenSSH Keypair collection</a>, <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html">Ansible Collection Community Crytpo</a> and the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html">Java Keystore module</a>). Please refers to those in order to automate this part.</p>
-<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/https">Molecule scenario</a> )</p>
+<p>(This feature is validated and tested by the following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https">Molecule scenario</a> )</p>
 </section>
 <section id="overriding-the-default-template-for-server-xml">
 <h2>Overriding the default template for server.xml<a class="headerlink" href="#overriding-the-default-template-for-server-xml" title="Permalink to this heading"></a></h2>
@@ -358,23 +360,23 @@ jws_listen_https_keystore_password: changeit
 <h2>Running the Playbook<a class="headerlink" href="#running-the-playbook" title="Permalink to this heading"></a></h2>
 <p>Once all values are updated, you can then run the playbook against your nodes.</p>
 <p>Playbook executed as root user - with ssh key:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml</span>
 </pre></div>
 </div>
 <p>Playbook executed as root user - with password:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass</span>
 </pre></div>
 </div>
 <p>Playbook executed as sudo user - with password:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass --ask-become-pass</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass --ask-become-pass</span>
 </pre></div>
 </div>
 <p>Playbook executed as sudo user - with ssh key and sudo password:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass</span>
 </pre></div>
 </div>
 <p>Playbook executed as sudo user - with ssh key and passwordless sudo:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass</span>
 </pre></div>
 </div>
 <p>Execution should be successful without errors</p>
@@ -386,7 +388,7 @@ jws_listen_https_keystore_password: changeit
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
 <p>Apache License v2.0 or later</p>
-<p>See <span class="xref myst">LICENSE</span> to view the full text.</p>
+<p>See <a class="reference internal" href="#LICENSE"><span class="xref myst">LICENSE</span></a> to view the full text.</p>
 </section>
 </section>
 
@@ -401,7 +403,7 @@ jws_listen_https_keystore_password: changeit
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Red Hat, Inc..</p>
+    <p>&#169; Copyright 2023, Red Hat, Inc..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

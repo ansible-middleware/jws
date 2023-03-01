@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>middleware_automation.jws.jws &mdash; JWS Ansible Collection  documentation</title>
@@ -12,10 +12,8 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -30,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> JWS Ansible Collection
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            JWS Ansible Collection
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -98,7 +100,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Role Index</a></li>
       <li class="breadcrumb-item active">middleware_automation.jws.jws</li>
       <li class="wy-breadcrumbs-aside">
@@ -126,13 +128,13 @@
 </section>
 <section id="versions">
 <h2>Versions<a class="headerlink" href="#versions" title="Permalink to this heading"></a></h2>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>JWS VERSION</p></th>
-<th class="text-left head"><p>Release Date</p></th>
-<th class="text-left head"><p>Tomcat Version</p></th>
-<th class="text-left head"><p>Native Version</p></th>
-<th class="text-left head"><p>Notes</p></th>
+<tr class="row-odd"><th class="head text-left"><p>JWS VERSION</p></th>
+<th class="head text-left"><p>Release Date</p></th>
+<th class="head text-left"><p>Tomcat Version</p></th>
+<th class="head text-left"><p>Native Version</p></th>
+<th class="head text-left"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
@@ -184,12 +186,12 @@
 <section id="patching">
 <h2>Patching<a class="headerlink" href="#patching" title="Permalink to this heading"></a></h2>
 <p>When variable <code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>), the role will automatically apply the latest cumulative patch for the selected base version.</p>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>JWS VERSION</p></th>
-<th class="text-left head"><p>Release Date</p></th>
-<th class="text-left head"><p>JWS LATEST CP</p></th>
-<th class="text-left head"><p>Notes</p></th>
+<tr class="row-odd"><th class="head text-left"><p>JWS VERSION</p></th>
+<th class="head text-left"><p>Release Date</p></th>
+<th class="head text-left"><p>JWS LATEST CP</p></th>
+<th class="head text-left"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
@@ -222,11 +224,11 @@
 <h2>Role Defaults<a class="headerlink" href="#role-defaults" title="Permalink to this heading"></a></h2>
 <section id="download-and-install-parameters">
 <h3>Download and install parameters<a class="headerlink" href="#download-and-install-parameters" title="Permalink to this heading"></a></h3>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Variable</p></th>
-<th class="text-left head"><p>Description</p></th>
-<th class="text-left head"><p>Default</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
 </tr>
 </thead>
 <tbody>
@@ -299,11 +301,11 @@
 </section>
 <section id="service-configuration">
 <h3>Service configuration<a class="headerlink" href="#service-configuration" title="Permalink to this heading"></a></h3>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Variable</p></th>
-<th class="text-left head"><p>Description</p></th>
-<th class="text-left head"><p>Default</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
 </tr>
 </thead>
 <tbody>
@@ -444,11 +446,11 @@
 </section>
 <section id="tomcat-vault-configuration">
 <h3>tomcat-vault configuration<a class="headerlink" href="#tomcat-vault-configuration" title="Permalink to this heading"></a></h3>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Variable</p></th>
-<th class="text-left head"><p>Description</p></th>
-<th class="text-left head"><p>Default</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
 </tr>
 </thead>
 <tbody>
@@ -489,11 +491,11 @@
 </section>
 <section id="mod-cluster-configuration">
 <h3>mod_cluster configuration<a class="headerlink" href="#mod-cluster-configuration" title="Permalink to this heading"></a></h3>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Variable</p></th>
-<th class="text-left head"><p>Description</p></th>
-<th class="text-left head"><p>Default</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
 </tr>
 </thead>
 <tbody>
@@ -534,11 +536,11 @@
 </section>
 <section id="https-configuration">
 <h3>HTTPS configuration<a class="headerlink" href="#https-configuration" title="Permalink to this heading"></a></h3>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Variable</p></th>
-<th class="text-left head"><p>Description</p></th>
-<th class="text-left head"><p>Default</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
 </tr>
 </thead>
 <tbody>
@@ -588,11 +590,11 @@
 </section>
 <section id="role-variables">
 <h2>Role Variables<a class="headerlink" href="#role-variables" title="Permalink to this heading"></a></h2>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Variable</p></th>
-<th class="text-left head"><p>Description</p></th>
-<th class="text-left head"><p>Required</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Required</p></th>
 </tr>
 </thead>
 <tbody>
@@ -610,12 +612,12 @@
 </section>
 <section id="example-playbook">
 <h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Permalink to this heading"></a></h2>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span><span class="w"></span>
-<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Include</span><span class="nv"> </span><span class="s">JWS&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="nt">include_role</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jws&quot;</span><span class="w"></span>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Include</span><span class="nv"> </span><span class="s">JWS&quot;</span>
+<span class="w">      </span><span class="nt">include_role</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jws&quot;</span>
 </pre></div>
 </div>
 </section>
@@ -632,7 +634,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Red Hat, Inc..</p>
+    <p>&#169; Copyright 2023, Red Hat, Inc..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
