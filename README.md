@@ -127,18 +127,17 @@ If you want the collection to install JBoss Web Server from RPM packages, you mu
 
 - You have [attached subscriptions to Red Hat Enterprise Linux](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#attach_subscriptions).
 
-- You have a working internet connection that the collection uses to obtain the RPM packages from Red Hat.
+- You have a working internet connection that the collection can use to obtain the RPM packages from Red Hat.
 
 **Note:** When you enable the RPM installation method, the collection always installs the latest available RPM packages for the latest JBoss Web Server version, including any patch updates. 
 
-To enable the collection to install JBoss Web Server from RPM packages, set the following variables on your Ansible control node:
+To enable the collection to install JBoss Web Server from RPM packages, set the `jws_install_method` variable to `rpm` on your Ansible control node:
 
     vars:
       ...
       jws_install_method: rpm
-      jws_home_method: <custom_installation_path>
 
-**Note:** If you want to install JBoss Web Server in the default installation directory, you do not need to set the `jws_home_method` variable. The default installation directory is `/opt/rh/jws5/root/usr/share/tomcat/`.
+**Note:** By default, the collection installs JBoss Web Server in the `/opt/rh/jws5/root/usr/share/tomcat/` directory. If you want to use a different installation directory, you can manually create a symbolic link to `/opt/rh/jws5/root/usr/share/tomcat/`.
 
 
 ### Using a custom URL to download the archive files
