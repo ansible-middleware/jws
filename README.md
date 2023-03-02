@@ -7,19 +7,19 @@ This repository contains the Ansible roles and playbooks to set up an automated 
 
 ## Ansible version compatibility
 
-<!-- KIERAN:  Use the following sentences in the **UPSTREAM** readme only -->
+<!-- Use the following sentences in the **UPSTREAM** readme only -->
 This collection has been tested against Ansible versions 2.9.10 or later.
 
 The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.
-<!-- KIERAN:  end of **UPSTREAM** sentences -->
+<!-- end of **UPSTREAM** sentences -->
 
-<!-- KIERAN:  Use the following sentences in the **DOWNSTREAM** readme to comply with Red Hat doc standards -->
+<!-- Use the following sentences in the **DOWNSTREAM** readme only -->
 
 [//]: # (Red Hat has tested this collection against Ansible versions 2.9.10 or later.)
 
 [//]: # (Red Hat might test the plug-ins and modules that are within a collection with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.)
 
-<!-- KIERAN:  end of **DOWNSTREAM** sentences -->
+<!-- end of **DOWNSTREAM** sentences -->
 <!--end requires_ansible-->
 
 
@@ -39,7 +39,7 @@ The plug-ins and modules that are within a collection might be tested with speci
 
 ## Collection setup
 
-<!-- KIERAN:  Use the following sentences in the **UPSTREAM** readme only -->
+<!-- Use the following sentences in the **UPSTREAM** readme only -->
 For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to install the collection by using Ansible Galaxy:
 
     $ ansible-galaxy collection install middleware_automation.jws
@@ -48,10 +48,10 @@ For **development purposes**, if you want to test changes to the collection, you
 
     $ ansible-galaxy collection build .
     $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
-<!-- KIERAN:  end of **UPSTREAM** sentences -->
+<!-- end of **UPSTREAM** sentences -->
 
 
-<!-- KIERAN:  Use the following sentences in the **DOWNSTREAM** readme only -->
+<!-- Use the following sentences in the **DOWNSTREAM** readme only -->
 
 [//]: # (For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to download and install the collection from the Red Hat Automation Hub.)
 
@@ -65,7 +65,8 @@ For **development purposes**, if you want to test changes to the collection, you
 
 [//]: # (    $ ansible-galaxy collection install redhat.jws)
 
-<!-- KIERAN:  end of **DOWNSTREAM** sentences -->
+<!-- end of **DOWNSTREAM** sentences -->
+
 
 ## Collection usage for installing JBoss Web Server
 
@@ -351,7 +352,9 @@ Ensure that the playbook runs successfully without any errors.
 
 ## Support
 
-This collection is released as a [Technology Preview](https://access.redhat.com/support/offerings/techpreview) feature for Red Hat customers of the [JWS Ansible Collection](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws). If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
+This collection is released as a [Technology Preview](https://access.redhat.com/support/offerings/techpreview) feature for Red Hat customers as the [Red Hat Ansible certified content collection for JBoss Web Server](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws). If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
+
+For more information about using this collection, see [Installing JBoss Web Server by using the Red Hat Ansible Certified Content Collection](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installing_jboss_web_server_by_using_the_red_hat_ansible_certified_content_collection/index).
 
 
 ## License
