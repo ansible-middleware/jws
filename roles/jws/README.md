@@ -63,7 +63,7 @@ Role Defaults
 | `jws_native`             | Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version | `False`                                                                                            |
 | `jws_native_zipfile`     | Tomcat native binaries archive filename                                                                          | `''`                                                                                               |
 | `jws_force_install`      | Whether to stop any running tomcat process and continue installation                                             | `false`                                                                                            |
-| `jws_archive_repository` | Path local to controller for offline/download archive files                                                      | `{{ lookup('env', 'PWD')                                                                           | default('/opt') }}` |
+| `jws_archive_repository` | Path local to controller for offline/download archive files                                                      | `{{ lookup('env', 'PWD') &#124; default('/opt') }}`                                                |
 
 ### Service configuration
 
