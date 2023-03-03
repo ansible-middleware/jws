@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/jws/actions/workflows/ci.yml)
 
-This repository contains the Ansible roles and playbooks to setup [Red Hat JBoss Web Server (JWS)](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
+This repository contains the Ansible roles and playbooks to set up [Red Hat JBoss Web Server (JWS)](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
 
 
 ## Ansible version compatibility
@@ -78,7 +78,7 @@ Note: if you provide the `jws_version` and set `jws_native` to `True`, then the 
 
 ### Using JWS RPMs
 
-Change the default install method to RPM and provide the appropriate Tomcat HOME in the playbooks:
+Change the default installation method to RPM and provide the appropriate Tomcat HOME in the playbooks:
 
     vars:
       ...
@@ -88,7 +88,7 @@ Change the default install method to RPM and provide the appropriate Tomcat HOME
 
 ### Using a custom URL to download the JWS archives
 
-To use the install method zipfiles, downloading from a custom URL, set :
+To use the installation method zipfiles, downloading from a custom URL, set :
 
     vars:
        ...
@@ -99,7 +99,7 @@ To use the install method zipfiles, downloading from a custom URL, set :
 
 ### Running the playbooks
 
-1. Configure the install method as described above!
+1. Configure the installation method as described above!
 
 2. Update your inventory, e.g.:
 
@@ -108,14 +108,14 @@ To use the install method zipfiles, downloading from a custom URL, set :
     192.168.0.1      # Remote host to act on
     ~~~
 
-3. Update variables in vars.yml file; the variables are as follow:
+3. Update variables in vars.yml file; the variables are as follows:
     - `jws_version` (which version of jws to install)
-    - `jws_java_version` (which version of java to install, ie. name of the JVM rpm package)
+    - `jws_java_version` (which version of java to install, i.e. name of the JVM rpm package)
     - `jws_listen_http_port` and/or `tomcat_listen_https_port` (which http/https ports to listen on)
 
 4. Run the playbook; see [Running the Playbook](#running-the-playbook) below!
 
-Note: If you are using a non root remote user, then set username and enable sudo:
+Note: If you are using a non-root remote user, then set username and enable sudo:
 
 ~~~
 become: yes
@@ -143,13 +143,13 @@ All that you have to do to enable a mod_cluster listener for jws is to edit the 
 
 ### What does tomcat-vault do
 
-Allows users to mask passwords and other sensitive strings, and store them in an encrypted Java keystore. Using the vault enables you to stop storing clear-text passwords in your Tomcat configuration files, because Tomcat can lookup passwords and other sensitive strings from a keystore using the vault.
+Allows users to mask passwords and other sensitive strings, and store them in an encrypted Java keystore. Using the vault enables you to stop storing clear-text passwords in your Tomcat configuration files, because Tomcat can look up passwords and other sensitive strings from a keystore using the vault.
 
 ### How to enable tomcat-vault
 
 Before you can enable the tomcat-vault feature, you must follow our documentation on how to create the required files for the feature to function. Please visit the [JWS Installation Guide, Chapter 6](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws) for next steps, and return here once you've generated your vault files.
 
-Once you have your vault files (`vault.keystore`, `VAULT.dat`, and `vault.properties`), you'll need to set the following variables to point to each file:
+Once you have your vault files (`vault.keystore`, `VAULT.dat` and `vault.properties`), you'll need to set the following variables to point to each file:
 
     ~~~
     ...
@@ -170,7 +170,7 @@ In addition to that, you need to provide several other bits of information from 
 
 ## Enable HTTPS
 
-The default template for `server.xml` provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the required Java Keystore. It expects it to be already installed and available.
+The default template for `server.xml` provided with this Ansible collection already includes the required configuration to use HTTPS. It just needs to be activated. However, the collection does not build, nor provide the required Java Keystore. It expects it to be already installed and available.
 
     jws_listen_https_enabled: True
     # add the following variable to change default port (default: 8443)
@@ -182,15 +182,15 @@ The default template for `server.xml` provided with this Ansible collection alre
     # add the following variable to change the default password to the keystore (default: changeit)
     jws_listen_https_keystore_password: changeit
 
-Please refers to the [server documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more details on the setup and configuration of this feature.
+Please refer to the [server documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more details on the setup and configuration of this feature.
 
-Note: There other collections and modules available to automate the creation of those files (such as [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), [Ansible Collection Community Crytpo](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html)). Please refers to those in order to automate this part.
+Note: There are other collections and modules available to automate the creation of those files (such as [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), [Ansible Collection Community Crypto](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html)). Please refer to those in order to automate this part.
 
 (This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) )
 
 ## Overriding the default template for server.xml
 
-The provided template for the `server.xml.j2` covers the most basic use case of the server. It's most likely that a user will need to replace this template by its own, it order to deploy a fine-grained configuration, suiting one's use case. To do so, just change of this default variable:
+The provided template for the `server.xml.j2` covers the most basic use case of the server. It's most likely that a user will need to replace this template by its own, in order to deploy a fine-grained configuration, suiting one's use case. To do so, just change of this default variable:
 
     jws_conf_templates_server: path/to/my_template_for_server_xml.j2
 
@@ -205,7 +205,7 @@ Simply use Ansible existing module! For instance, you can use the [get_url:](htt
         url: https://repo1.maven.org/maven2/org/jolokia/jolokia-war/1.7.1/jolokia-war-1.7.1.war
         dest: "{{ jws_home }}/tomcat/webapps/"
 
-Another option is to use the [copy:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) module that allow to deploy a file from the Ansible controller to the target:
+Another option is to use the [copy:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) module that allows to deploy a file from the Ansible controller to the target:
 
     - ansible.builtin.copy:
        src: files/jolokia-war-1.7.1.war
@@ -218,7 +218,7 @@ This module can also be used if the file already exists on the target host:
        dest: "{{ jws_home }}/tomcat/webapps/"
        remote_src: yes
 
-However, to avoid duplicating the files, a symlink or hardlink can also be used instead using the module [file:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html):
+However, to avoid duplicating the files, a symlink or hardlink can also be used instead, using the module [file:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html):
 
     - ansible.builtin.file:
         src: /apps/jolokia-war-1.7.1.war
