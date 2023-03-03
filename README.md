@@ -2,271 +2,359 @@
 
 [![Build Status](https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/jws/actions/workflows/ci.yml)
 
-This repository contains the Ansible roles and playbooks to setup [Red Hat JBoss Web Server (JWS)](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
+This repository contains the Ansible roles and playbooks to set up an automated installation of [Red Hat JBoss Web Server (JWS)](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
 
 
 ## Ansible version compatibility
 
-This collection has been tested against following Ansible versions: **>=2.9.10**.
+<!-- Use the following sentences in the **UPSTREAM** readme only -->
+This collection has been tested against Ansible versions 2.9.10 or later.
 
-Plugins and modules within a collection may be tested with only specific Ansible versions. A collection may contain metadata that identifies these versions.
+The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.
+<!-- end of **UPSTREAM** sentences -->
+
+<!-- Use the following sentences in the **DOWNSTREAM** readme only -->
+
+[//]: # (Red Hat has tested this collection against Ansible versions 2.9.10 or later.)
+
+[//]: # (Red Hat might test the plug-ins and modules that are within a collection with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.)
+
+<!-- end of **DOWNSTREAM** sentences -->
 <!--end requires_ansible-->
 
 
-## Included content
+## Content included in this collection
 
 ### Roles
 
-- The [jws](roles/jws/README.md) role which:
-    - Installs JAVA
-    - Installs basic packages required for JWS
-    - Adds JWS user and group
-    - Downloads JWS and installs the application server
-    - Makes sure that JWS directory structure belongs to the JWS user and group
-    - Deploys server.xml, web.xml, and context.xml
+- The [jws](roles/jws/README.md) role contains the Ansible playbook and handles the following automated tasks:
+    - Ensures that a Java Development Kit (JDK) is installed on your target hosts
+    - Installs the basic packages that a JBoss Web Server installation requires
+    - Creates a JBoss Web Server user account and group
+    - Installs JBoss Web Server from product archive files or RPM packages
+    - Assigns ownership of the JBoss Web Server directories to the appropriate user account and group
+    - Deploys the `server.xml`, `web.xml`, and `context.xml` files
 
+<!-- KIERAN:  Should this section also mention the jws_validation role? -->
 
-## Installation and Usage
+## Collection setup
 
-### How to use this collection
-
-The use of the collection will vary on the installation method you choose. The following options are available:
-
-- Local JWS zipfiles
-- The JWS RPMs
-- Setting a custom URL for downloading the JWS archives
-
-
-### Prerequisites
-
-You can run the collection directly from this folder for demonstration purpose, however, the proper way is to install the collection using Galaxy:
+<!-- Use the following sentences in the **UPSTREAM** readme only -->
+For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to install the collection by using Ansible Galaxy:
 
     $ ansible-galaxy collection install middleware_automation.jws
 
-For **development purpose**, if you want to test changes to the collection itself, you can build and install it using the following commands:
+For **development purposes**, if you want to test changes to the collection, you can build and install the collection by using the following commands:
 
     $ ansible-galaxy collection build .
     $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
+<!-- end of **UPSTREAM** sentences -->
 
-## Installing JWS
 
-### Using local JWS zipfiles
+<!-- Use the following sentences in the **DOWNSTREAM** readme only -->
 
-Download the required zipfiles from your Red Hat account, and place them into the directory you execute the ansible-playbook command on the controller:
+[//]: # (For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to download and install the collection from the Red Hat Automation Hub.)
 
-- Red Hat JBoss Web Server 5.7.0 Application Server (the application server itself)
-- Red Hat JBoss Web Server 5.7.0 Application Server for RHEL 8 x86_64 (the native components)
+[//]: # (Before you install the collection, you must ensure that your system complies with the following prerequisites:)
 
-Provide the path to those zipfiles:
+[//]: # (- You have installed the ansible-core package version 2.12 or later on a control node in your system by installing Red Hat Ansible Automation Platform 2.x.)
+
+[//]: # (- You have updated the ansible.cfg file to use the Red Hat Automation Hub as your *primary source* of Ansible collections.)
+
+[//]: # (You can install the collection on your Ansible control node by using the following command:)
+
+[//]: # (    $ ansible-galaxy collection install redhat.jws)
+
+<!-- end of **DOWNSTREAM** sentences -->
+
+
+## Collection usage for installing JBoss Web Server
+
+You can enable the collection to use any of the following installation methods when performing an automated installation of JBoss Web Server:
+
+- Local archive files
+- RPM packages
+- Custom URL for downloading the archive files
+
+### Using local archive files
+
+To enable the collection to install JBoss Web Server from local archive files:
+
+1. If copies of the archive files are not already on your system, download the appropriate archive files from the Red Hat Customer Portal:
+
+   - Red Hat JBoss Web Server 5._X_.0 Application Server *(the application server)*
+   - Red Hat JBoss Web Server 5._X_.0 Application Server for RHEL 8 x86_64 *(the native components)*
+
+    In the preceding file names, replace 5._X_.0 with the JBoss Web Server version that you want to install (for example, 5.7.0).
+
+2. Copy the archive files to your Ansible control node.
+
+3. On your Ansible control node, set the following variables, as appropriate:
+
+        vars:
+          ...
+          jws_install_method: zipfiles
+          jws_version: 5.7.0
+          jws_native: True
+          zipfile_name: <application_server_filename>.zip
+          native_zipfile: <native_filename>.zip
+
+    Consider the following guidelines:
+
+    | Variable    | Details |
+    | ----------- | ----------- |
+    | `jws_install_method` | Specifies the installation method (by default, `zipfiles`) |
+    | `jws_version` | Specifies the version of JBoss Web Server that you want to install (for example, `5.7.0`) |
+    | `jws_native` | Indicates whether you also want to install the native archive file (by default, `False`) |
+    | `zipfile_name` | Specifies the name of the application server archive file on your control node |
+    | `native_zipfile` | Specifies the name of the native archive file on your control node |
+
+    **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
+    
+    **Note:** If you did not change the archive file names, you do not need to set the `zipfile_name` and `native_zipfile` variables. The collection uses the JBoss Web Server version to determine the default file names automatically. 
+
+4. If you also want to install the latest cumulative patches for the appropriate JBoss Web Server version, copy the archive files for the latest patch updates to your Ansible control node. Then set the `jws_apply_patches` variable to `True`:
+
+        vars:
+          ...
+          jws_apply_patches: True
+
+
+### Using RPM packages
+
+If you want the collection to install JBoss Web Server from RPM packages, you must first ensure that your system complies with the following prerequisites:
+
+- Your system is compliant with [Red Hat Enterprise Linux package requirements](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#rhel_requirements_rpm).
+
+- You have [attached subscriptions to Red Hat Enterprise Linux](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#attach_subscriptions).
+
+- You have a working internet connection that the collection can use to obtain the RPM packages from Red Hat.
+
+**Note:** When you enable the RPM installation method, the collection always installs the latest available RPM packages for the latest JBoss Web Server version, including any patch updates. 
+
+To enable the collection to install JBoss Web Server from RPM packages, set the `jws_install_method` variable to `rpm` on your Ansible control node:
 
     vars:
       ...
-      jws_install_method: zipfiles
-      jws_version: 5.7.0
-      zipfile_name: jws-5.7.0-application-server.zip
-      native_zipfile: jws-5.7.0-application-server-RHEL8-x86_64.zip$
-      jws_native: True
-
-Note that if you respect the naming convention above for the file name, which is the default filename as set by the RHN download, you can just provide the JWS version instead of those two paths:
-
-    vars:
-      ...
-      jws_version: 5.7.0
-
-
-Note: if you provide the `jws_version` and set `jws_native` to `True`, then the collection will compute the value of `jws_native_zipfile` for you.
-
-### Using JWS RPMs
-
-Change the default install method to RPM and provide the appropriate Tomcat HOME in the playbooks:
-
-    vars:
-      ...
-      jws_home: /opt/rh/jws5/root/usr/share/tomcat/
       jws_install_method: rpm
 
+**Note:** By default, the collection installs JBoss Web Server in the `/opt/rh/jws5/root/usr/share/tomcat/` directory. If you want to use a different installation directory, you can manually create a symbolic link to `/opt/rh/jws5/root/usr/share/tomcat/`.
 
-### Using a custom URL to download the JWS archives
 
-To use the install method zipfiles, downloading from a custom URL, set :
+### Using a custom URL to download the archive files
+
+To enable the collection to download and install the JBoss Web Server archive files from a custom URL, set the following variables on your Ansible control node:
 
     vars:
        ...
        jws_install_method: zipfiles
-       zipfile_name: tomcat-x.y.z.zip
-       zipfile_name_url: https://binary.repository.internal.company/tomcat-x.y.z.zip
+       zipfile_name: <archive_file_name>.zip
+       zipfile_name_url: <URL_path/archive_file_name>.zip
+
+In the preceding example, ensure that the `zipfile_name` and `zipfile_name_url` variables specify the correct archive file name and URL path, respectively.
 
 
-### Running the playbooks
+### Running the playbook
 
-1. Configure the install method as described above!
+To run the playbook:
 
-2. Update your inventory, e.g.:
+1. Set the `jws_install_method` variable to the appropriate installation method, as described in the preceding sections.
+
+2. Update the inventory for your target hosts. For example:
 
     ~~~
     [jws]
     192.168.0.1      # Remote host to act on
     ~~~
 
-3. Update variables in vars.yml file; the variables are as follow:
-    - `jws_version` (which version of jws to install)
-    - `jws_java_version` (which version of java to install, ie. name of the JVM rpm package)
-    - `jws_listen_http_port` and/or `tomcat_listen_https_port` (which http/https ports to listen on)
+3. If you want the collection to install a supported OpenJDK version on your target hosts, set the `jws_java_version` variable to the appropriate value (for example, `1.8.0`, `11`, or `17`). The collection is not configured to install a JDK by default.
 
-4. Run the playbook; see [Running the Playbook](#running-the-playbook) below!
+4. Set the `jws_listen_http_port` and `jws_listen_https_port` variables to specify which HTTP and HTTPS ports you want JBoss Web Server to listen on. The default HTTP port is 8080. The default HTTPS port is 8443.
 
-Note: If you are using a non root remote user, then set username and enable sudo:
+4. Run the playbook. For more information, see [Running the Playbook](#running-the-playbook).
+
+Note: If you are using a remote user account that is not the root user, set the user name and enable sudo privileges:
 
 ~~~
 become: yes
 become_method: sudo
 ~~~
 
-## ModCluster Listener
+## Using the collection to configure the `mod_cluster` listener
 
-### What does the ModCluster Listener do
+The `mod_cluster` listener enables communication between JBoss Web Server and the `mod_proxy_cluster` module on the Apache HTTP Server. The `mod_proxy_cluster` module enables use of the Apache HTTP Server as an intelligent load-balancing solution for sending requests to JBoss Web Server. For information about configuring `mod_proxy_cluster` and alternative load balancers such as `mod_jk` and `mod_proxy`, see the [Apache HTTP Server Connectors and Load Balancing Guide](https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.51/html-single/apache_http_server_connectors_and_load_balancing_guide/ "Apache HTTP Server Connectors and Load Balancing Guide").
 
-Allows communication between Apache Tomcat and the Apache HTTP Server's mod_proxy_cluster module. This allows the Apache HTTP Server to be used as a load balancer for JBoss Web Server. For information on the configuration of mod_cluster, or for information on the installation and configuration of the alternative load balancers mod_jk and mod_proxy, see the [HTTP Connectors and Load Balancing Guide](https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.37/html-single/apache_http_server_connectors_and_load_balancing_guide/ "HTTP Connectors and Load Balancing Guide").
+To enable the collection to configure the `mod_cluster` listener, set the following variables on your Ansible control node:
+
+    vars:
+      ...
+      jws_modcluster_enabled: True
+      jws_modcluster_ip: <ip_address>
+      jws_modcluster_port: <port>
+
+Consider the following guidelines:
+
+| Variable    | Details |
+| ----------- | ----------- |
+| `jws_modcluster_enabled` | Indicates whether you want to enable `mod_cluster` (by default, `False`) |
+| `jws_modcluster_ip` | Specifies the bind address for the `mod_cluster` instance on each target host (by default, `127.0.0.1`) |
+| `jws_modcluster_port` | Specifies the port that the `mod_cluster` instance uses to listen for incoming requests (by default, `6666`) |
+
+The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) supports the validation and testing of this feature.
+
+## Using the collection to configure the password vault for JBoss Web Server
+
+You can use the password vault for JBoss Web Server, which is named `tomcat-vault`, to mask passwords and other sensitive strings, and to store sensitive information in an encrypted Java keystore. When you use the password vault, you can stop storing clear-text passwords in your JBoss Web Server configuration files. JBoss Web Server can use the password vault to search for passwords and other sensitive strings from a keystore.
+
+**Note:** If you want to use the password vault feature, you must first create the required `vault.keystore`, `VAULT.dat`, and `vault.properties` files as a prerequisite. For more information about creating these files, see the [Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws).
+
+To enable the collection to configure the password vault, set the following variables on your Ansible control node:
+
+    vars:
+      ...
+      jws_vault_name: ./vault_files/vault.keystore
+      jws_vault_data: ./vault_files/VAULT.dat
+      jws_vault_properties: ./vault_files/vault.properties
+      jws_tomcat_vault_enabled: True
+      jws_tomcat_vault_alias: <keystore_alias>
+      jws_tomcat_vault_storepass: <keystore_password>
+      jws_tomcat_vault_iteration: <iteration_count>
+      jws_tomcat_vault_salt: <salt>
+
+Consider the following guidelines:
+
+| Variable    | Details |
+| ----------- | ----------- |
+| `jws_vault_name` | Specifies the path to the `vault.keystore` file |
+| `jws_vault_data` | Specifies the path to the `VAULT.dat` file |
+| `jws_vault_properties` | Specifies the path to the `vault.properties` file |
+| `jws_tomcat_vault_enabled` | Indicates whether you want to enable the password vault (by default, `False`) |
+| `jws_tomcat_vault_alias` | Specifies the keystore alias that you configured when creating the required files |
+| `jws_tomcat_vault_storepass` | Specifies the keystore password that you configured when creating the required files |
+| `jws_tomcat_vault_iteration` | Specifies the iteration count that you configured when creating the required files |
+| `jws_tomcat_vault_salt` | Specifies the salt value that you configured when creating the required files |
 
 
-### How to enable ModCluster Listener
+## Using the collection to enable HTTPS support
 
-All that you have to do to enable a mod_cluster listener for jws is to edit the mod_cluster variables in the vars.yml:
+The collection provides a default template for the `server.xml` file that already includes the required configuration to use HTTPS. To enable HTTPS support, you only need to set the appropriate variables. However, the collection does not build or provide the required Java Keystore. In this situation, you must ensure that a Java keystore already exists on each target host.
 
-- `jws_modcluster_enabled` (Set to True to enable the listener)
-- `jws_modcluster_ip` (Set the ip of the mod_cluster instance)
-- `jws_modcluster_port` (Set the port of the mod_cluster instance)
+**Note:** To automate the creation of Java keystore files, you can use other collections and modules, such as the [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), the [Ansible Collection Community Crytpo](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html)). For more information about automating the creation of a Java keystore, refer to the available documentation for these collections or modules.
 
-(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) )
+To enable the collection to configure HTTPS support, set the following variables on your Ansible control node, as appropriate:
 
-## Vault for JWS
+    vars:
+      ...
+      jws_listen_https_enabled: True
+      jws_listen_https_port: <port>
+      jws_listen_https_bind_address: <ip_address>
+      jws_listen_https_keystore_file: <keystore_path>
+      jws_listen_https_keystore_password: <keystore_password>
 
-### What does tomcat-vault do
+Consider the following guidelines:
 
-Allows users to mask passwords and other sensitive strings, and store them in an encrypted Java keystore. Using the vault enables you to stop storing clear-text passwords in your Tomcat configuration files, because Tomcat can lookup passwords and other sensitive strings from a keystore using the vault.
+| Variable    | Details |
+| ----------- | ----------- |
+| `jws_listen_https_enabled` | Indicates whether you want to enable HTTPS support (by default, `False`) |
+| `jws_listen_https_port` | Specifies the port that JBoss Web Server uses to listen for HTTPS requests (by default, `8443`) |
+| `jws_listen_https_bind_address` | Specifies the bind address for HTTPS requests on each target host (by default, `localhost`) |
+| `jws_listen_https_keystore_file` | Specifies the path to the Java keystore on each target host (by default, `/etc/ssl/keystore.jks`) |
+| `jws_listen_https_keystore_password` | Specifies the Java keystore password on each target host (by default, `changeit`) |
 
-### How to enable tomcat-vault
 
-Before you can enable the tomcat-vault feature, you must follow our documentation on how to create the required files for the feature to function. Please visit the [JWS Installation Guide, Chapter 6](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws) for next steps, and return here once you've generated your vault files.
+Refer to the [Apache Tomcat documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more information about setting up and configuring HTTPS support.
 
-Once you have your vault files (`vault.keystore`, `VAULT.dat`, and `vault.properties`), you'll need to set the following variables to point to each file:
+The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) supports the validation and testing of this feature.
 
-    ~~~
-    ...
-    jws_vault_name: ./vault_files/vault.keystore
-    jws_vault_data: ./vault_files/VAULT.dat
-    jws_vault_properties: ./vault_files/vault.properties
-    ...
-    ~~~
+## Using the collection to override the default template for `server.xml`
 
-With this configuration done, you can turn on the vault feature by setting `jws_tomcat_vault_enabled` to `True` in your `vars.yml` file.
+The collection provides a default `server.xml.j2` template that covers the most basic server configuration only. To ensure a more fine-tuned configuration that suits your requirements, you can override the default template with your own customized template.
 
-In addition to that, you need to provide several other bits of information from the tomcat-vault configuration step in Chapter 6. You'll need to set the following variables to match the values used in your tomcat-vault configuration:
+To override the default template, set the following variable on your Ansible control node:
 
-* `jws_tomcat_vault_alias`
-* `jws_tomcat_vault_storepass`
-* `jws_tomcat_vault_iteration`
-* `jws_tomcat_vault_salt`
+    vars:
+      ...
+      jws_conf_templates_server: <path_to_custom_template>.j2
 
-## Enable HTTPS
+The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/override_server_xml) supports the validation and testing of this feature.
 
-The default template for `server.xml` provided with this Ansible collection already includes the required configuration to use HTTPS. It just need to be activated. However, the collection does not build, nor provide the required Java Keystore. It expects it to be already installed and available.
+## Using the collection to deploy web applications
 
-    jws_listen_https_enabled: True
-    # add the following variable to change default port (default: 8443)
-    jws_listen_https_port: '8443'
-    # add the following variable to change default bind address (default: localhost)
-    jws_listen_https_bind_address: 'localhost'
-    # add the following variable to change the default path to the keystore file (default: /etc/ssl/keystore.jks)
-    jws_listen_https_keystore_file: /etc/ssl/keystore.jks
-    # add the following variable to change the default password to the keystore (default: changeit)
-    jws_listen_https_keystore_password: changeit
+Ansible provides various modules and features to facilitate the deployment of web applications on your target hosts.
 
-Please refers to the [server documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more details on the setup and configuration of this feature.
+For example:
 
-Note: There other collections and modules available to automate the creation of those files (such as [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), [Ansible Collection Community Crytpo](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html)). Please refers to those in order to automate this part.
+- To deploy an application by downloading the `.war` file from a repository, use the [get_url:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html) module:
 
-(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) )
+        - name: Download App
+          get_url:
+            url: https://repo1.maven.org/maven2/org/jolokia/jolokia-war/1.7.1/jolokia-war-1.7.1.war
+            dest: "{{ jws_home }}/tomcat/webapps/"
 
-## Overriding the default template for server.xml
+- To deploy an application by copying the `.war` file from your control node to the target host, use the [copy:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) module:
 
-The provided template for the `server.xml.j2` covers the most basic use case of the server. It's most likely that a user will need to replace this template by its own, it order to deploy a fine-grained configuration, suiting one's use case. To do so, just change of this default variable:
+        - ansible.builtin.copy:
+           src: files/jolokia-war-1.7.1.war
+           dest: "{{ jws_home }}/tomcat/webapps/"
 
-    jws_conf_templates_server: path/to/my_template_for_server_xml.j2
+- To deploy an application when the `.war` file already exists on the target host, use the [copy:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) module with the `remote_src` parameter:
 
-(This feature is validated and tested by the following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/override_server_xml) )
+        - ansible.builtin.copy:
+           src: files/jolokia-war-1.7.1.war
+           dest: "{{ jws_home }}/tomcat/webapps/"
+           remote_src: yes
 
-## How to deploy webapps?
+- To deploy an application by using a symbolic link or hard link to the `.war` file, which avoids duplicating the file, use the [file:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html) module:
 
-Simply use Ansible existing module! For instance, you can use the [get_url:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html) module to deploy a webapp downloaded from a repository:
+        - ansible.builtin.file:
+            src: /apps/jolokia-war-1.7.1.war
+            dest: "{{ jws_home }}/tomcat/webapps/jolokia-war-1.7.1.war"
+            state: link
 
-    - name: Download App
-      get_url:
-        url: https://repo1.maven.org/maven2/org/jolokia/jolokia-war/1.7.1/jolokia-war-1.7.1.war
-        dest: "{{ jws_home }}/tomcat/webapps/"
+## Running the playbook
 
-Another option is to use the [copy:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) module that allow to deploy a file from the Ansible controller to the target:
+After you define the appropriate variables and settings, you can run the playbook on your Ansible control node to begin the automated installation process. Ansible supports various ways to run the playbook.
 
-    - ansible.builtin.copy:
-       src: files/jolokia-war-1.7.1.war
-       dest: "{{ jws_home }}/tomcat/webapps/"
+For example:
 
-This module can also be used if the file already exists on the target host:
+- To run the playbook as the root user with a secure shell (SSH) key:
 
-    - ansible.builtin.copy:
-       src: files/jolokia-war-1.7.1.war
-       dest: "{{ jws_home }}/tomcat/webapps/"
-       remote_src: yes
+    ```
+    $ ansible-playbook -i hosts playbooks/playbook.yml
+    ```
 
-However, to avoid duplicating the files, a symlink or hardlink can also be used instead using the module [file:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html):
+- To run the playbook as the root user with a password:
 
-    - ansible.builtin.file:
-        src: /apps/jolokia-war-1.7.1.war
-        dest: "{{ jws_home }}/tomcat/webapps/jolokia-war-1.7.1.war"
-        state: link
+    ```
+    $ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass
+    ```
 
-Bottom line: Ansible has many features to help deploy webapps into the appropriate directory for the server!
+- To run the playbook as a user with sudo privileges and a password:
 
-## Running the Playbook
+    ```
+    $ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass --ask-become-pass
+    ```
 
-Once all values are updated, you can then run the playbook against your nodes.
+- To run the playbook as a user with sudo privileges, an SSH key, and a sudo password:
 
-Playbook executed as root user - with ssh key:
+    ```
+    $ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass
+    ```
 
-```
-$ ansible-playbook -i hosts playbooks/playbook.yml
-```
+- To run the playbook as a user with sudo privileges and an SSH key but without a sudo password:
 
-Playbook executed as root user - with password:
+    ```
+    $ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass
+    ```
 
-```
-$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass
-```
-
-Playbook executed as sudo user - with password:
-
-```
-$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass --ask-become-pass
-```
-
-Playbook executed as sudo user - with ssh key and sudo password:
-
-```
-$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass
-```
-
-Playbook executed as sudo user - with ssh key and passwordless sudo:
-
-```
-$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass
-```
-
-Execution should be successful without errors
+Ensure that the playbook runs successfully without any errors.
 
 
 ## Support
 
-This collection is released as [Technical Preview](https://access.redhat.com/support/offerings/techpreview) for Red Hat Customer [JWS Ansible Collection](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws). If you have any issues or questions related to collection, please don't hesitate to contact us on <Ansible-middleware-core@redhat.com> or open an issue on https://github.com/ansible-middleware/jws/issues
+For Red Hat customers, this collection is released as a [Technology Preview](https://access.redhat.com/support/offerings/techpreview) feature as the [Red Hat Ansible certified content collection for JBoss Web Server](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws). If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
+
+For more information about using this collection, see [Installing JBoss Web Server by using the Red Hat Ansible Certified Content Collection](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installing_jboss_web_server_by_using_the_red_hat_ansible_certified_content_collection/index).
 
 
 ## License
