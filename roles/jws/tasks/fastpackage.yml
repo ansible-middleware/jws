@@ -9,8 +9,6 @@
   block:
     - name: "Test if package {{ package_name }} is already installed"
       ansible.builtin.command: rpm -q {{ package_name }}
-      args:
-        warn: no
       register: rpm_info
       changed_when: rpm_info.failed
   rescue:
