@@ -101,13 +101,13 @@ To enable the collection to install JBoss Web Server from local archive files:
 
     Consider the following guidelines:
 
-    | Variable    | Details |
-    | ----------- | ----------- |
-    | `jws_install_method` | Specifies the installation method (by default, `zipfiles`) |
-    | `jws_version` | Specifies the version of JBoss Web Server that you want to install (for example, `5.7.0`) |
-    | `jws_native` | Indicates whether you also want to install the native archive file (by default, `False`) |
-    | `zipfile_name` | Specifies the name of the application server archive file on your control node |
-    | `native_zipfile` | Specifies the name of the native archive file on your control node |
+   | Variable               | Details                                                                                  |
+   |------------------------|------------------------------------------------------------------------------------------|
+   | `jws_install_method`   | Specifies the installation method (by default, `zipfiles`)                               |
+   | `jws_version`          | Specifies the version of JBoss Web Server that you want to install (for example, `5.7.0`)|
+   | `jws_native`           | Indicates whether you also want to install the native archive file (by default, `False`) |
+   | `zipfile_name`         | Specifies the name of the application server archive file on your control node           |
+   | `native_zipfile`       | Specifies the name of the native archive file on your control node                       |
 
     **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
     
@@ -169,11 +169,11 @@ To run the playbook:
 
 3. If you want the collection to install a supported OpenJDK version on your target hosts, set the `jws_java_version` variable to the appropriate value (for example, `1.8.0`, `11`, or `17`). The collection is not configured to install a JDK by default.
 
-4. Set the `jws_listen_http_port` and `jws_listen_https_port` variables to specify which HTTP and HTTPS ports you want JBoss Web Server to listen on. The default HTTP port is 8080. The default HTTPS port is 8443.
+4. Set the `jws_listen_http_port` and `jws_listen_https_port` variables to specify which HTTP and HTTPS ports you want JBoss Web Server to listen on. The default HTTP port is 8080. The default HTTPS port is 8443.
 
-4. Run the playbook. For more information, see [Running the Playbook](#running-the-playbook).
+5. Run the playbook. For more information, see [Running the Playbook](#running-the-playbook).
 
-Note: If you are using a remote user account that is not the root user, set the user name and enable sudo privileges:
+Note: If you are using a remote user account that is not the root user, set the username and enable sudo privileges:
 
 ~~~
 become: yes
@@ -194,11 +194,11 @@ To enable the collection to configure the `mod_cluster` listener, set the follow
 
 Consider the following guidelines:
 
-| Variable    | Details |
-| ----------- | ----------- |
-| `jws_modcluster_enabled` | Indicates whether you want to enable `mod_cluster` (by default, `False`) |
-| `jws_modcluster_ip` | Specifies the bind address for the `mod_cluster` instance on each target host (by default, `127.0.0.1`) |
-| `jws_modcluster_port` | Specifies the port that the `mod_cluster` instance uses to listen for incoming requests (by default, `6666`) |
+| Variable                 | Details                                                                                                      |
+|--------------------------|--------------------------------------------------------------------------------------------------------------|
+| `jws_modcluster_enabled` | Indicates whether you want to enable `mod_cluster` (by default, `False`)                                     |
+| `jws_modcluster_ip`      | Specifies the bind address for the `mod_cluster` instance on each target host (by default, `127.0.0.1`)      |
+| `jws_modcluster_port`    | Specifies the port that the `mod_cluster` instance uses to listen for incoming requests (by default, `6666`) |
 
 The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https) supports the validation and testing of this feature.
 
@@ -223,23 +223,23 @@ To enable the collection to configure the password vault, set the following vari
 
 Consider the following guidelines:
 
-| Variable    | Details |
-| ----------- | ----------- |
-| `jws_vault_name` | Specifies the path to the `vault.keystore` file |
-| `jws_vault_data` | Specifies the path to the `VAULT.dat` file |
-| `jws_vault_properties` | Specifies the path to the `vault.properties` file |
-| `jws_tomcat_vault_enabled` | Indicates whether you want to enable the password vault (by default, `False`) |
-| `jws_tomcat_vault_alias` | Specifies the keystore alias that you configured when creating the required files |
+| Variable                     | Details                                                                              |
+|------------------------------|--------------------------------------------------------------------------------------|
+| `jws_vault_name`             | Specifies the path to the `vault.keystore` file                                      |
+| `jws_vault_data`             | Specifies the path to the `VAULT.dat` file                                           |
+| `jws_vault_properties`       | Specifies the path to the `vault.properties` file                                    |
+| `jws_tomcat_vault_enabled`   | Indicates whether you want to enable the password vault (by default, `False`)        |
+| `jws_tomcat_vault_alias`     | Specifies the keystore alias that you configured when creating the required files    |
 | `jws_tomcat_vault_storepass` | Specifies the keystore password that you configured when creating the required files |
-| `jws_tomcat_vault_iteration` | Specifies the iteration count that you configured when creating the required files |
-| `jws_tomcat_vault_salt` | Specifies the salt value that you configured when creating the required files |
+| `jws_tomcat_vault_iteration` | Specifies the iteration count that you configured when creating the required files   |
+| `jws_tomcat_vault_salt`      | Specifies the salt value that you configured when creating the required files        |
 
 
 ## Using the collection to enable HTTPS support
 
 The collection provides a default template for the `server.xml` file that already includes the required configuration to use HTTPS. To enable HTTPS support, you only need to set the appropriate variables. However, the collection does not build or provide the required Java Keystore. In this situation, you must ensure that a Java keystore already exists on each target host.
 
-**Note:** To automate the creation of Java keystore files, you can use other collections and modules, such as the [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), the [Ansible Collection Community Crytpo](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html)). For more information about automating the creation of a Java keystore, refer to the available documentation for these collections or modules.
+**Note:** To automate the creation of Java keystore files, you can use other collections and modules, such as the [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), the [Ansible Collection Community Crypto](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html). For more information about automating the creation of a Java keystore, refer to the available documentation for these collections or modules.
 
 To enable the collection to configure HTTPS support, set the following variables on your Ansible control node, as appropriate:
 
@@ -253,13 +253,13 @@ To enable the collection to configure HTTPS support, set the following variables
 
 Consider the following guidelines:
 
-| Variable    | Details |
-| ----------- | ----------- |
-| `jws_listen_https_enabled` | Indicates whether you want to enable HTTPS support (by default, `False`) |
-| `jws_listen_https_port` | Specifies the port that JBoss Web Server uses to listen for HTTPS requests (by default, `8443`) |
-| `jws_listen_https_bind_address` | Specifies the bind address for HTTPS requests on each target host (by default, `localhost`) |
-| `jws_listen_https_keystore_file` | Specifies the path to the Java keystore on each target host (by default, `/etc/ssl/keystore.jks`) |
-| `jws_listen_https_keystore_password` | Specifies the Java keystore password on each target host (by default, `changeit`) |
+| Variable                             | Details                                                                                           |
+|--------------------------------------|---------------------------------------------------------------------------------------------------|
+| `jws_listen_https_enabled`           | Indicates whether you want to enable HTTPS support (by default, `False`)                          |
+| `jws_listen_https_port`              | Specifies the port that JBoss Web Server uses to listen for HTTPS requests (by default, `8443`)   |
+| `jws_listen_https_bind_address`      | Specifies the bind address for HTTPS requests on each target host (by default, `localhost`)       |
+| `jws_listen_https_keystore_file`     | Specifies the path to the Java keystore on each target host (by default, `/etc/ssl/keystore.jks`) |
+| `jws_listen_https_keystore_password` | Specifies the Java keystore password on each target host (by default, `changeit`)                 |
 
 
 Refer to the [Apache Tomcat documentation](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start) for more information about setting up and configuring HTTPS support.
