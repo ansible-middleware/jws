@@ -114,7 +114,7 @@
              
   <section id="middleware-automation-jws-jws">
 <h1>middleware_automation.jws.jws<a class="headerlink" href="#middleware-automation-jws-jws" title="Permalink to this heading"></a></h1>
-<p>This role contains the ansible playbook to setup JWS.</p>
+<p>This role contains the ansible playbook to set up JWS.</p>
 <section id="dependency">
 <h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this heading"></a></h2>
 <ul class="simple">
@@ -294,7 +294,7 @@
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_archive_repository</span></code></p></td>
 <td class="text-left"><p>Path local to controller for offline/download archive files</p></td>
-<td class="text-left"><p>`{{ lookup(‘env’, ‘PWD’)</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">lookup('env',</span> <span class="pre">'PWD')</span> <span class="pre">&amp;#124;</span> <span class="pre">default('/opt')</span> <span class="pre">}}</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -545,7 +545,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_enabled</span></code></p></td>
-<td class="text-left"><p>Enable HTTS connector</p></td>
+<td class="text-left"><p>Enable HTTPS connector</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_port</span></code></p></td>

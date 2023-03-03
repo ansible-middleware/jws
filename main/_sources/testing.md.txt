@@ -18,8 +18,8 @@ Sample playbooks are provided in the `playbooks/` directory; to run the playbook
 # setup environment
 pip install ansible-core
 # clone the repository
-git clone https://github.com/ansible-middleware/jws-ansible-playbook
-cd jws-ansible-playbook
+git clone https://github.com/ansible-middleware/jws
+cd jws
 # create inventory for localhost
 cat << EOF > inventory
 [jws]
