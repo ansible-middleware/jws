@@ -6,6 +6,8 @@
     quiet: True
 
 - name: Check SP update status
+  when:
+    - checksum_file_name is defined
   block:
 
     - name: "Check {{ checksum_file_name }} file exists"
@@ -18,5 +20,3 @@
         that:
           - applied_patch_file.stat.exists == True
         quiet: True
-  when:
-    - checksum_file_name is defined

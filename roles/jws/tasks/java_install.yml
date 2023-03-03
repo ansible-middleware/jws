@@ -1,12 +1,15 @@
 ---
 - name: "Install java"
+  when:
+    - jws_java_version is defined
+    - ansible_os_family == "RedHat"
   block:
     - name: Set rpm name with version
       ansible.builtin.set_fact:
         jws_java_packages_el: "java-{{ jws_java_version }}-openjdk-headless"
 
     - name: "Install {{ jws_java_packages_el }}"
-      include_tasks: fastpackage.yml
+      ansible.builtin.include_tasks: fastpackage.yml
       vars:
         package_name: "{{ jws_java_packages_el }}"
 
@@ -18,6 +21,3 @@
         executable: /bin/bash
       changed_when: False
       register: rpm_java_home
-  when:
-    - jws_java_version is defined
-    - ansible_os_family == "RedHat"

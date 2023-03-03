@@ -14,6 +14,8 @@
     - jws_systemd_enabled is defined
 
 - name: "Delete files from server home {{ jws_home }}"
+  when:
+    - jws.install_method != 'rpm'
   block:
     - name: "Check that server home has been provided"
       ansible.builtin.assert:
@@ -25,10 +27,10 @@
       ansible.builtin.file:
         path: "{{ jws_home }}"
         state: absent
-  when:
-    - jws.install_method != 'rpm'
 
 - name: "Perform rpm uninstall"
+  when:
+    - jws.install_method == 'rpm'
   block:
     - name: "Disable installed server to ensure package is removed"
       ansible.builtin.file:
@@ -39,5 +41,3 @@
       ansible.builtin.include_tasks: install/rpm.yml
       vars:
         dnf_command: 'groupremove'
-  when:
-    - jws.install_method == 'rpm'

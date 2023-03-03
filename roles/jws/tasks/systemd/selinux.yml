@@ -15,6 +15,7 @@
   register: archive_path_selinux
 
 - name: "Compile and install selinux policy"
+  when: archive_path_selinux.stat.exists
   block:
     - name: Install selinux-policy-devel
       ansible.builtin.include_tasks: ../fastpackage.yml
@@ -47,4 +48,3 @@
         proto: tcp
         setype: http_port_t
         state: present
-  when: archive_path_selinux.stat.exists

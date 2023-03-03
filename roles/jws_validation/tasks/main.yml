@@ -65,6 +65,9 @@
     - jws_listen_ajp_port is defined
 
 - name: "Check JWS specific features (if used)"
+  when:
+    - jws_version is defined
+    - jws_version | length > 0
   block:
 
     - name: "Check that CP have been properly applied (if enabled)."
@@ -72,6 +75,3 @@
       when:
         - jws_apply_patches is defined
         - jws_apply_patches
-  when:
-    - jws_version is defined
-    - jws_version | length > 0

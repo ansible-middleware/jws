@@ -21,6 +21,7 @@ skip_list:
   - file_is_small_enough
   - vars_should_not_be_used
   - role_vars_start_with_role_name
+  - name[template]
 
 warn_list:
   - experimental
@@ -33,9 +34,7 @@ warn_list:
   - no-changed-when
   - task_has_valid_name
   - internal-error
-  - load-failure
   - jinja[spacing]
-  - name[template]
   - fqcn[action]
   - name[casing]
 

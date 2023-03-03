@@ -39,6 +39,8 @@
     - jws_java_version is defined
 
 - name: "Test JWS specific features"
+  when:
+    - jws_version is defined
   block:
     - name: "Set expected strings"
       ansible.builtin.set_fact:
@@ -63,8 +65,6 @@
       when:
         - jws_modcluster_enabled is defined
         - jws_modcluster_enabled
-  when:
-    - jws_version is defined
 
 - name: "Check that expected, specific strings are in {{ catalina_logfile }}, if provided, and fails if not found"
   ansible.builtin.assert:

@@ -12,6 +12,8 @@
   register: archive_path
 
 - name: "Retrieve zipfiles (if missing)"
+  when:
+    - not path_to_zipfile_local is exists
   block:
     - name: "Retrieve zipfiles, if missing, from RHN (if credentials provided)"
       ansible.builtin.include_tasks: download_from_rhn.yml
@@ -25,8 +27,6 @@
         - not rhn_username is defined
         - not rhn_password is defined
         - zipfile_url is defined
-  when:
-    - not path_to_zipfile_local is exists
 
 - name: "Copy archives {{ path_to_zipfile_local }} to target nodes: {{ path_to_zipfile_on_target }}"
   ansible.builtin.copy:
