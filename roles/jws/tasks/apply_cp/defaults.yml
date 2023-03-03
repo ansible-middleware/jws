@@ -1,5 +1,10 @@
 ---
 - name: "Set patch_version and jws_patch_bundle if not provided and distribution data are available."
+  when:
+    - not jws_patch_bundle is defined or 'reset' in jws_patch_bundle
+    - jws_version is defined
+    - ansible_facts is defined
+    - ansible_facts['distribution_major_version'] is defined
   block:
     - name: "Set patch_version using distribution datas."
       ansible.builtin.set_fact:
@@ -8,15 +13,15 @@
     - name: "Set patch_bundle using distribution datas."
       ansible.builtin.set_fact:
         jws_patch_bundle: "jws-{{ patch_version }}{{ archive_file_suffix | default('.zip') }}"
-  when:
-    - not jws_patch_bundle is defined or 'reset' in jws_patch_bundle
-    - jws_version is defined
-    - ansible_facts is defined
-    - ansible_facts['distribution_major_version'] is defined
 
 - name: "Set download URLs variables (if not provided)."
+  when:
+    - jws_version is defined
+    - jws.rhn_ids is defined
   block:
     - name: "Set zipfile download URL."
+      when:
+        - not rhn_cpatch_zipfile_url is defined
       block:
         - name: "Ensure version {{ jws_version }} exists in available metadatas."
           ansible.builtin.assert:
@@ -30,10 +35,11 @@
         - name: "Set zipfile URL"
           ansible.builtin.set_fact:
             rhn_cpatch_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.id | default('') }}"
-      when:
-        - not rhn_cpatch_zipfile_url is defined
 
     - name: "Set download URL for native (if requested)."
+      when:
+        - jws_native is defined
+        - jws_native
       block:
         - name: "Ensure version {{ jws_version }} exists in available metadatas."
           ansible.builtin.assert:
@@ -47,12 +53,6 @@
         - name: "Set zipfile URL for native patch."
           ansible.builtin.set_fact:
             rhn_cpatch_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.native | default('') }}"
-      when:
-        - jws_native is defined
-        - jws_native
-  when:
-    - jws_version is defined
-    - jws.rhn_ids is defined
 
 - name: "Check that patch version has been provided or defined."
   ansible.builtin.assert:

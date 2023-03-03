@@ -28,7 +28,7 @@
       - jws_home | length > 0
 
 - name: "Install required dependencies"
-  include_tasks: fastpackage.yml
+  ansible.builtin.include_tasks: fastpackage.yml
   vars:
     package_name: "{{ item }}"
   loop:
@@ -36,7 +36,7 @@
     - unzip
 
 - name: "Install required dependencies for natives"
-  include_tasks: fastpackage.yml
+  ansible.builtin.include_tasks: fastpackage.yml
   vars:
     package_name: "{{ item }}"
   loop:
@@ -83,10 +83,11 @@
         success_msg: "Found a process owned by {{ jws.user }} and jws_force_install is true, continuing installation anyway"
 
     - name: "Include force install steps"
-      include_tasks: install/force_install.yml
+      ansible.builtin.include_tasks: install/force_install.yml
       when: jws_force_install
 
 - name: Perform setup
+  when: jws_setup
   block:
     - name: "Check state of install_dir: {{ jws_install_dir }}"
       ansible.builtin.stat:
@@ -197,4 +198,3 @@
       ansible.builtin.include_tasks: tomcat_vault.yml
       when:
         - jws.vault.enable
-  when: jws_setup

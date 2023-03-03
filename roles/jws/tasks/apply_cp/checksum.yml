@@ -1,5 +1,8 @@
 ---
 - name: "Verify that provided checksum {{ patch_checksum }} matches with downloaded file."
+  when:
+    - patch_checksum is defined
+    - patch_checksum | length > 0
   block:
     - name: "Load data on downloaded file: {{ downloaded_patch_bundle_file }}."
       ansible.builtin.stat:
@@ -13,6 +16,3 @@
           - downloaded_file_metadata.stat is defined
           - downloaded_file_metadata.stat.checksum is defined
           - downloaded_file_metadata.stat.checksum == patch_checksum
-  when:
-    - patch_checksum is defined
-    - patch_checksum | length > 0
