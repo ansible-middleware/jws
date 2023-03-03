@@ -14,7 +14,8 @@
   become: yes
   when:
     - jws_force_install
-    - running_processes.stdout_lines|length > 0
+    - running_processes.stdout_lines | length > 0
+  changed_when: True
 
 - name: "Check foreign processes owned by {{ jws.user }} user"
   ansible.builtin.shell: |
@@ -32,7 +33,8 @@
   become: yes
   when:
     - jws_force_install
-    - running_processes.stdout_lines|length > 0
+    - running_processes.stdout_lines | length > 0
+  changed_when: True
 
 - name: "Create group: {{ jws.group }}"
   ansible.builtin.group:
