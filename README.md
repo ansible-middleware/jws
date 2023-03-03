@@ -352,7 +352,7 @@ Ensure that the playbook runs successfully without any errors.
 
 ## Support
 
-This collection is released as a [Technology Preview](https://access.redhat.com/support/offerings/techpreview) feature for Red Hat customers as the [Red Hat Ansible certified content collection for JBoss Web Server](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws). If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
+For Red Hat customers, this collection is released as a [Technology Preview](https://access.redhat.com/support/offerings/techpreview) feature as the [Red Hat Ansible certified content collection for JBoss Web Server](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws). If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
 
 For more information about using this collection, see [Installing JBoss Web Server by using the Red Hat Ansible Certified Content Collection](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installing_jboss_web_server_by_using_the_red_hat_ansible_certified_content_collection/index).
 
