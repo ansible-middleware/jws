@@ -40,8 +40,13 @@ argument_specs:
                 # line 27 of jws/defaults/main.yml
                 default: True
                 description: "Enable selinux policy enforcement for JWS"
+            jws_dependencies_list:
+                type: "list"
+                default:
+                    - zip
+                    - unzip
+                description: "names of the packages required on the target system."
             tomcat_version:
-                # line 7 of jws/defaults/main.yml
                 default: "9.0.60"
                 description: "Version of tomcat to install"
                 type: "str"
@@ -361,6 +366,15 @@ argument_specs:
                 required: False
                 description: "path to the JAVA_HOME to be used by the server"
                 type: "str"
+            jws_firewalld_enabled:
+                default: False
+                description: "If true firewalld config will be update to open server ports"
+                type: "str"
+            jws_firewalld_package_name:
+                default:
+                    - firewalld
+                description: "Package name(s) required to run firewalld."
+                type: "list"
     downstream:
         options:
             jws_version:
