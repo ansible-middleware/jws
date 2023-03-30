@@ -14,7 +14,6 @@ license_file: "LICENSE"
 tags: [java, tomcat, server, apache, jws, modcluster, infrastructure, linux]
 dependencies:
   middleware_automation.redhat_csp_download: '>=1.2.1'
-  community.general: ">=5.6.0"
   ansible.posix: ">=1.4.0"
 repository: https://github.com/ansible-middleware/jws
 documentation: https://ansible-middleware.github.io/jws
