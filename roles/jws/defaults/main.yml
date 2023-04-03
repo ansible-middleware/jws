@@ -19,7 +19,7 @@ jws_install_method: zipfiles
 jws_archive_repository: "{{ lookup('env', 'PWD') | default('/opt') }}"
 
 # Default version of Apache Tomcat to use if no version is provided
-tomcat_version: 9.0.65
+tomcat_version: 10.1.7
 # Switch to True if you want to also download native bits
 jws_native: False
 jws_native_zipfile: ''

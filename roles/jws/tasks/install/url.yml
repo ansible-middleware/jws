@@ -7,7 +7,7 @@
       - zipfile_name is defined
     quiet: True
 
-- name: Download archive from custom url
+- name: "Download archive from custom url: {{ zipfile_url }}"
   ansible.builtin.get_url:
     url: "{{ zipfile_url }}"
     dest: "{{ jws_install_dir }}/{{ zipfile_name }}"
