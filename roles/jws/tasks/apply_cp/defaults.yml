@@ -31,10 +31,6 @@
             quiet: True
             fail_msg: "No version {{ jws_version }} within the metadata of this collection."
 
-        # - name: "Set zipfile URL"
-        #   ansible.builtin.set_fact:
-        #     rhn_cpatch_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.id | default('') }}"
-
     - name: "Set download URL for native (if requested)."
       when:
         - jws_native is defined
@@ -47,16 +43,6 @@
               - jws.rhn_ids[jws_version].native is defined
             quiet: True
             fail_msg: "No version {{ jws_version }} within the metadata of this collection."
-
-        # - name: "Set zipfile URL for native patch."
-        #   ansible.builtin.set_fact:
-        #     rhn_cpatch_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].latest_cp.native | default('') }}"
-
-- name: "Check that patch version has been provided or defined."
-  ansible.builtin.assert:
-    that:
-      - patch_version is defined
-    quiet: True
 
 - name: "Set path to local patch bundle"
   ansible.builtin.set_fact:

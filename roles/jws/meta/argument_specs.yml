@@ -409,6 +409,10 @@ argument_specs:
                 default: "jws-{{ jws_patch_version | default('[0-9]+[.][0-9]+[.][0-9]+') }}-patch.zip"
                 description: "JWS patch archive filename"
                 type: "str"
+            jws_patch_native_arch:
+                default: "x86_64"
+                description: "JWS native patch architecture"
+                type: "str"
             jws_patch_native_bundle:
                 default: "jws-{{ jws_patch_version | default('[0-9]+[.][0-9]+[.][0-9]+') }}-patch.zip"
                 description: "JWS native patch archive filename"
