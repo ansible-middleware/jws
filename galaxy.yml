@@ -22,7 +22,7 @@ tags:
   - linux
   - runtimes
   - middleware
-  - A4MW
+  - a4mw
 dependencies:
   middleware_automation.redhat_csp_download: '>=1.2.1'
   ansible.posix: ">=1.4.0"
@@ -35,5 +35,9 @@ build_ignore:
   - .github
   - '*.tar.gz'
   - '*.zip'
-  - changelogs/fragments/.gitignore
   - .gitignore
+  - changelogs
+  - docs/_gh_include
+  - docs/conf.py
+  - docs/roles.rst.template
+  - docs/requirements.yml
