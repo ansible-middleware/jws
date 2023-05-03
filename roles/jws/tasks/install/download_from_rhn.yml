@@ -6,10 +6,10 @@
       - zipfile_url | length > 0
     quiet: True
 
-- name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
-  redhat_csp_download:
-    url: "{{ zipfile_url }}"
-    dest: "{{ path_to_zipfile_local }}"
-    username: "{{ rhn_username }}"
-    password: "{{ rhn_password }}"
-  delegate_to: localhost
+# - name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
+#   redhat_csp_download:
+#     url: "{{ zipfile_url }}"
+#     dest: "{{ path_to_zipfile_local }}"
+#     username: "{{ rhn_username }}"
+#     password: "{{ rhn_password }}"
+#   delegate_to: localhost

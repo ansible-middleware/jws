@@ -4,20 +4,20 @@
     path: "{{ downloaded_patch_bundle_file }}"
   register: downloaded_patch_bundle
 
-- name: "Perform patch download from RHN (if credentials provided)"
-  middleware_automation.redhat_csp_download.redhat_csp_download:
-    url: "{{ download_url }}"
-    dest: "{{ downloaded_patch_bundle_file }}"
-    username: "{{ rhn_username }}"
-    password: "{{ rhn_password }}"
-  no_log: "{{ omit_rhn_output | default(true) }}"
-  delegate_to: localhost
-  when:
-    - rhn_username is defined and rhn_username | length > 0
-    - rhn_password is defined and rhn_password | length > 0
-    - patch_archive_path is defined
-    - downloaded_patch_bundle.stat is defined
-    - not downloaded_patch_bundle.stat.exists
+# - name: "Perform patch download from RHN (if credentials provided)"
+#   middleware_automation.redhat_csp_download.redhat_csp_download:
+#     url: "{{ download_url }}"
+#     dest: "{{ downloaded_patch_bundle_file }}"
+#     username: "{{ rhn_username }}"
+#     password: "{{ rhn_password }}"
+#   no_log: "{{ omit_rhn_output | default(true) }}"
+#   delegate_to: localhost
+#   when:
+#     - rhn_username is defined and rhn_username | length > 0
+#     - rhn_password is defined and rhn_password | length > 0
+#     - patch_archive_path is defined
+#     - downloaded_patch_bundle.stat is defined
+#     - not downloaded_patch_bundle.stat.exists
 
 - name: "Set path to patch bundle file archive on target (if not set)."
   ansible.builtin.set_fact:

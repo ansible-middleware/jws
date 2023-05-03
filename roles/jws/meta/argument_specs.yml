@@ -378,17 +378,17 @@ argument_specs:
     downstream:
         options:
             jws_version:
-                default: "5.6.0"
+                default: "5.7.0"
                 description: "JWS version to install"
+                type: "str"
+            jws_patch_version:
+                default: "5.7.1"
+                description: "JWS cumulative patch version to install"
                 type: "str"
             jws_apply_patches:
                 default: False
                 description: "Install JWS most recent cumulative patch for requested version"
                 type: "bool"
-            jws_rhn_base_url:
-                default: "https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId="
-                description: "Customer Portal Base URL for archive download"
-                type: "str"
             jws_service_name:
                 default: "jws5-tomcat"
                 description: "Name for the systemd unit"
@@ -397,3 +397,19 @@ argument_specs:
                 default: True
                 description: "Enable selinux policy enforcement for JWS"
                 type: "bool"
+            jws_product_category:
+                default: "data.grid"
+                description: "JBossNetwork API category for jws"
+                type: "str"
+            jws_bundle:
+                default: "jws-{{ jws_version }}-application-server.zip"
+                description: "JWS install archive filename"
+                type: "str"
+            jws_patch_bundle:
+                default: "jws-{{ jws_patch_version | default('[0-9]+[.][0-9]+[.][0-9]+') }}-patch.zip"
+                description: "JWS patch archive filename"
+                type: "str"
+            jws_patch_native_bundle:
+                default: "jws-{{ jws_patch_version | default('[0-9]+[.][0-9]+[.][0-9]+') }}-patch.zip"
+                description: "JWS native patch archive filename"
+                type: "str"

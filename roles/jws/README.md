@@ -4,11 +4,13 @@ middleware_automation.jws.jws
 This role contains the ansible playbook to set up JWS.
 
 
-Dependency
---------------
-- middleware_automation.redhat_csp_download
-    - This collection is required to download resources from RedHat Customer Portal.
-    - Documentation to collection can be found at <https://github.com/ansible-middleware/redhat-csp-download>
+Dependencies
+------------
+
+The roles depends on:
+
+* [middleware_automation.common](https://github.com/ansible-middleware/common)
+* [ansible-posix](https://docs.ansible.com/ansible/latest/collections/ansible/posix/index.html)
 
 
 Versions
@@ -51,7 +53,6 @@ Role Defaults
 | `jws_install_method`     | Installation method, allowed values: `['zipfiles','rpm']`                                                        | `zipfiles`                                                                                         |
 | `jws_install_dir`        | Installation path for JWS/tomcat                                                                                 | `/opt`                                                                                             |
 | `jws_rpm`                | Installation RPM version                                                                                         | `jws5`                                                                                             |
-| `jws_rhn_base_url`       | Customer Portal Base URL for archive download                                                                    | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=`              |
 | `jws_version`            | Version of JWS to install                                                                                        | `5.6.0`                                                                                            |
 | `jws_apply_patches`      | Install JWS most recent cumulative patch for requested version                                                   | `False`                                                                                            |
 | `jws_selinux_enabled`    | Enable selinux policy enforcement for JWS                                                                        | `True`                                                                                             |

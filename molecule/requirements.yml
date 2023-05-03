@@ -1,6 +1,6 @@
 ---
 collections:
-  - middleware_automation.redhat_csp_download
+  - name: middleware_automation.common
   - name: community.general
   - name: community.docker
     version: ">=1.9.1"

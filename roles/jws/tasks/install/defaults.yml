@@ -45,18 +45,17 @@
           when:
             - not rhn_server_zipfile_url is defined
           block:
-            - name: "Ensure version {{ jws_version }} exists in available metadatas."
-              ansible.builtin.assert:
-                that:
-                  - jws.rhn_ids[jws_version] is defined
-                  - jws.rhn_ids[jws_version].id is defined
-                  - jws_rhn_base_url is defined
-                quiet: True
-                fail_msg: "No version {{ jws_version }} within the metadata of this collection."
+            # - name: "Ensure version {{ jws_version }} exists in available metadatas."
+            #   ansible.builtin.assert:
+            #     that:
+            #       - jws.rhn_ids[jws_version] is defined
+            #       - jws.rhn_ids[jws_version].id is defined
+            #     quiet: True
+            #     fail_msg: "No version {{ jws_version }} within the metadata of this collection."
 
-            - name: "Set zipfile URL"
-              ansible.builtin.set_fact:
-                rhn_server_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].id }}"
+            # - name: "Set zipfile URL"
+            #   ansible.builtin.set_fact:
+            #     rhn_server_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].id }}"
 
         - name: "Set download URL for native (if requested)."
           when:
@@ -64,14 +63,14 @@
             - jws_native
             - not rhn_native_zipfile_url is defined
           block:
-            - name: "Ensure version {{ jws_version }} exists in available metadatas."
-              ansible.builtin.assert:
-                that:
-                  - jws.rhn_ids[jws_version] is defined
-                  - jws.rhn_ids[jws_version].native is defined
-                quiet: True
-                fail_msg: "No version {{ jws_version }} within the metadata of this collection."
+            # - name: "Ensure version {{ jws_version }} exists in available metadatas."
+            #   ansible.builtin.assert:
+            #     that:
+            #       - jws.rhn_ids[jws_version] is defined
+            #       - jws.rhn_ids[jws_version].native is defined
+            #     quiet: True
+            #     fail_msg: "No version {{ jws_version }} within the metadata of this collection."
 
-            - name: "Set zipfile URL"
-              ansible.builtin.set_fact:
-                rhn_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].native }}"
+            # - name: "Set zipfile URL"
+            #   ansible.builtin.set_fact:
+            #     rhn_native_zipfile_url: "{{ jws_rhn_base_url }}{{ jws.rhn_ids[jws_version].native }}"
