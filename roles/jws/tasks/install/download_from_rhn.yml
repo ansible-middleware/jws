@@ -34,7 +34,7 @@
       run_once: yes
 
     - name: Download Red Hat Single Sign-On
-      middleware_automation.common.product_download: # noqa risky-file-permissions delegated, uses controller host user
+      middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
         client_id: "{{ rhn_username }}"
         client_secret: "{{ rhn_password }}"
         product_id: "{{ (rhn_filtered_products | first).id }}"

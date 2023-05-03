@@ -37,6 +37,7 @@ warn_list:
   - jinja[spacing]
   - fqcn[action]
   - name[casing]
+  - yaml[comments]
 
 use_default_rules: true
 parseable: true
