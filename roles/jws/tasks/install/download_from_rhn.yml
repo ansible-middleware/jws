@@ -6,10 +6,39 @@
       - zipfile_url | length > 0
     quiet: True
 
-# - name: "Install JWS with zipfile from RHN: {{ zipfile_url }}"
-#   redhat_csp_download:
-#     url: "{{ zipfile_url }}"
-#     dest: "{{ path_to_zipfile_local }}"
-#     username: "{{ rhn_username }}"
-#     password: "{{ rhn_password }}"
-#   delegate_to: localhost
+- name: Perform download from RHN using JBoss Network API
+  delegate_to: localhost
+  run_once: yes
+  when:
+    - archive_path is defined
+    - archive_path.stat is defined
+    - not archive_path.stat.exists
+    - not jws_offline_install
+  block:
+    - name: Retrieve product download using JBoss Network API
+      middleware_automation.common.product_search:
+        client_id: "{{ rhn_username }}"
+        client_secret: "{{ rhn_password }}"
+        product_type: DISTRIBUTION
+        product_version: "{{ jws_version.split('.')[:2] | join('.') }}"
+        product_category: "{{ jws_product_category }}"
+      register: rhn_products
+      no_log: "{{ omit_rhn_output | default(true) }}"
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Determine install zipfile from search results
+      ansible.builtin.set_fact:
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/' + jws_archive + '$') }}"
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Download Red Hat Single Sign-On
+      middleware_automation.common.product_download: # noqa risky-file-permissions delegated, uses controller host user
+        client_id: "{{ rhn_username }}"
+        client_secret: "{{ rhn_password }}"
+        product_id: "{{ (rhn_filtered_products | first).id }}"
+        dest: "{{ path_to_zipfile_local }}"
+      no_log: "{{ omit_rhn_output | default(true) }}"
+      delegate_to: localhost
+      run_once: yes
