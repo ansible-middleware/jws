@@ -382,7 +382,7 @@ argument_specs:
                 description: "JWS version to install"
                 type: "str"
             jws_patch_version:
-                default: "5.7.1"
+                default: "5.7.2"
                 description: "JWS cumulative patch version to install"
                 type: "str"
             jws_apply_patches:
@@ -398,7 +398,7 @@ argument_specs:
                 description: "Enable selinux policy enforcement for JWS"
                 type: "bool"
             jws_product_category:
-                default: "data.grid"
+                default: "webserver"
                 description: "JBossNetwork API category for jws"
                 type: "str"
             jws_bundle:
