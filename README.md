@@ -1,26 +1,18 @@
 # Ansible Collection - middleware_automation.jws
-
+<!--start build_status -->
 [![Build Status](https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/jws/actions/workflows/ci.yml)
+<!--end build_status -->
 
 This repository contains the Ansible roles and playbooks to set up an automated installation of [Red Hat JBoss Web Server (JWS)](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
 
 
 ## Ansible version compatibility
 
-<!-- Use the following sentences in the **UPSTREAM** readme only -->
+<!--start ansible_version -->
 This collection has been tested against Ansible versions 2.9.10 or later.
 
 The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.
-<!-- end of **UPSTREAM** sentences -->
-
-<!-- Use the following sentences in the **DOWNSTREAM** readme only -->
-
-[//]: # (Red Hat has tested this collection against Ansible versions 2.9.10 or later.)
-
-[//]: # (Red Hat might test the plug-ins and modules that are within a collection with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.)
-
-<!-- end of **DOWNSTREAM** sentences -->
-<!--end requires_ansible-->
+<!--end ansible_version -->
 
 
 ## Content included in this collection
@@ -39,7 +31,8 @@ The plug-ins and modules that are within a collection might be tested with speci
 
 ## Collection setup
 
-<!-- Use the following sentences in the **UPSTREAM** readme only -->
+<!--start galaxy_download -->
+
 For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to install the collection by using Ansible Galaxy:
 
     $ ansible-galaxy collection install middleware_automation.jws
@@ -48,24 +41,7 @@ For **development purposes**, if you want to test changes to the collection, you
 
     $ ansible-galaxy collection build .
     $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
-<!-- end of **UPSTREAM** sentences -->
-
-
-<!-- Use the following sentences in the **DOWNSTREAM** readme only -->
-
-[//]: # (For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to download and install the collection from the Red Hat Automation Hub.)
-
-[//]: # (Before you install the collection, you must ensure that your system complies with the following prerequisites:)
-
-[//]: # (- You have installed the ansible-core package version 2.12 or later on a control node in your system by installing Red Hat Ansible Automation Platform 2.x.)
-
-[//]: # (- You have updated the ansible.cfg file to use the Red Hat Automation Hub as your *primary source* of Ansible collections.)
-
-[//]: # (You can install the collection on your Ansible control node by using the following command:)
-
-[//]: # (    $ ansible-galaxy collection install redhat.jws)
-
-<!-- end of **DOWNSTREAM** sentences -->
+<!--end galaxy_download -->
 
 
 ## Collection usage for installing JBoss Web Server
@@ -75,6 +51,9 @@ You can enable the collection to use any of the following installation methods w
 - Local archive files
 - RPM packages
 - Custom URL for downloading the archive files
+
+<!--start rhn_credentials -->
+<!--end rhn_credentials -->
 
 ### Using local archive files
 
@@ -352,9 +331,11 @@ Ensure that the playbook runs successfully without any errors.
 
 ## Support
 
+<!--start support -->
 For Red Hat customers, this collection is released as a [Technology Preview](https://access.redhat.com/support/offerings/techpreview) feature as the [Red Hat Ansible certified content collection for JBoss Web Server](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws). If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
 
 For more information about using this collection, see [Installing JBoss Web Server by using the Red Hat Ansible Certified Content Collection](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installing_jboss_web_server_by_using_the_red_hat_ansible_certified_content_collection/index).
+<!--end support -->
 
 
 ## License
