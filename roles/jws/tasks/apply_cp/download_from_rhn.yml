@@ -1,16 +1,9 @@
 ---
-- name: "Check whether patch bundle archive exists: {{ downloaded_patch_bundle_file }}."
-  ansible.builtin.stat:
-    path: "{{ downloaded_patch_bundle_file }}"
-  register: downloaded_patch_bundle
-  delegate_to: localhost
-
 - name: Perform patch download from RHN via JBossNetwork API
   delegate_to: localhost
   run_once: yes
   when:
-    - downloaded_patch_bundle.stat is defined
-    - not downloaded_patch_bundle.stat.exists
+    - not downloaded_patch_bundle_file is exists
     - jws_apply_patches
   block:
     - name: Retrieve product download using JBossNetwork API

@@ -20,7 +20,8 @@
   block:
     - name: "Reset value for jws_patch_bundle (current: {{ jws_patch_bundle }}, new: 'reset')."
       ansible.builtin.set_fact:
-        jws_patch_bundle: 'reset'
+        patch_bundle: 'reset'
+        patch_version: 'reset'
         downloaded_patch_bundle_file: 'reset'
         patch_checksum_file: 'reset'
         path_to_patch_bundle_on_target: 'reset'
