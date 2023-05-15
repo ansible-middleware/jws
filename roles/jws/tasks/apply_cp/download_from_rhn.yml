@@ -61,6 +61,6 @@
 
 - name: "Set path to patch bundle file archive on target (if not set)."
   ansible.builtin.set_fact:
-    path_to_patch_bundle_on_target: "/opt/{{ jws_patch_bundle }}"
+    path_to_patch_bundle_on_target: "/opt/{{ patch_bundle }}"
   when:
     - not path_to_patch_bundle_on_target is defined or 'reset' in path_to_patch_bundle_on_target
