@@ -17,7 +17,7 @@
 
     - name: "Set RHEL major version based on facts (if not provided)."
       ansible.builtin.set_fact:
-        jws_native_rhel_major_version: "{{ ansible_facts['distribution_major_version'] | default('8') }}"
+        jws_native_rhel_major_version: "{{ jws_native_rhel_version | default(ansible_facts['distribution_major_version'] | default('8')) }}"
       when:
         - not jws_native_rhel_major_version is defined
 
