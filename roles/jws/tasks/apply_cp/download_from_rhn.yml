@@ -40,9 +40,9 @@
       delegate_to: localhost
       run_once: yes
 
-    - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
+    - name: "Determine selected patch from supplied version: {{ jws_patch_version + ': [^/]*/jws-' + jws_patch_version + archive_file_suffix + '$' }}"
       ansible.builtin.set_fact:
-        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/' + jws_patch_version + archive_file_suffix + '$') }}"
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
         patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
         patch_version: "{{ jws_patch_version }}"
       when: jws_patch_version is defined
@@ -54,7 +54,7 @@
         client_id: "{{ rhn_username }}"
         client_secret: "{{ rhn_password }}"
         product_id: "{{ (rhn_filtered_products | first).id }}"
-        dest: "{{ patch_bundle }}"
+        dest: "{{ jws_archive_repository }}/{{ patch_bundle }}"
       no_log: "{{ omit_rhn_output | default(true) }}"
       delegate_to: localhost
       run_once: yes
@@ -64,3 +64,9 @@
     path_to_patch_bundle_on_target: "/opt/{{ patch_bundle }}"
   when:
     - not path_to_patch_bundle_on_target is defined or 'reset' in path_to_patch_bundle_on_target
+
+- name: "Set path to patch bundle file archive locally (if not set)."
+  ansible.builtin.set_fact:
+    downloaded_patch_bundle_file: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+  when:
+    - not downloaded_patch_bundle_file is defined or 'reset' in downloaded_patch_bundle_file
