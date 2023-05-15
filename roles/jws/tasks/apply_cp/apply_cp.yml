@@ -2,9 +2,6 @@
 - name: "Check prerequirements."
   ansible.builtin.include_tasks: prereqs.yml
 
-- name: "Ensure all required information are either provided or set to defaults."
-  ansible.builtin.include_tasks: defaults.yml
-
 - name: "Download patches from RHN if requested."
   ansible.builtin.include_tasks: download_from_rhn.yml
 

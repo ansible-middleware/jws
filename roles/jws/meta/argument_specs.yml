@@ -382,8 +382,8 @@ argument_specs:
                 description: "JWS version to install"
                 type: "str"
             jws_patch_version:
-                default: "5.7.2"
-                description: "JWS cumulative patch version to install"
+                required: False
+                description: "JWS cumulative patch version to install; leave empty to install most recent cumulative patch"
                 type: "str"
             jws_apply_patches:
                 default: False
