@@ -1,11 +1,4 @@
 ---
-- name: "Check that RHN URL have been set before attemping to download archives."
-  ansible.builtin.assert:
-    that:
-      - zipfile_url is defined
-      - zipfile_url | length > 0
-    quiet: True
-
 - name: Perform download from RHN using JBoss Network API
   delegate_to: localhost
   run_once: yes
@@ -13,7 +6,6 @@
     - archive_path is defined
     - archive_path.stat is defined
     - not archive_path.stat.exists
-    - not jws_offline_install
   block:
     - name: Retrieve product download using JBoss Network API
       middleware_automation.common.product_search:
@@ -29,11 +21,11 @@
 
     - name: Determine install zipfile from search results
       ansible.builtin.set_fact:
-        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/' + jws_archive + '$') }}"
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/' + jws_bundle + '$') }}"
       delegate_to: localhost
       run_once: yes
 
-    - name: Download Red Hat Single Sign-On
+    - name: Download Red Hat JWS
       middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
         client_id: "{{ rhn_username }}"
         client_secret: "{{ rhn_password }}"

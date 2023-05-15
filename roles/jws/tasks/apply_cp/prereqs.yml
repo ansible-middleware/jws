@@ -2,7 +2,6 @@
 - name: "Ensure required parameters are provided."
   ansible.builtin.assert:
     that:
-      - download_url is defined
       - jws is defined
       - jws_home is defined
       - jws.install_dir is defined

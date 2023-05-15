@@ -3,12 +3,12 @@
   ansible.builtin.stat:
     path: "{{ downloaded_patch_bundle_file }}"
   register: downloaded_patch_bundle
+  delegate_to: localhost
 
 - name: Perform patch download from RHN via JBossNetwork API
   delegate_to: localhost
   run_once: yes
   when:
-    - patch_archive_path is defined
     - downloaded_patch_bundle.stat is defined
     - not downloaded_patch_bundle.stat.exists
     - jws_apply_patches
@@ -41,8 +41,8 @@
 
     - name: Determine install zipfile from search results
       ansible.builtin.set_fact:
-        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_latest_version + '-patch.zip$') }}"
-        patch_bundle: "jws-{{ jws_latest_version }}-patch.zip"
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_latest_version + '-application-server.zip$') }}"
+        patch_bundle: "jws-{{ jws_latest_version }}-application-server.zip"
         patch_version: "{{ jws_latest_version }}"
       when: jws_patch_version is not defined or jws_patch_version | length == 0
       delegate_to: localhost
@@ -57,12 +57,12 @@
       delegate_to: localhost
       run_once: yes
 
-    - name: Download Red Hat Single Sign-On patch
+    - name: Download Red Hat JWS patch
       middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
         client_id: "{{ rhn_username }}"
         client_secret: "{{ rhn_password }}"
         product_id: "{{ (rhn_filtered_products | first).id }}"
-        dest: "{{ local_path.stat.path }}/{{ patch_bundle }}"
+        dest: "{{ downloaded_patch_bundle_file }}"
       no_log: "{{ omit_rhn_output | default(true) }}"
       delegate_to: localhost
       run_once: yes
