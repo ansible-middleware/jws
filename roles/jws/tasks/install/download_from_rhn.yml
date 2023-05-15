@@ -21,7 +21,7 @@
 
     - name: Determine install zipfile from search results
       ansible.builtin.set_fact:
-        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/' + jws_bundle + '$') }}"
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/' + path_to_zipfile_local | basename + '$') }}"
       delegate_to: localhost
       run_once: yes
 
