@@ -20,14 +20,12 @@
     - name: Determine patch versions list
       ansible.builtin.set_fact:
         filtered_versions: "{{ rhn_products.results | map(attribute='file_path') | select('match', '^[^/]*/jws-.*[0-9]*[.][0-9]*[.][0-9]*.*$') | map('regex_replace','[^/]*/jws-([0-9]*[.][0-9]*[.][0-9]*)-.*','\\1' ) | list | unique }}"
-      when: jws_patch_version is not defined or jws_patch_version | length == 0
       delegate_to: localhost
       run_once: yes
 
     - name: Determine latest version
       ansible.builtin.set_fact:
         jws_latest_version: "{{ filtered_versions | middleware_automation.common.version_sort | last }}"
-      when: jws_patch_version is not defined or jws_patch_version | length == 0
       delegate_to: localhost
       run_once: yes
 
@@ -48,6 +46,13 @@
       when: jws_patch_version is defined and jws_patch_version | length > 0
       delegate_to: localhost
       run_once: yes
+
+    - name: Check latest version against requested version
+      ansible.builtin.set_fact:
+        important_fact: "new patch available"
+      changed_when: jws_patch_version != jws_latest_version
+      when: jws_patch_version is defined and jws_patch_version | length > 0
+      notify: new patch available
 
     - name: Download Red Hat JWS patch
       middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
