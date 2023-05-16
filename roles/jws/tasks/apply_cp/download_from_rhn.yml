@@ -1,26 +1,79 @@
 ---
-- name: "Ensure file that patch bundle archive exits: {{ downloaded_patch_bundle_file }}."
-  ansible.builtin.stat:
-    path: "{{ downloaded_patch_bundle_file }}"
-  register: downloaded_patch_bundle
-
-- name: "Perform patch download from RHN (if credentials provided)"
-  middleware_automation.redhat_csp_download.redhat_csp_download:
-    url: "{{ download_url }}"
-    dest: "{{ downloaded_patch_bundle_file }}"
-    username: "{{ rhn_username }}"
-    password: "{{ rhn_password }}"
-  no_log: "{{ omit_rhn_output | default(true) }}"
+- name: Perform patch download from RHN via JBossNetwork API
   delegate_to: localhost
+  run_once: yes
   when:
-    - rhn_username is defined and rhn_username | length > 0
-    - rhn_password is defined and rhn_password | length > 0
-    - patch_archive_path is defined
-    - downloaded_patch_bundle.stat is defined
-    - not downloaded_patch_bundle.stat.exists
+    - jws_apply_patches
+  block:
+    - name: Retrieve product download using JBossNetwork API
+      middleware_automation.common.product_search:
+        client_id: "{{ rhn_username }}"
+        client_secret: "{{ rhn_password }}"
+        product_type: BUGFIX
+        product_version: "{{ jws_version.split('.')[:2] | join('.') }}"
+        product_category: "{{ jws_product_category }}"
+      register: rhn_products
+      no_log: "{{ omit_rhn_output | default(true) }}"
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Determine patch versions list
+      ansible.builtin.set_fact:
+        filtered_versions: "{{ rhn_products.results | map(attribute='file_path') | select('match', '^[^/]*/jws-.*[0-9]*[.][0-9]*[.][0-9]*.*$') | map('regex_replace','[^/]*/jws-([0-9]*[.][0-9]*[.][0-9]*)-.*','\\1' ) | list | unique }}"
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Determine latest version
+      ansible.builtin.set_fact:
+        jws_latest_version: "{{ filtered_versions | middleware_automation.common.version_sort | last }}"
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Determine install zipfile from search results
+      ansible.builtin.set_fact:
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_latest_version + archive_file_suffix + '$') }}"
+        patch_bundle: "jws-{{ jws_latest_version }}{{ archive_file_suffix }}"
+        patch_version: "{{ jws_latest_version }}"
+      when: jws_patch_version is not defined or jws_patch_version | length == 0
+      delegate_to: localhost
+      run_once: yes
+
+    - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
+      ansible.builtin.set_fact:
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
+        patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
+        patch_version: "{{ jws_patch_version }}"
+      when: jws_patch_version is defined and jws_patch_version | length > 0
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Check latest version against requested version
+      ansible.builtin.set_fact:
+        important_fact: "new patch available"
+      changed_when: jws_patch_version != jws_latest_version
+      when:
+        - jws_patch_version is defined and jws_patch_version | length > 0
+        - jws_patch_notify_new_version is defined and jws_patch_notify_new_version
+      notify: new patch available
+
+    - name: Download Red Hat JWS patch
+      middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
+        client_id: "{{ rhn_username }}"
+        client_secret: "{{ rhn_password }}"
+        product_id: "{{ (rhn_filtered_products | first).id }}"
+        dest: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+      no_log: "{{ omit_rhn_output | default(true) }}"
+      delegate_to: localhost
+      run_once: yes
 
 - name: "Set path to patch bundle file archive on target (if not set)."
   ansible.builtin.set_fact:
-    path_to_patch_bundle_on_target: "/opt/{{ jws_patch_bundle }}"
+    path_to_patch_bundle_on_target: "/opt/{{ patch_bundle }}"
   when:
     - not path_to_patch_bundle_on_target is defined or 'reset' in path_to_patch_bundle_on_target
+
+- name: "Set path to patch bundle file archive locally (if not set)."
+  ansible.builtin.set_fact:
+    downloaded_patch_bundle_file: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+  when:
+    - not downloaded_patch_bundle_file is defined or 'reset' in downloaded_patch_bundle_file

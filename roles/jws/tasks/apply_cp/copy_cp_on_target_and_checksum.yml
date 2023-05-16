@@ -12,8 +12,6 @@
     group: "{{ jws.group | default(omit) }}"
     mode: 0640
   register: new_version_downloaded
-  # Romain: not sure we want to be root to deploy the patch,
-  # some users managed their JWS instance as the JWS user...
   become: yes
   when:
     - patch_archive_path is defined

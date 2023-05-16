@@ -2,13 +2,12 @@
 - name: "Ensure required parameters are provided."
   ansible.builtin.assert:
     that:
-      - download_url is defined
       - jws is defined
       - jws_home is defined
       - jws.install_dir is defined
     quiet: True
 
-- name: "Load server home directory information: {{ jws_home }}."
+- name: "Load server home directory information: {{ jws_home }}"
   ansible.builtin.stat:
     path: "{{ jws_home }}"
   register: jws_home_state
@@ -22,3 +21,10 @@
       - jws_home_state.stat.exists
       - jws_home_state.stat.isdir is defined
       - jws_home_state.stat.isdir
+
+- name: "Ensure patch version is specified when installing offline."
+  ansible.builtin.assert:
+    that:
+      - (rhn_username is defined and rhn_password is defined) or (jws_patch_version is defined and jws_patch_version | length > 0)
+    quiet: True
+    fail_msg: "When applying patches, you need to provide the zipfile and its version in jws_patch_version, or define customer portal credentials to download."
