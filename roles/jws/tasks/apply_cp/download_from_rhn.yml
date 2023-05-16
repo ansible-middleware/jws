@@ -70,4 +70,3 @@
     downloaded_patch_bundle_file: "{{ jws_archive_repository }}/{{ patch_bundle }}"
   when:
     - not downloaded_patch_bundle_file is defined or 'reset' in downloaded_patch_bundle_file
-
