@@ -38,6 +38,7 @@ warn_list:
   - fqcn[action]
   - name[casing]
   - yaml[comments]
+  - var-naming[no-role-prefix]
 
 use_default_rules: true
 parseable: true
