@@ -46,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Ansible Collection - middleware_automation.jws</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Role Index</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">middleware_automation.jws.jws</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#versions">Versions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#patching">Patching</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#role-defaults">Role Defaults</a><ul>
@@ -81,7 +81,8 @@
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/keycloak/">Keycloak / Red Hat Single Sign-On</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/wildfly/">Wildfly / Red Hat JBoss EAP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/jws/">Tomcat / Red Hat JWS</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/amq/">ActiveMQ / Red Hat AMQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/amq/">ActiveMQ / Red Hat AMQ Broker</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/amq/">Kafka / Red Hat AMQ Streams</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/redhat-csp-download/">Red Hat CSP Download</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/ansible_collections_jcliff/">JCliff</a></li>
 </ul>
@@ -114,15 +115,12 @@
   <section id="middleware-automation-jws-jws">
 <h1>middleware_automation.jws.jws<a class="headerlink" href="#middleware-automation-jws-jws" title="Permalink to this heading"></a></h1>
 <p>This role contains the ansible playbook to set up JWS.</p>
-<section id="dependency">
-<h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this heading"></a></h2>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
+<p>The roles depends on:</p>
 <ul class="simple">
-<li><p>middleware_automation.redhat_csp_download</p>
-<ul>
-<li><p>This collection is required to download resources from RedHat Customer Portal.</p></li>
-<li><p>Documentation to collection can be found at <a class="reference external" href="https://github.com/ansible-middleware/redhat-csp-download">https://github.com/ansible-middleware/redhat-csp-download</a></p></li>
-</ul>
-</li>
+<li><p><a class="reference external" href="https://github.com/ansible-middleware/common">middleware_automation.common</a></p></li>
+<li><p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/posix/index.html">ansible.posix</a></p></li>
 </ul>
 </section>
 <section id="versions">
@@ -194,22 +192,27 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.0</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.7.0</span></code></p></td>
+<td class="text-left"><p>April 11, 2023</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.7.2</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_service_pack_2_release_notes/index">Release Notes</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.0</span></code></p></td>
 <td class="text-left"><p>April 29, 2022</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.2</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_2_release_notes/index">Release Notes</a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.5.0</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.5.0</span></code></p></td>
 <td class="text-left"><p>October 06, 2021</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.5.1</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_service_pack_1_release_notes/index">Release Notes</a></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.4.0</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.4.0</span></code></p></td>
 <td class="text-left"><p>April 14, 2021</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.4.2</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_service_pack_2_release_notes/index">Release Notes</a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.3.0</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.3.0</span></code></p></td>
 <td class="text-left"><p>August 04, 2020</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.3.2</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.3/html/red_hat_jboss_web_server_5.3_service_pack_2_release_notes/index">Release Notes</a></p></td>
@@ -243,55 +246,51 @@
 <td class="text-left"><p>Installation RPM version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws5</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_rhn_base_url</span></code></p></td>
-<td class="text-left"><p>Customer Portal Base URL for archive download</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code></p></td>
 <td class="text-left"><p>Version of JWS to install</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.0</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code></p></td>
 <td class="text-left"><p>Install JWS most recent cumulative patch for requested version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_selinux_enabled</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_selinux_enabled</span></code></p></td>
 <td class="text-left"><p>Enable selinux policy enforcement for JWS</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_home</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_home</span></code></p></td>
 <td class="text-left"><p>Default installation path for JWS archives</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">jws_install_dir</span> <span class="pre">}}/jws-{{</span> <span class="pre">jws_version.split('.')[0]</span> <span class="pre">}}.{{</span> <span class="pre">jws_version.split('.')[1]</span> <span class="pre">}}/tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_user</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_user</span></code></p></td>
 <td class="text-left"><p>posix user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_uid</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_uid</span></code></p></td>
 <td class="text-left"><p>posix UID user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_group</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_group</span></code></p></td>
 <td class="text-left"><p>posix group for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_gid</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_gid</span></code></p></td>
 <td class="text-left"><p>posix GID user account for service</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tomcat</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_native</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_native</span></code></p></td>
 <td class="text-left"><p>Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_native_zipfile</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_native_zipfile</span></code></p></td>
 <td class="text-left"><p>Tomcat native binaries archive filename</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">''</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_force_install</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_force_install</span></code></p></td>
 <td class="text-left"><p>Whether to stop any running tomcat process and continue installation</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_archive_repository</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_archive_repository</span></code></p></td>
 <td class="text-left"><p>Path local to controller for offline/download archive files</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">lookup('env',</span> <span class="pre">'PWD')</span> <span class="pre">&amp;#124;</span> <span class="pre">default('/opt')</span> <span class="pre">}}</span></code></p></td>
 </tr>

@@ -1,26 +1,18 @@
 # Ansible Collection - middleware_automation.jws
-
+<!--start build_status -->
 [![Build Status](https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/jws/actions/workflows/ci.yml)
+<!--end build_status -->
 
 This repository contains the Ansible roles and playbooks to set up an automated installation of [Red Hat JBoss Web Server (JWS)](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
 
 
 ## Ansible version compatibility
 
-<!-- Use the following sentences in the **UPSTREAM** readme only -->
+<!--start ansible_version -->
 This collection has been tested against Ansible versions 2.9.10 or later.
 
 The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.
-<!-- end of **UPSTREAM** sentences -->
-
-<!-- Use the following sentences in the **DOWNSTREAM** readme only -->
-
-[//]: # (Red Hat has tested this collection against Ansible versions 2.9.10 or later.)
-
-[//]: # (Red Hat might test the plug-ins and modules that are within a collection with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.)
-
-<!-- end of **DOWNSTREAM** sentences -->
-<!--end requires_ansible-->
+<!--end ansible_version -->
 
 
 ## Content included in this collection
@@ -39,7 +31,8 @@ The plug-ins and modules that are within a collection might be tested with speci
 
 ## Collection setup
 
-<!-- Use the following sentences in the **UPSTREAM** readme only -->
+<!--start galaxy_download -->
+
 For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to install the collection by using Ansible Galaxy:
 
     $ ansible-galaxy collection install middleware_automation.jws
@@ -48,24 +41,7 @@ For **development purposes**, if you want to test changes to the collection, you
 
     $ ansible-galaxy collection build .
     $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
-<!-- end of **UPSTREAM** sentences -->
-
-
-<!-- Use the following sentences in the **DOWNSTREAM** readme only -->
-
-[//]: # (For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to download and install the collection from the Red Hat Automation Hub.)
-
-[//]: # (Before you install the collection, you must ensure that your system complies with the following prerequisites:)
-
-[//]: # (- You have installed the ansible-core package version 2.12 or later on a control node in your system by installing Red Hat Ansible Automation Platform 2.x.)
-
-[//]: # (- You have updated the ansible.cfg file to use the Red Hat Automation Hub as your *primary source* of Ansible collections.)
-
-[//]: # (You can install the collection on your Ansible control node by using the following command:)
-
-[//]: # (    $ ansible-galaxy collection install redhat.jws)
-
-<!-- end of **DOWNSTREAM** sentences -->
+<!--end galaxy_download -->
 
 
 ## Collection usage for installing JBoss Web Server
@@ -76,16 +52,19 @@ You can enable the collection to use any of the following installation methods w
 - RPM packages
 - Custom URL for downloading the archive files
 
+<!--start rhn_credentials -->
+<!--end rhn_credentials -->
+
 ### Using local archive files
 
 To enable the collection to install JBoss Web Server from local archive files:
 
 1. If copies of the archive files are not already on your system, download the appropriate archive files from the Red Hat Customer Portal:
 
-   - Red Hat JBoss Web Server 5._X_.0 Application Server *(the application server)*
-   - Red Hat JBoss Web Server 5._X_.0 Application Server for RHEL 8 x86_64 *(the native components)*
+    - Red Hat JBoss Web Server 5._X_.0 Application Server *(the application server)*
+    - Red Hat JBoss Web Server 5._X_.0 Application Server for RHEL 8 x86_64 *(the native components)*
 
-    In the preceding file names, replace 5._X_.0 with the JBoss Web Server version that you want to install (for example, 5.7.0).
+   In the preceding file names, replace 5._X_.0 with the JBoss Web Server version that you want to install (for example, 5.7.0).
 
 2. Copy the archive files to your Ansible control node.
 
@@ -109,9 +88,9 @@ To enable the collection to install JBoss Web Server from local archive files:
    | `zipfile_name`         | Specifies the name of the application server archive file on your control node           |
    | `native_zipfile`       | Specifies the name of the native archive file on your control node                       |
 
-    **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
+> **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
     
-    **Note:** If you did not change the archive file names, you do not need to set the `zipfile_name` and `native_zipfile` variables. The collection uses the JBoss Web Server version to determine the default file names automatically. 
+> **Note:** If you did not change the archive file names, you do not need to set the `zipfile_name` and `native_zipfile` variables. The collection uses the JBoss Web Server version to determine the default file names automatically. 
 
 4. If you also want to install the latest cumulative patches for the appropriate JBoss Web Server version, copy the archive files for the latest patch updates to your Ansible control node. Then set the `jws_apply_patches` variable to `True`:
 
@@ -130,7 +109,7 @@ If you want the collection to install JBoss Web Server from RPM packages, you mu
 
 - You have a working internet connection that the collection can use to obtain the RPM packages from Red Hat.
 
-**Note:** When you enable the RPM installation method, the collection always installs the latest available RPM packages for the latest JBoss Web Server version, including any patch updates. 
+> **Note:** When you enable the RPM installation method, the collection always installs the latest available RPM packages for the latest JBoss Web Server version, including any patch updates. 
 
 To enable the collection to install JBoss Web Server from RPM packages, set the `jws_install_method` variable to `rpm` on your Ansible control node:
 
@@ -138,7 +117,7 @@ To enable the collection to install JBoss Web Server from RPM packages, set the 
       ...
       jws_install_method: rpm
 
-**Note:** By default, the collection installs JBoss Web Server in the `/opt/rh/jws5/root/usr/share/tomcat/` directory. If you want to use a different installation directory, you can manually create a symbolic link to `/opt/rh/jws5/root/usr/share/tomcat/`.
+> **Note:** By default, the collection installs JBoss Web Server in the `/opt/rh/jws5/root/usr/share/tomcat/` directory. If you want to use a different installation directory, you can manually create a symbolic link to `/opt/rh/jws5/root/usr/share/tomcat/`.
 
 
 ### Using a custom URL to download the archive files
@@ -206,7 +185,7 @@ The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree
 
 You can use the password vault for JBoss Web Server, which is named `tomcat-vault`, to mask passwords and other sensitive strings, and to store sensitive information in an encrypted Java keystore. When you use the password vault, you can stop storing clear-text passwords in your JBoss Web Server configuration files. JBoss Web Server can use the password vault to search for passwords and other sensitive strings from a keystore.
 
-**Note:** If you want to use the password vault feature, you must first create the required `vault.keystore`, `VAULT.dat`, and `vault.properties` files as a prerequisite. For more information about creating these files, see the [Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws).
+> **Note:** If you want to use the password vault feature, you must first create the required `vault.keystore`, `VAULT.dat`, and `vault.properties` files as a prerequisite. For more information about creating these files, see the [Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws).
 
 To enable the collection to configure the password vault, set the following variables on your Ansible control node:
 
@@ -239,7 +218,7 @@ Consider the following guidelines:
 
 The collection provides a default template for the `server.xml` file that already includes the required configuration to use HTTPS. To enable HTTPS support, you only need to set the appropriate variables. However, the collection does not build or provide the required Java Keystore. In this situation, you must ensure that a Java keystore already exists on each target host.
 
-**Note:** To automate the creation of Java keystore files, you can use other collections and modules, such as the [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), the [Ansible Collection Community Crypto](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html). For more information about automating the creation of a Java keystore, refer to the available documentation for these collections or modules.
+> **Note:** To automate the creation of Java keystore files, you can use other collections and modules, such as the [Ansible OpenSSH Keypair collection](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html), the [Ansible Collection Community Crypto](https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html) and the [Java Keystore module](https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html). For more information about automating the creation of a Java keystore, refer to the available documentation for these collections or modules.
 
 To enable the collection to configure HTTPS support, set the following variables on your Ansible control node, as appropriate:
 
@@ -352,9 +331,11 @@ Ensure that the playbook runs successfully without any errors.
 
 ## Support
 
+<!--start support -->
 For Red Hat customers, this collection is released as a [Technology Preview](https://access.redhat.com/support/offerings/techpreview) feature as the [Red Hat Ansible certified content collection for JBoss Web Server](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws). If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
 
 For more information about using this collection, see [Installing JBoss Web Server by using the Red Hat Ansible Certified Content Collection](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installing_jboss_web_server_by_using_the_red_hat_ansible_certified_content_collection/index).
+<!--end support -->
 
 
 ## License

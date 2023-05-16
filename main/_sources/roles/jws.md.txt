@@ -4,11 +4,13 @@ middleware_automation.jws.jws
 This role contains the ansible playbook to set up JWS.
 
 
-Dependency
---------------
-- middleware_automation.redhat_csp_download
-    - This collection is required to download resources from RedHat Customer Portal.
-    - Documentation to collection can be found at <https://github.com/ansible-middleware/redhat-csp-download>
+Dependencies
+------------
+
+The roles depends on:
+
+* [middleware_automation.common](https://github.com/ansible-middleware/common)
+* [ansible.posix](https://docs.ansible.com/ansible/latest/collections/ansible/posix/index.html)
 
 
 Versions
@@ -32,6 +34,7 @@ When variable `jws_apply_patches` is `True` (default: `False`), the role will au
 
 | JWS VERSION | Release Date     | JWS LATEST CP | Notes                                                                                                                                                            |
 |:------------|:-----------------|:--------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `5.7.0`     | April 11, 2023   | `5.7.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_service_pack_2_release_notes/index) |
 | `5.6.0`     | April 29, 2022   | `5.6.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_2_release_notes/index) |
 | `5.5.0`     | October 06, 2021 | `5.5.1`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_service_pack_1_release_notes/index) |
 | `5.4.0`     | April 14, 2021   | `5.4.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_service_pack_2_release_notes/index) |
@@ -51,7 +54,6 @@ Role Defaults
 | `jws_install_method`     | Installation method, allowed values: `['zipfiles','rpm']`                                                        | `zipfiles`                                                                                         |
 | `jws_install_dir`        | Installation path for JWS/tomcat                                                                                 | `/opt`                                                                                             |
 | `jws_rpm`                | Installation RPM version                                                                                         | `jws5`                                                                                             |
-| `jws_rhn_base_url`       | Customer Portal Base URL for archive download                                                                    | `https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=`              |
 | `jws_version`            | Version of JWS to install                                                                                        | `5.6.0`                                                                                            |
 | `jws_apply_patches`      | Install JWS most recent cumulative patch for requested version                                                   | `False`                                                                                            |
 | `jws_selinux_enabled`    | Enable selinux policy enforcement for JWS                                                                        | `True`                                                                                             |
