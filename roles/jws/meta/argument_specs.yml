@@ -425,3 +425,7 @@ argument_specs:
                 required: False
                 description: "Version for RHEL when applying native patches"
                 type: "int"
+            jws_patch_notify_new_version:
+                default: True
+                description: "When jws_apply_patches is enabled and jws_patch_version is used, notify if a newer version is available"
+                type: "bool"

@@ -51,7 +51,9 @@
       ansible.builtin.set_fact:
         important_fact: "new patch available"
       changed_when: jws_patch_version != jws_latest_version
-      when: jws_patch_version is defined and jws_patch_version | length > 0
+      when:
+        - jws_patch_version is defined and jws_patch_version | length > 0
+        - jws_patch_notify_new_version is defined and jws_patch_notify_new_version
       notify: new patch available
 
     - name: Download Red Hat JWS patch
