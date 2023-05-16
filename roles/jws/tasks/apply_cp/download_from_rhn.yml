@@ -40,12 +40,12 @@
       delegate_to: localhost
       run_once: yes
 
-    - name: "Determine selected patch from supplied version: {{ jws_patch_version + ': [^/]*/jws-' + jws_patch_version + archive_file_suffix + '$' }}"
+    - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
       ansible.builtin.set_fact:
         rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
         patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
         patch_version: "{{ jws_patch_version }}"
-      when: jws_patch_version is defined
+      when: jws_patch_version is defined and jws_patch_version | length > 0
       delegate_to: localhost
       run_once: yes
 
