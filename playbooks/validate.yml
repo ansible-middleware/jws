@@ -1,7 +1,6 @@
 ---
 - name: "Red Hat JBoss Web Server validation"
   hosts: all
-  become: true
   vars_files:
     - vars.yml
   collections:
