@@ -67,6 +67,8 @@
           no_log: "{{ omit_rhn_output | default(true) }}"
           delegate_to: localhost
           run_once: yes
+          when:
+            - rhn_filtered_products | first | length > 0
       when:
         - rhn_products.results is defined and rhn_products.results | length > 0
 
