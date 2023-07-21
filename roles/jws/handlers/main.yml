@@ -28,6 +28,7 @@
   ansible.builtin.service:
     name: "{{ jws.service.name }}"
     state: restarted
+    enabled: true
   when:
     - jws.service is defined
     - jws.service.enabled is defined
