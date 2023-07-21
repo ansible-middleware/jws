@@ -38,6 +38,8 @@
       delegate_to: localhost
       run_once: yes
 
+    - name: "Compute patch to apply (if any)."
+      block:
     - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
       ansible.builtin.set_fact:
         rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
@@ -65,15 +67,20 @@
       no_log: "{{ omit_rhn_output | default(true) }}"
       delegate_to: localhost
       run_once: yes
+      when:
+        - rhn_products.results is defined and rhn_products.results | length > 0
 
-- name: "Set path to patch bundle file archive on target (if not set)."
-  ansible.builtin.set_fact:
-    path_to_patch_bundle_on_target: "/opt/{{ patch_bundle }}"
-  when:
-    - not path_to_patch_bundle_on_target is defined or 'reset' in path_to_patch_bundle_on_target
+- name: "Compute required paths (if patch selected)."
+  block:
 
-- name: "Set path to patch bundle file archive locally (if not set)."
-  ansible.builtin.set_fact:
-    downloaded_patch_bundle_file: "{{ jws_archive_repository }}/{{ patch_bundle }}"
-  when:
-    - not downloaded_patch_bundle_file is defined or 'reset' in downloaded_patch_bundle_file
+    - name: "Set path to patch bundle file archive on target (if not set)."
+      ansible.builtin.set_fact:
+        path_to_patch_bundle_on_target: "/opt/{{ patch_bundle }}"
+      when:
+        - not path_to_patch_bundle_on_target is defined or 'reset' in path_to_patch_bundle_on_target
+
+    - name: "Set path to patch bundle file archive locally (if not set)."
+      ansible.builtin.set_fact:
+        downloaded_patch_bundle_file: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+      when:
+        - not downloaded_patch_bundle_file is defined or 'reset' in downloaded_patch_bundle_file
