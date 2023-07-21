@@ -40,33 +40,33 @@
 
     - name: "Compute patch to apply (if any)."
       block:
-    - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
-      ansible.builtin.set_fact:
-        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
-        patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
-        patch_version: "{{ jws_patch_version }}"
-      when: jws_patch_version is defined and jws_patch_version | length > 0
-      delegate_to: localhost
-      run_once: yes
+        - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
+          ansible.builtin.set_fact:
+            rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
+            patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
+            patch_version: "{{ jws_patch_version }}"
+          when: jws_patch_version is defined and jws_patch_version | length > 0
+          delegate_to: localhost
+          run_once: yes
 
-    - name: Check latest version against requested version
-      ansible.builtin.set_fact:
-        important_fact: "new patch available"
-      changed_when: jws_patch_version != jws_latest_version
-      when:
-        - jws_patch_version is defined and jws_patch_version | length > 0
-        - jws_patch_notify_new_version is defined and jws_patch_notify_new_version
-      notify: new patch available
+        - name: Check latest version against requested version
+          ansible.builtin.set_fact:
+            important_fact: "new patch available"
+          changed_when: jws_patch_version != jws_latest_version
+          when:
+            - jws_patch_version is defined and jws_patch_version | length > 0
+            - jws_patch_notify_new_version is defined and jws_patch_notify_new_version
+          notify: new patch available
 
-    - name: Download Red Hat JWS patch
-      middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
-        client_id: "{{ rhn_username }}"
-        client_secret: "{{ rhn_password }}"
-        product_id: "{{ (rhn_filtered_products | first).id }}"
-        dest: "{{ jws_archive_repository }}/{{ patch_bundle }}"
-      no_log: "{{ omit_rhn_output | default(true) }}"
-      delegate_to: localhost
-      run_once: yes
+        - name: Download Red Hat JWS patch
+          middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
+            client_id: "{{ rhn_username }}"
+            client_secret: "{{ rhn_password }}"
+            product_id: "{{ (rhn_filtered_products | first).id }}"
+            dest: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+          no_log: "{{ omit_rhn_output | default(true) }}"
+          delegate_to: localhost
+          run_once: yes
       when:
         - rhn_products.results is defined and rhn_products.results | length > 0
 
