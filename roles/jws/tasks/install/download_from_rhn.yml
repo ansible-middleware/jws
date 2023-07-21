@@ -3,6 +3,7 @@
   delegate_to: localhost
   run_once: yes
   when:
+    - not jws_offline is defined
     - archive_path is defined
     - archive_path.stat is defined
     - not archive_path.stat.exists
