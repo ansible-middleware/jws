@@ -5,7 +5,7 @@ jws_group: tomcat
 jws_gid: 53
 
 catalina_logfile: logs/catalina.out
-tomcat_version: 9.0.65
+tomcat_version: 10.1.11
 jws_home: "/opt/apache-tomcat-{{ tomcat_version }}/"
 
 jws_service_name: tomcat
