@@ -1,7 +1,7 @@
 ---
-dependency:
-  name: shell
-  command: ansible-galaxy collection install -r requirements.yml -p $HOME/.ansible/collections --force-with-deps
+#dependency:
+#  name: shell
+#  command: ansible-galaxy collection install -r requirements.yml -p $HOME/.ansible/collections --force-with-deps
 driver:
   name: docker
 platforms:
@@ -10,6 +10,9 @@ platforms:
     command: "/usr/sbin/init"
     pre_build_image: true
     privileged: true
+    tmpfs:
+      - /run
+      - /tmp
     port_bindings:
       - 8080:8080
     published_ports:
@@ -35,7 +38,7 @@ verifier:
   name: ansible
 scenario:
   test_sequence:
-    - dependency
+    #    - dependency
     - cleanup
     - destroy
     - syntax
