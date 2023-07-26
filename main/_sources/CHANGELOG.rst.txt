@@ -15,6 +15,7 @@ Minor Changes
 - Clarify and separate dev setup from installation `#212 <https://github.com/ansible-middleware/jws/pull/212>`_
 - Download install files via JBossNetwork API  `#229 <https://github.com/ansible-middleware/jws/pull/229>`_
 - Remove unused deps to community.general `#227 <https://github.com/ansible-middleware/jws/pull/227>`_
+- Tc10 `#232 <https://github.com/ansible-middleware/jws/pull/232>`_
 - Update RHN Ids to add latest CP `#220 <https://github.com/ansible-middleware/jws/pull/220>`_
 - jws: add firewalld configuration `#226 <https://github.com/ansible-middleware/jws/pull/226>`_
 
