@@ -1,8 +1,7 @@
 ---
 dependency:
-  name: galaxy
-  options:
-    requirements-file: molecule/requirements.yml
+  name: shell
+  command: ansible-galaxy collection install -r requirements.yml -p $HOME/.ansible/collections --force-with-deps
 driver:
   name: docker
 platforms:
@@ -17,6 +16,11 @@ platforms:
       - 0.0.0.0:8080:8080/TCP
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+    ssh_connection:
+      pipelining: false
   playbooks:
     prepare: prepare.yml
     converge: converge.yml
@@ -25,6 +29,8 @@ provisioner:
     host_vars:
       localhost:
         ansible_python_interpreter: "{{ ansible_playbook_python }}"
+  env:
+    ANSIBLE_FORCE_COLOR: "true"
 verifier:
   name: ansible
 scenario:
