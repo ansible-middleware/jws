@@ -39,6 +39,8 @@
       run_once: yes
 
     - name: "Compute patch to apply (if any)."
+      when:
+        - rhn_products.results is defined and rhn_products.results | length > 0
       block:
         - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
           ansible.builtin.set_fact:
@@ -69,8 +71,6 @@
           run_once: yes
           when:
             - rhn_filtered_products | length > 0
-      when:
-        - rhn_products.results is defined and rhn_products.results | length > 0
 
 - name: "Compute required paths (if patch selected)."
   block:
