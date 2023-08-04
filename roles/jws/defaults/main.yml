@@ -13,6 +13,7 @@ jws_force_install: False
 jws_dependencies_list:
   - zip
   - unzip
+  - tzdata
 # installation method: ['zipfiles', 'rpm']
 jws_install_method: zipfiles
 # path local to controller for offline/download archive files
