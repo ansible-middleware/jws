@@ -17,6 +17,7 @@ Minor Changes
 - Remove unused deps to community.general `#227 <https://github.com/ansible-middleware/jws/pull/227>`_
 - Tc10 `#232 <https://github.com/ansible-middleware/jws/pull/232>`_
 - Update RHN Ids to add latest CP `#220 <https://github.com/ansible-middleware/jws/pull/220>`_
+- Update documentation default to 5.7 `#234 <https://github.com/ansible-middleware/jws/pull/234>`_
 - jws: add firewalld configuration `#226 <https://github.com/ansible-middleware/jws/pull/226>`_
 
 Bugfixes
