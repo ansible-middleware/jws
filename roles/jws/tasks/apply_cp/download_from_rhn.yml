@@ -69,6 +69,7 @@
           no_log: "{{ omit_rhn_output | default(true) }}"
           delegate_to: localhost
           run_once: yes
+          become: "{{ rhn_download_become | default(False) }}"
           when:
             - rhn_filtered_products | length > 0
 
