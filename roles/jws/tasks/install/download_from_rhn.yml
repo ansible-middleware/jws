@@ -33,5 +33,6 @@
         product_id: "{{ (rhn_filtered_products | first).id }}"
         dest: "{{ path_to_zipfile_local }}"
       no_log: "{{ omit_rhn_output | default(true) }}"
+      become: "{{ rhn_download_become | default(False) }}"
       delegate_to: localhost
       run_once: yes
