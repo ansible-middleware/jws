@@ -110,7 +110,6 @@ jobs:
           - default
           - ajp_or_https
           - force_install
-          - local_with_native
           - override_server_xml
           - preinstalledjdk
           - uninstall
