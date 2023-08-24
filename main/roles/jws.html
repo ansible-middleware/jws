@@ -7,16 +7,17 @@
   <title>middleware_automation.jws.jws &mdash; JWS Ansible Collection  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/antsibull-minimal.css" type="text/css" />
       <link rel="stylesheet" href="../_static/ansible-basic-sphinx-ext.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -115,10 +116,10 @@
            <div itemprop="articleBody">
              
   <section id="middleware-automation-jws-jws">
-<h1>middleware_automation.jws.jws<a class="headerlink" href="#middleware-automation-jws-jws" title="Permalink to this heading"></a></h1>
+<h1>middleware_automation.jws.jws<a class="headerlink" href="#middleware-automation-jws-jws" title="Link to this heading"></a></h1>
 <p>This role contains the ansible playbook to set up JWS.</p>
 <section id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
 <p>The roles depends on:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/ansible-middleware/common">middleware_automation.common</a></p></li>
@@ -126,7 +127,7 @@
 </ul>
 </section>
 <section id="versions">
-<h2>Versions<a class="headerlink" href="#versions" title="Permalink to this heading"></a></h2>
+<h2>Versions<a class="headerlink" href="#versions" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>JWS VERSION</p></th>
@@ -183,7 +184,7 @@
 </table>
 </section>
 <section id="patching">
-<h2>Patching<a class="headerlink" href="#patching" title="Permalink to this heading"></a></h2>
+<h2>Patching<a class="headerlink" href="#patching" title="Link to this heading"></a></h2>
 <p>When variable <code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>), the role will automatically apply the latest cumulative patch for the selected base version.</p>
 <table class="docutils align-default">
 <thead>
@@ -225,9 +226,9 @@
 <!--start argument_specs-->
 </section>
 <section id="role-defaults">
-<h2>Role Defaults<a class="headerlink" href="#role-defaults" title="Permalink to this heading"></a></h2>
+<h2>Role Defaults<a class="headerlink" href="#role-defaults" title="Link to this heading"></a></h2>
 <section id="download-and-install-parameters">
-<h3>Download and install parameters<a class="headerlink" href="#download-and-install-parameters" title="Permalink to this heading"></a></h3>
+<h3>Download and install parameters<a class="headerlink" href="#download-and-install-parameters" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
@@ -300,7 +301,7 @@
 </table>
 </section>
 <section id="service-configuration">
-<h3>Service configuration<a class="headerlink" href="#service-configuration" title="Permalink to this heading"></a></h3>
+<h3>Service configuration<a class="headerlink" href="#service-configuration" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
@@ -445,7 +446,7 @@
 </table>
 </section>
 <section id="tomcat-vault-configuration">
-<h3>tomcat-vault configuration<a class="headerlink" href="#tomcat-vault-configuration" title="Permalink to this heading"></a></h3>
+<h3>tomcat-vault configuration<a class="headerlink" href="#tomcat-vault-configuration" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
@@ -490,7 +491,7 @@
 </table>
 </section>
 <section id="mod-cluster-configuration">
-<h3>mod_cluster configuration<a class="headerlink" href="#mod-cluster-configuration" title="Permalink to this heading"></a></h3>
+<h3>mod_cluster configuration<a class="headerlink" href="#mod-cluster-configuration" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
@@ -535,7 +536,7 @@
 </table>
 </section>
 <section id="https-configuration">
-<h3>HTTPS configuration<a class="headerlink" href="#https-configuration" title="Permalink to this heading"></a></h3>
+<h3>HTTPS configuration<a class="headerlink" href="#https-configuration" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
@@ -589,7 +590,7 @@
 </section>
 </section>
 <section id="role-variables">
-<h2>Role Variables<a class="headerlink" href="#role-variables" title="Permalink to this heading"></a></h2>
+<h2>Role Variables<a class="headerlink" href="#role-variables" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
@@ -611,7 +612,7 @@
 <!--end argument_specs-->
 </section>
 <section id="example-playbook">
-<h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Permalink to this heading"></a></h2>
+<h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Link to this heading"></a></h2>
 <div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
 <span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>

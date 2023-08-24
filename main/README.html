@@ -7,16 +7,17 @@
   <title>Ansible Collection - middleware_automation.jws &mdash; JWS Ansible Collection  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/antsibull-minimal.css" type="text/css" />
       <link rel="stylesheet" href="_static/ansible-basic-sphinx-ext.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -118,22 +119,22 @@
            <div itemprop="articleBody">
              
   <section id="ansible-collection-middleware-automation-jws">
-<h1>Ansible Collection - middleware_automation.jws<a class="headerlink" href="#ansible-collection-middleware-automation-jws" title="Permalink to this heading"></a></h1>
+<h1>Ansible Collection - middleware_automation.jws<a class="headerlink" href="#ansible-collection-middleware-automation-jws" title="Link to this heading"></a></h1>
 <!--start build_status -->
 <p><a class="reference external" href="https://github.com/ansible-middleware/jws/actions/workflows/ci.yml"><img alt="Build Status" src="https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main" /></a></p>
 <!--end build_status -->
 <p>This repository contains the Ansible roles and playbooks to set up an automated installation of <a class="reference external" href="https://www.redhat.com/en/technologies/jboss-middleware/web-server">Red Hat JBoss Web Server (JWS)</a>.</p>
 <section id="ansible-version-compatibility">
-<h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Permalink to this heading"></a></h2>
+<h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Link to this heading"></a></h2>
 <!--start ansible_version -->
 <p>This collection has been tested against Ansible versions 2.9.10 or later.</p>
 <p>The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.</p>
 <!--end ansible_version -->
 </section>
 <section id="content-included-in-this-collection">
-<h2>Content included in this collection<a class="headerlink" href="#content-included-in-this-collection" title="Permalink to this heading"></a></h2>
+<h2>Content included in this collection<a class="headerlink" href="#content-included-in-this-collection" title="Link to this heading"></a></h2>
 <section id="roles">
-<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this heading"></a></h3>
+<h3>Roles<a class="headerlink" href="#roles" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>The <a class="reference internal" href="#roles/jws/README.md"><span class="xref myst">jws</span></a> role contains the Ansible playbook and handles the following automated tasks:</p>
 <ul>
@@ -150,7 +151,7 @@
 </section>
 </section>
 <section id="collection-setup">
-<h2>Collection setup<a class="headerlink" href="#collection-setup" title="Permalink to this heading"></a></h2>
+<h2>Collection setup<a class="headerlink" href="#collection-setup" title="Link to this heading"></a></h2>
 <!--start galaxy_download -->
 <p>For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to install the collection by using Ansible Galaxy:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ansible-galaxy collection install middleware_automation.jws
@@ -164,7 +165,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <!--end galaxy_download -->
 </section>
 <section id="collection-usage-for-installing-jboss-web-server">
-<h2>Collection usage for installing JBoss Web Server<a class="headerlink" href="#collection-usage-for-installing-jboss-web-server" title="Permalink to this heading"></a></h2>
+<h2>Collection usage for installing JBoss Web Server<a class="headerlink" href="#collection-usage-for-installing-jboss-web-server" title="Link to this heading"></a></h2>
 <p>You can enable the collection to use any of the following installation methods when performing an automated installation of JBoss Web Server:</p>
 <ul class="simple">
 <li><p>Local archive files</p></li>
@@ -174,7 +175,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <!--start rhn_credentials -->
 <!--end rhn_credentials -->
 <section id="using-local-archive-files">
-<h3>Using local archive files<a class="headerlink" href="#using-local-archive-files" title="Permalink to this heading"></a></h3>
+<h3>Using local archive files<a class="headerlink" href="#using-local-archive-files" title="Link to this heading"></a></h3>
 <p>To enable the collection to install JBoss Web Server from local archive files:</p>
 <ol class="arabic">
 <li><p>If copies of the archive files are not already on your system, download the appropriate archive files from the Red Hat Customer Portal:</p>
@@ -239,7 +240,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </ol>
 </section>
 <section id="using-rpm-packages">
-<h3>Using RPM packages<a class="headerlink" href="#using-rpm-packages" title="Permalink to this heading"></a></h3>
+<h3>Using RPM packages<a class="headerlink" href="#using-rpm-packages" title="Link to this heading"></a></h3>
 <p>If you want the collection to install JBoss Web Server from RPM packages, you must first ensure that your system complies with the following prerequisites:</p>
 <ul class="simple">
 <li><p>Your system is compliant with <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#rhel_requirements_rpm">Red Hat Enterprise Linux package requirements</a>.</p></li>
@@ -260,7 +261,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </div></blockquote>
 </section>
 <section id="using-a-custom-url-to-download-the-archive-files">
-<h3>Using a custom URL to download the archive files<a class="headerlink" href="#using-a-custom-url-to-download-the-archive-files" title="Permalink to this heading"></a></h3>
+<h3>Using a custom URL to download the archive files<a class="headerlink" href="#using-a-custom-url-to-download-the-archive-files" title="Link to this heading"></a></h3>
 <p>To enable the collection to download and install the JBoss Web Server archive files from a custom URL, set the following variables on your Ansible control node:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
    ...
@@ -272,7 +273,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <p>In the preceding example, ensure that the <code class="docutils literal notranslate"><span class="pre">zipfile_name</span></code> and <code class="docutils literal notranslate"><span class="pre">zipfile_name_url</span></code> variables specify the correct archive file name and URL path, respectively.</p>
 </section>
 <section id="running-the-playbook">
-<h3>Running the playbook<a class="headerlink" href="#running-the-playbook" title="Permalink to this heading"></a></h3>
+<h3>Running the playbook<a class="headerlink" href="#running-the-playbook" title="Link to this heading"></a></h3>
 <p>To run the playbook:</p>
 <ol class="arabic">
 <li><p>Set the <code class="docutils literal notranslate"><span class="pre">jws_install_method</span></code> variable to the appropriate installation method, as described in the preceding sections.</p></li>
@@ -294,7 +295,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </section>
 </section>
 <section id="using-the-collection-to-configure-the-mod-cluster-listener">
-<h2>Using the collection to configure the <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> listener<a class="headerlink" href="#using-the-collection-to-configure-the-mod-cluster-listener" title="Permalink to this heading"></a></h2>
+<h2>Using the collection to configure the <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> listener<a class="headerlink" href="#using-the-collection-to-configure-the-mod-cluster-listener" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> listener enables communication between JBoss Web Server and the <code class="docutils literal notranslate"><span class="pre">mod_proxy_cluster</span></code> module on the Apache HTTP Server. The <code class="docutils literal notranslate"><span class="pre">mod_proxy_cluster</span></code> module enables use of the Apache HTTP Server as an intelligent load-balancing solution for sending requests to JBoss Web Server. For information about configuring <code class="docutils literal notranslate"><span class="pre">mod_proxy_cluster</span></code> and alternative load balancers such as <code class="docutils literal notranslate"><span class="pre">mod_jk</span></code> and <code class="docutils literal notranslate"><span class="pre">mod_proxy</span></code>, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.51/html-single/apache_http_server_connectors_and_load_balancing_guide/" title="Apache HTTP Server Connectors and Load Balancing Guide">Apache HTTP Server Connectors and Load Balancing Guide</a>.</p>
 <p>To enable the collection to configure the <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> listener, set the following variables on your Ansible control node:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
@@ -326,7 +327,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <p>The following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https">Molecule scenario</a> supports the validation and testing of this feature.</p>
 </section>
 <section id="using-the-collection-to-configure-the-password-vault-for-jboss-web-server">
-<h2>Using the collection to configure the password vault for JBoss Web Server<a class="headerlink" href="#using-the-collection-to-configure-the-password-vault-for-jboss-web-server" title="Permalink to this heading"></a></h2>
+<h2>Using the collection to configure the password vault for JBoss Web Server<a class="headerlink" href="#using-the-collection-to-configure-the-password-vault-for-jboss-web-server" title="Link to this heading"></a></h2>
 <p>You can use the password vault for JBoss Web Server, which is named <code class="docutils literal notranslate"><span class="pre">tomcat-vault</span></code>, to mask passwords and other sensitive strings, and to store sensitive information in an encrypted Java keystore. When you use the password vault, you can stop storing clear-text passwords in your JBoss Web Server configuration files. JBoss Web Server can use the password vault to search for passwords and other sensitive strings from a keystore.</p>
 <blockquote>
 <div><p><strong>Note:</strong> If you want to use the password vault feature, you must first create the required <code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code>, <code class="docutils literal notranslate"><span class="pre">VAULT.dat</span></code>, and <code class="docutils literal notranslate"><span class="pre">vault.properties</span></code> files as a prerequisite. For more information about creating these files, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws">Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server</a>.</p>
@@ -380,7 +381,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </table>
 </section>
 <section id="using-the-collection-to-enable-https-support">
-<h2>Using the collection to enable HTTPS support<a class="headerlink" href="#using-the-collection-to-enable-https-support" title="Permalink to this heading"></a></h2>
+<h2>Using the collection to enable HTTPS support<a class="headerlink" href="#using-the-collection-to-enable-https-support" title="Link to this heading"></a></h2>
 <p>The collection provides a default template for the <code class="docutils literal notranslate"><span class="pre">server.xml</span></code> file that already includes the required configuration to use HTTPS. To enable HTTPS support, you only need to set the appropriate variables. However, the collection does not build or provide the required Java Keystore. In this situation, you must ensure that a Java keystore already exists on each target host.</p>
 <blockquote>
 <div><p><strong>Note:</strong> To automate the creation of Java keystore files, you can use other collections and modules, such as the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html">Ansible OpenSSH Keypair collection</a>, the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html">Ansible Collection Community Crypto</a> and the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html">Java Keystore module</a>. For more information about automating the creation of a Java keystore, refer to the available documentation for these collections or modules.</p>
@@ -424,7 +425,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <p>The following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https">Molecule scenario</a> supports the validation and testing of this feature.</p>
 </section>
 <section id="using-the-collection-to-override-the-default-template-for-server-xml">
-<h2>Using the collection to override the default template for <code class="docutils literal notranslate"><span class="pre">server.xml</span></code><a class="headerlink" href="#using-the-collection-to-override-the-default-template-for-server-xml" title="Permalink to this heading"></a></h2>
+<h2>Using the collection to override the default template for <code class="docutils literal notranslate"><span class="pre">server.xml</span></code><a class="headerlink" href="#using-the-collection-to-override-the-default-template-for-server-xml" title="Link to this heading"></a></h2>
 <p>The collection provides a default <code class="docutils literal notranslate"><span class="pre">server.xml.j2</span></code> template that covers the most basic server configuration only. To ensure a more fine-tuned configuration that suits your requirements, you can override the default template with your own customized template.</p>
 <p>To override the default template, set the following variable on your Ansible control node:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
@@ -435,7 +436,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <p>The following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/override_server_xml">Molecule scenario</a> supports the validation and testing of this feature.</p>
 </section>
 <section id="using-the-collection-to-deploy-web-applications">
-<h2>Using the collection to deploy web applications<a class="headerlink" href="#using-the-collection-to-deploy-web-applications" title="Permalink to this heading"></a></h2>
+<h2>Using the collection to deploy web applications<a class="headerlink" href="#using-the-collection-to-deploy-web-applications" title="Link to this heading"></a></h2>
 <p>Ansible provides various modules and features to facilitate the deployment of web applications on your target hosts.</p>
 <p>For example:</p>
 <ul>
@@ -473,7 +474,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </ul>
 </section>
 <section id="id1">
-<h2>Running the playbook<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>Running the playbook<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>After you define the appropriate variables and settings, you can run the playbook on your Ansible control node to begin the automated installation process. Ansible supports various ways to run the playbook.</p>
 <p>For example:</p>
 <ul>
@@ -506,14 +507,14 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <p>Ensure that the playbook runs successfully without any errors.</p>
 </section>
 <section id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading"></a></h2>
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading"></a></h2>
 <!--start support -->
 <p>For Red Hat customers, this collection is released as a <a class="reference external" href="https://access.redhat.com/support/offerings/techpreview">Technology Preview</a> feature as the <a class="reference external" href="https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws">Red Hat Ansible certified content collection for JBoss Web Server</a>. If you have any issues or questions related to this collection, please contact <a class="reference external" href="mailto:Ansible-middleware-core&#37;&#52;&#48;redhat&#46;com">Ansible-middleware-core<span>&#64;</span>redhat<span>&#46;</span>com</a> or open an issue at https://github.com/ansible-middleware/jws/issues.</p>
 <p>For more information about using this collection, see <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installing_jboss_web_server_by_using_the_red_hat_ansible_certified_content_collection/index">Installing JBoss Web Server by using the Red Hat Ansible Certified Content Collection</a>.</p>
 <!--end support -->
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
 <p>Apache License v2.0 or later</p>
 <p>See <a class="reference internal" href="#LICENSE"><span class="xref myst">LICENSE</span></a> to view the full text.</p>
 </section>
