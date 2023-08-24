@@ -1,7 +1,4 @@
 ---
-dependency:
-  name: shell
-  command: ansible-galaxy collection install -r requirements.yml -p $HOME/.ansible/collections --force-with-deps
 driver:
   name: docker
 platforms:
@@ -37,7 +34,6 @@ verifier:
   name: ansible
 scenario:
   test_sequence:
-    - dependency
     - cleanup
     - destroy
     - syntax
