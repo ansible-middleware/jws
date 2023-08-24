@@ -5,18 +5,115 @@ on:
     branches:
       - main
   pull_request:
+  schedule:
+    - cron: '0 6 * * *'
 
 env:
   COLORTERM: 'yes'
   TERM: 'xterm-256color'
   PYTEST_ADDOPTS: '--color=yes'
+  PY_COLORS: "1"
+  ANSIBLE_FORCE_COLOR: "1"
 
 jobs:
+  linter:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version: ["3.11"]
+        ansible_version: ["2.15"]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          path: ansible_collections/middleware_automation/jws
+
+      - name: Set up Python ${{ matrix.python_version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python_version }}
+          cache: 'pip'
+
+      - name: Create default collection path
+        run: |
+          mkdir -p /home/runner/.ansible/
+          ln -s ${{ github.workspace }} /home/runner/.ansible/collections
+
+      - name: Install yamllint, ansible and dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yamllint ansible-core==${{ matrix.ansible_version }} ansible-lint
+          if [ -f ansible_collections/middleware_automation/jws/requirements.txt ]; then
+            pip install -r ansible_collections/middleware_automation/jws/requirements.txt
+          fi
+          if [ -f ansible_collections/middleware_automation/jws/requirements.yml ]; then
+            ansible-galaxy collection install -r ansible_collections/middleware_automation/jws/requirements.yml -p /home/runner/.ansible/collections --force-with-deps
+          fi
+
+      - name: Install ansible-lint custom rules
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-middleware/ansible-lint-custom-rules
+          path: ansible-lint-custom-rules/
+
+      - name: Run linter
+        run: |
+          ansible-lint --version
+          ansible-lint -v
+        working-directory: ./ansible_collections/middleware_automation/jws
+
+  sanity:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version: ["3.8", "3.9", "3.11"]
+        ansible_version: ["2.11", "2.15"]
+        exclude:
+          - python_version: "3.8"
+            ansible_version: "2.15"
+          - python_version: "3.9"
+            ansible_version: "2.15"
+          - python_version: "3.11"
+            ansible_version: "2.11"
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          path: ansible_collections/middleware_automation/jws
+
+      - name: Set up Python ${{ matrix.python_version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python_version }}
+          cache: 'pip'
+
+      - name: Create default collection path
+        run: |
+          mkdir -p /home/runner/.ansible/
+          ln -s ${{ github.workspace }} /home/runner/.ansible/collections
+
+      - name: Install ansible-core stable-${{ matrix.ansible_version }}
+        run: |
+          pip install https://github.com/ansible/ansible/archive/stable-${{ matrix.ansible_version }}.tar.gz --disable-pip-version-check
+
+      - name: Run sanity tests
+        run: ansible-test sanity -v --color --docker --python ${{ matrix.python_version }} --exclude docs/conf.py --exclude changelogs/fragments/.gitignore --skip-test symlinks
+        working-directory: ./ansible_collections/middleware_automation/jws
+
   molecule:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python_version: ["3.11"]
+        ansible_version: ["2.14", "2.15"]
+        molecule_test:
+          - default
+          - ajp_or_https
+          - force_install
+          - local_with_native
+          - override_server_xml
+          - preinstalledjdk
+          - uninstall
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -32,7 +129,7 @@ jobs:
       - name: Install yamllint, ansible and molecule, dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yamllint 'molecule>=4.0.4' 'molecule-plugins[docker]>=23.0.0' ansible-core flake8 ansible-lint voluptuous
+          pip install yamllint 'molecule>=4.0.4' 'molecule-plugins[docker]>=23.0.0' ansible-core==${{ matrix.ansible_version }}
           if [ -f ansible_collections/middleware_automation/jws/requirements.txt ]; then
             pip install -r ansible_collections/middleware_automation/jws/requirements.txt
           fi
@@ -43,26 +140,8 @@ jobs:
             ansible-galaxy collection install -r ansible_collections/middleware_automation/jws/molecule/requirements.yml -p /home/runner/.ansible/collections
           fi
 
-      - name: Install ansible-lint custom rules
-        uses: actions/checkout@v2
-        with:
-          repository: ansible-middleware/ansible-lint-custom-rules
-          path: ansible-lint-custom-rules/
-
-      - name: Run linter
-        run: |
-          ansible-lint --version
-          ansible-lint -v
-        working-directory: ./ansible_collections/middleware_automation/jws
-
-      - name: Run sanity tests
-        run: ansible-test sanity -v --color --python ${{ matrix.python_version }} --exclude changelogs/fragments/.gitignore --skip-test symlinks
-        working-directory: ./ansible_collections/middleware_automation/jws
-
       - name: Run molecule test
         run: |
-          molecule test --all
-        env:
-          PY_COLORS: "1"
-          ANSIBLE_FORCE_COLOR: "1"
+          molecule --version
+          molecule test -s ${{ matrix.molecule_test }}
         working-directory: ./ansible_collections/middleware_automation/jws
