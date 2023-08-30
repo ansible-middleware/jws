@@ -1,0 +1,31 @@
+---
+- name: "Ensure required parameters are provided."
+  ansible.builtin.assert:
+    that:
+      - requested_port is defined
+    quiet: True
+
+- name: "Check if SELinux already allows TCP over port {{ requested_port }}"
+  block:
+    - name: "Load information on requested port {{ requested_port }} with semanage"
+      ansible.builtin.shell: |
+        set -o pipefail
+        semanage port -l | grep -e tcp | grep -e ' {{ requested_port }},*'
+      changed_when: False
+      register: seport_status
+  rescue:
+    - name: "Print state (1 missing, 0 installed)"
+      ansible.builtin.debug:
+        var: seport_status.rc
+
+- name: "Check results state: {{ seport_status }}"
+  ansible.builtin.assert:
+    that:
+      - seport_status is defined and seport_status.rc is defined
+    quiet: true
+    fail_msg: "Could not fetch state of port {{ requested_port }} using semanage"
+
+- name: "Allow port {{ requested_port }} if not already authorized."
+  when:
+    - seport_status.rc != 0
+  ansible.builtin.command: "semanage port --add -t http_port_t -p tcp {{ requested_port }}"

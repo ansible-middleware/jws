@@ -39,12 +39,11 @@
         - "Apply selinux policy"
 
     - name: Allow jws.to listen to port
-      community.general.seport:
-        ports:
-          - "{{ jws_listen_http_port }}"
-          - "{{ jws_listen_https_port }}"
-          - "{{ jws_listen_ajp_port }}"
-          - "{{ jws_shutdown_port }}"
-        proto: tcp
-        setype: http_port_t
-        state: present
+      ansible.builtin.include_tasks: seport.yml
+      loop:
+        - "{{ jws_listen_http_port }}"
+        - "{{ jws_listen_https_port }}"
+        - "{{ jws_listen_ajp_port }}"
+        - "{{ jws_shutdown_port }}"
+      loop_control:
+        loop_var: requested_port
