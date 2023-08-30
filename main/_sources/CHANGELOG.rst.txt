@@ -12,6 +12,7 @@ v1.2.4-devel
 Minor Changes
 -------------
 
+- Allow controller down without sudo and rm deps to seport `#237 <https://github.com/ansible-middleware/jws/pull/237>`_
 - Download install files via JBossNetwork API  `#229 <https://github.com/ansible-middleware/jws/pull/229>`_
 - Remove unused deps to community.general `#227 <https://github.com/ansible-middleware/jws/pull/227>`_
 - Tc10 `#232 <https://github.com/ansible-middleware/jws/pull/232>`_
@@ -23,6 +24,7 @@ Bugfixes
 --------
 
 - jws_validation: fix typo in rpm validation `#218 <https://github.com/ansible-middleware/jws/pull/218>`_
+- workaround java11 buzilla #2224411 `#233 <https://github.com/ansible-middleware/jws/pull/233>`_
 
 v1.2.3
 ======
