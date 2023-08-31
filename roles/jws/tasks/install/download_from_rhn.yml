@@ -2,24 +2,19 @@
 - name: Perform download from RHN using JBoss Network API
   delegate_to: localhost
   run_once: yes
+  become: "{{ rhn_download_become | default(False) }}"
   when:
     - not jws_offline is defined
     - archive_path is defined
     - archive_path.stat is defined
     - not archive_path.stat.exists
   block:
-    - name: Retrieve product download using JBoss Network API
-      middleware_automation.common.product_search:
-        client_id: "{{ rhn_username }}"
-        client_secret: "{{ rhn_password }}"
-        product_type: DISTRIBUTION
-        product_version: "{{ jws_version.split('.')[:2] | join('.') }}"
-        product_category: "{{ jws_product_category }}"
-      register: rhn_products
-      no_log: "{{ omit_rhn_output | default(true) }}"
-      delegate_to: localhost
-      run_once: yes
-      become: "{{ rhn_download_become | default(False) }}"
+    - name: Search for product to download using JBoss Network API
+      ansible.builtin.include_tasks: rhn/search.yml
+      vars:
+        rhn_product_type: DISTRIBUTION
+        rhn_product_version: "{{ jws_version.split('.')[:2] | join('.') }}"
+        rhn_product_category: "{{ jws_product_category }}"
 
     - name: Determine install zipfile from search results
       ansible.builtin.set_fact:
@@ -28,12 +23,7 @@
       run_once: yes
 
     - name: Download Red Hat JWS
-      middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
-        client_id: "{{ rhn_username }}"
-        client_secret: "{{ rhn_password }}"
-        product_id: "{{ (rhn_filtered_products | first).id }}"
-        dest: "{{ path_to_zipfile_local }}"
-      no_log: "{{ omit_rhn_output | default(true) }}"
-      become: "{{ rhn_download_become | default(False) }}"
-      delegate_to: localhost
-      run_once: yes
+      ansible.builtin.include_tasks: rhn/download.yml
+      vars:
+        rhn_product_id: "{{ (rhn_filtered_products | first).id }}"
+        rhn_product_path: "{{ path_to_zipfile_local }}"
