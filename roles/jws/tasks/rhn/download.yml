@@ -16,9 +16,6 @@
   delegate_to: localhost
   become: "{{ rhn_download_become | default(False) }}"
 
-- ansible.builtin.debug:
-    var: rhn_product_path_metadata
-
 - name: "Ensure {{ rhn_product_path }} is accessible"
   ansible.builtin.assert:
     that:
