@@ -10,7 +10,7 @@
       vars:
         rhn_product_type: BUGFIX
         rhn_product_version: "{{ jws_version.split('.')[:2] | join('.') }}"
-        product_category: "{{ jws_product_category }}"
+        rhn_product_category: "{{ jws_product_category }}"
 
     - name: Determine patch versions list
       ansible.builtin.set_fact:
