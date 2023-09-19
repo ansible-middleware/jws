@@ -8,8 +8,9 @@ After=syslog.target network.target
 Type={{ jws.service.type }}
 EnvironmentFile={{ jws_service_conf }}
 ExecStart={{ jws_service_script }} start
+ExecStop={{ jws_service_script }} stop
 PIDFile={{ jws_service_pidfile }}
-#SuccessExitStatus=143
+SuccessExitStatus=143
 User={{ jws.user }}
 UMask=027
 
