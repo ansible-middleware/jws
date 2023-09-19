@@ -16,5 +16,5 @@
         quiet: true
         fail_msg: "Service is not started."
   rescue:
-    - name: Read the content of catalina.out
+    - name: Read the content of systemd logs
       ansible.builtin.command: journalctl -xe -u{{ jws_service_name }}.service --no-pager -n 50
