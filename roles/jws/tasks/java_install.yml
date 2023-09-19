@@ -13,11 +13,6 @@
       vars:
         package_name: "{{ jws_java_packages_el }}"
 
-    - name: Determine JAVA_HOME for selected JVM RPM  # noqa blocked_modules
-      ansible.builtin.shell: |
-        set -o pipefail
-        rpm -ql {{ jws_java_packages_el }} | grep -Po '/usr/lib/jvm/.*(?=/bin/java$)'
-      args:
-        executable: /bin/bash
-      changed_when: False
-      register: rpm_java_home
+- name: Determine JAVA_HOME for selected JVM RPM
+  ansible.builtin.set_fact:
+    rpm_java_home: "/etc/alternatives/jre_{{ jws_java_version }}"
