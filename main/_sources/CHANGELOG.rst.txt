@@ -23,6 +23,7 @@ Minor Changes
 Bugfixes
 --------
 
+- Use alternatives, not rpm, to determine java_home `#241 <https://github.com/ansible-middleware/jws/pull/241>`_
 - jws_validation: fix typo in rpm validation `#218 <https://github.com/ansible-middleware/jws/pull/218>`_
 - workaround java11 buzilla #2224411 `#233 <https://github.com/ansible-middleware/jws/pull/233>`_
 
