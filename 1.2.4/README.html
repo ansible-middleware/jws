@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ansible Collection - middleware_automation.jws &mdash; JWS Ansible Collection  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/antsibull-minimal.css" type="text/css" />
+      <link rel="stylesheet" href="_static/ansible-basic-sphinx-ext.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Role Index" href="roles/index.html" />
+    <link rel="prev" title="Welcome to JWS Collection documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            JWS Ansible Collection
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ansible Collection - middleware_automation.jws</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ansible-version-compatibility">Ansible version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#content-included-in-this-collection">Content included in this collection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#roles">Roles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#collection-setup">Collection setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collection-usage-for-installing-jboss-web-server">Collection usage for installing JBoss Web Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-local-archive-files">Using local archive files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-rpm-packages">Using RPM packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-a-custom-url-to-download-the-archive-files">Using a custom URL to download the archive files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-playbook">Running the playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-collection-to-configure-the-mod-cluster-listener">Using the collection to configure the <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> listener</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-collection-to-configure-the-password-vault-for-jboss-web-server">Using the collection to configure the password vault for JBoss Web Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-collection-to-enable-https-support">Using the collection to enable HTTPS support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-collection-to-override-the-default-template-for-server-xml">Using the collection to override the default template for <code class="docutils literal notranslate"><span class="pre">server.xml</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-collection-to-deploy-web-applications">Using the collection to deploy web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Running the playbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="roles/index.html">Role Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">Contributor’s Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releasing.html">Collection Versioning Strategy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Middleware collections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/infinispan/">Infinispan / Red Hat Data Grid</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/keycloak/">Keycloak / Red Hat Single Sign-On</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/wildfly/">Wildfly / Red Hat JBoss EAP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/jws/">Tomcat / Red Hat JWS</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/amq/">ActiveMQ / Red Hat AMQ Broker</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/amq/">Kafka / Red Hat AMQ Streams</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/redhat-csp-download/">Red Hat CSP Download</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ansible-middleware.github.io/ansible_collections_jcliff/">JCliff</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JWS Ansible Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Ansible Collection - middleware_automation.jws</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ansible-collection-middleware-automation-jws">
+<h1>Ansible Collection - middleware_automation.jws<a class="headerlink" href="#ansible-collection-middleware-automation-jws" title="Link to this heading"></a></h1>
+<!--start build_status -->
+<p><a class="reference external" href="https://github.com/ansible-middleware/jws/actions/workflows/ci.yml"><img alt="Build Status" src="https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main" /></a></p>
+<!--end build_status -->
+<p>This repository contains the Ansible roles and playbooks to set up an automated installation of <a class="reference external" href="https://www.redhat.com/en/technologies/jboss-middleware/web-server">Red Hat JBoss Web Server (JWS)</a>.</p>
+<section id="ansible-version-compatibility">
+<h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Link to this heading"></a></h2>
+<!--start ansible_version -->
+<p>This collection has been tested against Ansible versions 2.9.10 or later.</p>
+<p>The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.</p>
+<!--end ansible_version -->
+</section>
+<section id="content-included-in-this-collection">
+<h2>Content included in this collection<a class="headerlink" href="#content-included-in-this-collection" title="Link to this heading"></a></h2>
+<section id="roles">
+<h3>Roles<a class="headerlink" href="#roles" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="#roles/jws/README.md"><span class="xref myst">jws</span></a> role contains the Ansible playbook and handles the following automated tasks:</p>
+<ul>
+<li><p>Ensures that a Java Development Kit (JDK) is installed on your target hosts</p></li>
+<li><p>Installs the basic packages that a JBoss Web Server installation requires</p></li>
+<li><p>Creates a JBoss Web Server user account and group</p></li>
+<li><p>Installs JBoss Web Server from product archive files or RPM packages</p></li>
+<li><p>Assigns ownership of the JBoss Web Server directories to the appropriate user account and group</p></li>
+<li><p>Deploys the <code class="docutils literal notranslate"><span class="pre">server.xml</span></code>, <code class="docutils literal notranslate"><span class="pre">web.xml</span></code>, and <code class="docutils literal notranslate"><span class="pre">context.xml</span></code> files</p></li>
+</ul>
+</li>
+</ul>
+<!-- KIERAN:  Should this section also mention the jws_validation role? -->
+</section>
+</section>
+<section id="collection-setup">
+<h2>Collection setup<a class="headerlink" href="#collection-setup" title="Link to this heading"></a></h2>
+<!--start galaxy_download -->
+<p>For demonstration purposes, you can run the collection directly from this folder. However, the proper setup is to install the collection by using Ansible Galaxy:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ansible-galaxy collection install middleware_automation.jws
+</pre></div>
+</div>
+<p>For <strong>development purposes</strong>, if you want to test changes to the collection, you can build and install the collection by using the following commands:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ansible-galaxy collection build .
+$ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
+</pre></div>
+</div>
+<!--end galaxy_download -->
+</section>
+<section id="collection-usage-for-installing-jboss-web-server">
+<h2>Collection usage for installing JBoss Web Server<a class="headerlink" href="#collection-usage-for-installing-jboss-web-server" title="Link to this heading"></a></h2>
+<p>You can enable the collection to use any of the following installation methods when performing an automated installation of JBoss Web Server:</p>
+<ul class="simple">
+<li><p>Local archive files</p></li>
+<li><p>RPM packages</p></li>
+<li><p>Custom URL for downloading the archive files</p></li>
+</ul>
+<!--start rhn_credentials -->
+<!--end rhn_credentials -->
+<section id="using-local-archive-files">
+<h3>Using local archive files<a class="headerlink" href="#using-local-archive-files" title="Link to this heading"></a></h3>
+<p>To enable the collection to install JBoss Web Server from local archive files:</p>
+<ol class="arabic">
+<li><p>If copies of the archive files are not already on your system, download the appropriate archive files from the Red Hat Customer Portal:</p>
+<ul class="simple">
+<li><p>Red Hat JBoss Web Server 5.<em>X</em>.0 Application Server <em>(the application server)</em></p></li>
+<li><p>Red Hat JBoss Web Server 5.<em>X</em>.0 Application Server for RHEL 8 x86_64 <em>(the native components)</em></p></li>
+</ul>
+<p>In the preceding file names, replace 5.<em>X</em>.0 with the JBoss Web Server version that you want to install (for example, 5.7.0).</p>
+</li>
+<li><p>Copy the archive files to your Ansible control node.</p></li>
+<li><p>On your Ansible control node, set the following variables, as appropriate:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> vars:
+   ...
+   jws_install_method: zipfiles
+   jws_version: 5.7.0
+   jws_native: True
+   zipfile_name: &lt;application_server_filename&gt;.zip
+   native_zipfile: &lt;native_filename&gt;.zip
+</pre></div>
+</div>
+<p>Consider the following guidelines:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_install_method</span></code></p></td>
+<td><p>Specifies the installation method (by default, <code class="docutils literal notranslate"><span class="pre">zipfiles</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code></p></td>
+<td><p>Specifies the version of JBoss Web Server that you want to install (for example, <code class="docutils literal notranslate"><span class="pre">5.7.0</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_native</span></code></p></td>
+<td><p>Indicates whether you also want to install the native archive file (by default, <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">zipfile_name</span></code></p></td>
+<td><p>Specifies the name of the application server archive file on your control node</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">native_zipfile</span></code></p></td>
+<td><p>Specifies the name of the native archive file on your control node</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<blockquote>
+<div><p><strong>Note:</strong> By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the <code class="docutils literal notranslate"><span class="pre">jws_native</span></code> variable to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Note:</strong> If you did not change the archive file names, you do not need to set the <code class="docutils literal notranslate"><span class="pre">zipfile_name</span></code> and <code class="docutils literal notranslate"><span class="pre">native_zipfile</span></code> variables. The collection uses the JBoss Web Server version to determine the default file names automatically.</p>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p>If you also want to install the latest cumulative patches for the appropriate JBoss Web Server version, copy the archive files for the latest patch updates to your Ansible control node. Then set the <code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code> variable to <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> vars:
+   ...
+   jws_apply_patches: True
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="using-rpm-packages">
+<h3>Using RPM packages<a class="headerlink" href="#using-rpm-packages" title="Link to this heading"></a></h3>
+<p>If you want the collection to install JBoss Web Server from RPM packages, you must first ensure that your system complies with the following prerequisites:</p>
+<ul class="simple">
+<li><p>Your system is compliant with <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#rhel_requirements_rpm">Red Hat Enterprise Linux package requirements</a>.</p></li>
+<li><p>You have <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#attach_subscriptions">attached subscriptions to Red Hat Enterprise Linux</a>.</p></li>
+<li><p>You have a working internet connection that the collection can use to obtain the RPM packages from Red Hat.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> When you enable the RPM installation method, the collection always installs the latest available RPM packages for the latest JBoss Web Server version, including any patch updates.</p>
+</div></blockquote>
+<p>To enable the collection to install JBoss Web Server from RPM packages, set the <code class="docutils literal notranslate"><span class="pre">jws_install_method</span></code> variable to <code class="docutils literal notranslate"><span class="pre">rpm</span></code> on your Ansible control node:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+  ...
+  jws_install_method: rpm
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> By default, the collection installs JBoss Web Server in the <code class="docutils literal notranslate"><span class="pre">/opt/rh/jws5/root/usr/share/tomcat/</span></code> directory. If you want to use a different installation directory, you can manually create a symbolic link to <code class="docutils literal notranslate"><span class="pre">/opt/rh/jws5/root/usr/share/tomcat/</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="using-a-custom-url-to-download-the-archive-files">
+<h3>Using a custom URL to download the archive files<a class="headerlink" href="#using-a-custom-url-to-download-the-archive-files" title="Link to this heading"></a></h3>
+<p>To enable the collection to download and install the JBoss Web Server archive files from a custom URL, set the following variables on your Ansible control node:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+   ...
+   jws_install_method: zipfiles
+   zipfile_name: &lt;archive_file_name&gt;.zip
+   zipfile_name_url: &lt;URL_path/archive_file_name&gt;.zip
+</pre></div>
+</div>
+<p>In the preceding example, ensure that the <code class="docutils literal notranslate"><span class="pre">zipfile_name</span></code> and <code class="docutils literal notranslate"><span class="pre">zipfile_name_url</span></code> variables specify the correct archive file name and URL path, respectively.</p>
+</section>
+<section id="running-the-playbook">
+<h3>Running the playbook<a class="headerlink" href="#running-the-playbook" title="Link to this heading"></a></h3>
+<p>To run the playbook:</p>
+<ol class="arabic">
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">jws_install_method</span></code> variable to the appropriate installation method, as described in the preceding sections.</p></li>
+<li><p>Update the inventory for your target hosts. For example:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">jws</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">192.168.0.1</span><span class="w">      </span><span class="c1"># Remote host to act on</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you want the collection to install a supported OpenJDK version on your target hosts, set the <code class="docutils literal notranslate"><span class="pre">jws_java_version</span></code> variable to the appropriate value (for example, <code class="docutils literal notranslate"><span class="pre">1.8.0</span></code>, <code class="docutils literal notranslate"><span class="pre">11</span></code>, or <code class="docutils literal notranslate"><span class="pre">17</span></code>). The collection is not configured to install a JDK by default.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">jws_listen_http_port</span></code> and <code class="docutils literal notranslate"><span class="pre">jws_listen_https_port</span></code> variables to specify which HTTP and HTTPS ports you want JBoss Web Server to listen on. The default HTTP port is 8080. The default HTTPS port is 8443.</p></li>
+<li><p>Run the playbook. For more information, see <a class="reference internal" href="#running-the-playbook"><span class="xref myst">Running the Playbook</span></a>.</p></li>
+</ol>
+<p>Note: If you are using a remote user account that is not the root user, set the username and enable sudo privileges:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<span class="nt">become_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sudo</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-the-collection-to-configure-the-mod-cluster-listener">
+<h2>Using the collection to configure the <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> listener<a class="headerlink" href="#using-the-collection-to-configure-the-mod-cluster-listener" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> listener enables communication between JBoss Web Server and the <code class="docutils literal notranslate"><span class="pre">mod_proxy_cluster</span></code> module on the Apache HTTP Server. The <code class="docutils literal notranslate"><span class="pre">mod_proxy_cluster</span></code> module enables use of the Apache HTTP Server as an intelligent load-balancing solution for sending requests to JBoss Web Server. For information about configuring <code class="docutils literal notranslate"><span class="pre">mod_proxy_cluster</span></code> and alternative load balancers such as <code class="docutils literal notranslate"><span class="pre">mod_jk</span></code> and <code class="docutils literal notranslate"><span class="pre">mod_proxy</span></code>, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_core_services/2.4.51/html-single/apache_http_server_connectors_and_load_balancing_guide/" title="Apache HTTP Server Connectors and Load Balancing Guide">Apache HTTP Server Connectors and Load Balancing Guide</a>.</p>
+<p>To enable the collection to configure the <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> listener, set the following variables on your Ansible control node:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+  ...
+  jws_modcluster_enabled: True
+  jws_modcluster_ip: &lt;ip_address&gt;
+  jws_modcluster_port: &lt;port&gt;
+</pre></div>
+</div>
+<p>Consider the following guidelines:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_enabled</span></code></p></td>
+<td><p>Indicates whether you want to enable <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> (by default, <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_ip</span></code></p></td>
+<td><p>Specifies the bind address for the <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> instance on each target host (by default, <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_modcluster_port</span></code></p></td>
+<td><p>Specifies the port that the <code class="docutils literal notranslate"><span class="pre">mod_cluster</span></code> instance uses to listen for incoming requests (by default, <code class="docutils literal notranslate"><span class="pre">6666</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>The following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https">Molecule scenario</a> supports the validation and testing of this feature.</p>
+</section>
+<section id="using-the-collection-to-configure-the-password-vault-for-jboss-web-server">
+<h2>Using the collection to configure the password vault for JBoss Web Server<a class="headerlink" href="#using-the-collection-to-configure-the-password-vault-for-jboss-web-server" title="Link to this heading"></a></h2>
+<p>You can use the password vault for JBoss Web Server, which is named <code class="docutils literal notranslate"><span class="pre">tomcat-vault</span></code>, to mask passwords and other sensitive strings, and to store sensitive information in an encrypted Java keystore. When you use the password vault, you can stop storing clear-text passwords in your JBoss Web Server configuration files. JBoss Web Server can use the password vault to search for passwords and other sensitive strings from a keystore.</p>
+<blockquote>
+<div><p><strong>Note:</strong> If you want to use the password vault feature, you must first create the required <code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code>, <code class="docutils literal notranslate"><span class="pre">VAULT.dat</span></code>, and <code class="docutils literal notranslate"><span class="pre">vault.properties</span></code> files as a prerequisite. For more information about creating these files, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws">Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server</a>.</p>
+</div></blockquote>
+<p>To enable the collection to configure the password vault, set the following variables on your Ansible control node:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+  ...
+  jws_vault_name: ./vault_files/vault.keystore
+  jws_vault_data: ./vault_files/VAULT.dat
+  jws_vault_properties: ./vault_files/vault.properties
+  jws_tomcat_vault_enabled: True
+  jws_tomcat_vault_alias: &lt;keystore_alias&gt;
+  jws_tomcat_vault_storepass: &lt;keystore_password&gt;
+  jws_tomcat_vault_iteration: &lt;iteration_count&gt;
+  jws_tomcat_vault_salt: &lt;salt&gt;
+</pre></div>
+</div>
+<p>Consider the following guidelines:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_vault_name</span></code></p></td>
+<td><p>Specifies the path to the <code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code> file</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_vault_data</span></code></p></td>
+<td><p>Specifies the path to the <code class="docutils literal notranslate"><span class="pre">VAULT.dat</span></code> file</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_vault_properties</span></code></p></td>
+<td><p>Specifies the path to the <code class="docutils literal notranslate"><span class="pre">vault.properties</span></code> file</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_enabled</span></code></p></td>
+<td><p>Indicates whether you want to enable the password vault (by default, <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_alias</span></code></p></td>
+<td><p>Specifies the keystore alias that you configured when creating the required files</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_storepass</span></code></p></td>
+<td><p>Specifies the keystore password that you configured when creating the required files</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_iteration</span></code></p></td>
+<td><p>Specifies the iteration count that you configured when creating the required files</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_tomcat_vault_salt</span></code></p></td>
+<td><p>Specifies the salt value that you configured when creating the required files</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="using-the-collection-to-enable-https-support">
+<h2>Using the collection to enable HTTPS support<a class="headerlink" href="#using-the-collection-to-enable-https-support" title="Link to this heading"></a></h2>
+<p>The collection provides a default template for the <code class="docutils literal notranslate"><span class="pre">server.xml</span></code> file that already includes the required configuration to use HTTPS. To enable HTTPS support, you only need to set the appropriate variables. However, the collection does not build or provide the required Java Keystore. In this situation, you must ensure that a Java keystore already exists on each target host.</p>
+<blockquote>
+<div><p><strong>Note:</strong> To automate the creation of Java keystore files, you can use other collections and modules, such as the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html">Ansible OpenSSH Keypair collection</a>, the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html">Ansible Collection Community Crypto</a> and the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/general/java_keystore_module.html">Java Keystore module</a>. For more information about automating the creation of a Java keystore, refer to the available documentation for these collections or modules.</p>
+</div></blockquote>
+<p>To enable the collection to configure HTTPS support, set the following variables on your Ansible control node, as appropriate:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+  ...
+  jws_listen_https_enabled: True
+  jws_listen_https_port: &lt;port&gt;
+  jws_listen_https_bind_address: &lt;ip_address&gt;
+  jws_listen_https_keystore_file: &lt;keystore_path&gt;
+  jws_listen_https_keystore_password: &lt;keystore_password&gt;
+</pre></div>
+</div>
+<p>Consider the following guidelines:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_enabled</span></code></p></td>
+<td><p>Indicates whether you want to enable HTTPS support (by default, <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_port</span></code></p></td>
+<td><p>Specifies the port that JBoss Web Server uses to listen for HTTPS requests (by default, <code class="docutils literal notranslate"><span class="pre">8443</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_bind_address</span></code></p></td>
+<td><p>Specifies the bind address for HTTPS requests on each target host (by default, <code class="docutils literal notranslate"><span class="pre">localhost</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_keystore_file</span></code></p></td>
+<td><p>Specifies the path to the Java keystore on each target host (by default, <code class="docutils literal notranslate"><span class="pre">/etc/ssl/keystore.jks</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_listen_https_keystore_password</span></code></p></td>
+<td><p>Specifies the Java keystore password on each target host (by default, <code class="docutils literal notranslate"><span class="pre">changeit</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Refer to the <a class="reference external" href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html#Quick_Start">Apache Tomcat documentation</a> for more information about setting up and configuring HTTPS support.</p>
+<p>The following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/ajp_or_https">Molecule scenario</a> supports the validation and testing of this feature.</p>
+</section>
+<section id="using-the-collection-to-override-the-default-template-for-server-xml">
+<h2>Using the collection to override the default template for <code class="docutils literal notranslate"><span class="pre">server.xml</span></code><a class="headerlink" href="#using-the-collection-to-override-the-default-template-for-server-xml" title="Link to this heading"></a></h2>
+<p>The collection provides a default <code class="docutils literal notranslate"><span class="pre">server.xml.j2</span></code> template that covers the most basic server configuration only. To ensure a more fine-tuned configuration that suits your requirements, you can override the default template with your own customized template.</p>
+<p>To override the default template, set the following variable on your Ansible control node:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
+  ...
+  jws_conf_templates_server: &lt;path_to_custom_template&gt;.j2
+</pre></div>
+</div>
+<p>The following <a class="reference external" href="https://github.com/ansible-middleware/jws/tree/main/molecule/override_server_xml">Molecule scenario</a> supports the validation and testing of this feature.</p>
+</section>
+<section id="using-the-collection-to-deploy-web-applications">
+<h2>Using the collection to deploy web applications<a class="headerlink" href="#using-the-collection-to-deploy-web-applications" title="Link to this heading"></a></h2>
+<p>Ansible provides various modules and features to facilitate the deployment of web applications on your target hosts.</p>
+<p>For example:</p>
+<ul>
+<li><p>To deploy an application by downloading the <code class="docutils literal notranslate"><span class="pre">.war</span></code> file from a repository, use the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html">get_url:</a> module:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  - name: Download App
+    get_url:
+      url: https://repo1.maven.org/maven2/org/jolokia/jolokia-war/1.7.1/jolokia-war-1.7.1.war
+      dest: &quot;{{ jws_home }}/tomcat/webapps/&quot;
+</pre></div>
+</div>
+</li>
+<li><p>To deploy an application by copying the <code class="docutils literal notranslate"><span class="pre">.war</span></code> file from your control node to the target host, use the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html">copy:</a> module:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  - ansible.builtin.copy:
+     src: files/jolokia-war-1.7.1.war
+     dest: &quot;{{ jws_home }}/tomcat/webapps/&quot;
+</pre></div>
+</div>
+</li>
+<li><p>To deploy an application when the <code class="docutils literal notranslate"><span class="pre">.war</span></code> file already exists on the target host, use the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html">copy:</a> module with the <code class="docutils literal notranslate"><span class="pre">remote_src</span></code> parameter:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  - ansible.builtin.copy:
+     src: files/jolokia-war-1.7.1.war
+     dest: &quot;{{ jws_home }}/tomcat/webapps/&quot;
+     remote_src: yes
+</pre></div>
+</div>
+</li>
+<li><p>To deploy an application by using a symbolic link or hard link to the <code class="docutils literal notranslate"><span class="pre">.war</span></code> file, which avoids duplicating the file, use the <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html">file:</a> module:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  - ansible.builtin.file:
+      src: /apps/jolokia-war-1.7.1.war
+      dest: &quot;{{ jws_home }}/tomcat/webapps/jolokia-war-1.7.1.war&quot;
+      state: link
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id1">
+<h2>Running the playbook<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>After you define the appropriate variables and settings, you can run the playbook on your Ansible control node to begin the automated installation process. Ansible supports various ways to run the playbook.</p>
+<p>For example:</p>
+<ul>
+<li><p>To run the playbook as the root user with a secure shell (SSH) key:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml</span>
+</pre></div>
+</div>
+</li>
+<li><p>To run the playbook as the root user with a password:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass</span>
+</pre></div>
+</div>
+</li>
+<li><p>To run the playbook as a user with sudo privileges and a password:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-pass --ask-become-pass</span>
+</pre></div>
+</div>
+</li>
+<li><p>To run the playbook as a user with sudo privileges, an SSH key, and a sudo password:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass</span>
+</pre></div>
+</div>
+</li>
+<li><p>To run the playbook as a user with sudo privileges and an SSH key but without a sudo password:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook -i hosts playbooks/playbook.yml --ask-become-pass</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Ensure that the playbook runs successfully without any errors.</p>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading"></a></h2>
+<!--start support -->
+<p>For Red Hat customers, this collection is released as a <a class="reference external" href="https://access.redhat.com/support/offerings/techpreview">Technology Preview</a> feature as the <a class="reference external" href="https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws">Red Hat Ansible certified content collection for JBoss Web Server</a>. If you have any issues or questions related to this collection, please contact <a class="reference external" href="mailto:Ansible-middleware-core&#37;&#52;&#48;redhat&#46;com">Ansible-middleware-core<span>&#64;</span>redhat<span>&#46;</span>com</a> or open an issue at https://github.com/ansible-middleware/jws/issues.</p>
+<p>For more information about using this collection, see <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installing_jboss_web_server_by_using_the_red_hat_ansible_certified_content_collection/index">Installing JBoss Web Server by using the Red Hat Ansible Certified Content Collection</a>.</p>
+<!--end support -->
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>Apache License v2.0 or later</p>
+<p>See <a class="reference internal" href="#LICENSE"><span class="xref myst">LICENSE</span></a> to view the full text.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to JWS Collection documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="roles/index.html" class="btn btn-neutral float-right" title="Role Index" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Red Hat, Inc..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
