@@ -6,6 +6,28 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v1.2.4
+======
+
+Minor Changes
+-------------
+
+- Allow controller down without sudo and rm deps to seport `#237 <https://github.com/ansible-middleware/jws/pull/237>`_
+- Download install files via JBossNetwork API  `#229 <https://github.com/ansible-middleware/jws/pull/229>`_
+- Remove unused deps to community.general `#227 <https://github.com/ansible-middleware/jws/pull/227>`_
+- Tc10 `#232 <https://github.com/ansible-middleware/jws/pull/232>`_
+- Update RHN Ids to add latest CP `#220 <https://github.com/ansible-middleware/jws/pull/220>`_
+- Update documentation default to 5.7 `#234 <https://github.com/ansible-middleware/jws/pull/234>`_
+- jws: add firewalld configuration `#226 <https://github.com/ansible-middleware/jws/pull/226>`_
+
+Bugfixes
+--------
+
+- Set correct exit code in systemd unit `#240 <https://github.com/ansible-middleware/jws/pull/240>`_
+- Use alternatives, not rpm, to determine java_home `#241 <https://github.com/ansible-middleware/jws/pull/241>`_
+- jws_validation: fix typo in rpm validation `#218 <https://github.com/ansible-middleware/jws/pull/218>`_
+- workaround java11 buzilla #2224411 `#233 <https://github.com/ansible-middleware/jws/pull/233>`_
+
 v1.2.3
 ======
 
