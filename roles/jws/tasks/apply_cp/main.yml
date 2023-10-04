@@ -29,4 +29,4 @@
     - name: "Apply native patch."
       ansible.builtin.include_tasks: apply_cp/apply_cp.yml
       vars:
-        archive_file_suffix: "-application-server-RHEL{{ jws_native_rhel_version | default(ansible_facts['distribution_major_version']) }}-{{ jws_patch_native_arch }}.zip"
+        archive_file_suffix: "{{ (jws_version.startswith('6') | ternary('-optional-native-components-RHEL', '-application-server-RHEL')) }}{{ jws_native_rhel_version | default(ansible_facts['distribution_major_version']) }}-{{ jws_patch_native_arch }}.zip"

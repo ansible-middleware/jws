@@ -23,7 +23,7 @@
 
     - name: Set filename for JWS native zipfile
       ansible.builtin.set_fact:
-        jws_native_zipfile: "jws-{{ jws_version }}-application-server-RHEL{{ jws_native_rhel_major_version }}-{{ jws_native_zipfile_arch }}.zip"
+        jws_native_zipfile: "jws-{{ jws_version }}{{ (jws_version.startswith('6') | ternary('-optional-native-components-RHEL', '-application-server-RHEL')) }}{{ jws_native_rhel_major_version }}-{{ jws_native_zipfile_arch }}.zip"
       when:
         - jws_native is defined
         - not jws_native_zipfile is defined or jws_native_zipfile | length == 0

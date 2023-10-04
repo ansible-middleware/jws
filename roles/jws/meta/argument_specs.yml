@@ -406,7 +406,7 @@ argument_specs:
                 description: "JWS install archive filename"
                 type: "str"
             jws_native_bundle:
-                default: "jws-{{ jws_version }}-application-server-RHEL{{ jws_native_rhel_version }}-{{ jws_patch_native_arch }}.zip"
+                default: "jws-{{ jws_version }}{{ (jws_version.startswith('6') | ternary('-optional-native-components-RHEL', '-application-server-RHEL')) }}{{ jws_native_rhel_version }}-{{ jws_patch_native_arch }}.zip"
                 description: "JWS native install archive filename"
                 type: "str"
             jws_patch_bundle:
@@ -418,7 +418,7 @@ argument_specs:
                 description: "JWS native patch architecture"
                 type: "str"
             jws_patch_native_bundle:
-                default: "jws-{{ jws_patch_version | default('[0-9]+[.][0-9]+[.][0-9]+') }}-application-server-RHEL{{ jws_native_rhel_version }}-{{ jws_patch_native_arch }}.zip"
+                default: "jws-{{ jws_patch_version | default('[0-9]+[.][0-9]+[.][0-9]+') }}{{ (jws_version.startswith('6') | ternary('-optional-native-components-RHEL', '-application-server-RHEL')) }}{{ jws_native_rhel_version }}-{{ jws_patch_native_arch }}.zip"
                 description: "JWS native patch archive filename"
                 type: "str"
             jws_native_rhel_version:
