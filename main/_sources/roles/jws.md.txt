@@ -34,7 +34,7 @@ When variable `jws_apply_patches` is `True` (default: `False`), the role will au
 
 | JWS VERSION | Release Date     | JWS LATEST CP | Notes                                                                                                                                                            |
 |:------------|:-----------------|:--------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `5.7.0`     | April 11, 2023   | `5.7.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_service_pack_2_release_notes/index) |
+| `5.7.0`     | September 04, 2023   | `5.7.4`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_service_pack_4_release_notes/index) |
 | `5.6.0`     | April 29, 2022   | `5.6.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_2_release_notes/index) |
 | `5.5.0`     | October 06, 2021 | `5.5.1`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_service_pack_1_release_notes/index) |
 | `5.4.0`     | April 14, 2021   | `5.4.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_service_pack_2_release_notes/index) |
