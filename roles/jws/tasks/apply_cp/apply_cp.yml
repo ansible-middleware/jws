@@ -4,6 +4,27 @@
 
 - name: "Download patches from RHN if requested."
   ansible.builtin.include_tasks: download_from_rhn.yml
+  when: patch_bundle is not defined or patch_bundle | length == 0
+
+- name: "Compute required paths (if patch selected)."
+  block:
+
+    - name: "Set path to patch bundle file archive on target (if not set). Path: /{{ jws_install_dir }}/{{ patch_bundle }}"
+      ansible.builtin.set_fact:
+        path_to_patch_bundle_on_target: "{{ jws_install_dir }}/{{ patch_bundle }}"
+      when:
+        - not path_to_patch_bundle_on_target is defined or 'reset' in path_to_patch_bundle_on_target
+
+    - name: "Set path to patch bundle file archive locally (if not set). Path: {{ jws_archive_repository }}/{{ patch_bundle }}"
+      ansible.builtin.set_fact:
+        downloaded_patch_bundle_file: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+      when:
+        - not downloaded_patch_bundle_file is defined or 'reset' in downloaded_patch_bundle_file
+
+- name: "Set patch version if empty"
+  ansible.builtin.set_fact:
+    patch_version: "{{ patch_bundle | regex_search('\\d+\\.\\d+\\.\\d+') }}"
+  when: patch_version is not defined or patch_version | length == 0
 
 - name: "Verify that patch checksum, if provided, matches."
   ansible.builtin.include_tasks: checksum.yml
