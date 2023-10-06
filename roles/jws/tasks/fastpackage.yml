@@ -1,19 +1,7 @@
 ---
-- name: Check arguments
-  ansible.builtin.assert:
-    that:
-      - package_name is defined
-    quiet: true
-
-- name: "Install package"
-  block:
-    - name: "Test if package {{ package_name }} is already installed"
-      ansible.builtin.command: rpm -q {{ package_name }}
-      register: rpm_info
-      changed_when: rpm_info.failed
-  rescue:
-    - name: "Install package {{ package_name }} using yum if missing"
-      ansible.builtin.yum:
-        name: "{{ package_name }}"
-        state: installed
-      when: rpm_info.failed
+- name: "Ensure {{ package_name }} is installed"
+  ansible.builtin.yum:
+    name: "{{ package_name }}"
+    state: installed
+  when:
+    - package_name is defined

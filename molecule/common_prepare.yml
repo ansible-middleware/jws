@@ -1,9 +1,9 @@
 ---
-- name: Display Ansible version
+- name: "Display Ansible version"
   ansible.builtin.debug:
     msg: "Ansible version is  {{ ansible_version.full }}"
 
-- name: Install sudo
+- name: "Install sudo"
   ansible.builtin.yum:
     name: sudo
     state: present

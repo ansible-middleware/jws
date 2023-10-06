@@ -1,5 +1,5 @@
 ---
-- name: "Check that required paramters have been provided."
+- name: "Check that required parameters have been provided."
   ansible.builtin.assert:
     that:
       - checksum_file_name is defined

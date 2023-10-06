@@ -1,8 +1,8 @@
 ---
-- name: "Install with override server.xml"
+- name: "Install with overridden server.xml"
   hosts: all
   vars:
-    # following value set the jvmRoute attribute (specific to override template)
+    # following value sets the jvmRoute attribute (specific to override template)
     jvm_route: jvm_route_1
   collections:
     - middleware_automation.jws

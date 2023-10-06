@@ -1,5 +1,5 @@
 ---
-- name: Verify
+- name: "Verify"
   hosts: instance
   collections:
     - middleware_automation.jws

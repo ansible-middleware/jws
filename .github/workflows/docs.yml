@@ -12,6 +12,13 @@ jobs:
   docs:
     uses: ansible-middleware/github-actions/.github/workflows/docs.yml@main
     secrets: inherit
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      packages: write
+      pages: write
     with:
       fqcn: 'middleware_automation/jws'
       collection_fqcn: 'middleware_automation.jws'

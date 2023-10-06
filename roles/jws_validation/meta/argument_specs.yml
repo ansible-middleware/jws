@@ -62,10 +62,10 @@ argument_specs:
                 description: "Whether to check for correct startup using native libraries"
             tomcat_version:
                 type: "str"
-                description: "Tomcat version (only usefull if Apache Tomcat and not JWS is used)"
+                description: "Tomcat version (only useful if Apache Tomcat and not JWS is used)"
             jws_validation_catalina_out_min_size:
                 type: "int"
-                description: "Minimal umbers of characters expected in the catalina.out file (for a healthy setup)."
+                description: "Minimal numbers of characters expected in the catalina.out file (for a healthy setup)."
                 default: 500
             jws_java_version:
                 required: False

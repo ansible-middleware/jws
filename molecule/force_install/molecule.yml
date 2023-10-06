@@ -34,13 +34,10 @@ verifier:
   name: ansible
 scenario:
   test_sequence:
-    - cleanup
     - destroy
     - syntax
     - create
     - prepare
     - converge
-    - side_effect
     - verify
-    - cleanup
     - destroy

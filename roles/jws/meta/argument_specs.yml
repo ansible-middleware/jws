@@ -3,16 +3,16 @@ argument_specs:
     main:
         options:
             jws_install_dir:
-                # line 4 of jws/defaults/main.yml
+                # line 6 of jws/defaults/main.yml
                 default: "/opt"
                 description: "JWS/tomcat installation path"
                 type: "str"
             jws_setup:
                 default: "True"
-                description: "Indicates if the server should be also configure by Ansible, default is True."
+                description: "Indicates if the server should also be configured by Ansible, default is True."
                 type: "str"
             jws_apps_to_remove:
-                # line 2 of jws/defaults/main.yml
+                # line 4 of jws/defaults/main.yml
                 default: "examples"
                 description: "Comma separated list of apps to undeploy (ex: 'docs,ROOT,examples')"
                 type: "str"

@@ -32,7 +32,7 @@ jws_uid: 53
 jws_group: tomcat
 jws_gid: 53
 
-# use default paths for tomcat or jws zipfiles depending on install_method; or can be overriden
+# use default paths for tomcat or jws zip files depending on install_method; or can be overridden
 jws_setup: True
 
 jws_catalina_base: "{{ lookup('env', 'CATALINA_BASE') }}"

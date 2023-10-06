@@ -35,14 +35,20 @@
     - jws.service.enabled
   listen: "Restart Tomcat service"
 
-- name: Install selinux policy
-  ansible.builtin.command: semodule -i jws5-tomcat.pp
+- name: "Install selinux policy"
+  ansible.builtin.command: "semodule -i jws5-tomcat.pp"
+  register: result
+  changed_when:
+    - result.rc == 0
   args:
     chdir: "{{ jws_home }}/selinux"
   listen: "Selinux policy created"
 
-- name: Apply selinux policy
+- name: "Apply selinux policy"
   ansible.builtin.command: "restorecon -r {{ jws.install_dir }}"
+  register: result
+  changed_when:
+    - result.rc == 0
   listen: "Apply selinux policy"
 
 - name: Notify new patch is available

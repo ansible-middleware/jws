@@ -1,5 +1,5 @@
 ---
-- name: Prepare
+- name: "Prepare"
   hosts: all
   tasks:
 
@@ -7,4 +7,4 @@
       ansible.builtin.include_tasks: ../common_prepare.yml
       vars:
         jws_molecule_assets:
-          - "{{ assets_server }}/webserver/5.6.0/jws-5.6.0-application-server.zip"
+          - "{{ assets_server }}/webserver/5.7.0/jws-5.7.0-application-server.zip"

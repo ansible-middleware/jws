@@ -1,5 +1,5 @@
 ---
-- name: Verify
+- name: "Verify"
   hosts: all
   vars:
     tomcat_version: 9.0.65

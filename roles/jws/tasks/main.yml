@@ -29,7 +29,7 @@
 
 - name: "Add firewalld to dependencies list (if enabled)."
   ansible.builtin.set_fact:
-    jws_dependencies_list: "{{ [ jws_dependencies_list + jws_firewalld_package_name ] }}"
+    jws_dependencies_list: "[ {{ jws_dependencies_list }} + {{ jws_firewalld_package_name }} ]"
   when:
     - jws_firewalld_enabled is defined and jws_firewalld_enabled
 
@@ -61,7 +61,7 @@
   when:
     - jws_java_version is defined
 
-- name: Check user/groups and whether force install needed
+- name: "Check user/groups and whether force install needed"
   block:
     - name: "Create group: {{ jws.group }}"
       ansible.builtin.group:
@@ -124,7 +124,7 @@
         - jws.service.enabled is defined
         - jws.service.enabled
 
-    - name: Include patch install tasks
+    - name: "Include patch install tasks"
       ansible.builtin.include_tasks: apply_cp/main.yml
       when:
         - jws_apply_patches is defined
@@ -144,7 +144,7 @@
         - webapps
         - bin
 
-    - name: "Ensure {{ jws_home }}/ files have the recommended priviliges, owner and group"
+    - name: "Ensure {{ jws_home }}/ files have the recommended privileges, owner and group"
       ansible.builtin.file:
         path: "{{ jws_home }}/{{ item }}"
         owner: "{{ jws.user }}"
