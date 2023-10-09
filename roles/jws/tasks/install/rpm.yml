@@ -50,7 +50,7 @@
   when:
     - jws_rpm_root_dir_enable_stat is defined and jws_rpm_root_dir_enable_stat.stat is defined
     - jws_rpm_root_dir_enable_stat.stat.exists is defined
-    - not jws_rpm_root_dir_enable_stat
+    - not jws_rpm_root_dir_enable_stat.stat.exists
   notify:
     - Ensure Tomcat runs under systemd
 

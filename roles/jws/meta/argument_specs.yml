@@ -393,10 +393,6 @@ argument_specs:
                 default: False
                 description: "Install JWS most recent cumulative patch for requested version"
                 type: "bool"
-            jws_service_name:
-                default: "jws5-tomcat"
-                description: "Name for the systemd unit"
-                type: "str"
             jws_selinux_enabled:
                 default: True
                 description: "Enable selinux policy enforcement for JWS"
