@@ -20,7 +20,7 @@
   ansible.builtin.assert:
     that:
       - jws_home is defined
-      - jws_home == "/opt/rh/jws5/root/usr/share/tomcat"
+      - jws_home is regex('/opt/rh/jws[5-6]/root/usr/share/tomcat')
     quiet: true
     fail_msg: "{{ jws.service.hr_name }} HOME {{ jws_home | default('undefined') }} does not match the one provided by RPM."
 
