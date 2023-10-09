@@ -34,14 +34,14 @@
       - (rhn_username is defined and rhn_password is defined) or (jws_patch_version is defined and jws_patch_version | length > 0)
     quiet: True
     fail_msg: "When applying patches, you need to provide the zipfile and its version in jws_patch_version, or define customer portal credentials to download."
-    when: 
-      - jws_offline_install
-      - jws_apply_patches
-      - jws.install_method == 'zipfiles'
+  when:
+    - jws_offline_install
+    - jws_apply_patches
+    - jws.install_method == 'zipfiles'
 
 - name: "Ensure zipfiles exist on controller when installing offline."
   when:
-    - jws_offline_install  
+    - jws_offline_install
     - jws.install_method == 'zipfiles'
   block:
     - name: "Check main zipfile"

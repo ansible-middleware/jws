@@ -21,4 +21,3 @@
       - jws_home_state.stat.exists
       - jws_home_state.stat.isdir is defined
       - jws_home_state.stat.isdir
-
