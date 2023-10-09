@@ -38,10 +38,19 @@
     - dnf_command is defined
     - dnf_command != "'groupinstall'"
 
+- name: "Load stat of {{ jws_rpm_root_dir }}/enable"
+  ansible.builtin.stat:
+    path: "{{ jws_rpm_root_dir }}/enable"
+  register: jws_rpm_root_dir_enable_stat
+
 - name: "Perform {{ info_msg }}"
   ansible.builtin.command:
     cmd: "dnf {{ dnf_command | default('groupinstall') }} -y {{ jws.rpm }}"
     creates: "{{ jws_rpm_root_dir }}/enable"
+  when:
+    - jws_rpm_root_dir_enable_stat is defined and jws_rpm_root_dir_enable_stat.stat is defined
+    - jws_rpm_root_dir_enable_stat.stat.exists is defined
+    - not jws_rpm_root_dir_enable_stat
   notify:
     - Ensure Tomcat runs under systemd
 
