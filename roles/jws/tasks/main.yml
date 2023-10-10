@@ -14,26 +14,26 @@
       - jws_home is defined
       - jws_home | length > 0
 
-- name: "Add firewalld to dependencies list (if enabled)."
+- name: "Add firewalld to dependencies list (if enabled)"
   ansible.builtin.set_fact:
-    jws_dependencies_list: "{{ [ jws_dependencies_list + jws_firewalld_package_name ] }}"
+    jws_dependencies_list: "{{ jws_dependencies_list + jws_firewalld_package_name }}"
   when:
     - jws_firewalld_enabled is defined and jws_firewalld_enabled
+
+- name: "Add 'openssl' and 'apr' to dependencies list required for natives (if enabled)"
+  ansible.builtin.set_fact:
+    jws_dependencies_list: "{{ jws_dependencies_list + ['openssl', 'apr'] }}"
+  when: jws_native
+
+- name: "Include tasks for Java installation (if Java version is provided)"
+  ansible.builtin.include_tasks: java_install.yml
+  when:
+    - jws_java_version is defined
 
 - name: "Install required dependencies"
   ansible.builtin.include_tasks: fastpackage.yml
   vars:
-    package_name: "{{ item }}"
-  loop: "{{ jws_dependencies_list }}"
-
-- name: "Install required dependencies for natives"
-  ansible.builtin.include_tasks: fastpackage.yml
-  vars:
-    package_name: "{{ item }}"
-  loop:
-    - openssl
-    - apr
-  when: jws_native
+    packages_list: "{{ jws_dependencies_list }}"
 
 - name: "Ensure tomcatjss rpm is not installed"
   ansible.builtin.dnf:
@@ -42,11 +42,6 @@
   when:
     - jws.check_jws_ss_absent is defined
     - jws.check_jws_ss_absent
-
-- name: "Include tasks for java jvm installation"
-  ansible.builtin.include_tasks: java_install.yml
-  when:
-    - jws_java_version is defined
 
 - name: Check user/groups and whether force install needed
   block:
