@@ -48,7 +48,7 @@ argument_specs:
                     - unzip
                 description: "names of the packages required on the target system."
             tomcat_version:
-                default: "9.0.60"
+                default: "10.1.13"
                 description: "Version of tomcat to install"
                 type: "str"
             jws_native:
@@ -387,6 +387,28 @@ argument_specs:
             jws_home:
                 default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
                 description: "Home directory of tomcat installation"
+                type: "str"
+    uninstall:
+        options:
+            jws_skip_delete_zipfile:
+                required: False
+                description: "Whether to skip deleteion of zipfile when uninstalling"
+                type: "bool"
+            jws_home:
+                default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
+                description: "Home directory of tomcat installation"
+                type: "str"
+            jws_install_dir:
+                default: "/opt"
+                description: "JWS/tomcat installation path"
+                type: "str"
+            jws_zipfile_rootdir:
+                default: "apache-tomcat-{{ tomcat_version }}"
+                description: "Base directory of installation zipfile"
+                type: "str"
+            tomcat_version:
+                default: "10.1.13"
+                description: "Version of tomcat to install"
                 type: "str"
     downstream:
         options:
