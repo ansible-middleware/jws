@@ -3,7 +3,7 @@
   when:
     - not last_patch_status.stat.exists
   block:
-    - name: "Update {{ jws_home }} with downloaded Cumulative Patch {{ path_to_patch_bundle_on_target }}."
+    - name: "Update {{ jws_home }} with cumulative patch {{ path_to_patch_bundle_on_target }}."
       ansible.builtin.unarchive:
         src: "{{ path_to_patch_bundle_on_target }}"
         dest: "{{ jws.install_dir }}"

@@ -22,9 +22,9 @@
       - jws_home_state.stat.isdir is defined
       - jws_home_state.stat.isdir
 
-- name: "Ensure patch version is specified when installing offline."
+- name: "Ensure patch zipfile is provided when installing offline."
   ansible.builtin.assert:
     that:
-      - (rhn_username is defined and rhn_password is defined) or (jws_patch_version is defined and jws_patch_version | length > 0)
+      - (rhn_username is defined and rhn_password is defined) or (patch_bundle is defined and patch_bundle | length > 0)
     quiet: True
-    fail_msg: "When applying patches, you need to provide the zipfile and its version in jws_patch_version, or define customer portal credentials to download."
+    fail_msg: "When applying patches, you need to provide the zipfile through patch_bundle variable, or define customer portal credentials to download."
