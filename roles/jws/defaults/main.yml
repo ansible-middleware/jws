@@ -16,6 +16,8 @@ jws_dependencies_list:
   - tzdata
 # installation method: ['zipfiles', 'rpm']
 jws_install_method: zipfiles
+# whether to install without going online (for 'zipfiles' installs)
+jws_offline_install: False
 # path local to controller for offline/download archive files
 jws_archive_repository: "{{ lookup('env', 'PWD') | default('/opt') }}"
 # following var is only used by the URL mode of installation

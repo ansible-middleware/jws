@@ -21,9 +21,6 @@
   ansible.builtin.debug:
     msg: "Install method: {{ jws.install_method }}"
 
-- name: "Set defaults values based on facts (if values not provided)"
-  ansible.builtin.include_tasks: install/defaults.yml
-
 - name: "Include installation tasks using zipfiles method"
   ansible.builtin.include_tasks: install/local.yml
   when:

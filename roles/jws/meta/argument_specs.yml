@@ -20,6 +20,10 @@ argument_specs:
                 default: "zipfiles"
                 description: "Installation method"
                 type: "str"
+            jws_offline_install:
+                default: False
+                description: "Whether to perform an offline installation"
+                type: "bool"
             jws_rpm:
                 # line 4 of jws/defaults/main.yml
                 default: "jws5"

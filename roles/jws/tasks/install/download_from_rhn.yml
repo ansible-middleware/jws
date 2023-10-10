@@ -4,7 +4,7 @@
   run_once: yes
   become: "{{ rhn_download_become | default(False) }}"
   when:
-    - not jws_offline is defined
+    - not jws_offline_install
     - archive_path is defined
     - archive_path.stat is defined
     - not archive_path.stat.exists

@@ -110,6 +110,9 @@
         - jws.install_method is defined
         - jws.install_method != "rpm"
 
+    - name: "Set defaults values based on facts (if values not provided)"
+      ansible.builtin.include_tasks: defaults.yml
+
     - name: "Include install tasks"
       ansible.builtin.include_tasks: install.yml
       when:

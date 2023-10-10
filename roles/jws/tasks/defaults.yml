@@ -1,0 +1,70 @@
+---
+- name: "Set defaults based on jws_version (if provided)."
+  when:
+    - jws_version is defined
+  block:
+    - name: Set filename for JWS zipfile
+      ansible.builtin.set_fact:
+        zipfile_name: "{{ jws_bundle }}"
+      when:
+        - not zipfile_name is defined
+
+    - name: "Set native zipfile architecture (if not provided)"
+      ansible.builtin.set_fact:
+        jws_native_zipfile_arch: "{{ ansible_architecture | default('x86_64') }}"
+      when:
+        - not jws_native_zipfile_arch is defined
+
+    - name: "Set RHEL major version based on facts (if not provided)."
+      ansible.builtin.set_fact:
+        jws_native_rhel_major_version: "{{ jws_native_rhel_version | default(ansible_facts['distribution_major_version'] | default('8')) }}"
+      when:
+        - not jws_native_rhel_major_version is defined
+
+    - name: Set filename for JWS native zipfile
+      ansible.builtin.set_fact:
+        jws_native_zipfile: "jws-{{ jws_version }}{{ (jws_version.startswith('6') | ternary('-optional-native-components-RHEL', '-application-server-RHEL')) }}{{ jws_native_rhel_major_version }}-{{ jws_native_zipfile_arch }}.zip"
+      when:
+        - jws_native is defined
+        - not jws_native_zipfile is defined or jws_native_zipfile | length == 0
+
+- name: "Ensure patch version is specified when installing offline."
+  ansible.builtin.assert:
+    that:
+      - (rhn_username is defined and rhn_password is defined) or (jws_patch_version is defined and jws_patch_version | length > 0)
+    quiet: True
+    fail_msg: "When applying patches, you need to provide the zipfile and its version in jws_patch_version, or define customer portal credentials to download."
+    when: 
+      - jws_offline_install
+      - jws_apply_patches
+      - jws.install_method == 'zipfiles'
+
+- name: "Ensure zipfiles exist on controller when installing offline."
+  when:
+    - jws_offline_install  
+    - jws.install_method == 'zipfiles'
+  block:
+    - name: "Check main zipfile"
+      ansible.builtin.assert:
+        that:
+          - "{{ jws_archive_repository }}/{{ zipfile_name }} is exists"
+        fail_msg: "An offline install was requested but the zipfile {{ jws_archive_repository }}/{{ zipfile_name }} was not found"
+    - name: "Check native zipfile exists"
+      ansible.builtin.assert:
+        that:
+          - "{{ jws_archive_repository }}/{{ jws_native_zipfile }} is exists"
+        fail_msg: "An offline install was requested but the zipfile {{ jws_archive_repository }}/{{ jws_native_zipfile }} was not found"
+    - name: "Check patch zipfile exists"
+      ansible.builtin.assert:
+        that:
+          - filename is exists
+        fail_msg: "An offline install was requested but the zipfile {{ filename }} was not found"
+      vars:
+        filename: jws_archive_repository + '/jws-' + jws_patch_version + '-application-server.zip'
+    - name: "Check native patch zipfile exists"
+      ansible.builtin.assert:
+        that:
+          - filename is exists
+        fail_msg: "An offline install was requested but the zipfile {{ filename }} was not found"
+      vars:
+        filename: jws_archive_repository + '/jws-' + jws_patch_version + (jws_version.startswith('6') | ternary('-optional-native-components-RHEL', '-application-server-RHEL')) + (jws_native_rhel_version | default(ansible_facts['distribution_major_version'])) + '-' + jws_patch_native_arch  + '.zip'
