@@ -28,6 +28,12 @@
         path: "{{ jws_home }}"
         state: absent
 
+    - name: "Delete install zipfile from server"
+      ansible.builtin.file:
+        path: "{{ jws_home }}.zip"
+        state: absent
+      when: not jws_skip_delete_zipfile is defined or not jws_skip_delete_zipfile
+
 - name: "Perform rpm uninstall"
   when:
     - jws.install_method == 'rpm'

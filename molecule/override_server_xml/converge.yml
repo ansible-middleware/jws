@@ -4,10 +4,8 @@
   vars:
     # following value set the jvmRoute attribute (specific to override template)
     jvm_route: jvm_route_1
-  collections:
-    - middleware_automation.jws
   roles:
-    - role: jws
+    - role: middleware_automation.jws.jws
       jws_home: /opt/custom
       jws_conf_templates_server: override_server_xml_template.xml.j2
       jws_listen_ajp_enabled: False

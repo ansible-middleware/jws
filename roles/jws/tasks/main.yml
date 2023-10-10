@@ -3,23 +3,10 @@
 # we use the latest version of Apache Tomcat
 - name: "Set default values"
   ansible.builtin.set_fact:
-    zipfile_rootdir: "apache-tomcat-{{ tomcat_version }}"
     zipfile_name: "apache-tomcat-{{ tomcat_version }}.zip"
     zipfile_url: "{{ jws_apache_archive_download_url_prefix }}{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.zip"
   when:
     - not jws_version is defined
-
-- name: "Set default values (jws)"
-  ansible.builtin.set_fact:
-    zipfile_rootdir: "jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
-  when:
-    - jws_version is defined
-
-- name: "Set jws_home to {{ jws.install_dir }}/{{ zipfile_rootdir }} if not already defined"
-  ansible.builtin.set_fact:
-    jws_home: "{{ jws.install_dir }}/{{ zipfile_rootdir }}"
-  when:
-    - not jws_home is defined
 
 - name: "Check that jws_home has been defined."
   ansible.builtin.assert:
@@ -109,6 +96,9 @@
         - not install_path.stat.exists
         - jws.install_method is defined
         - jws.install_method != "rpm"
+
+    - name: "Set defaults values based on facts (if values not provided)"
+      ansible.builtin.include_tasks: defaults.yml
 
     - name: "Include install tasks"
       ansible.builtin.include_tasks: install.yml

@@ -10,11 +10,11 @@
 - name: Add zipfile to unarchive list
   ansible.builtin.set_fact:
     zipfiles:
-      - { src: "{{ zipfile_name }}", creates: "{{ jws.install_dir }}/{{ zipfile_rootdir }}/bin" }
+      - { src: "{{ zipfile_name }}", creates: "{{ jws.install_dir }}/{{ jws_zipfile_rootdir }}/bin" }
 
 - name: Add native zipfile to unarchive list
   ansible.builtin.set_fact:
-    zipfiles: "{{ zipfiles + [{'src': jws_native_zipfile, 'creates': jws.install_dir + '/' + zipfile_rootdir + '/lib/libtcnative-1.so'}] }}"
+    zipfiles: "{{ zipfiles + [{'src': jws_native_zipfile, 'creates': jws.install_dir + '/' + jws_zipfile_rootdir + '/lib/libtcnative-1.so'}] }}"
   when:
     - jws_native
     - jws_native_zipfile is defined
@@ -35,12 +35,12 @@
 
 - name: Configure custom jws_home
   when:
-    - jws_home != jws.install_dir + '/' + zipfile_rootdir
+    - jws_home != jws.install_dir + '/' + jws_zipfile_rootdir
     - unarchived_zipfiles.changed
   block:
     - name: Move the zipfile extracted directory to custom jws_home
       ansible.builtin.copy:
-        src: "{{ jws.install_dir }}/{{ zipfile_rootdir }}/"
+        src: "{{ jws.install_dir }}/{{ jws_zipfile_rootdir }}/"
         dest: "{{ jws_home }}"
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
@@ -49,7 +49,7 @@
         mode: preserve
     - name: Move the version.txt to custom jws_home
       ansible.builtin.copy:
-        src: "{{ jws.install_dir }}/{{ zipfile_rootdir }}/../version.txt"
+        src: "{{ jws.install_dir }}/{{ jws_zipfile_rootdir }}/../version.txt"
         dest: "{{ jws_home }}/../"
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
