@@ -7,6 +7,6 @@
     - middleware_automation.jws
   roles:
     - role: jws
-      vars:
-        jws_systemd_enabled: True
-        jws_java_home: "{{ jdk_home }}"
+      jws_systemd_enabled: True
+      jws_java_home: "{{ jdk_home }}"
+      jws_service_systemd_type: forking

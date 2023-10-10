@@ -1,19 +1,17 @@
 ---
 - name: Verify
   hosts: all
-  vars:
-    tomcat_version: 9.0.65
-    jws_home: "/opt/apache-tomcat-{{ tomcat_version }}"
-  collections:
-    - middleware_automation.jws
   tasks:
+    - name: Include jws role defaults
+      ansible.builtin.include_vars:
+        file: roles/jws/defaults/main.yml
     - name: "Read info on server home: {{ jws_home }}"
-      stat:
+      ansible.builtin.stat:
         path: "{{ jws_home }}/lib"
       register: tc_home
 
     - name: "Check that server home has been removed"
-      assert:
+      ansible.builtin.assert:
         that:
           - tc_home is defined
           - tc_home.stat is defined
