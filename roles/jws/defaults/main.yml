@@ -7,6 +7,9 @@ jws_install_dir: /opt
 jws_rpm: jws5
 jws_rpm_root_dir: /opt/rh/jws5/
 
+jws_home: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
+jws_zipfile_rootdir: "apache-tomcat-{{ tomcat_version }}"
+
 # if True continue installing even if a running tomcat is found
 jws_force_install: False
 

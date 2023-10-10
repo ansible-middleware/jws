@@ -37,9 +37,6 @@ argument_specs:
                 required: False
                 description: "Version of JWS to install"
                 type: "str"
-            jws_home:
-                description: "Default installation path for JWS archives"
-                type: "str"
             jws_selinux_enabled:
                 # line 27 of jws/defaults/main.yml
                 default: True
@@ -383,6 +380,14 @@ argument_specs:
                 default: 'https://archive.apache.org/dist/tomcat/tomcat-'
                 description: "Base URL for zipfile downloads"
                 type: "str"
+            jws_zipfile_rootdir:
+                default: "apache-tomcat-{{ tomcat_version }}"
+                description: "Base directory of installation zipfile"
+                type: "str"
+            jws_home:
+                default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
+                description: "Home directory of tomcat installation"
+                type: "str"
     downstream:
         options:
             jws_version:
@@ -437,3 +442,11 @@ argument_specs:
                 default: True
                 description: "When jws_apply_patches is enabled and jws_patch_version is used, notify if a newer version is available"
                 type: "bool"
+            jws_zipfile_rootdir:
+                default: "jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
+                description: "Base directory of installation zipfile"
+                type: "str"
+            jws_home:
+                default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
+                description: "Home directory of jws installation"
+                type: "str"
