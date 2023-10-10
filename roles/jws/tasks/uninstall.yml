@@ -32,6 +32,7 @@
       ansible.builtin.file:
         path: "{{ jws_home }}.zip"
         state: absent
+      when: not skip_delete_zipfile is defined
 
 - name: "Perform rpm uninstall"
   when:
