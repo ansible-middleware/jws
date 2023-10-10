@@ -1,5 +1,5 @@
 ---
-- name: "Check if \"{{ packages_list | join(', ') }}\" packages are already installed" # noqa command-instead-of-module this runs faster
+- name: "Check if \"{{ packages_list | join(', ') }}\" packages are already installed"  # noqa command-instead-of-module this runs faster
   ansible.builtin.command: "rpm -q {{ packages_list | join(' ') }}"
   register: rpm_info
   changed_when: False

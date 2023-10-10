@@ -1,19 +1,13 @@
 ---
-- name: "Install java"
+- name: "Install Java"
   when:
     - jws_java_version is defined
     - ansible_os_family == "RedHat"
   block:
-    - name: Set rpm name with version
+    - name: "Add 'java-{{ jws_java_version }}-openjdk-headless' to dependencies list"
       ansible.builtin.set_fact:
-        jws_java_packages_el: "java-{{ jws_java_version }}-openjdk-headless"
+        jws_dependencies_list: "{{ jws_dependencies_list + ['java-{{ jws_java_version }}-openjdk-headless'] }}"
 
-    - name: "Install {{ jws_java_packages_el }}"
-      ansible.builtin.include_tasks: fastpackage.yml
-      vars:
-        packages_list:
-          - "{{ jws_java_packages_el }}"
-
-    - name: Determine JAVA_HOME for selected JVM RPM
+    - name: "Determine JAVA_HOME for selected JVM RPM"
       ansible.builtin.set_fact:
         rpm_java_home: "/etc/alternatives/jre_{{ jws_java_version }}"
