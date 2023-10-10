@@ -9,6 +9,11 @@ This changelog describes changes after version 0.0.3.
 v1.2.5-devel
 ============
 
+Minor Changes
+-------------
+
+- Handle result of allowing port if not already authorized `#250 <https://github.com/ansible-middleware/jws/pull/250>`_
+
 v1.2.4
 ======
 
