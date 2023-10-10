@@ -375,6 +375,10 @@ argument_specs:
                     - firewalld
                 description: "Package name(s) required to run firewalld."
                 type: "list"
+            jws_apache_archive_download_url_prefix:
+                default: 'https://archive.apache.org/dist/tomcat/tomcat-'
+                description: "Base URL for zipfile downloads"
+                type: "str"
     downstream:
         options:
             jws_version:

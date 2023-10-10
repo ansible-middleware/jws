@@ -19,7 +19,7 @@ jws_install_method: zipfiles
 # path local to controller for offline/download archive files
 jws_archive_repository: "{{ lookup('env', 'PWD') | default('/opt') }}"
 # following var is only used by the URL mode of installation
-jws_apache_archive_download_url_prefix: 'https://dlcdn.apache.org/tomcat/tomcat-'
+jws_apache_archive_download_url_prefix: 'https://archive.apache.org/dist/tomcat/tomcat-'
 
 # Default version of Apache Tomcat to use if no version is provided
 tomcat_version: 10.1.13
