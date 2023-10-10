@@ -11,11 +11,10 @@
 
 - name: "Ensure requirements for systemd"
   ansible.builtin.include_tasks: ../fastpackage.yml
-  loop_control:
-    loop_var: package_name
-  loop:
-    - systemd
-    - procps-ng
+  vars:
+    packages_list:
+      - systemd
+      - procps-ng
 
 - name: "Set required default for jws_service_conf if not provided."
   ansible.builtin.set_fact:

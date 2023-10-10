@@ -20,7 +20,8 @@
     - name: Install selinux-policy-devel
       ansible.builtin.include_tasks: ../fastpackage.yml
       vars:
-        package_name: selinux-policy-devel
+        packages_list:
+          - selinux-policy-devel
 
     - name: Check if archive contains a selinux policy
       ansible.builtin.stat:

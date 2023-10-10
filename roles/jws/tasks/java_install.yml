@@ -11,7 +11,8 @@
     - name: "Install {{ jws_java_packages_el }}"
       ansible.builtin.include_tasks: fastpackage.yml
       vars:
-        package_name: "{{ jws_java_packages_el }}"
+        packages_list:
+          - "{{ jws_java_packages_el }}"
 
     - name: Determine JAVA_HOME for selected JVM RPM
       ansible.builtin.set_fact:

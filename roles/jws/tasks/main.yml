@@ -36,16 +36,14 @@
 - name: "Install required dependencies"
   ansible.builtin.include_tasks: fastpackage.yml
   vars:
-    package_name: "{{ item }}"
-  loop: "{{ jws_dependencies_list }}"
+    packages_list: "{{ jws_dependencies_list }}"
 
 - name: "Install required dependencies for natives"
   ansible.builtin.include_tasks: fastpackage.yml
   vars:
-    package_name: "{{ item }}"
-  loop:
-    - openssl
-    - apr
+    packages_list:
+      - openssl
+      - apr
   when: jws_native
 
 - name: "Ensure tomcatjss rpm is not installed"
