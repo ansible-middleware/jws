@@ -2,19 +2,13 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Include jws role defaults
-      ansible.builtin.include_vars:
-        file: roles/jws/defaults/main.yml
-    - name: "Read info on server home: {{ jws_home }}"
-      ansible.builtin.stat:
-        path: "{{ jws_home }}/lib"
-      register: tc_home
+    - name: Read info on /opt
+      ansible.builtin.find:
+        paths: /opt
+      register: files_found
 
-    - name: "Check that server home has been removed"
+    - name: Check that /opt is empty
       ansible.builtin.assert:
         that:
-          - tc_home is defined
-          - tc_home.stat is defined
-          - tc_home.stat.exists is defined
-          - not tc_home.stat.exists
-        quiet: true
+          files_found.matched == 0
+        fail_msg: 'The /opt folder is not empty.'
