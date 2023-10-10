@@ -4,8 +4,9 @@
 jws_apps_to_remove: 'examples'
 # root directory of installation
 jws_install_dir: /opt
-jws_rpm: jws5
-jws_rpm_root_dir: /opt/rh/jws5/
+jws_rpm: "jws{{ jws_version[0:1] | default('5') }}"
+jws_rpm_root_dir: "/opt/rh/jws{{ jws_version[0:1] | default('5') }}/"
+jws_rpm_service_name: "jws{{ jws_version[0:1] | default('5') }}-tomcat"
 
 # if True continue installing even if a running tomcat is found
 jws_force_install: False
@@ -19,7 +20,7 @@ jws_install_method: zipfiles
 # path local to controller for offline/download archive files
 jws_archive_repository: "{{ lookup('env', 'PWD') | default('/opt') }}"
 # following var is only used by the URL mode of installation
-jws_apache_archive_download_url_prefix: 'https://dlcdn.apache.org/tomcat/tomcat-'
+jws_apache_archive_download_url_prefix: 'https://archive.apache.org/dist/tomcat/tomcat-'
 
 # Default version of Apache Tomcat to use if no version is provided
 tomcat_version: 10.1.13
@@ -101,7 +102,7 @@ jws_modcluster_sticky_session_remove: True
 jws_systemd_enabled: False
 jws_systemd_script_interpreter: 'bash'
 jws_systemd_script_shebang: "#!/bin/{{ jws_systemd_script_interpreter }}"
-jws_service_name: 'tomcat'
+jws_service_name: "{{ (jws_install_method == 'rpm') | ternary(jws_rpm_service_name, 'tomcat') }}"
 jws_service_systemd: "/usr/lib/systemd/system/{{ jws_service_name }}.service"
 jws_service_systemd_type: "simple"
 jws_selinux_enabled: False

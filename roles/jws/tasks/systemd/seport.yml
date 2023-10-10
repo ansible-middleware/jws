@@ -29,3 +29,7 @@
   when:
     - seport_status.rc != 0
   ansible.builtin.command: "semanage port --add -t http_port_t -p tcp {{ requested_port }}"
+  register: result
+  failed_when: result.rc != 0 and "already defined" not in result.stderr
+  changed_when:
+    - result.rc == 0
