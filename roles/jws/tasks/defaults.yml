@@ -31,12 +31,23 @@
 - name: "Ensure patch version is specified when installing offline."
   ansible.builtin.assert:
     that:
-      - (rhn_username is defined and rhn_password is defined) or (jws_patch_version is defined and jws_patch_version | length > 0)
+      - jws_patch_version is defined and jws_patch_version | length > 0
     quiet: True
-    fail_msg: "When applying patches, you need to provide the zipfile and its version in jws_patch_version, or define customer portal credentials to download."
+    fail_msg: "When applying patches in offline mode, you need to provide the zipfile and its version in jws_patch_version"
   when:
-    - jws_offline_install
-    - jws_apply_patches
+    - jws_offline_install and jws_apply_patches
+    - jws.install_method == 'zipfiles'
+
+- name: "Ensure credentials are defined when installing from JBossNetwork API."
+  ansible.builtin.assert:
+    that:
+      - rhn_username is defined and rhn_username | length > 0
+      - rhn_password is defined and rhn_password | length > 0
+    quiet: True
+    fail_msg: "When downloading JWS automatically from RHN, credentials are required to be set in variables rhn_username / rhn_password"
+  when:
+    - jws_version is defined
+    - not jws_offline_install
     - jws.install_method == 'zipfiles'
 
 - name: "Ensure zipfiles exist on controller when installing offline."

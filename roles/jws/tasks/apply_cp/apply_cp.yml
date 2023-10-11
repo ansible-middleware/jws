@@ -6,15 +6,14 @@
   ansible.builtin.include_tasks: download_from_rhn.yml
   when: not jws_offline_install
 
-- name: Set final zipfile name on target
-  ansible.builtin.set_fact:
-    path_to_patch_bundle_on_target: "{{ jws_install_dir }}/{{ patch_bundle }}"
+- name: Apply patch zipfile
+  when: patch_available_to_apply or jws_offline_install
+  block:
+    - name: "Verify that patch checksum, if provided, matches."
+      ansible.builtin.include_tasks: checksum.yml
 
-- name: "Verify that patch checksum, if provided, matches."
-  ansible.builtin.include_tasks: checksum.yml
+    - name: "Deploy file on target and check if its applied already."
+      ansible.builtin.include_tasks: copy_cp_on_target_and_checksum.yml
 
-- name: "Deploy file on target and check if its applied already."
-  ansible.builtin.include_tasks: copy_cp_on_target_and_checksum.yml
-
-- name: "Apply CP (if not already applied)."
-  ansible.builtin.include_tasks: perform_update.yml
+    - name: "Apply CP (if not already applied)."
+      ansible.builtin.include_tasks: perform_update.yml

@@ -16,12 +16,16 @@
     - name: Determine patch versions list
       ansible.builtin.set_fact:
         filtered_versions: "{{ rhn_products.results | map(attribute='file_path') | select('match', '^[^/]*/jws-.*[0-9]*[.][0-9]*[.][0-9]*.*$') | map('regex_replace','[^/]*/jws-([0-9]*[.][0-9]*[.][0-9]*)-.*','\\1' ) | list | unique }}"
+      when:
+        - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
       run_once: yes
 
     - name: Determine latest version
       ansible.builtin.set_fact:
         jws_latest_version: "{{ filtered_versions | middleware_automation.common.version_sort | last }}"
+      when:
+        - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
       run_once: yes
 
@@ -30,7 +34,9 @@
         rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_latest_version + archive_file_suffix + '$') }}"
         patch_bundle: "jws-{{ jws_latest_version }}{{ archive_file_suffix }}"
         patch_version: "{{ jws_latest_version }}"
-      when: jws_patch_version is not defined or jws_patch_version | length == 0
+      when:
+        - jws_patch_version is not defined or jws_patch_version | length == 0
+        - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
       run_once: yes
 
@@ -63,3 +69,15 @@
             rhn_product_path: "{{ jws_archive_repository }}/{{ patch_bundle }}"
           when:
             - rhn_filtered_products | length > 0
+
+    - name: "No patch available"
+      when:
+        - rhn_products.results is not defined or rhn_products.results | length == 0
+      block:
+        - name: Display no patches are available for version
+          ansible.builtin.debug:
+            msg: "No cumulative patches are available for base version {{ jws_version }}"
+
+        - name: Display no patches are available for version
+          ansible.builtin.set_fact:
+            patch_available_to_apply: False
