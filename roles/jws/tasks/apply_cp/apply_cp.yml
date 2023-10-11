@@ -7,7 +7,7 @@
   when: not jws_offline_install
 
 - name: Apply patch zipfile
-  when: patch_available_to_apply or jws_offline_install
+  when: jws_offline_install or (patch_available_to_apply is defined and patch_available_to_apply)
   block:
     - name: "Verify that patch checksum, if provided, matches."
       ansible.builtin.include_tasks: checksum.yml
