@@ -4,9 +4,9 @@
     - patch_checksum is defined
     - patch_checksum | length > 0
   block:
-    - name: "Load data on downloaded file: {{ downloaded_patch_bundle_file }}."
+    - name: "Load data on downloaded file: {{ jws_install_dir }}/{{ patch_bundle }}."
       ansible.builtin.stat:
-        path: "{{ downloaded_patch_bundle_file }}"
+        path: "{{ jws_install_dir }}/{{ patch_bundle }}"
       register: downloaded_file_metadata
 
     - name: "Verify that file checksum {{ downloaded_file_metadata.stat.checksum }} with provided one: {{ patch_checksum }}."

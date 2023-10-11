@@ -13,19 +13,9 @@
 
 - name: "Download and apply native patch from RHN (if credentials provided)."
   when:
-    - jws_patch_native is defined
-    - jws_patch_native
     - jws_version is defined
     - (ansible_facts is defined and ansible_facts['distribution_major_version'] is defined) or (jws_native_rhel_version is defined and jws_native_rhel_version | length > 0)
   block:
-    - name: "Reset value for jws_patch_bundle (current: {{ jws_patch_bundle }}, new: 'reset')."
-      ansible.builtin.set_fact:
-        patch_bundle: 'reset'
-        patch_version: 'reset'
-        downloaded_patch_bundle_file: 'reset'
-        patch_checksum_file: 'reset'
-        path_to_patch_bundle_on_target: 'reset'
-
     - name: "Apply native patch."
       ansible.builtin.include_tasks: apply_cp/apply_cp.yml
       vars:

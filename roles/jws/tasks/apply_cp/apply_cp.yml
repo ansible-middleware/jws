@@ -6,6 +6,10 @@
   ansible.builtin.include_tasks: download_from_rhn.yml
   when: not jws_offline_install
 
+- name: Set final zipfile name on target
+  ansible.builtin.set_fact:
+    path_to_patch_bundle_on_target: "{{ jws_install_dir }}/{{ patch_bundle }}"
+
 - name: "Verify that patch checksum, if provided, matches."
   ansible.builtin.include_tasks: checksum.yml
 

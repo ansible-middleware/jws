@@ -1,13 +1,13 @@
 ---
 - name: "Load data on target's file (if exists)"
   ansible.builtin.stat:
-    path: "{{ path_to_patch_bundle_on_target }}"
+    path: "{{ jws_install_dir }}/{{ patch_bundle }}"
   register: patch_archive_path
 
-- name: "Copy patch archive {{ downloaded_patch_bundle_file }} to target nodes"
+- name: "Copy patch archive {{ jws_install_dir }}/{{ patch_bundle }} to target nodes"
   ansible.builtin.copy:
-    src: "{{ downloaded_patch_bundle_file }}"
-    dest: "{{ path_to_patch_bundle_on_target }}"
+    src: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+    dest: "{{ jws_install_dir }}/{{ patch_bundle }}"
     owner: "{{ jws.user | default(omit) }}"
     group: "{{ jws.group | default(omit) }}"
     mode: 0640
@@ -20,7 +20,7 @@
 
 - name: "Check deployed patch state"
   ansible.builtin.stat:
-    path: "{{ path_to_patch_bundle_on_target }}"
+    path: "{{ jws_install_dir }}/{{ patch_bundle }}"
   register: patch_info
 
 - name: "Set patch checksum"

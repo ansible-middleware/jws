@@ -49,3 +49,4 @@
   ansible.builtin.debug:
     msg: "WARNING: Your configuration defines patch version: {{ jws_patch_version }} new patch is available: {{ jws_latest_version }}"
   listen: "new patch available"
+  changed_when: True

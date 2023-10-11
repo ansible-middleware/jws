@@ -1,11 +1,11 @@
 ---
-- name: "Apply patch {{ path_to_patch_bundle_on_target }} on {{ jws_home }}."
+- name: "Apply patch {{ jws_install_dir }}/{{ patch_bundle }} on {{ jws_home }}."
   when:
     - not last_patch_status.stat.exists
   block:
-    - name: "Update {{ jws_home }} with cumulative patch {{ path_to_patch_bundle_on_target }}."
+    - name: "Update {{ jws_home }} with cumulative patch {{ jws_install_dir }}/{{ patch_bundle }}."
       ansible.builtin.unarchive:
-        src: "{{ path_to_patch_bundle_on_target }}"
+        src: "{{ jws_install_dir }}/{{ patch_bundle }}"
         dest: "{{ jws.install_dir }}"
         remote_src: yes
         owner: "{{ jws.user | default(omit) }}"
