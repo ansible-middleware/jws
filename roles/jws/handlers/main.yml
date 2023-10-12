@@ -36,7 +36,7 @@
   listen: "Restart Tomcat service"
 
 - name: Install selinux policy
-  ansible.builtin.command: semodule -i jws5-tomcat.pp
+  ansible.builtin.command: "semodule -i jws{{ jws_version[0:1] | default('5') }}-tomcat.pp"
   args:
     chdir: "{{ jws_home }}/selinux"
   listen: "Selinux policy created"
