@@ -133,22 +133,22 @@ argument_specs:
                 type: "str"
             jws_conf_templates_context:
                 # line 18 of jws/defaults/main.yml
-                default: "templates/context.xml.j2"
+                default: "templates/{{ jws_version[0:1] | default('.') }}/context.xml.j2"
                 description: "Template to use for context.xml"
                 type: "str"
             jws_conf_templates_server:
                 # line 19 of jws/defaults/main.yml
-                default: "templates/server.xml.j2"
+                default: "templates/{{ jws_version[0:1] | default('.') }}/server.xml.j2"
                 description: "Template to use for server.xml"
                 type: "str"
             jws_conf_templates_web:
                 # line 20 of jws/defaults/main.yml
-                default: "templates/web.xml.j2"
+                default: "templates/{{ jws_version[0:1] | default('.') }}/web.xml.j2"
                 description: "Template to use for web.xml"
                 type: "str"
             jws_conf_templates_catalina_properties:
                 # line 21 of jws/defaults/main.yml
-                default: "templates/catalina.properties.j2"
+                default: "templates/{{ jws_version[0:1] | default('.') }}/catalina.properties.j2"
                 description: "Template to use for catalina.properties"
             jws_shutdown_port:
                 # line 22 of jws/defaults/main.yml
