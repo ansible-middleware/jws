@@ -11,7 +11,7 @@
 
 - name: Check if archive contains a selinux policy
   ansible.builtin.stat:
-    path: "{{ jws_home }}/selinux/jws5-tomcat.if"
+    path: "{{ jws_home }}/selinux/jws{{ jws_version[0:1] | default('5') }}-tomcat.if"
   register: archive_path_selinux
 
 - name: "Compile and install selinux policy"
@@ -25,14 +25,14 @@
 
     - name: Check if archive contains a selinux policy
       ansible.builtin.stat:
-        path: "{{ jws_home }}/selinux/jws5-tomcat.pp"
+        path: "{{ jws_home }}/selinux/jws{{ jws_version[0:1] | default('5') }}-tomcat.pp"
       register: policy_path_selinux
 
     - name: Create selinux policy
       ansible.builtin.command: make -f /usr/share/selinux/devel/Makefile
       args:
         chdir: "{{ jws_home }}/selinux"
-        creates: "{{ jws_home }}/selinux/jws5-tomcat.pp"
+        creates: "{{ jws_home }}/selinux/jws{{ jws_version[0:1] | default('5') }}-tomcat.pp"
       when:
         - not policy_path_selinux.stat.exists
       notify:
