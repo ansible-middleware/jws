@@ -70,6 +70,10 @@
           when:
             - rhn_filtered_products | length > 0
 
+        - name: Display no patches are available for version
+          ansible.builtin.set_fact:
+            patch_available_to_apply: True
+
     - name: "No patch available"
       when:
         - rhn_products.results is not defined or rhn_products.results | length == 0
