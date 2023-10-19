@@ -81,10 +81,6 @@ argument_specs:
                 type: "str"
                 description: "home of tomcat/jws installation"
                 default: "/opt/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat"
-            jws_service_name:
-                default: "jws5-tomcat"
-                description: "Name for the systemd unit"
-                type: "str"
             jws_apply_patches:
                 default: False
                 description: "Whether to validate cumulative patch for requested version"
