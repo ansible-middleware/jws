@@ -16,6 +16,11 @@ Minor Changes
 - Several enhacements on the rpm install `#249 <https://github.com/ansible-middleware/jws/pull/249>`_
 - add offline_install parameters, move file checks up when offline `#248 <https://github.com/ansible-middleware/jws/pull/248>`_
 
+Bugfixes
+--------
+
+- Update selinux tasks for jws6 `#253 <https://github.com/ansible-middleware/jws/pull/253>`_
+
 v1.2.4
 ======
 
