@@ -25,7 +25,7 @@
 
     - name: "Delete files from server home {{ jws_home }}"
       ansible.builtin.file:
-        path: "{{ jws_home }}"
+        path: "{{ jws_home if jws_version is defined else jws_home | dirname }}"
         state: absent
 
     - name: "Delete install zipfile from server"

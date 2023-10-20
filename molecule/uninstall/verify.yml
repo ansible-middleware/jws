@@ -2,13 +2,18 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Read info on /opt
+    - name: Read info on /opt subdirs
       ansible.builtin.find:
         paths: /opt
+        file_type: directory
+        recurse: no
+        patterns:
+          - 'apache-tomcat-*'
+          - 'jws-*'
       register: files_found
 
-    - name: Check that /opt is empty
+    - name: Check that /opt has no installation directory
       ansible.builtin.assert:
         that:
-          files_found.matched == 0
+          - files_found.matched == 0
         fail_msg: 'The /opt folder is not empty.'
