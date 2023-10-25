@@ -6,6 +6,22 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v1.2.5
+======
+
+Minor Changes
+-------------
+
+- Handle result of allowing port if not already authorized `#250 <https://github.com/ansible-middleware/jws/pull/250>`_
+- Several enhacements on the rpm install `#249 <https://github.com/ansible-middleware/jws/pull/249>`_
+- Update templates for JWS5/JWS6 `#254 <https://github.com/ansible-middleware/jws/pull/254>`_
+- add offline_install parameters, move file checks up when offline `#248 <https://github.com/ansible-middleware/jws/pull/248>`_
+
+Bugfixes
+--------
+
+- Update selinux tasks for jws6 `#253 <https://github.com/ansible-middleware/jws/pull/253>`_
+
 v1.2.4
 ======
 

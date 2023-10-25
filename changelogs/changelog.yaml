@@ -225,3 +225,29 @@ releases:
     - 240.yaml
     - 241.yaml
     release_date: '2023-09-21'
+  1.2.5:
+    changes:
+      bugfixes:
+      - 'Update selinux tasks for jws6 `#253 <https://github.com/ansible-middleware/jws/pull/253>`_
+
+        '
+      minor_changes:
+      - 'Handle result of allowing port if not already authorized `#250 <https://github.com/ansible-middleware/jws/pull/250>`_
+
+        '
+      - 'Several enhacements on the rpm install `#249 <https://github.com/ansible-middleware/jws/pull/249>`_
+
+        '
+      - 'Update templates for JWS5/JWS6 `#254 <https://github.com/ansible-middleware/jws/pull/254>`_
+
+        '
+      - 'add offline_install parameters, move file checks up when offline `#248 <https://github.com/ansible-middleware/jws/pull/248>`_
+
+        '
+    fragments:
+    - 248.yaml
+    - 249.yaml
+    - 250.yaml
+    - 253.yaml
+    - 254.yaml
+    release_date: '2023-10-25'
