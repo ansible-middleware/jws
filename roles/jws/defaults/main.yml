@@ -18,6 +18,7 @@ jws_dependencies_list:
   - zip
   - unzip
   - tzdata
+  - sudo
 # installation method: ['zipfiles', 'rpm']
 jws_install_method: zipfiles
 # whether to install without going online (for 'zipfiles' installs)
