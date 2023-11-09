@@ -15,6 +15,5 @@
     path_to_zipfile_local: "{{ jws_archive_repository }}/{{ jws_native_zipfile }}"
   when:
     - jws_native
-    - jws_native_zipfile | length > 0
     - jws_native_zipfile is defined
     - jws_native_zipfile | length > 0
