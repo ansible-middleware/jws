@@ -3,12 +3,6 @@
   when:
     - jws_version is defined
   block:
-    - name: Set filename for JWS zipfile
-      ansible.builtin.set_fact:
-        zipfile_name: "{{ jws_bundle }}"
-      when:
-        - not zipfile_name is defined
-
     - name: "Set native zipfile architecture (if not provided)"
       ansible.builtin.set_fact:
         jws_native_zipfile_arch: "{{ ansible_architecture | default('x86_64') }}"
