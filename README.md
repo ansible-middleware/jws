@@ -18,7 +18,7 @@ The plug-ins and modules that are within a collection might be tested with speci
 ## Content included in this collection
 
 ### Roles
-
+<!--start role_content -->
 - The [jws](roles/jws/README.md) role contains the Ansible playbook and handles the following automated tasks:
     - Ensures that a Java Development Kit (JDK) is installed on your target hosts
     - Installs the basic packages that a JBoss Web Server installation requires
@@ -26,6 +26,7 @@ The plug-ins and modules that are within a collection might be tested with speci
     - Installs JBoss Web Server from product archive files or RPM packages
     - Assigns ownership of the JBoss Web Server directories to the appropriate user account and group
     - Deploys the `server.xml`, `web.xml`, and `context.xml` files
+<!--end role_content -->
 
 <!-- KIERAN:  Should this section also mention the jws_validation role? -->
 
