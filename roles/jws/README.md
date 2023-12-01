@@ -149,12 +149,13 @@ Role Defaults
 Role Variables
 --------------
 
-| Variable           | Description                                                                        | Required |
-|:-------------------|:-----------------------------------------------------------------------------------|:---------|
-| `jws_java_version` | Version of java openjdk RPM to install for Tomcat, by default nothing is installed | `No`     |
-| `jws_java_home`    | Path to the JAVA\_HOME to be used by the server                                    | `No`     |
+| Variable           | Description                                                                        |
+|:-------------------|:-----------------------------------------------------------------------------------|
+| `jws_java_version` | Version of java openjdk RPM to install for Tomcat, by default nothing is installed |
+| `jws_java_home`    | Path to the JAVA\_HOME to be used by the server                                    |
 <!--end argument_specs-->
 
+NOTE: You need to provided either `jws_java_version` or `jws_java_home` value. `jws_java_version` value can be 11, 17.
 
 Example Playbook
 ----------------

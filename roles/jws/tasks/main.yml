@@ -1,6 +1,11 @@
 ---
 # The following is only for upstream: if jws_version is not defined
 # we use the latest version of Apache Tomcat
+- name: Check for conflicting Java variables
+  fail:
+    msg: "Error: Set only one of jws_java_version or jws_java_home, not both. For better understanding check jws role README file"
+  when: jws_java_version is defined and jws_java_home is defined
+
 - name: "Set default values"
   ansible.builtin.set_fact:
     zipfile_name: "apache-tomcat-{{ tomcat_version }}.zip"
@@ -27,8 +32,7 @@
 
 - name: "Include tasks for Java installation (if Java version is provided)"
   ansible.builtin.include_tasks: java_install.yml
-  when:
-    - jws_java_version is defined
+  when: jws_java_home is not defined and jws_java_version is defined
 
 - name: "Install required dependencies"
   ansible.builtin.include_tasks: fastpackage.yml
