@@ -36,7 +36,7 @@
     quiet: true
     fail_msg: "The service is not running on the expected JVM."
   when:
-    - jws_java_version is defined
+    - jws_java_home is not defined and jws_java_version is defined
 
 - name: "Test JWS specific features"
   when:

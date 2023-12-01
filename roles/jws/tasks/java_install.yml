@@ -1,7 +1,7 @@
 ---
 - name: "Install Java"
   when:
-    - jws_java_version is defined
+    - jws_java_home is not defined and jws_java_version is defined
     - ansible_os_family == "RedHat"
   block:
     - name: "Add 'java-{{ jws_java_version }}-openjdk-headless' to dependencies list"
