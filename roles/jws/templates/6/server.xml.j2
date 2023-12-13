@@ -80,7 +80,6 @@
 {% if jws.listen.http.bind_address is defined %}               address="{{ jws.listen.http.bind_address }}"
 {% endif %}
                connectionTimeout="20000"
-               redirectPort="8443"
                maxParameterCount="1000"
                redirectPort="{{ jws.listen.https.port }}"
                />
