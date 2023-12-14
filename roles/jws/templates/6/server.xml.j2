@@ -79,6 +79,7 @@
                allowTrace="false"
 {% if jws.listen.http.bind_address is defined %}               address="{{ jws.listen.http.bind_address }}"
 {% endif %}
+               server="{{ jws.listen.https.servername }}"
                connectionTimeout="20000"
                maxParameterCount="1000"
                redirectPort="{{ jws.listen.https.port }}"
