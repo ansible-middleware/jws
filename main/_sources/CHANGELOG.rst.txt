@@ -9,6 +9,11 @@ This changelog describes changes after version 0.0.3.
 v1.2.6-devel
 ============
 
+Minor Changes
+-------------
+
+- AMW-133 [JWS] Allow automatic recognition of Java `#259 <https://github.com/ansible-middleware/jws/pull/259>`_
+
 v1.2.5
 ======
 

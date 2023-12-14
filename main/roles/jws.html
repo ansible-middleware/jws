@@ -597,21 +597,19 @@
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Variable</p></th>
 <th class="head text-left"><p>Description</p></th>
-<th class="head text-left"><p>Required</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_java_version</span></code></p></td>
 <td class="text-left"><p>Version of java openjdk RPM to install for Tomcat, by default nothing is installed</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">No</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">jws_java_home</span></code></p></td>
 <td class="text-left"><p>Path to the JAVA_HOME to be used by the server</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">No</span></code></p></td>
 </tr>
 </tbody>
 </table>
 <!--end argument_specs-->
+<p>NOTE: You need to provided either <code class="docutils literal notranslate"><span class="pre">jws_java_version</span></code> or <code class="docutils literal notranslate"><span class="pre">jws_java_home</span></code> value. <code class="docutils literal notranslate"><span class="pre">jws_java_version</span></code> value can be 11, 17.</p>
 </section>
 <section id="example-playbook">
 <h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Link to this heading"></a></h2>
