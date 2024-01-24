@@ -5,13 +5,13 @@
     ps --no-headers -u {{ jws.user }} | grep -v grep | awk '{print $1}'
   args:
     executable: /bin/bash
-  become: yes
+  become: True
   register: running_processes
   changed_when: False
 
 - name: "Terminate foreign processes"
   ansible.builtin.command: "kill -15 {{ running_processes.stdout_lines | join(' ') }}"
-  become: yes
+  become: True
   when:
     - jws_force_install
     - running_processes.stdout_lines | length > 0
@@ -23,14 +23,14 @@
     ps --no-headers -u {{ jws.user }} | grep -v grep | awk '{print $1}'
   args:
     executable: /bin/bash
-  become: yes
+  become: True
   failed_when: running_processes.stderr_lines | length > 0
   changed_when: False
   register: running_processes
 
 - name: "Kill foreign processes"
   ansible.builtin.command: "kill -9 {{ running_processes.stdout_lines | join(' ') }}"
-  become: yes
+  become: True
   when:
     - jws_force_install
     - running_processes.stdout_lines | length > 0
