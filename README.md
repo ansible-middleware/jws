@@ -88,6 +88,7 @@ To enable the collection to install JBoss Web Server from local archive files:
    | `jws_native`           | Indicates whether you also want to install the native archive file (by default, `False`) |
    | `zipfile_name`         | Specifies the name of the application server archive file on your control node           |
    | `native_zipfile`       | Specifies the name of the native archive file on your control node                       |
+   | `jws_offline_install`  | Indicates whether to execute a completely offline install                                |
 
 > **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
 
@@ -145,10 +146,10 @@ To run the playbook:
 
 2. Update the inventory for your target hosts. For example:
 
-    ~~~
-    [jws]
-    192.168.0.1      # Remote host to act on
-    ~~~
+~~~
+[jws]
+192.168.0.1      # Remote host to act on
+~~~
 
 3. If you want the collection to install a supported OpenJDK version on your target hosts, set the `jws_java_version` variable to the appropriate value (for example, `1.8.0`, `11`, or `17`). The collection is not configured to install a JDK by default.
 
@@ -156,10 +157,10 @@ To run the playbook:
 
 5. Run the playbook. For more information, see [Running the Playbook](#running-the-playbook).
 
-Note: If you are using a remote user account that is not the root user, set the username and enable sudo privileges:
+> **Note:** If you are using a remote user account that is not the root user, set the username and enable sudo privileges:
 
 ~~~
-become: yes
+become: True
 become_method: sudo
 ~~~
 
