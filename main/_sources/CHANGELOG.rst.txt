@@ -17,6 +17,7 @@ Minor Changes
 Bugfixes
 --------
 
+- AMW-186, linter, and ansible-core >=2.14 `#261 <https://github.com/ansible-middleware/jws/pull/261>`_
 - Workaround AMW-185 `#260 <https://github.com/ansible-middleware/jws/pull/260>`_
 
 v1.2.5

@@ -129,7 +129,7 @@
 <section id="ansible-version-compatibility">
 <h2>Ansible version compatibility<a class="headerlink" href="#ansible-version-compatibility" title="Link to this heading"></a></h2>
 <!--start ansible_version -->
-<p>This collection has been tested against Ansible versions 2.9.10 or later.</p>
+<p>This collection has been tested against Ansible versions 2.14.0 or later.</p>
 <p>The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.</p>
 <!--end ansible_version -->
 </section>
@@ -242,6 +242,10 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </div>
 </li>
 </ol>
+<blockquote>
+<div><p><strong>Note:</strong> Even when local file are present on the controller, the role tries to contact the download server to verify is new cumulative patches are available. To completely turn off
+any remote access, set the parameter <code class="docutils literal notranslate"><span class="pre">jws_offline_install:</span> <span class="pre">True</span></code></p>
+</div></blockquote>
 </section>
 <section id="using-rpm-packages">
 <h3>Using RPM packages<a class="headerlink" href="#using-rpm-packages" title="Link to this heading"></a></h3>
