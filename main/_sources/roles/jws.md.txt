@@ -18,6 +18,7 @@ Versions
 
 | JWS VERSION | Release Date      | Tomcat Version | Native Version | Notes                                                                                                                                             |
 |:------------|:------------------|:---------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `6.0.0`     | October 31, 2023  | `10.1.8`       | `1.2.36`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html/red_hat_jboss_web_server_6.0_release_notes/index) |
 | `5.7.0`     | November 2, 2022  | `9.0.62`       | `1.2.31`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_release_notes/index) |
 | `5.6.0`     | November 30, 2021 | `9.0.50`       | `1.2.30`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_release_notes/index) |
 | `5.5.0`     | June 29, 2021     | `9.0.43`       | `1.2.26`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_release_notes/index) |
@@ -27,6 +28,9 @@ Versions
 | `5.1.0`     | May 08, 2019      | `9.0.7`        | `1.2.17`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.1/html/red_hat_jboss_web_server_5.1_release_notes/index) |
 
 
+For further information: [JBoss Web Server Component Details](https://access.redhat.com/articles/111723)
+
+
 Patching
 --------
 
@@ -34,14 +38,13 @@ When variable `jws_apply_patches` is `True` (default: `False`), the role will au
 
 | JWS VERSION | Release Date     | JWS LATEST CP | Notes                                                                                                                                                            |
 |:------------|:-----------------|:--------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `5.7.0`     | September 04, 2023   | `5.7.4`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_service_pack_4_release_notes/index) |
+| `5.7.0`     | September 04, 2023   | `5.7.7`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_service_pack_7_release_notes/index) |
 | `5.6.0`     | April 29, 2022   | `5.6.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_2_release_notes/index) |
 | `5.5.0`     | October 06, 2021 | `5.5.1`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_service_pack_1_release_notes/index) |
 | `5.4.0`     | April 14, 2021   | `5.4.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_service_pack_2_release_notes/index) |
 | `5.3.0`     | August 04, 2020  | `5.3.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.3/html/red_hat_jboss_web_server_5.3_service_pack_2_release_notes/index) |
 
 
-Refer to [JBoss Web Server Component Details](https://access.redhat.com/articles/111723) for additional details.
 
 <!--start argument_specs-->
 Role Defaults
@@ -66,6 +69,9 @@ Role Defaults
 | `jws_native_zipfile`     | Tomcat native binaries archive filename                                                                          | `''`                                                                                               |
 | `jws_force_install`      | Whether to stop any running tomcat process and continue installation                                             | `false`                                                                                            |
 | `jws_archive_repository` | Path local to controller for offline/download archive files                                                      | `{{ lookup('env', 'PWD') &#124; default('/opt') }}`                                                |
+| `jws_offline_install`    | Whether to perform a completely offline install                                                                  |
+`true`                                                                                             |
+
 
 ### Service configuration
 

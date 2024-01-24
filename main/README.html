@@ -223,6 +223,9 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">native_zipfile</span></code></p></td>
 <td><p>Specifies the name of the native archive file on your control node</p></td>
 </tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_offline_install</span></code></p></td>
+<td><p>Indicates whether to execute a completely offline install</p></td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -283,20 +286,23 @@ any remote access, set the parameter <code class="docutils literal notranslate">
 <section id="running-the-playbook">
 <h3>Running the playbook<a class="headerlink" href="#running-the-playbook" title="Link to this heading"></a></h3>
 <p>To run the playbook:</p>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p>Set the <code class="docutils literal notranslate"><span class="pre">jws_install_method</span></code> variable to the appropriate installation method, as described in the preceding sections.</p></li>
-<li><p>Update the inventory for your target hosts. For example:</p>
+<li><p>Update the inventory for your target hosts. For example:</p></li>
+</ol>
 <div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">jws</span><span class="p p-Indicator">]</span>
 <span class="l l-Scalar l-Scalar-Plain">192.168.0.1</span><span class="w">      </span><span class="c1"># Remote host to act on</span>
 </pre></div>
 </div>
-</li>
+<ol class="arabic simple" start="3">
 <li><p>If you want the collection to install a supported OpenJDK version on your target hosts, set the <code class="docutils literal notranslate"><span class="pre">jws_java_version</span></code> variable to the appropriate value (for example, <code class="docutils literal notranslate"><span class="pre">1.8.0</span></code>, <code class="docutils literal notranslate"><span class="pre">11</span></code>, or <code class="docutils literal notranslate"><span class="pre">17</span></code>). The collection is not configured to install a JDK by default.</p></li>
 <li><p>Set the <code class="docutils literal notranslate"><span class="pre">jws_listen_http_port</span></code> and <code class="docutils literal notranslate"><span class="pre">jws_listen_https_port</span></code> variables to specify which HTTP and HTTPS ports you want JBoss Web Server to listen on. The default HTTP port is 8080. The default HTTPS port is 8443.</p></li>
 <li><p>Run the playbook. For more information, see <a class="reference internal" href="#running-the-playbook"><span class="xref myst">Running the Playbook</span></a>.</p></li>
 </ol>
-<p>Note: If you are using a remote user account that is not the root user, set the username and enable sudo privileges:</p>
-<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<blockquote>
+<div><p><strong>Note:</strong> If you are using a remote user account that is not the root user, set the username and enable sudo privileges:</p>
+</div></blockquote>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 <span class="nt">become_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sudo</span>
 </pre></div>
 </div>
