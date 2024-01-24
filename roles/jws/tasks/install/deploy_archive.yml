@@ -40,4 +40,4 @@
     - archive_path.stat is defined
     - not archive_path.stat.exists
     - path_to_zipfile_local is exists
-  become: yes
+  become: True

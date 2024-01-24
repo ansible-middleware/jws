@@ -9,7 +9,7 @@ This repository contains the Ansible roles and playbooks to set up an automated 
 ## Ansible version compatibility
 
 <!--start ansible_version -->
-This collection has been tested against Ansible versions 2.9.10 or later.
+This collection has been tested against Ansible versions 2.14.0 or later.
 
 The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.
 <!--end ansible_version -->
@@ -90,7 +90,7 @@ To enable the collection to install JBoss Web Server from local archive files:
    | `native_zipfile`       | Specifies the name of the native archive file on your control node                       |
 
 > **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
-    
+
 > **Note:** If you did not change the archive file names, you do not need to set the `zipfile_name` and `native_zipfile` variables. The collection uses the JBoss Web Server version to determine the default file names automatically. 
 
 4. If you also want to install the latest cumulative patches for the appropriate JBoss Web Server version, copy the archive files for the latest patch updates to your Ansible control node. Then set the `jws_apply_patches` variable to `True`:
@@ -98,6 +98,9 @@ To enable the collection to install JBoss Web Server from local archive files:
         vars:
           ...
           jws_apply_patches: True
+
+> **Note:** Even when local file are present on the controller, the role tries to contact the download server to verify is new cumulative patches are available. To completely turn off
+any remote access, set the parameter `jws_offline_install: True`
 
 
 ### Using RPM packages

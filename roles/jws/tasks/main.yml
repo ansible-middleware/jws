@@ -2,7 +2,7 @@
 # The following is only for upstream: if jws_version is not defined
 # we use the latest version of Apache Tomcat
 - name: Check for conflicting Java variables
-  fail:
+  ansible.builtin.fail:
     msg: "Error: Set only one of jws_java_version or jws_java_home, not both. For better understanding check jws role README file"
   when: jws_java_version is defined and jws_java_home is defined
 

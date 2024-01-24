@@ -44,11 +44,14 @@
       - rhn_username is defined and rhn_username | length > 0
       - rhn_password is defined and rhn_password | length > 0
     quiet: True
-    fail_msg: "When downloading JWS automatically from RHN, credentials are required to be set in variables rhn_username / rhn_password"
+    fail_msg: "When downloading JWS zipfiles automatically from RHN, credentials are required to be set in variables rhn_username / rhn_password"
   when:
     - jws_version is defined
     - not jws_offline_install
     - jws.install_method == 'zipfiles'
+    - (jws_apply_patches or not filename is exists)
+  vars:
+    filename: "{{ jws_archive_repository }}/{{ zipfile_name }}"
 
 - name: "Ensure zipfiles exist on controller when installing offline."
   when:

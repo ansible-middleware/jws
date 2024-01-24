@@ -12,7 +12,7 @@
     group: "{{ jws.group | default(omit) }}"
     mode: 0640
   register: new_version_downloaded
-  become: yes
+  become: True
   when:
     - patch_archive_path is defined
     - patch_archive_path.stat is defined
