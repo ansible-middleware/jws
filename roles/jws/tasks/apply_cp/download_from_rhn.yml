@@ -15,7 +15,10 @@
 
     - name: Determine patch versions list
       ansible.builtin.set_fact:
-        filtered_versions: "{{ rhn_products.results | map(attribute='file_path') | select('match', '^[^/]*/jws-.*[0-9]*[.][0-9]*[.][0-9]*.*$') | map('regex_replace','[^/]*/jws-([0-9]*[.][0-9]*[.][0-9]*)-.*','\\1' ) | list | unique }}"
+        filtered_versions: "{{ rhn_products.results | map(attribute='file_path') | \
+                               select('match', '^[^/]*/jws-.*[0-9]*[.][0-9]*[.][0-9]*.*$') | \
+                               map('regex_replace', '[^/]*/jws-([0-9]*[.][0-9]*[.][0-9]*)-.*', '\\1' ) | \
+                               list | unique }}"
       when:
         - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
@@ -31,7 +34,8 @@
 
     - name: Determine install zipfile from search results
       ansible.builtin.set_fact:
-        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_latest_version + archive_file_suffix + '$') }}"
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', \
+                                   '[^/]*/jws-' + jws_latest_version + archive_file_suffix + '$') }}"
         patch_bundle: "jws-{{ jws_latest_version }}{{ archive_file_suffix }}"
         patch_version: "{{ jws_latest_version }}"
       when:
@@ -46,7 +50,8 @@
       block:
         - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
           ansible.builtin.set_fact:
-            rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
+            rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', \
+                                       '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
             patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
             patch_version: "{{ jws_patch_version }}"
           when: jws_patch_version is defined and jws_patch_version | length > 0

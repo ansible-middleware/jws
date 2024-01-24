@@ -1,6 +1,6 @@
 ---
 # comma separated list of wars to undeploy
-# ex: jws_apps_to_remove: 'docs,ROOT,examples'
+# example: jws_apps_to_remove: 'docs,ROOT,examples'
 jws_apps_to_remove: 'examples'
 # root directory of installation
 jws_install_dir: /opt
@@ -52,7 +52,7 @@ jws_conf_web: './conf/web.xml'
 jws_conf_users: 'conf/tomcat-users.xml'
 jws_conf_jaspic_providers: './conf/jaspic-providers.xml'
 jws_conf_templates_context: "templates/{{ jws_version[0:1] | default('.') }}/context.xml.j2"
-jws_conf_templates_server: "templates/{{ jws_version[0:1]  | default('.') }}/server.xml.j2"
+jws_conf_templates_server: "templates/{{ jws_version[0:1] | default('.') }}/server.xml.j2"
 jws_conf_templates_web: "templates/{{ jws_version[0:1] | default('.') }}/web.xml.j2"
 jws_conf_templates_catalina_properties: "templates/{{ jws_version[0:1] | default('.') }}/catalina.properties.j2"
 
