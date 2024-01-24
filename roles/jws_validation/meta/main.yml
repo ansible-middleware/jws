@@ -1,0 +1,31 @@
+---
+collections:
+  - middleware_automation.common
+  - ansible.posix
+
+galaxy_info:
+  role_name: jws_validation
+  namespace: middleware_automation
+  author: Romain Pelisse, Guido Grazioli, George Zaronikas, Harsha Cherukuri
+  description: This role validates JWS deployment and setup.
+  company: Red Hat, Inc.
+
+  license: Apache License 2.0
+
+  min_ansible_version: "2.14"
+
+  platforms:
+    - name: EL
+      versions:
+        - "7"
+        - "8"
+
+  galaxy_tags:
+    - java
+    - tomcat
+    - server
+    - apache
+    - jws
+    - modcluster
+    - infrastructure
+    - linux
