@@ -6,6 +6,12 @@
   ansible.builtin.include_tasks: download_from_rhn.yml
   when: not jws_offline_install
 
+- name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
+  ansible.builtin.set_fact:
+    patch_version: "{{ jws_patch_version }}"
+    patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
+  when: jws_offline_install
+
 - name: Apply patch zipfile
   when: jws_offline_install or (patch_available_to_apply is defined and patch_available_to_apply)
   block:
