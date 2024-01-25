@@ -53,14 +53,15 @@
       ansible.builtin.group:
         name: "{{ jws.group }}"
         gid: "{{ jws.gid }}"
-        system: yes
+        system: True
 
     - name: "Create user: {{ jws.user }}"
       ansible.builtin.user:
         name: "{{ jws.user }}"
         uid: "{{ jws.uid }}"
-        system: yes
-        groups: "{{ jws.group }}"
+        system: True
+        group: "{{ jws.group }}"
+        append: False
         home: "{{ jws_home }}"
         shell: /sbin/nologin
         comment: "User for Apache Tomcat"
