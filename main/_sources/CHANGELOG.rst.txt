@@ -19,6 +19,7 @@ Bugfixes
 
 - AMW-186, linter, and ansible-core >=2.14 `#261 <https://github.com/ansible-middleware/jws/pull/261>`_
 - Fix "undefined patch_bundle" when jws_offline_install and jws_apply_cp are True `#263 <https://github.com/ansible-middleware/jws/pull/263>`_
+- Make system ``tomcat`` user account only be in ``tomcat`` group `#264 <https://github.com/ansible-middleware/jws/pull/264>`_
 - Workaround AMW-185 `#260 <https://github.com/ansible-middleware/jws/pull/260>`_
 
 v1.2.5
