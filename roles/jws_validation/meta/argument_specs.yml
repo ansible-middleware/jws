@@ -85,3 +85,7 @@ argument_specs:
                 default: False
                 description: "Whether to validate cumulative patch for requested version"
                 type: "bool"
+            jws_service_name:
+                default: "jws{{ jws_version.split('.')[0] | default('5') }}-tomcat"
+                description: "Name for the systemd unit"
+                type: "str"

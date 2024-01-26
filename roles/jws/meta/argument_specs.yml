@@ -468,3 +468,7 @@ argument_specs:
                 default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
                 description: "Home directory of jws installation"
                 type: "str"
+            jws_service_name:
+                default: "jws{{ jws_version.split('.')[0] | default('5')}}-tomcat"
+                description: "Name for the systemd unit"
+                type: "str"
