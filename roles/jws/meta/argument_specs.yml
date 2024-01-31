@@ -473,7 +473,7 @@ argument_specs:
                 description: "Base directory of installation zipfile"
                 type: "str"
             jws_home:
-                default: "{{ (jws_install_method == 'rpm') | ternary(jws_rpm_root_dir, jws_zipfile_home) }}"
+                default: "{{ (jws_install_method == 'rpm') | ternary(jws_rpm_home, jws_zipfile_home) }}"
                 description: "Home directory of jws installation"
                 type: "str"
             jws_zipfile_home:
