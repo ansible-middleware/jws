@@ -6,10 +6,13 @@ jws_apps_to_remove: 'examples'
 jws_install_dir: /opt
 jws_rpm: "jws{{ jws_version[0:1] | default('6') }}"
 jws_rpm_root_dir: "/opt/rh/jws{{ jws_version[0:1] | default('6') }}/"
+jws_rpm_home: "/opt/rh/jws{{ jws_version[0:1] | default('6') }}/root/usr/share/tomcat"
 jws_rpm_service_name: "jws{{ jws_version[0:1] | default('6') }}-tomcat"
 
-jws_home: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
 jws_zipfile_rootdir: "apache-tomcat-{{ tomcat_version }}"
+jws_zipfile_home: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
+
+jws_home: "{{ (jws_install_method == 'rpm') | ternary(jws_rpm_home, jws_zipfile_home) }}"
 
 # if True continue installing even if a running tomcat is found
 jws_force_install: False
