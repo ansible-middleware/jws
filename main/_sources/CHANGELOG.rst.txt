@@ -12,21 +12,21 @@ v2.0.0-devel
 Major Changes
 -------------
 
-- Bump collection major version, set default jws version to 6.0 `#265 <https://github.com/ansible-middleware/jws/pull/265>`_
+- Bump collection major version, set default JWS version to 6.0 `#265 <https://github.com/ansible-middleware/jws/pull/265>`_
 
 Minor Changes
 -------------
 
-- AMW-133 [JWS] Allow automatic recognition of Java `#259 <https://github.com/ansible-middleware/jws/pull/259>`_
+- AMW-133 Allow automatic recognition of Java `#259 <https://github.com/ansible-middleware/jws/pull/259>`_
 
 Bugfixes
 --------
 
-- AMW-186, linter, and ansible-core >=2.14 `#261 <https://github.com/ansible-middleware/jws/pull/261>`_
-- Fix "undefined patch_bundle" when jws_offline_install and jws_apply_cp are True `#263 <https://github.com/ansible-middleware/jws/pull/263>`_
-- Fix RPM installations have home directory incorrectly set `#266 <https://github.com/ansible-middleware/jws/pull/266>`_
-- Make system ``tomcat`` user account only be in ``tomcat`` group `#264 <https://github.com/ansible-middleware/jws/pull/264>`_
-- Workaround AMW-185 `#260 <https://github.com/ansible-middleware/jws/pull/260>`_
+- AMW-185 Fix usage of bare variables in assert conditions `#260 <https://github.com/ansible-middleware/jws/pull/260>`_
+- AMW-186 ansible-core >=2.14 `#261 <https://github.com/ansible-middleware/jws/pull/261>`_
+- AMW-189 Make system ``tomcat`` account only be in ``tomcat`` group `#264 <https://github.com/ansible-middleware/jws/pull/264>`_
+- AMW-190 Fix "undefined patch_bundle" when ``jws_offline_install`` and ``jws_apply_cp`` `#263 <https://github.com/ansible-middleware/jws/pull/263>`_
+- AMW-191 Fix RPM installations have home directory incorrectly set `#266 <https://github.com/ansible-middleware/jws/pull/266>`_
 
 v1.2.5
 ======
