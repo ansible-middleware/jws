@@ -62,10 +62,10 @@ To enable the collection to install JBoss Web Server from local archive files:
 
 1. If copies of the archive files are not already on your system, download the appropriate archive files from the Red Hat Customer Portal:
 
-    - Red Hat JBoss Web Server 5._X_.0 Application Server *(the application server)*
-    - Red Hat JBoss Web Server 5._X_.0 Application Server for RHEL 8 x86_64 *(the native components)*
+    - Red Hat JBoss Web Server _X_._Y_.0 Application Server *(the application server)*
+    - Red Hat JBoss Web Server _X_._Y_.0 Application Server for RHEL 8 x86_64 *(the native components)*
 
-   In the preceding file names, replace 5._X_.0 with the JBoss Web Server version that you want to install (for example, 5.7.0).
+   In the preceding file names, replace _X_._Y_.0 with the JBoss Web Server version that you want to install (for example, 5.7.0 or 6.0.0).
 
 2. Copy the archive files to your Ansible control node.
 

@@ -6,8 +6,13 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
-v1.2.6-devel
+v2.0.0-devel
 ============
+
+Major Changes
+-------------
+
+- Bump collection major version, set default jws version to 6.0 `#265 <https://github.com/ansible-middleware/jws/pull/265>`_
 
 Minor Changes
 -------------
