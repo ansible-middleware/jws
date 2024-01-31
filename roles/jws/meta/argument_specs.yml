@@ -31,7 +31,11 @@ argument_specs:
                 type: "str"
             jws_rpm_root_dir:
                 default: "/opt/rh/jws6/"
-                description: "Path to the install dir used by RPM (do not override unless you relocate the RPM"
+                description: "Path to the install dir used by RPM (do not override unless you relocate the RPM)"
+                type: "str"
+            jws_rpm_home:
+                default: "/opt/rh/jws6/root/usr/share/tomcat"
+                description: "Home directory used by RPM (do not override unless you relocate the RPM)"
                 type: "str"
             jws_version:
                 required: False
@@ -385,8 +389,12 @@ argument_specs:
                 description: "Base directory of installation zipfile"
                 type: "str"
             jws_home:
+                default: "{{ (jws_install_method == 'rpm') | ternary(jws_rpm_root_dir, jws_zipfile_home) }}"
+                description: "Home directory of jws installation"
+                type: "str"
+            jws_zipfile_home:
                 default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
-                description: "Home directory of tomcat installation"
+                description: "Home directory of jws zipfile installation"
                 type: "str"
     uninstall:
         options:
@@ -465,8 +473,12 @@ argument_specs:
                 description: "Base directory of installation zipfile"
                 type: "str"
             jws_home:
-                default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
+                default: "{{ (jws_install_method == 'rpm') | ternary(jws_rpm_root_dir, jws_zipfile_home) }}"
                 description: "Home directory of jws installation"
+                type: "str"
+            jws_zipfile_home:
+                default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
+                description: "Home directory of jws zipfile installation"
                 type: "str"
             jws_service_name:
                 default: "jws{{ jws_version.split('.')[0] | default('6')}}-tomcat"
