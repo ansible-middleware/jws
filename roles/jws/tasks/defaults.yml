@@ -92,4 +92,4 @@
         filename: "{{ jws_archive_repository + '/jws-' + jws_patch_version + \
                       (jws_version.startswith('6') | ternary('-optional-native-components-RHEL', '-application-server-RHEL')) + \
                       (jws_native_rhel_version | default(ansible_facts['distribution_major_version'])) + \
-                      '-' + jws_patch_native_arch  + '.zip' }}"
+                      '-' + jws_patch_native_arch + '.zip' }}"
