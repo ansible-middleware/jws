@@ -4,9 +4,9 @@
 jws_apps_to_remove: 'examples'
 # root directory of installation
 jws_install_dir: /opt
-jws_rpm: "jws{{ jws_version[0:1] | default('5') }}"
-jws_rpm_root_dir: "/opt/rh/jws{{ jws_version[0:1] | default('5') }}/"
-jws_rpm_service_name: "jws{{ jws_version[0:1] | default('5') }}-tomcat"
+jws_rpm: "jws{{ jws_version[0:1] | default('6') }}"
+jws_rpm_root_dir: "/opt/rh/jws{{ jws_version[0:1] | default('6') }}/"
+jws_rpm_service_name: "jws{{ jws_version[0:1] | default('6') }}-tomcat"
 
 jws_home: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
 jws_zipfile_rootdir: "apache-tomcat-{{ tomcat_version }}"

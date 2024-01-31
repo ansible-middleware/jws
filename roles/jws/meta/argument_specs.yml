@@ -26,11 +26,11 @@ argument_specs:
                 type: "bool"
             jws_rpm:
                 # line 4 of jws/defaults/main.yml
-                default: "jws5"
+                default: "jws6"
                 description: "Installation RPM version"
                 type: "str"
             jws_rpm_root_dir:
-                default: "/opt/rh/jws5/"
+                default: "/opt/rh/jws6/"
                 description: "Path to the install dir used by RPM (do not override unless you relocate the RPM"
                 type: "str"
             jws_version:
@@ -277,7 +277,7 @@ argument_specs:
                 description: "vault.data filename"
                 type: "str"
             jws_tomcat_vault_rpm_name:
-                default: "jws5-tomcat-vault"
+                default: "jws6-tomcat-vault"
                 description: "RPM package to install for tomcat vault (only used if install method is 'rpm')."
                 type: "str"
             jws_modcluster_enabled:
@@ -413,7 +413,7 @@ argument_specs:
     downstream:
         options:
             jws_version:
-                default: "5.7.0"
+                default: "6.0.0"
                 description: "JWS version to install"
                 type: "str"
             jws_patch_version:
@@ -469,6 +469,6 @@ argument_specs:
                 description: "Home directory of jws installation"
                 type: "str"
             jws_service_name:
-                default: "jws{{ jws_version.split('.')[0] | default('5')}}-tomcat"
+                default: "jws{{ jws_version.split('.')[0] | default('6')}}-tomcat"
                 description: "Name for the systemd unit"
                 type: "str"
