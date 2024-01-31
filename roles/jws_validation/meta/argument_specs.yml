@@ -74,7 +74,7 @@ argument_specs:
     downstream:
         options:
             jws_version:
-                default: "5.7.0"
+                default: "6.0.0"
                 description: "JWS version to install"
                 type: "str"
             jws_home:
@@ -86,6 +86,6 @@ argument_specs:
                 description: "Whether to validate cumulative patch for requested version"
                 type: "bool"
             jws_service_name:
-                default: "jws{{ jws_version.split('.')[0] | default('5') }}-tomcat"
+                default: "jws{{ jws_version.split('.')[0] | default('6') }}-tomcat"
                 description: "Name for the systemd unit"
                 type: "str"
