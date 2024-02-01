@@ -28,6 +28,7 @@ Bugfixes
 - AMW-190 Fix "undefined patch_bundle" when ``jws_offline_install`` and ``jws_apply_cp`` `#263 <https://github.com/ansible-middleware/jws/pull/263>`_
 - AMW-191 Fix RPM installations have home directory incorrectly set `#266 <https://github.com/ansible-middleware/jws/pull/266>`_
 - AMW-192 Fix incorrect jws tomcat_vault rpm version `#267 <https://github.com/ansible-middleware/jws/pull/267>`_
+- AMW-198 Fix placeholder in selinux policy file contexts `#268 <https://github.com/ansible-middleware/jws/pull/268>`_
 
 v1.2.5
 ======
