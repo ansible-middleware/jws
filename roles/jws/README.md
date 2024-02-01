@@ -27,23 +27,7 @@ Versions
 | `5.2.0`     | November 20, 2019 | `9.0.21`       | `1.2.21`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.2/html/red_hat_jboss_web_server_5.2_release_notes/index) |
 | `5.1.0`     | May 08, 2019      | `9.0.7`        | `1.2.17`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.1/html/red_hat_jboss_web_server_5.1_release_notes/index) |
 
-
 For further information: [JBoss Web Server Component Details](https://access.redhat.com/articles/111723)
-
-
-Patching
---------
-
-When variable `jws_apply_patches` is `True` (default: `False`), the role will automatically apply the latest cumulative patch for the selected base version.
-
-| JWS VERSION | Release Date     | JWS LATEST CP | Notes                                                                                                                                                            |
-|:------------|:-----------------|:--------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `5.7.0`     | September 04, 2023   | `5.7.7`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_service_pack_7_release_notes/index) |
-| `5.6.0`     | April 29, 2022   | `5.6.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_2_release_notes/index) |
-| `5.5.0`     | October 06, 2021 | `5.5.1`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_service_pack_1_release_notes/index) |
-| `5.4.0`     | April 14, 2021   | `5.4.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_service_pack_2_release_notes/index) |
-| `5.3.0`     | August 04, 2020  | `5.3.2`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.3/html/red_hat_jboss_web_server_5.3_service_pack_2_release_notes/index) |
-
 
 
 <!--start argument_specs-->
@@ -163,14 +147,19 @@ Role Variables
 
 NOTE: You need to provided either `jws_java_version` or `jws_java_home` value. `jws_java_version` value can be 11, 17.
 
+
 Example Playbook
 ----------------
 ```
 ---
 - hosts: all
-  tasks:
-    - name: "Include JWS"
-      include_role:
-        name: "jws"
+  vars:
+    jws_java_version: 17
+    jws_listen_http_bind_address: 127.0.0.1
+    jws_systemd_enabled: True
+    jws_service_systemd_type: forking
+    jws_selinux_enabled: False
+  roles:
+    - middleware_automation.jws.jws
 ```
 
