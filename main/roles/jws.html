@@ -53,7 +53,6 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">middleware_automation.jws.jws</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#versions">Versions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#patching">Patching</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#role-defaults">Role Defaults</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#download-and-install-parameters">Download and install parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#service-configuration">Service configuration</a></li>
@@ -191,46 +190,6 @@
 </tbody>
 </table>
 <p>For further information: <a class="reference external" href="https://access.redhat.com/articles/111723">JBoss Web Server Component Details</a></p>
-</section>
-<section id="patching">
-<h2>Patching<a class="headerlink" href="#patching" title="Link to this heading"></a></h2>
-<p>When variable <code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>), the role will automatically apply the latest cumulative patch for the selected base version.</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>JWS VERSION</p></th>
-<th class="head text-left"><p>Release Date</p></th>
-<th class="head text-left"><p>JWS LATEST CP</p></th>
-<th class="head text-left"><p>Notes</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.7.0</span></code></p></td>
-<td class="text-left"><p>September 04, 2023</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.7.7</span></code></p></td>
-<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_service_pack_7_release_notes/index">Release Notes</a></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.0</span></code></p></td>
-<td class="text-left"><p>April 29, 2022</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.6.2</span></code></p></td>
-<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_service_pack_2_release_notes/index">Release Notes</a></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.5.0</span></code></p></td>
-<td class="text-left"><p>October 06, 2021</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.5.1</span></code></p></td>
-<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_service_pack_1_release_notes/index">Release Notes</a></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.4.0</span></code></p></td>
-<td class="text-left"><p>April 14, 2021</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.4.2</span></code></p></td>
-<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.4/html/red_hat_jboss_web_server_5.4_service_pack_2_release_notes/index">Release Notes</a></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.3.0</span></code></p></td>
-<td class="text-left"><p>August 04, 2020</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5.3.2</span></code></p></td>
-<td class="text-left"><p><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.3/html/red_hat_jboss_web_server_5.3_service_pack_2_release_notes/index">Release Notes</a></p></td>
-</tr>
-</tbody>
-</table>
 <!--start argument_specs-->
 </section>
 <section id="role-defaults">
@@ -629,10 +588,14 @@
 <h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Link to this heading"></a></h2>
 <div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
-<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Include</span><span class="nv"> </span><span class="s">JWS&quot;</span>
-<span class="w">      </span><span class="nt">include_role</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jws&quot;</span>
+<span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">jws_java_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">17</span>
+<span class="w">    </span><span class="nt">jws_listen_http_bind_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+<span class="w">    </span><span class="nt">jws_systemd_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">    </span><span class="nt">jws_service_systemd_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">forking</span>
+<span class="w">    </span><span class="nt">jws_selinux_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">  </span><span class="nt">roles</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">middleware_automation.jws.jws</span>
 </pre></div>
 </div>
 </section>
