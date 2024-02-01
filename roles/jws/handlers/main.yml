@@ -1,4 +1,14 @@
 ---
+- name: Install selinux policy
+  ansible.builtin.command: "semodule -i jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.pp"
+  args:
+    chdir: "{{ jws_home }}/selinux"
+  listen: "Selinux policy created"
+
+- name: Apply selinux policy
+  ansible.builtin.command: "restorecon -F -r {{ jws_home }}"
+  listen: "Apply selinux policy"
+
 - name: Reload Systemd
   ansible.builtin.systemd:
     daemon_reload: yes
@@ -34,16 +44,6 @@
     - jws.service.enabled is defined
     - jws.service.enabled
   listen: "Restart Tomcat service"
-
-- name: Install selinux policy
-  ansible.builtin.command: "semodule -i jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.pp"
-  args:
-    chdir: "{{ jws_home }}/selinux"
-  listen: "Selinux policy created"
-
-- name: Apply selinux policy
-  ansible.builtin.command: "restorecon -r {{ jws.install_dir }}"
-  listen: "Apply selinux policy"
 
 - name: Notify new patch is available
   ansible.builtin.debug:
