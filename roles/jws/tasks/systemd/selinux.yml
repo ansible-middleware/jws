@@ -11,7 +11,7 @@
 
 - name: Check if archive contains a selinux policy
   ansible.builtin.stat:
-    path: "{{ jws_home }}/selinux/jws{{ jws_version[0:1] | default('5') }}-tomcat.if"
+    path: "{{ jws_home }}/selinux/jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.if"
   register: archive_path_selinux
 
 - name: "Compile and install selinux policy"
@@ -25,21 +25,27 @@
 
     - name: Check if archive contains a selinux policy
       ansible.builtin.stat:
-        path: "{{ jws_home }}/selinux/jws{{ jws_version[0:1] | default('5') }}-tomcat.pp"
+        path: "{{ jws_home }}/selinux/jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.pp"
       register: policy_path_selinux
+
+    - name: Update file contexts with home directory
+      ansible.builtin.replace:
+        path: "{{ jws_home }}/selinux/jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.fc"
+        regexp: '^@@CWD@@'
+        replace: "{{ jws_home }}"
 
     - name: Create selinux policy
       ansible.builtin.command: make -f /usr/share/selinux/devel/Makefile
       args:
         chdir: "{{ jws_home }}/selinux"
-        creates: "{{ jws_home }}/selinux/jws{{ jws_version[0:1] | default('5') }}-tomcat.pp"
+        creates: "{{ jws_home }}/selinux/jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.pp"
       when:
         - not policy_path_selinux.stat.exists
       notify:
         - "Selinux policy created"
         - "Apply selinux policy"
 
-    - name: Allow jws.to listen to port
+    - name: Allow jws to listen to ports
       ansible.builtin.include_tasks: seport.yml
       loop:
         - "{{ jws_listen_http_port }}"
