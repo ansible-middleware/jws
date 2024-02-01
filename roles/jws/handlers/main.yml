@@ -1,13 +1,18 @@
 ---
 - name: Install selinux policy
-  ansible.builtin.command: "semodule -i jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.pp"
+  ansible.builtin.command: "semodule -v -i jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.pp"
   args:
     chdir: "{{ jws_home }}/selinux"
   listen: "Selinux policy created"
+  register: semodule
+  changed_when: semodule.rc == 0
+  failed_when: semodule.rc != 0
 
 - name: Apply selinux policy
-  ansible.builtin.command: "restorecon -F -r {{ jws_home }}"
+  ansible.builtin.command: "restorecon -F -r -v {{ jws_home }}"
   listen: "Apply selinux policy"
+  register: restorecon
+  changed_when: restorecon.stdout_lines | length > 0
 
 - name: Reload Systemd
   ansible.builtin.systemd:
