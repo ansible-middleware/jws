@@ -41,6 +41,17 @@
     - jws_offline_install and jws_apply_patches
     - jws.install_method == 'zipfiles'
 
+- name: "Ensure native bits are installed when selinux policy is enabled"
+  ansible.builtin.assert:
+    that:
+      - jws_native
+    quiet: True
+    fail_msg: "In order to install the SELinux policy, native optional components are required; please set jws_native to True"
+  when:
+    - jws_version is defined
+    - jws_native is defined
+    - jws_selinux_enabled
+
 - name: "Ensure credentials are defined when installing from JBossNetwork API."
   ansible.builtin.assert:
     that:
