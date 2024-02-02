@@ -17,18 +17,18 @@ Major Changes
 Minor Changes
 -------------
 
-- AMW-133 Allow automatic recognition of Java `#259 <https://github.com/ansible-middleware/jws/pull/259>`_
+- Allow automatic recognition of Java `#259 <https://github.com/ansible-middleware/jws/pull/259>`_
 
 Bugfixes
 --------
 
-- AMW-185 Fix usage of bare variables in assert conditions `#260 <https://github.com/ansible-middleware/jws/pull/260>`_
-- AMW-186 ansible-core >=2.14 `#261 <https://github.com/ansible-middleware/jws/pull/261>`_
-- AMW-189 Make system ``tomcat`` account only be in ``tomcat`` group `#264 <https://github.com/ansible-middleware/jws/pull/264>`_
-- AMW-190 Fix "undefined patch_bundle" when ``jws_offline_install`` and ``jws_apply_cp`` `#263 <https://github.com/ansible-middleware/jws/pull/263>`_
-- AMW-191 Fix RPM installations have home directory incorrectly set `#266 <https://github.com/ansible-middleware/jws/pull/266>`_
-- AMW-192 Fix incorrect jws tomcat_vault rpm version `#267 <https://github.com/ansible-middleware/jws/pull/267>`_
-- AMW-198 Fix placeholder in selinux policy file contexts `#268 <https://github.com/ansible-middleware/jws/pull/268>`_
+- Fix "undefined patch_bundle" when ``jws_offline_install`` and ``jws_apply_cp`` `#263 <https://github.com/ansible-middleware/jws/pull/263>`_
+- Fix RPM installations have home directory incorrectly set `#266 <https://github.com/ansible-middleware/jws/pull/266>`_
+- Fix incorrect jws tomcat_vault rpm version `#267 <https://github.com/ansible-middleware/jws/pull/267>`_
+- Fix placeholder in selinux policy file contexts `#268 <https://github.com/ansible-middleware/jws/pull/268>`_
+- Fix usage of bare variables in assert conditions `#260 <https://github.com/ansible-middleware/jws/pull/260>`_
+- Make system ``tomcat`` account only be in ``tomcat`` group `#264 <https://github.com/ansible-middleware/jws/pull/264>`_
+- Set minimum version of ansible-core >=2.14 `#261 <https://github.com/ansible-middleware/jws/pull/261>`_
 
 v1.2.5
 ======
