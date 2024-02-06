@@ -10,6 +10,7 @@ jobs:
       collection_fqcn: 'middleware_automation.jws'
     secrets:
       galaxy_token: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
+      jira_webhook: ${{ secrets.JIRA_WEBHOOK_CREATE_VERSION }}
 
   dispatch:
     needs: release
