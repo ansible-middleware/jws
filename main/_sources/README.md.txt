@@ -74,21 +74,21 @@ To enable the collection to install JBoss Web Server from local archive files:
         vars:
           ...
           jws_install_method: zipfiles
-          jws_version: 5.7.0
+          jws_version: 6.0.0
           jws_native: True
           zipfile_name: <application_server_filename>.zip
           native_zipfile: <native_filename>.zip
 
     Consider the following guidelines:
 
-   | Variable               | Details                                                                                  |
-   |------------------------|------------------------------------------------------------------------------------------|
-   | `jws_install_method`   | Specifies the installation method (by default, `zipfiles`)                               |
-   | `jws_version`          | Specifies the version of JBoss Web Server that you want to install (for example, `5.7.0`)|
-   | `jws_native`           | Indicates whether you also want to install the native archive file (by default, `False`) |
-   | `zipfile_name`         | Specifies the name of the application server archive file on your control node           |
-   | `native_zipfile`       | Specifies the name of the native archive file on your control node                       |
-   | `jws_offline_install`  | Indicates whether to execute a completely offline install                                |
+   | Variable               | Details                                                                                             |
+   |------------------------|-----------------------------------------------------------------------------------------------------|
+   | `jws_install_method`   | Specifies the installation method (by default, `zipfiles`)                                          |
+   | `jws_version`          | Specifies the version of JBoss Web Server that you want to install (for example, `5.7.0` or `6.0.0`)|
+   | `jws_native`           | Indicates whether you also want to install the native archive file (by default, `False`)            |
+   | `zipfile_name`         | Specifies the name of the application server archive file on your control node                      |
+   | `native_zipfile`       | Specifies the name of the native archive file on your control node                                  |
+   | `jws_offline_install`  | Indicates whether to execute a completely offline install                                           |
 
 > **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
 
@@ -341,7 +341,7 @@ For Red Hat customers, this collection is released as the [Red Hat Ansible certi
 
 If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
 
-For more information about using this collection, see [Installing JBoss Web Server by using the Red Hat Ansible Certified Content Collection](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installing_jboss_web_server_by_using_the_red_hat_ansible_certified_content_collection/index).
+For more information about using this collection, see the [Product Documentation for Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0).
 <!--end support -->
 
 
