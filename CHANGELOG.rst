@@ -6,6 +6,30 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v2.0.0
+======
+
+Major Changes
+-------------
+
+- Bump collection major version, set default JWS version to 6.0 `#265 <https://github.com/ansible-middleware/jws/pull/265>`_
+
+Minor Changes
+-------------
+
+- Allow automatic recognition of Java `#259 <https://github.com/ansible-middleware/jws/pull/259>`_
+
+Bugfixes
+--------
+
+- Fix "undefined patch_bundle" when ``jws_offline_install`` and ``jws_apply_cp`` `#263 <https://github.com/ansible-middleware/jws/pull/263>`_
+- Fix RPM installations have home directory incorrectly set `#266 <https://github.com/ansible-middleware/jws/pull/266>`_
+- Fix incorrect jws tomcat_vault rpm version `#267 <https://github.com/ansible-middleware/jws/pull/267>`_
+- Fix placeholder in selinux policy file contexts `#268 <https://github.com/ansible-middleware/jws/pull/268>`_
+- Fix usage of bare variables in assert conditions `#260 <https://github.com/ansible-middleware/jws/pull/260>`_
+- Make system ``tomcat`` account only be in ``tomcat`` group `#264 <https://github.com/ansible-middleware/jws/pull/264>`_
+- Set minimum version of ansible-core >=2.14 `#261 <https://github.com/ansible-middleware/jws/pull/261>`_
+
 v1.2.5
 ======
 
