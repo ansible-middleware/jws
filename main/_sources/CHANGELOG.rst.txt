@@ -6,8 +6,16 @@ middleware_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
-v2.0.0-devel
+v2.0.1-devel
 ============
+
+Release Summary
+---------------
+
+Internal release, documentation or test changes only.
+
+v2.0.0
+======
 
 Major Changes
 -------------
