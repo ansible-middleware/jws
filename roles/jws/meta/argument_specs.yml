@@ -108,7 +108,7 @@ argument_specs:
                 default: "./conf/catalina.policy"
                 description: "Path for tomcat policy configuration"
                 type: "str"
-            jws_conf_loggging:
+            jws_conf_logging:
                 # line 13 of jws/defaults/main.yml
                 default: "./conf/logging.properties"
                 description: "Path for logging configuration"

@@ -65,7 +65,7 @@ Role Defaults
 | `jws_catalina_base`                      | Tomcat catalina base env variable        | `{{ lookup('env','CATALINA_BASE') }}`         |
 | `jws_conf_properties`                    | Path for tomcat configuration            | `./conf/catalina.properties`                  |
 | `jws_conf_policy`                        | Path for tomcat policy configuration     | `./conf/catalina.policy`                      |
-| `jws_conf_loggging`                      | Path for logging configuration           | `./conf/logging.properties`                   |
+| `jws_conf_logging`                       | Path for logging configuration           | `./conf/logging.properties`                   |
 | `jws_conf_context`                       | Relative path to context.xml             | `./conf/context.xml`                          |
 | `jws_conf_server`                        | Relative path to server.xml              | `./conf/server.xml`                           |
 | `jws_conf_web`                           | Relative path to web.xml                 | `./conf/web.xml`                              |

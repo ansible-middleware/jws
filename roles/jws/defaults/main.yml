@@ -48,7 +48,7 @@ jws_setup: True
 jws_catalina_base: "{{ lookup('env', 'CATALINA_BASE') }}"
 jws_conf_properties: './conf/catalina.properties'
 jws_conf_policy: './conf/catalina.policy'
-jws_conf_loggging: './conf/logging.properties'
+jws_conf_logging: './conf/logging.properties'
 jws_conf_context: './conf/context.xml'
 jws_conf_server: './conf/server.xml'
 jws_conf_web: './conf/web.xml'
