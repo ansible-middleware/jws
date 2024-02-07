@@ -108,9 +108,9 @@ any remote access, set the parameter `jws_offline_install: True`
 
 If you want the collection to install JBoss Web Server from RPM packages, you must first ensure that your system complies with the following prerequisites:
 
-- Your system is compliant with [Red Hat Enterprise Linux package requirements](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#rhel_requirements_rpm).
+- Your system is compliant with [Red Hat Enterprise Linux package requirements](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html-single/installation_guide/index#rhel_requirements_rpm).
 
-- You have [attached subscriptions to Red Hat Enterprise Linux](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#attach_subscriptions).
+- You have [attached subscriptions to Red Hat Enterprise Linux](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html-single/installation_guide/index#attach_subscriptions).
 
 - You have a working internet connection that the collection can use to obtain the RPM packages from Red Hat.
 
@@ -122,7 +122,7 @@ To enable the collection to install JBoss Web Server from RPM packages, set the 
       ...
       jws_install_method: rpm
 
-> **Note:** By default, the collection installs JBoss Web Server in the `/opt/rh/jws5/root/usr/share/tomcat/` directory. If you want to use a different installation directory, you can manually create a symbolic link to `/opt/rh/jws5/root/usr/share/tomcat/`.
+> **Note:** By default, the collection installs JBoss Web Server in the `/opt/rh/jws6/root/usr/share/tomcat/` directory. If you want to use a different installation directory, you can manually create a symbolic link to `/opt/rh/jws6/root/usr/share/tomcat/`.
 
 
 ### Using a custom URL to download the archive files
@@ -190,7 +190,7 @@ The following [Molecule scenario](https://github.com/ansible-middleware/jws/tree
 
 You can use the password vault for JBoss Web Server, which is named `tomcat-vault`, to mask passwords and other sensitive strings, and to store sensitive information in an encrypted Java keystore. When you use the password vault, you can stop storing clear-text passwords in your JBoss Web Server configuration files. JBoss Web Server can use the password vault to search for passwords and other sensitive strings from a keystore.
 
-> **Note:** If you want to use the password vault feature, you must first create the required `vault.keystore`, `VAULT.dat`, and `vault.properties` files as a prerequisite. For more information about creating these files, see the [Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws).
+> **Note:** If you want to use the password vault feature, you must first create the required `vault.keystore`, `VAULT.dat`, and `vault.properties` files as a prerequisite. For more information about creating these files, see the [Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html-single/installation_guide/index#vault_for_jws).
 
 To enable the collection to configure the password vault, set the following variables on your Ansible control node:
 

@@ -254,8 +254,8 @@ any remote access, set the parameter <code class="docutils literal notranslate">
 <h3>Using RPM packages<a class="headerlink" href="#using-rpm-packages" title="Link to this heading"></a></h3>
 <p>If you want the collection to install JBoss Web Server from RPM packages, you must first ensure that your system complies with the following prerequisites:</p>
 <ul class="simple">
-<li><p>Your system is compliant with <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#rhel_requirements_rpm">Red Hat Enterprise Linux package requirements</a>.</p></li>
-<li><p>You have <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#attach_subscriptions">attached subscriptions to Red Hat Enterprise Linux</a>.</p></li>
+<li><p>Your system is compliant with <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html-single/installation_guide/index#rhel_requirements_rpm">Red Hat Enterprise Linux package requirements</a>.</p></li>
+<li><p>You have <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html-single/installation_guide/index#attach_subscriptions">attached subscriptions to Red Hat Enterprise Linux</a>.</p></li>
 <li><p>You have a working internet connection that the collection can use to obtain the RPM packages from Red Hat.</p></li>
 </ul>
 <blockquote>
@@ -268,7 +268,7 @@ any remote access, set the parameter <code class="docutils literal notranslate">
 </pre></div>
 </div>
 <blockquote>
-<div><p><strong>Note:</strong> By default, the collection installs JBoss Web Server in the <code class="docutils literal notranslate"><span class="pre">/opt/rh/jws5/root/usr/share/tomcat/</span></code> directory. If you want to use a different installation directory, you can manually create a symbolic link to <code class="docutils literal notranslate"><span class="pre">/opt/rh/jws5/root/usr/share/tomcat/</span></code>.</p>
+<div><p><strong>Note:</strong> By default, the collection installs JBoss Web Server in the <code class="docutils literal notranslate"><span class="pre">/opt/rh/jws6/root/usr/share/tomcat/</span></code> directory. If you want to use a different installation directory, you can manually create a symbolic link to <code class="docutils literal notranslate"><span class="pre">/opt/rh/jws6/root/usr/share/tomcat/</span></code>.</p>
 </div></blockquote>
 </section>
 <section id="using-a-custom-url-to-download-the-archive-files">
@@ -344,7 +344,7 @@ any remote access, set the parameter <code class="docutils literal notranslate">
 <h2>Using the collection to configure the password vault for JBoss Web Server<a class="headerlink" href="#using-the-collection-to-configure-the-password-vault-for-jboss-web-server" title="Link to this heading"></a></h2>
 <p>You can use the password vault for JBoss Web Server, which is named <code class="docutils literal notranslate"><span class="pre">tomcat-vault</span></code>, to mask passwords and other sensitive strings, and to store sensitive information in an encrypted Java keystore. When you use the password vault, you can stop storing clear-text passwords in your JBoss Web Server configuration files. JBoss Web Server can use the password vault to search for passwords and other sensitive strings from a keystore.</p>
 <blockquote>
-<div><p><strong>Note:</strong> If you want to use the password vault feature, you must first create the required <code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code>, <code class="docutils literal notranslate"><span class="pre">VAULT.dat</span></code>, and <code class="docutils literal notranslate"><span class="pre">vault.properties</span></code> files as a prerequisite. For more information about creating these files, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html-single/installation_guide/index#vault_for_jws">Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server</a>.</p>
+<div><p><strong>Note:</strong> If you want to use the password vault feature, you must first create the required <code class="docutils literal notranslate"><span class="pre">vault.keystore</span></code>, <code class="docutils literal notranslate"><span class="pre">VAULT.dat</span></code>, and <code class="docutils literal notranslate"><span class="pre">vault.properties</span></code> files as a prerequisite. For more information about creating these files, see the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html-single/installation_guide/index#vault_for_jws">Red Hat JBoss Web Server Installation Guide: Using a password vault with Red Hat JBoss Web Server</a>.</p>
 </div></blockquote>
 <p>To enable the collection to configure the password vault, set the following variables on your Ansible control node:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vars:
