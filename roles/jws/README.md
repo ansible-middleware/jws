@@ -40,7 +40,7 @@ Role Defaults
 |:-------------------------|:-----------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
 | `jws_install_method`     | Installation method, allowed values: `['zipfiles','rpm']`                                                        | `zipfiles`                                                                                         |
 | `jws_install_dir`        | Installation path for JWS/tomcat                                                                                 | `/opt`                                                                                             |
-| `jws_rpm`                | Installation RPM version                                                                                         | `jws5`                                                                                             |
+| `jws_rpm`                | Installation RPM version                                                                                         | `jws6`                                                                                             |
 | `jws_version`            | Version of JWS to install                                                                                        | `6.0.0`                                                                                            |
 | `jws_apply_patches`      | Install JWS most recent cumulative patch for requested version                                                   | `False`                                                                                            |
 | `jws_selinux_enabled`    | Enable selinux policy enforcement for JWS                                                                        | `True`                                                                                             |
@@ -54,7 +54,7 @@ Role Defaults
 | `jws_force_install`      | Whether to stop any running tomcat process and continue installation                                             | `false`                                                                                            |
 | `jws_archive_repository` | Path local to controller for offline/download archive files                                                      | `{{ lookup('env', 'PWD') &#124; default('/opt') }}`                                                |
 | `jws_offline_install`    | Whether to perform a completely offline install                                                                  |
-`true`                                                                                             |
+`false`                                                                                             |
 
 
 ### Service configuration
