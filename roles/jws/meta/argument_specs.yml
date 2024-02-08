@@ -481,6 +481,6 @@ argument_specs:
                 description: "Home directory of jws zipfile installation"
                 type: "str"
             jws_service_name:
-                default: "jws{{ jws_version.split('.')[0] | default('6')}}-tomcat"
+                default: "jws{{ jws_version.split('.')[0] | default('6') }}-tomcat"
                 description: "Name for the systemd unit"
                 type: "str"
