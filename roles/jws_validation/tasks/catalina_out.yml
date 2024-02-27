@@ -1,5 +1,6 @@
 ---
 - name: Read the content of catalina.out
+  become: yes
   ansible.builtin.slurp:
     src: "{{ jws_home }}/{{ catalina_logfile }}"
   register: catalina_out

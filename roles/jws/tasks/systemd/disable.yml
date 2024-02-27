@@ -6,6 +6,7 @@
     quiet: true
 
 - name: "Disable jws.service"
+  become: yes
   ansible.builtin.service:
     name: "{{ jws.service.name }}"
     enabled: no
