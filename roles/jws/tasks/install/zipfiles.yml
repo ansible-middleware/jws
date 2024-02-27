@@ -21,6 +21,7 @@
     - jws_native_zipfile | length > 0
 
 - name: "Install {{ jws.service.hr_name }} and required binaries from local zipfiles (install method: {{ jws.install_method }})"
+  become: yes
   ansible.builtin.unarchive:
     remote_src: yes
     src: "{{ jws_install_dir }}/{{ item.src }}"
@@ -34,6 +35,7 @@
   notify: "Restart Tomcat service"
 
 - name: Configure custom jws_home
+  become: yes
   when:
     - jws_home != jws.install_dir + '/' + jws_zipfile_rootdir
     - unarchived_zipfiles.changed
@@ -47,6 +49,7 @@
         remote_src: yes
         force: yes
         mode: preserve
+
     - name: Move the version.txt to custom jws_home
       ansible.builtin.copy:
         src: "{{ jws.install_dir }}/{{ jws_zipfile_rootdir }}/../version.txt"

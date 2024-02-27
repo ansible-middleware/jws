@@ -40,6 +40,7 @@
     packages_list: "{{ jws_dependencies_list }}"
 
 - name: "Ensure tomcatjss rpm is not installed"
+  become: yes
   ansible.builtin.dnf:
     name: tomcatjss
     state: absent
@@ -48,6 +49,7 @@
     - jws.check_jws_ss_absent
 
 - name: Check user/groups and whether force install needed
+  become: yes
   block:
     - name: "Create group: {{ jws.group }}"
       ansible.builtin.group:
@@ -121,6 +123,7 @@
         - jws_apply_patches
 
     - name: "Ensure {{ jws_home }}/ directories have appropriate privileges"
+      become: yes
       ansible.builtin.file:
         path: "{{ jws_home }}/{{ item }}/"
         owner: "{{ jws.user }}"
@@ -135,6 +138,7 @@
         - bin
 
     - name: "Ensure {{ jws_home }}/ files have the recommended priviliges, owner and group"
+      become: yes
       ansible.builtin.file:
         path: "{{ jws_home }}/{{ item }}"
         owner: "{{ jws.user }}"
@@ -160,6 +164,7 @@
         - jws_listen_https_enabled
 
     - name: "Deploy custom configuration files"
+      become: yes
       ansible.builtin.template:
         src: "{{ item.template }}"
         dest: "{{ item.dest }}"

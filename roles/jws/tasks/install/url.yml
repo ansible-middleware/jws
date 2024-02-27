@@ -8,6 +8,7 @@
     quiet: True
 
 - name: Download archive from custom url
+  become: yes
   ansible.builtin.get_url:
     url: "{{ zipfile_url }}"
     dest: "{{ jws_install_dir }}/{{ zipfile_name }}"

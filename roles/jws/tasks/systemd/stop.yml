@@ -6,6 +6,7 @@
     quiet: true
 
 - name: "Stop jws.service"
+  become: yes
   ansible.builtin.service:
     name: "{{ jws.service.name }}"
     state: stopped

@@ -37,6 +37,7 @@
   changed_when: True
 
 - name: "Create group: {{ jws.group }}"
+  become: yes
   ansible.builtin.group:
     name: "{{ jws.group }}"
     gid: "{{ jws.gid }}"
@@ -44,6 +45,7 @@
   when: jws_force_install
 
 - name: "Create user: {{ jws.user }}"
+  become: yes
   ansible.builtin.user:
     name: "{{ jws.user }}"
     uid: "{{ jws.uid }}"
