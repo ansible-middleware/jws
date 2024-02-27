@@ -21,7 +21,7 @@
     - jws_native_zipfile | length > 0
 
 - name: "Install {{ jws.service.hr_name }} and required binaries from local zipfiles (install method: {{ jws.install_method }})"
-  become: yes
+  become: "{{ jws_install_unarchive_require_privilege_escalation }}"
   ansible.builtin.unarchive:
     remote_src: yes
     src: "{{ jws_install_dir }}/{{ item.src }}"

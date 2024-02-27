@@ -5,6 +5,10 @@ argument_specs:
             jws_validation_strings_in_catalina:
                 description: "Pattern to search for in the catalina logfile."
                 type: "str"
+            jws_validation_read_catalina_privilege_escalation:
+                default: yes
+                description: "Whether or not Ansible can read the catalina.out without root priv"
+                type: "bool"
             jws_listen_http_bind_address:
                 default: "localhost"
                 description: "Service bind address"

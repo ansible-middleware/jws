@@ -7,6 +7,7 @@
     quiet: True
 
 - name: "Check {{ checksum_file_name }} file exists"
+  become: yes
   ansible.builtin.stat:
     path: "{{ jws_home }}/../{{ checksum_file_name }}"
   register: applied_patch_file

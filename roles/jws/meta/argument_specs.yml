@@ -24,6 +24,14 @@ argument_specs:
                 default: False
                 description: "Whether to perform an offline installation"
                 type: "bool"
+            jws_install_download_archive_require_privilege_escalation:
+                default: yes
+                description: "Whether or not to become root to donwload the archive"
+                type: "bool"
+            jws_install_unarchive_require_privilege_escalation:
+                default: yes
+                description: "Whether or not to become root to decompress the archive"
+                type: "bool"
             jws_rpm:
                 # line 4 of jws/defaults/main.yml
                 default: "jws6"
@@ -48,6 +56,10 @@ argument_specs:
             jws_selinux_enabled:
                 default: False
                 description: "Enable selinux policy enforcement for JWS"
+                type: "bool"
+            jws_selinux_policy_require_priv_escalation:
+                default: yes
+                description: "Specifies whether or not SE Linux manipulation requires privilege escalation (sudo)."
                 type: "bool"
             jws_dependencies_list:
                 type: "list"
