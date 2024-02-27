@@ -11,20 +11,21 @@
   roles:
     - jws_validation
   post_tasks:
-    - set_fact:
+    - ansible.builtin.set_fact:
         path_to_server_xml: "{{ jws_home }}/conf/server.xml"
 
     - name: "Read content of {{ path_to_server_xml }}"
-      slurp:
+      become: yes
+      ansible.builtin.slurp:
         src: "{{ path_to_server_xml }}"
       register: slurped_server_xml
 
     - name: "Extract content for slurped file and search for {{ jvm_route }}."
-      set_fact:
+      ansible.builtin.set_fact:
         matches: "{{ slurped_server_xml['content'] | b64decode | regex_findall(jvm_route)}}"
 
     - name: "Checks that occurence of {{ jvm_route }} was found."
-      assert:
+      ansible.builtin.assert:
         that:
           - matches is defined
           - matches | length > 0
