@@ -37,6 +37,10 @@ argument_specs:
                 default: "/opt/rh/jws6/root/usr/share/tomcat"
                 description: "Home directory used by RPM (do not override unless you relocate the RPM)"
                 type: "str"
+            jws_rpm_service_name:
+                default: "jws{{ jws_version[0:1] | default('6') }}-tomcat"
+                description: "Name of the systemd service installed by RPM"
+                type: "str"
             jws_version:
                 required: False
                 description: "Version of JWS to install"
