@@ -9,13 +9,15 @@
       - jws_shutdown_port is defined
     quiet: True
 
-- name: Check if archive contains a selinux policy
+- name: Load metadata on selinux policy file
+  become: "{{ jws_selinux_policy_require_priv_escalation }}"
   ansible.builtin.stat:
     path: "{{ jws_home }}/selinux/jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.if"
   register: archive_path_selinux
 
 - name: "Compile and install selinux policy"
   when: archive_path_selinux.stat.exists
+  become: "{{ jws_selinux_policy_require_priv_escalation }}"
   block:
     - name: Install selinux-policy-devel
       ansible.builtin.include_tasks: ../fastpackage.yml

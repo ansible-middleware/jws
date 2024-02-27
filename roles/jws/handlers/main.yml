@@ -1,6 +1,7 @@
 ---
 - name: Install selinux policy
   ansible.builtin.command: "semodule -v -i jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.pp"
+  become: "{{ jws_selinux_policy_require_priv_escalation }}"
   args:
     chdir: "{{ jws_home }}/selinux"
   listen: "Selinux policy created"
@@ -10,6 +11,7 @@
 
 - name: Apply selinux policy
   ansible.builtin.command: "restorecon -F -r -v {{ jws_home }}"
+  become: "{{ jws_selinux_policy_require_priv_escalation }}"
   listen: "Apply selinux policy"
   register: restorecon
   changed_when: restorecon.stdout_lines | length > 0
