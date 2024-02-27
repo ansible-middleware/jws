@@ -1,6 +1,6 @@
-=======================================
-middleware_automation.jws Release Notes
-=======================================
+========================================
+middleware\_automation.jws Release Notes
+========================================
 
 .. contents:: Topics
 
@@ -9,14 +9,10 @@ This changelog describes changes after version 0.0.3.
 v2.0.0
 ======
 
-Release Summary
----------------
-
-Internal release, documentation or test changes only.
-
 Major Changes
 -------------
 
+- AMW-196 Usage of become inside the jws role `#272 <https://github.com/ansible-middleware/jws/pull/272>`_
 - Bump collection major version, set default JWS version to 6.0 `#265 <https://github.com/ansible-middleware/jws/pull/265>`_
 
 Minor Changes
@@ -184,4 +180,3 @@ Release Summary
 ---------------
 
 This is the first stable release of the ``middleware_automation.jws`` collection.
-
