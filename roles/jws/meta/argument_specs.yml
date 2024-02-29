@@ -46,9 +46,9 @@ argument_specs:
                 description: "Version of JWS to install"
                 type: "str"
             jws_selinux_enabled:
-                # line 27 of jws/defaults/main.yml
-                default: True
+                default: False
                 description: "Enable selinux policy enforcement for JWS"
+                type: "bool"
             jws_dependencies_list:
                 type: "list"
                 default:
@@ -439,6 +439,10 @@ argument_specs:
             jws_selinux_enabled:
                 default: True
                 description: "Enable selinux policy enforcement for JWS"
+                type: "bool"
+            jws_native:
+                default: True
+                description: "Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version"
                 type: "bool"
             jws_product_category:
                 default: "webserver"
