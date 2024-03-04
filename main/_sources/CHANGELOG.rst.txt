@@ -6,15 +6,22 @@ middleware\_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v2.1.0-devel
+============
+
+Major Changes
+-------------
+
+- AMW-196 Usage of become inside the jws role `#272 <https://github.com/ansible-middleware/jws/pull/272>`_
+- Update default for ``jws_native`` `#269 <https://github.com/ansible-middleware/jws/pull/269>`_
+
 v2.0.0
 ======
 
 Major Changes
 -------------
 
-- AMW-196 Usage of become inside the jws role `#272 <https://github.com/ansible-middleware/jws/pull/272>`_
 - Bump collection major version, set default JWS version to 6.0 `#265 <https://github.com/ansible-middleware/jws/pull/265>`_
-- Update default for ``jws_native`` `#269 <https://github.com/ansible-middleware/jws/pull/269>`_
 
 Minor Changes
 -------------
