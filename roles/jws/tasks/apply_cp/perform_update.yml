@@ -1,5 +1,6 @@
 ---
 - name: "Apply patch {{ jws_install_dir }}/{{ patch_bundle }} on {{ jws_home }}."
+  become: "{{ jws_install_unarchive_require_privilege_escalation }}"
   when:
     - not last_patch_status.stat.exists
   block:

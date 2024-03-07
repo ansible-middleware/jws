@@ -8,6 +8,7 @@
     quiet: True
 
 - name: "Load server home directory information: {{ jws_home }}"
+  become: "{{ jws_install_unarchive_require_privilege_escalation }}"
   ansible.builtin.stat:
     path: "{{ jws_home }}"
   register: jws_home_state
