@@ -1,5 +1,10 @@
 ---
-- import_playbook: playbook.yml
+- name: "Red Hat JBoss Web Server installation and configuration"
+  hosts: all
+  vars_files:
+    - ../../playbooks/vars.yml
+  roles:
+    - name: middleware_automation.jws.jws
 
 - name: "Red Hat JBoss Web Server uninstallation"
   hosts: all

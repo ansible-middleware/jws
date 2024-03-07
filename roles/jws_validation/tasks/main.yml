@@ -17,6 +17,34 @@
     - jws_group is defined
     - jws_gid is defined
 
+- name: "Determine absolute path to catalina.out"
+  ansible.builtin.set_fact:
+    path_to_catalina_out: "{{ jws_home }}/{{ catalina_logfile }}"
+
+- name: "Load metadata on {{ path_to_catalina_out }}"
+  become: "{{ jws_validation_read_catalina_privilege_escalation }}"
+  ansible.builtin.stat:
+    path: "{{ path_to_catalina_out }}"
+  register: file_catalina_out
+
+- name: "Verify that {{ path_to_catalina_out }} exists"
+  ansible.builtin.assert:
+    that:
+      - file_catalina_out is defined and file_catalina_out.stat is defined
+      - file_catalina_out.stat.exists is defined and file_catalina_out.stat.exists
+    quiet: True
+    fail_msg: "Server main logfile does not appears to exist: {{ file_catalina_out.stat.exists }}."
+
+- name: Read the content of catalina.out
+  become: "{{ jws_validation_read_catalina_privilege_escalation }}"
+  ansible.builtin.slurp:
+    src: "{{ path_to_catalina_out }}"
+  register: catalina_out
+
+- name: "Retrieve content from {{ path_to_catalina_out }}"
+  ansible.builtin.set_fact:
+    catalina_out_content: "{{ catalina_out['content'] | b64decode }}"
+
 - name: "Verify that service is running."
   ansible.builtin.include_tasks: service_status.yml
   when:

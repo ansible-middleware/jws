@@ -1,13 +1,6 @@
 ---
-- name: Read the content of catalina.out
-  become: "{{ jws_validation_read_catalina_privilege_escalation }}"
-  ansible.builtin.slurp:
-    src: "{{ jws_home }}/{{ catalina_logfile }}"
-  register: catalina_out
-
 - name: "Set number of characters in {{ catalina_logfile }}"
   ansible.builtin.set_fact:
-    catalina_out_content: "{{ catalina_out['content'] | b64decode }}"
     nb_chars_in_catalina_log: "{{ catalina_out['content'] | b64decode | length }}"
 
 - name: "Check that {{ catalina_logfile }} is not empty."
