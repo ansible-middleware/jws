@@ -1,7 +1,6 @@
 ---
 - name: "Red Hat JBoss Web Server installation and configuration"
   hosts: all
-  become: True
   vars_files:
     - vars.yml
   roles:
