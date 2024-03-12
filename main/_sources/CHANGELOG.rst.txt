@@ -14,6 +14,7 @@ Major Changes
 
 - AMW-196 Usage of become inside the jws role `#272 <https://github.com/ansible-middleware/jws/pull/272>`_
 - Update default for ``jws_native`` `#269 <https://github.com/ansible-middleware/jws/pull/269>`_
+- fix typo in variable name `#271 <https://github.com/ansible-middleware/jws/pull/271>`_
 
 v2.0.0
 ======
