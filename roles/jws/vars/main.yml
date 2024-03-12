@@ -14,7 +14,7 @@ jws:
   conf:
     properties: "{{ jws_conf_properties }}"
     policy: "{{ jws_conf_policy }}"
-    logging: "{{ jws_conf_loggging }}"
+    logging: "{{ jws_conf_logging }}"
     context: "{{ jws_conf_context }}"
     server: "{{ jws_conf_server }}"
     web: "{{ jws_conf_web }}"
