@@ -21,6 +21,7 @@
 - name: "Check deployed patch state"
   ansible.builtin.stat:
     path: "{{ jws_install_dir }}/{{ patch_bundle }}"
+  become: True
   register: patch_info
 
 - name: "Set patch checksum"
@@ -34,6 +35,7 @@
 - name: "Check {{ patch_checksum_file }} state"
   ansible.builtin.stat:
     path: "{{ patch_checksum_file }}"
+  become: True
   register: last_patch_status
 
 - name: "Print information message if patch has already been applied"

@@ -32,5 +32,5 @@
     dest: "{{ rhn_product_path }}"
   no_log: "{{ omit_rhn_output | default(true) }}"
   delegate_to: localhost
-  run_once: yes
+  run_once: True
   become: "{{ rhn_download_become | default(False) }}"

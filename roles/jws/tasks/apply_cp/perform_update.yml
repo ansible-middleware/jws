@@ -8,7 +8,7 @@
       ansible.builtin.unarchive:
         src: "{{ jws_install_dir }}/{{ patch_bundle }}"
         dest: "{{ jws.install_dir }}"
-        remote_src: yes
+        remote_src: True
         owner: "{{ jws.user | default(omit) }}"
         group: "{{ jws.group | default(omit) }}"
         mode: 0750

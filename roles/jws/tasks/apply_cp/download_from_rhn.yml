@@ -1,7 +1,7 @@
 ---
 - name: Perform patch download from RHN via JBossNetwork API
   delegate_to: localhost
-  run_once: yes
+  run_once: True
   when:
     - jws_apply_patches
     - not jws_offline_install
@@ -22,7 +22,7 @@
       when:
         - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
-      run_once: yes
+      run_once: True
 
     - name: Determine latest version
       ansible.builtin.set_fact:
@@ -30,7 +30,7 @@
       when:
         - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
-      run_once: yes
+      run_once: True
 
     - name: Determine install zipfile from search results
       ansible.builtin.set_fact:
@@ -42,7 +42,7 @@
         - jws_patch_version is not defined or jws_patch_version | length == 0
         - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
-      run_once: yes
+      run_once: True
 
     - name: "Compute patch to apply (if any)."
       when:
@@ -56,7 +56,7 @@
             patch_version: "{{ jws_patch_version }}"
           when: jws_patch_version is defined and jws_patch_version | length > 0
           delegate_to: localhost
-          run_once: yes
+          run_once: True
 
         - name: Check latest version against requested version
           ansible.builtin.set_fact:
