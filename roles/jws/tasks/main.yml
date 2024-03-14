@@ -85,6 +85,7 @@
     - name: "Check state of install_dir: {{ jws_install_dir }}"
       ansible.builtin.stat:
         path: "{{ jws_install_dir }}"
+      become: True
       register: install_path
 
     - name: "Ensure install dir is created: {{ jws_install_dir }}"
@@ -94,6 +95,7 @@
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
         mode: 0750
+      become: True
       when:
         - not install_path.stat.exists
         - jws.install_method is defined
@@ -191,6 +193,7 @@
         path: "{{ jws_home }}/webapps/{{ item }}"
         state: absent
       loop: "{{ jws.apps.to_remove }}"
+      become: True
       when: jws.apps.to_remove is defined
 
     - name: "Create vault configuration (if enabled)"
