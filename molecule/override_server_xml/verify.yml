@@ -6,6 +6,7 @@
     jws_listen_https_port: 8443
     jws_listen_https_bind_address: localhost
     jvm_route: jvm_route_1
+    jws_selinux_enabled: False
   roles:
     - middleware_automation.jws.jws_validation
   post_tasks:

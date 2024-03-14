@@ -11,6 +11,9 @@
 
 - name: "Older version installation"
   hosts: all
+  vars:
+    jws_apply_patches: False
+    tomcat_version: 9.0.80
   vars_files:
     - ../../playbooks/vars.yml
   pre_tasks:
@@ -22,6 +25,4 @@
         - jws_version is defined
   roles:
     - role: middleware_automation.jws.jws
-      tomcat_version: 9.0.80
       jws_native: False
-      jws_apply_patches: False
