@@ -92,7 +92,7 @@ To enable the collection to install JBoss Web Server from local archive files:
 
 > **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
 
-> **Note:** If you did not change the archive file names, you do not need to set the `zipfile_name` and `native_zipfile` variables. The collection uses the JBoss Web Server version to determine the default file names automatically. 
+> **Note:** If you did not change the archive file names, you do not need to set the `zipfile_name` and `native_zipfile` variables. The collection uses the JBoss Web Server version to determine the default file names automatically.
 
 4. If you also want to install the latest cumulative patches for the appropriate JBoss Web Server version, copy the archive files for the latest patch updates to your Ansible control node. Then set the `jws_apply_patches` variable to `True`:
 
@@ -114,7 +114,7 @@ If you want the collection to install JBoss Web Server from RPM packages, you mu
 
 - You have a working internet connection that the collection can use to obtain the RPM packages from Red Hat.
 
-> **Note:** When you enable the RPM installation method, the collection always installs the latest available RPM packages for the latest JBoss Web Server version, including any patch updates. 
+> **Note:** When you enable the RPM installation method, the collection always installs the latest available RPM packages for the latest JBoss Web Server version, including any patch updates.
 
 To enable the collection to install JBoss Web Server from RPM packages, set the `jws_install_method` variable to `rpm` on your Ansible control node:
 
@@ -286,7 +286,7 @@ For example:
         - ansible.builtin.copy:
            src: files/jolokia-war-1.7.1.war
            dest: "{{ jws_home }}/tomcat/webapps/"
-           remote_src: yes
+           remote_src: True
 
 - To deploy an application by using a symbolic link or hard link to the `.war` file, which avoids duplicating the file, use the [file:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html) module:
 

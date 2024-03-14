@@ -12,13 +12,13 @@
 
   tasks:
     - name: "Prepare JDK for scenario"
-      become: yes
+      become: True
       block:
         - name: "Download JDK from {{ jdk_url }}"
           ansible.builtin.unarchive:
             src: "{{ jdk_url }}"
             dest: "{{ jdk_install_dir }}"
-            remote_src: yes
+            remote_src: True
 
         - name: "Ensure new JDK is registered as an alternatives for the java command."
           ansible.builtin.command: "update-alternatives --install /usr/bin/java java {{ jdk_home }}/bin/java 1"
@@ -30,6 +30,6 @@
           changed_when: False
           register: verify_jdk_install
 
-        - name: "test"
+        - name: "Test"
           ansible.builtin.debug:
             msg: "{{ verify_jdk_install }}"

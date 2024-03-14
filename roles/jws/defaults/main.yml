@@ -117,7 +117,7 @@ jws_service_name: "{{ (jws_install_method == 'rpm') | ternary(jws_rpm_service_na
 jws_service_systemd: "/usr/lib/systemd/system/{{ jws_service_name }}.service"
 jws_service_systemd_type: "simple"
 jws_selinux_enabled: False
-jws_selinux_policy_require_priv_escalation: yes
+jws_selinux_policy_require_priv_escalation: True
 
 jws_firewalld_package_name:
   - firewalld

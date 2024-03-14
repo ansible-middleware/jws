@@ -24,6 +24,6 @@
     port: "{{ jws_listen_http_port }}/tcp"
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: True
   when:
     - jws_listen_http_port is defined

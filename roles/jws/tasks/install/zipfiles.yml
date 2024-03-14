@@ -23,7 +23,7 @@
 - name: "Install {{ jws.service.hr_name }} and required binaries from local zipfiles (install method: {{ jws.install_method }})"
   become: "{{ jws_install_unarchive_require_privilege_escalation }}"
   ansible.builtin.unarchive:
-    remote_src: yes
+    remote_src: True
     src: "{{ jws_install_dir }}/{{ item.src }}"
     dest: "{{ jws_install_dir }}"
     owner: "{{ jws.user }}"
@@ -35,7 +35,7 @@
   notify: "Restart Tomcat service"
 
 - name: Configure custom jws_home
-  become: yes
+  become: True
   when:
     - jws_home != jws.install_dir + '/' + jws_zipfile_rootdir
     - unarchived_zipfiles.changed
@@ -46,8 +46,8 @@
         dest: "{{ jws_home }}"
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
-        remote_src: yes
-        force: yes
+        remote_src: True
+        force: True
         mode: preserve
 
     - name: Move the version.txt to custom jws_home
@@ -56,7 +56,7 @@
         dest: "{{ jws_home }}/../"
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
-        remote_src: yes
-        force: yes
+        remote_src: True
+        force: True
         mode: preserve
       when: jws_version is defined
