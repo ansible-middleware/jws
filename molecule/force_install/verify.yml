@@ -1,6 +1,11 @@
 ---
 - name: Verify
   hosts: instance
+  vars:
+    jws_apply_patches: False
+    jws_java_version: 11
+    jws_native: False
+    jws_selinux_enabled: False
   pre_tasks:
     - name: "Set JWS version if resource available"
       ansible.builtin.set_fact:
@@ -10,6 +15,3 @@
         - jws_version is defined
   roles:
     - role: middleware_automation.jws.jws_validation
-      jws_java_version: 11
-      jws_native: False
-      jws_apply_patches: False

@@ -10,6 +10,7 @@
         - jws_version is defined
   vars:
     jws_apply_patches: False
+    jws_selinux_enabled: False
   roles:
     - role: middleware_automation.jws.jws
       jws_setup: true
