@@ -2,7 +2,6 @@
 - name: Prepare
   hosts: all
   tasks:
-
     - name: "Run preparation common to all scenario"
       ansible.builtin.include_tasks: ../common_prepare.yml
       vars:
@@ -14,8 +13,6 @@
   hosts: all
   vars_files:
     - ../../playbooks/vars.yml
-  collections:
-    - middleware_automation.jws
   pre_tasks:
     - name: "Set JWS version if resource available"
       ansible.builtin.set_fact:
@@ -24,5 +21,7 @@
         - "(lookup('env', 'PWD') | default('/opt') + '/jws-5.5.0-application-server.zip') is exists"
         - jws_version is defined
   roles:
-    - role: jws
+    - role: middleware_automation.jws.jws
       tomcat_version: 9.0.80
+      jws_native: False
+      jws_apply_patches: False
