@@ -4,6 +4,8 @@
   vars:
     # following value set the jvmRoute attribute (specific to override template)
     jvm_route: jvm_route_1
+    jws_apply_patches: False
+    jws_selinux_enabled: False
   roles:
     - role: middleware_automation.jws.jws
       jws_home: /opt/custom
@@ -12,3 +14,4 @@
       jws_systemd_enabled: True
       jws_service_systemd_type: forking
       jws_java_version: 17
+      jws_native: False

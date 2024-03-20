@@ -108,8 +108,8 @@
 {% endif %}
                maxThreads="{{ jws.listen.https.threads.max }}"
                SSLEnabled="true"
-	       allowTrace="false"
-	       scheme="https"
+               allowTrace="false"
+               scheme="https"
                secure="true"
                xpoweredBy="false"
                server="{{ jws.listen.https.servername }}"
@@ -155,15 +155,15 @@
                address="{{ jws.listen.ajp.address }}"
                port="{{ jws.listen.ajp.port }}"
                redirectPort="{{ jws.listen.https.port }}"
-	       secret="{{ jws.listen.ajp.secret }}"
-	       allowTrace="false"/>
+               secret="{{ jws.listen.ajp.secret }}"
+               allowTrace="false"/>
 {% else %}
     <Connector protocol="AJP/1.3"
                address="{{ jws.listen.ajp.address }}"
                port="{{ jws.listen.ajp.port }}"
                redirectPort="{{ jws.listen.https.port }}"
-	       secretRequired="false"
-	       allowTrace="false"/>
+               secretRequired="false"
+               allowTrace="false"/>
 {% endif %}
 {% endif %}
 

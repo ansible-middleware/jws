@@ -10,7 +10,10 @@
           - "{{ assets_server }}/webserver/5.6.0/jws-5.6.0-application-server.zip"
 
     - name: "Deploy https certificate"
-      become: yes
+      become: True
       ansible.builtin.copy:
         src: ./resources/keystore.jks
         dest: /etc/ssl/
+        mode: 0644
+        owner: root
+        group: root

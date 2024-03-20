@@ -16,7 +16,7 @@
 - name: "Delete files from server home {{ jws_home }}"
   when:
     - jws.install_method != 'rpm'
-  become: yes
+  become: True
   block:
     - name: "Check that server home has been provided"
       ansible.builtin.assert:
@@ -38,7 +38,7 @@
 - name: "Perform rpm uninstall"
   when:
     - jws.install_method == 'rpm'
-  become: yes
+  become: True
   block:
     - name: "Disable installed server to ensure package is removed"
       ansible.builtin.file:

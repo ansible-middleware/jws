@@ -6,23 +6,23 @@
     jws_listen_https_port: 8443
     jws_listen_https_bind_address: localhost
     jvm_route: jvm_route_1
-  collections:
-    - middleware_automation.jws
+    jws_selinux_enabled: False
   roles:
-    - jws_validation
+    - middleware_automation.jws.jws_validation
   post_tasks:
-    - ansible.builtin.set_fact:
+    - name: "Set server.xml path relative to jws home"
+      ansible.builtin.set_fact:
         path_to_server_xml: "{{ jws_home }}/conf/server.xml"
 
     - name: "Read content of {{ path_to_server_xml }}"
-      become: yes
+      become: True
       ansible.builtin.slurp:
         src: "{{ path_to_server_xml }}"
       register: slurped_server_xml
 
     - name: "Extract content for slurped file and search for {{ jvm_route }}."
       ansible.builtin.set_fact:
-        matches: "{{ slurped_server_xml['content'] | b64decode | regex_findall(jvm_route)}}"
+        matches: "{{ slurped_server_xml['content'] | b64decode | regex_findall(jvm_route) }}"
 
     - name: "Checks that occurence of {{ jvm_route }} was found."
       ansible.builtin.assert:

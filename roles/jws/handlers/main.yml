@@ -17,9 +17,9 @@
   changed_when: restorecon.stdout_lines | length > 0
 
 - name: Reload Systemd
-  become: yes
+  become: True
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: True
   when:
     - jws.service is defined
     - jws.service.enabled is defined
@@ -43,7 +43,7 @@
   listen: "Stop Tomcat service"
 
 - name: "Restart {{ jws.service.hr_name }} service"
-  become: yes
+  become: True
   ansible.builtin.service:
     name: "{{ jws.service.name }}"
     state: restarted

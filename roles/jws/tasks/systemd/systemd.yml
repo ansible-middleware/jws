@@ -35,7 +35,7 @@
     - not jws_service_pidfile is defined
 
 - name: "Ensure service script is deployed"
-  become: yes
+  become: True
   ansible.builtin.template:
     src: templates/systemd/service.sh.j2
     dest: "{{ jws_service_script }}"
@@ -44,7 +44,7 @@
     mode: 0755
 
 - name: "Ensure service configurations files is deployed: {{ jws_service_conf }}"
-  become: yes
+  become: True
   ansible.builtin.template:
     src: templates/systemd/tomcat.conf.j2
     dest: "{{ jws_service_conf }}"
@@ -58,7 +58,7 @@
     - Ensure Tomcat runs under systemd
 
 - name: "Ensure systemd service is configured"
-  become: yes
+  become: True
   ansible.builtin.template:
     src: templates/systemd/tomcat.service.j2
     dest: "{{ jws.service.systemd }}"

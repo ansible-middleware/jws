@@ -15,6 +15,7 @@
     - skip_ansible_lint
 
 - name: "Load information on {{ jws_home }}"
+  become: True
   ansible.builtin.stat:
     path: "{{ jws_home }}"
   register: jws_home_path

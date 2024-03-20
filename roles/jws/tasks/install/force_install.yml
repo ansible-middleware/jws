@@ -37,19 +37,19 @@
   changed_when: True
 
 - name: "Create group: {{ jws.group }}"
-  become: yes
+  become: True
   ansible.builtin.group:
     name: "{{ jws.group }}"
     gid: "{{ jws.gid }}"
-    system: yes
+    system: True
   when: jws_force_install
 
 - name: "Create user: {{ jws.user }}"
-  become: yes
+  become: True
   ansible.builtin.user:
     name: "{{ jws.user }}"
     uid: "{{ jws.uid }}"
-    system: yes
+    system: True
     groups: "{{ jws.group }}"
     home: "{{ jws_home }}"
     shell: /sbin/nologin

@@ -8,6 +8,9 @@
       when:
         - "(lookup('env', 'PWD') | default('/opt') + '/jws-5.7.0-application-server.zip') is exists"
         - jws_version is defined
+  vars:
+    jws_apply_patches: False
+    jws_selinux_enabled: False
   roles:
     - role: middleware_automation.jws.jws
       jws_setup: true
@@ -16,3 +19,4 @@
       jws_service_systemd_type: forking
       jws_force_install: true
       jws_java_version: 11
+      jws_native: False

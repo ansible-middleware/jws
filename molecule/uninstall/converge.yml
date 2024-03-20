@@ -8,9 +8,8 @@
 
 - name: "Red Hat JBoss Web Server uninstallation"
   hosts: all
-  collections:
-    - middleware_automation.jws
   post_tasks:
-    - include_role:
-        name: jws
+    - name: "Perform uninstall"
+      ansible.builtin.include_role:
+        name: middleware_automation.jws.jws
         tasks_from: uninstall.yml

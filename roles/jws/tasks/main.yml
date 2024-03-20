@@ -40,7 +40,7 @@
     packages_list: "{{ jws_dependencies_list }}"
 
 - name: "Ensure tomcatjss rpm is not installed"
-  become: yes
+  become: True
   ansible.builtin.dnf:
     name: tomcatjss
     state: absent
@@ -49,7 +49,7 @@
     - jws.check_jws_ss_absent
 
 - name: Check user/groups and whether force install needed
-  become: yes
+  become: True
   block:
     - name: "Create group: {{ jws.group }}"
       ansible.builtin.group:
@@ -85,6 +85,7 @@
     - name: "Check state of install_dir: {{ jws_install_dir }}"
       ansible.builtin.stat:
         path: "{{ jws_install_dir }}"
+      become: True
       register: install_path
 
     - name: "Ensure install dir is created: {{ jws_install_dir }}"
@@ -94,6 +95,7 @@
         owner: "{{ jws.user }}"
         group: "{{ jws.group }}"
         mode: 0750
+      become: True
       when:
         - not install_path.stat.exists
         - jws.install_method is defined
@@ -123,7 +125,7 @@
         - jws_apply_patches
 
     - name: "Ensure {{ jws_home }}/ directories have appropriate privileges"
-      become: yes
+      become: True
       ansible.builtin.file:
         path: "{{ jws_home }}/{{ item }}/"
         owner: "{{ jws.user }}"
@@ -138,7 +140,7 @@
         - bin
 
     - name: "Ensure {{ jws_home }}/ files have the recommended priviliges, owner and group"
-      become: yes
+      become: True
       ansible.builtin.file:
         path: "{{ jws_home }}/{{ item }}"
         owner: "{{ jws.user }}"
@@ -164,7 +166,7 @@
         - jws_listen_https_enabled
 
     - name: "Deploy custom configuration files"
-      become: yes
+      become: True
       ansible.builtin.template:
         src: "{{ item.template }}"
         dest: "{{ item.dest }}"
@@ -191,6 +193,7 @@
         path: "{{ jws_home }}/webapps/{{ item }}"
         state: absent
       loop: "{{ jws.apps.to_remove }}"
+      become: True
       when: jws.apps.to_remove is defined
 
     - name: "Create vault configuration (if enabled)"

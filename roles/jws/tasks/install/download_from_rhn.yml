@@ -1,7 +1,7 @@
 ---
 - name: Perform download from RHN using JBoss Network API
   delegate_to: localhost
-  run_once: yes
+  run_once: True
   become: "{{ rhn_download_become | default(False) }}"
   when:
     - not jws_offline_install
@@ -20,7 +20,7 @@
       ansible.builtin.set_fact:
         rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', '[^/]*/' + path_to_zipfile_local | basename + '$') }}"
       delegate_to: localhost
-      run_once: yes
+      run_once: True
 
     - name: Download Red Hat JWS
       ansible.builtin.include_tasks: rhn/download.yml

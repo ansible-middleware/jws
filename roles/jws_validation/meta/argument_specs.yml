@@ -6,7 +6,7 @@ argument_specs:
                 description: "Pattern to search for in the catalina logfile."
                 type: "str"
             jws_validation_read_catalina_privilege_escalation:
-                default: yes
+                default: True
                 description: "Whether or not Ansible can read the catalina.out without root priv"
                 type: "bool"
             jws_listen_http_bind_address:

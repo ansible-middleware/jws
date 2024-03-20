@@ -4,7 +4,6 @@
 
 - name: Check if service is started
   block:
-
     - ansible.builtin.assert:
         that:
           - ansible_facts is defined

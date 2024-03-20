@@ -20,10 +20,11 @@
     enabled: true
 
 - name: "Ensure firewalld allows communication over {{ jws_listen_http_port }}."
+  become: True
   ansible.posix.firewalld:
     port: "{{ jws_listen_http_port }}/tcp"
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: True
   when:
     - jws_listen_http_port is defined

@@ -5,4 +5,3 @@
     - vars.yml
   roles:
     - name: middleware_automation.jws.jws
-    - name: middleware_automation.jws.jws_validation

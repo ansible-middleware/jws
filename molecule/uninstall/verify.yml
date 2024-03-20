@@ -3,6 +3,7 @@
   hosts: all
   tasks:
     - name: Read info on /opt subdirs
+      become: True
       ansible.builtin.find:
         paths: /opt
         file_type: directory

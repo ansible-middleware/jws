@@ -20,7 +20,7 @@
   no_log: "{{ omit_rhn_output | default(true) }}"
   delegate_to: localhost
   become: "{{ rhn_download_become | default(False) }}"
-  run_once: yes
+  run_once: True
 
 - name: "Ensure search results are valid."
   ansible.builtin.assert:
