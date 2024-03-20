@@ -16,6 +16,11 @@ Major Changes
 - Update default for ``jws_native`` `#269 <https://github.com/ansible-middleware/jws/pull/269>`_
 - fix typo in variable name `#271 <https://github.com/ansible-middleware/jws/pull/271>`_
 
+Minor Changes
+-------------
+
+- Make playbook ``become`` unnecessary `#274 <https://github.com/ansible-middleware/jws/pull/274>`_
+
 v2.0.0
 ======
 
