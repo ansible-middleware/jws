@@ -8,9 +8,9 @@ platforms:
     pre_build_image: true
     privileged: true
     port_bindings:
-      - 8080:8080
+      - ${PORT_BINDING:-8080}:8080
     published_ports:
-      - 0.0.0.0:8080:8080/TCP
+      - 0.0.0.0:${PORT_BINDING:-8080}:8080/TCP
 provisioner:
   name: ansible
   config_options:
