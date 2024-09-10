@@ -3,8 +3,10 @@
   hosts: all
   vars_files:
     - vars.yml
+  collections:
+    - middleware_automation.jws
   roles:
-    - role: middleware_automation.jws.jws
+    - role: jws
       jws_systemd_enabled: True
       jws_java_home: "{{ jdk_home }}"
       jws_service_systemd_type: forking

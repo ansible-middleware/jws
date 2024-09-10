@@ -1,6 +1,7 @@
 ---
 - name: Verify
   hosts: all
-  vars:
+  collections:
+    - middleware_automation.jws
   roles:
-    - middleware_automation.jws.jws_validation
+    - role: jws_validation

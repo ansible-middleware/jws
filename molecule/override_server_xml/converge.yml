@@ -6,8 +6,10 @@
     jvm_route: jvm_route_1
     jws_apply_patches: False
     jws_selinux_enabled: False
+  collections:
+    - middleware_automation.jws
   roles:
-    - role: middleware_automation.jws.jws
+    - role: jws
       jws_home: /opt/custom
       jws_conf_templates_server: override_server_xml_template.xml.j2
       jws_listen_ajp_enabled: False
