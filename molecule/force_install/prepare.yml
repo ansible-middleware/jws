@@ -23,6 +23,8 @@
       when:
         - "(lookup('env', 'PWD') | default('/opt') + '/jws-5.5.0-application-server.zip') is exists"
         - jws_version is defined
+  collections:
+    - middleware_automation.jws
   roles:
-    - role: middleware_automation.jws.jws
+    - role: jws
       jws_native: False

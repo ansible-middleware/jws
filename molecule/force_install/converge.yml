@@ -11,8 +11,10 @@
   vars:
     jws_apply_patches: False
     jws_selinux_enabled: False
+  collections:
+    - middleware_automation.jws
   roles:
-    - role: middleware_automation.jws.jws
+    - role: jws
       jws_setup: true
       jws_listen_http_bind_address: 127.0.0.1
       jws_systemd_enabled: True

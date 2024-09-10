@@ -7,8 +7,10 @@
     jws_listen_https_bind_address: localhost
     jvm_route: jvm_route_1
     jws_selinux_enabled: False
+  collections:
+    - middleware_automation.jws
   roles:
-    - middleware_automation.jws.jws_validation
+    - role: jws_validation
   post_tasks:
     - name: "Set server.xml path relative to jws home"
       ansible.builtin.set_fact:
