@@ -1,4 +1,5 @@
 ---
+jws_enable: False
 # comma separated list of wars to undeploy
 # example: jws_apps_to_remove: 'docs,ROOT,examples'
 jws_apps_to_remove: 'examples'
