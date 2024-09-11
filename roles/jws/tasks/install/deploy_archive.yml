@@ -18,14 +18,14 @@
     - name: "Retrieve zipfiles, if missing, from RHN (if credentials provided)"
       ansible.builtin.include_tasks: download_from_rhn.yml
       when:
+        - jws_enable is defined and jws_enable
         - rhn_username is defined and rhn_username | length > 0
         - rhn_password is defined and rhn_password | length > 0
 
     - name: "Retrieve zipfiles from URL (if provided)."
       ansible.builtin.include_tasks: url.yml
       when:
-        - not rhn_username is defined
-        - not rhn_password is defined
+        - not jws_enable is defined or not jws_enable
         - zipfile_url is defined
 
 - name: "Copy archives {{ path_to_zipfile_local }} to target nodes: {{ path_to_zipfile_on_target }}"

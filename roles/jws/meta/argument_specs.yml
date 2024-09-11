@@ -436,6 +436,10 @@ argument_specs:
                 type: "str"
     downstream:
         options:
+            jws_enable:
+                default: True
+                description: "Wheter or not to use JWS instead of uptream"
+                type: "bool"
             jws_version:
                 default: "6.0.0"
                 description: "JWS version to install"
