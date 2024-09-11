@@ -19,7 +19,9 @@ Major Changes
 Minor Changes
 -------------
 
+- Add jws_enable var for consistency with other runtime collection `#277 <https://github.com/ansible-middleware/jws/pull/277>`_
 - Make playbook ``become`` unnecessary `#274 <https://github.com/ansible-middleware/jws/pull/274>`_
+- Update collection to use Ansible 2.16 as a minimum requirement `#276 <https://github.com/ansible-middleware/jws/pull/276>`_
 
 v2.0.0
 ======
