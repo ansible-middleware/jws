@@ -1,10 +1,27 @@
-=======================================
-middleware_automation.jws Release Notes
-=======================================
+========================================
+middleware\_automation.jws Release Notes
+========================================
 
 .. contents:: Topics
 
 This changelog describes changes after version 0.0.3.
+
+v2.1.0
+======
+
+Major Changes
+-------------
+
+- AMW-196 Usage of become inside the jws role `#272 <https://github.com/ansible-middleware/jws/pull/272>`_
+- Update default for ``jws_native`` `#269 <https://github.com/ansible-middleware/jws/pull/269>`_
+- fix typo in variable name `#271 <https://github.com/ansible-middleware/jws/pull/271>`_
+
+Minor Changes
+-------------
+
+- Add jws_enable var for consistency with other runtime collection `#277 <https://github.com/ansible-middleware/jws/pull/277>`_
+- Make playbook ``become`` unnecessary `#274 <https://github.com/ansible-middleware/jws/pull/274>`_
+- Update collection to use Ansible 2.16 as a minimum requirement `#276 <https://github.com/ansible-middleware/jws/pull/276>`_
 
 v2.0.0
 ======
@@ -179,4 +196,3 @@ Release Summary
 ---------------
 
 This is the first stable release of the ``middleware_automation.jws`` collection.
-
