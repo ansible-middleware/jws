@@ -1,7 +1,7 @@
 ---
 - name: Perform patch download from RHN via JBossNetwork API
   delegate_to: localhost
-  run_once: True
+  run_once: true
   when:
     - jws_apply_patches
     - not jws_offline_install
@@ -12,6 +12,7 @@
         rhn_product_type: BUGFIX
         rhn_product_version: "{{ jws_version.split('.')[:2] | join('.') }}"
         rhn_product_category: "{{ jws_product_category }}"
+        rhn_file_suffix: "{{ archive_file_suffix }}"
 
     - name: Determine patch versions list
       ansible.builtin.set_fact:
@@ -22,7 +23,7 @@
       when:
         - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
-      run_once: True
+      run_once: true
 
     - name: Determine latest version
       ansible.builtin.set_fact:
@@ -30,7 +31,7 @@
       when:
         - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
-      run_once: True
+      run_once: true
 
     - name: Determine install zipfile from search results
       ansible.builtin.set_fact:
@@ -42,7 +43,7 @@
         - jws_patch_version is not defined or jws_patch_version | length == 0
         - rhn_products.results is defined and rhn_products.results | length > 0
       delegate_to: localhost
-      run_once: True
+      run_once: true
 
     - name: "Compute patch to apply (if any)."
       when:
@@ -75,9 +76,9 @@
           when:
             - rhn_filtered_products | length > 0
 
-        - name: Display no patches are available for version
+        - name: Set whether patches are available for version
           ansible.builtin.set_fact:
-            patch_available_to_apply: True
+            patch_available_to_apply: "{{ rhn_filtered_products | length > 0 }}"
 
     - name: "No patch available"
       when:
@@ -87,6 +88,6 @@
           ansible.builtin.debug:
             msg: "No cumulative patches are available for base version {{ jws_version }}"
 
-        - name: Display no patches are available for version
+        - name: Set no patches are available for version
           ansible.builtin.set_fact:
-            patch_available_to_apply: False
+            patch_available_to_apply: false
