@@ -21,5 +21,5 @@
     - name: "Deploy file on target and check if its applied already."
       ansible.builtin.include_tasks: copy_cp_on_target_and_checksum.yml
 
-    - name: "Apply CP (if not already applied)."
+    - name: "Apply CP if not already applied: {{ patch_bundle }}"
       ansible.builtin.include_tasks: perform_update.yml
