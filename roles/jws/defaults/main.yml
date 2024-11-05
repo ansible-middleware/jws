@@ -34,6 +34,9 @@ jws_apache_archive_download_url_prefix: 'https://archive.apache.org/dist/tomcat/
 jws_install_download_archive_require_privilege_escalation: True
 jws_install_unarchive_require_privilege_escalation: True
 
+jws_url_download_retries: 5
+jws_url_download_delay: 10
+
 # Default version of Apache Tomcat to use if no version is provided
 tomcat_version: 10.1.13
 # Switch to True if you want to also download native bits

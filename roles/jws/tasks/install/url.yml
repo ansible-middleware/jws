@@ -17,3 +17,5 @@
     mode: 0640
     owner: "{{ jws.user }}"
     group: "{{ jws.group }}"
+  retries: "{{ jws_url_download_retries }}"
+  delay: "{{ jws_url_download_delay }}"
