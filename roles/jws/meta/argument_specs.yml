@@ -412,6 +412,14 @@ argument_specs:
                 default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
                 description: "Home directory of jws zipfile installation"
                 type: "str"
+            jws_url_download_retries:
+                default: 5
+                description: "Number of retries in case a download fails"
+                type: "int"
+            jws_url_download_delay:
+                default: 10
+                description: "Delay among two consequent download retries"
+                type: "int"
     uninstall:
         options:
             jws_skip_delete_zipfile:
