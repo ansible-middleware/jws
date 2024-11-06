@@ -19,6 +19,7 @@ Versions
 | JWS VERSION | Release Date      | Tomcat Version | Native Version | Notes                                                                                                                                             |
 |:------------|:------------------|:---------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|
 | `6.0.0`     | October 31, 2023  | `10.1.8`       | `1.2.36`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html/red_hat_jboss_web_server_6.0_release_notes/index) |
+| `5.8.0`     | May 7, 2024       | `9.0.87`       | `1.2.31`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.8/html/red_hat_jboss_web_server_5.8_release_notes/index) |
 | `5.7.0`     | November 2, 2022  | `9.0.62`       | `1.2.31`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_release_notes/index) |
 | `5.6.0`     | November 30, 2021 | `9.0.50`       | `1.2.30`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.6/html/red_hat_jboss_web_server_5.6_release_notes/index) |
 | `5.5.0`     | June 29, 2021     | `9.0.43`       | `1.2.26`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.5/html/red_hat_jboss_web_server_5.5_release_notes/index) |
