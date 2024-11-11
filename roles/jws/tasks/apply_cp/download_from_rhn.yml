@@ -86,7 +86,7 @@
       block:
         - name: Display no patches are available for version
           ansible.builtin.debug:
-            msg: "No cumulative patches {{ archive_file_suffix }} are available for base version {{ jws_version }}"
+            msg: "No cumulative patches {{ archive_file_suffix | default('') }} are available for base version {{ jws_version }}"
 
         - name: Set no patches are available for version
           ansible.builtin.set_fact:
