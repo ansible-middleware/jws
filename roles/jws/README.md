@@ -55,6 +55,8 @@ Role Defaults
 | `jws_archive_repository` | Path local to controller for offline/download archive files                                                      | `{{ lookup('env', 'PWD') &#124; default('/opt') }}`                                                |
 | `jws_offline_install`    | Whether to perform a completely offline install                                                                  |
 `false`                                                                                             |
+| `jws_url_download_retries` | Number of retries in case a download fails                                                                     | `5`                                                                                                |
+| `jws_url_download_delay`   | Delay among two consequent download retries                                                                    | `10`                                                                                               |
 
 
 ### Service configuration
