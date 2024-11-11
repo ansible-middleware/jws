@@ -12,7 +12,7 @@
         rhn_product_type: BUGFIX
         rhn_product_version: "{{ jws_version.split('.')[:2] | join('.') }}"
         rhn_product_category: "{{ jws_product_category }}"
-        rhn_file_suffix: "{{ archive_file_suffix }}"
+        rhn_file_suffix: "{{ archive_file_suffix | default('') }}"
 
     - name: Determine patch versions list
       ansible.builtin.set_fact:
@@ -86,7 +86,7 @@
       block:
         - name: Display no patches are available for version
           ansible.builtin.debug:
-            msg: "No cumulative patches are available for base version {{ jws_version }}"
+            msg: "No cumulative patches {{ archive_file_suffix }} are available for base version {{ jws_version }}"
 
         - name: Set no patches are available for version
           ansible.builtin.set_fact:
