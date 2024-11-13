@@ -1,6 +1,6 @@
-========================================
-middleware\_automation.jws Release Notes
-========================================
+==============
+Release Notes
+==============
 
 .. contents:: Topics
 
