@@ -9,7 +9,7 @@ This repository contains the Ansible roles and playbooks to set up an automated 
 ## Ansible version compatibility
 
 <!--start ansible_version -->
-This collection has been tested against Ansible versions 2.14.0 or later.
+This collection has been tested against Ansible versions 2.16.0 or later.
 
 The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.
 <!--end ansible_version -->
