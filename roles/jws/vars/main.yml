@@ -1,5 +1,5 @@
 ---
-jws:
+jws:  # noqa var-naming[no-role-prefix]
   supported_install_method: [zipfiles, rpm]
   install_method: "{{ jws_install_method }}"
   install_dir: "{{ jws_install_dir }}"

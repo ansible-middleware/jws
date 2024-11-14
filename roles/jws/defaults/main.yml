@@ -35,7 +35,7 @@ jws_install_download_archive_require_privilege_escalation: True
 jws_install_unarchive_require_privilege_escalation: True
 
 # Default version of Apache Tomcat to use if no version is provided
-tomcat_version: 10.1.13
+tomcat_version: 10.1.13  # noqa var-naming[no-role-prefix]
 # Switch to True if you want to also download native bits
 jws_native: False
 jws_native_zipfile: ''
