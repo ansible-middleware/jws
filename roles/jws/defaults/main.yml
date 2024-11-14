@@ -38,7 +38,7 @@ jws_url_download_retries: 5
 jws_url_download_delay: 10
 
 # Default version of Apache Tomcat to use if no version is provided
-tomcat_version: 10.1.13
+tomcat_version: 10.1.13  # noqa var-naming[no-role-prefix]
 # Switch to True if you want to also download native bits
 jws_native: False
 jws_native_zipfile: ''
