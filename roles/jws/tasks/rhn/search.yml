@@ -22,7 +22,7 @@
   become: "{{ rhn_download_become | default(false) }}"
   run_once: true
 
-- name: "Determine results matching the file suffix {{ rhn_file_suffix  | default('') }}"
+- name: "Determine results matching the file suffix {{ rhn_file_suffix | default('') }}"
   ansible.builtin.set_fact:
     filtered_results: "{{ rhn_products.results | default([]) | map(attribute='file_path') | \
                           select('match', '^[^/]*/jws-.*' + rhn_file_suffix | default('') + '.*$') | \
