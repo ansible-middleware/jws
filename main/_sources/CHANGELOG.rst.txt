@@ -17,7 +17,7 @@ Minor Changes
 Bugfixes
 --------
 
-- Handle the case when a patch is available without native patch counterpart `#278 <https://github.com/ansible-middleware/jws/pull/278>`_
+- AMW-337 - Collection patching failing if native zips weren't released `#278 <https://github.com/ansible-middleware/jws/pull/278>`_
 
 v2.1.0
 ======
