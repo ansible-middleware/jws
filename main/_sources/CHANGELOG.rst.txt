@@ -13,6 +13,7 @@ Minor Changes
 -------------
 
 - AMW-339 JWS 5.8.0 release missing from README `#281 <https://github.com/ansible-middleware/jws/pull/281>`_
+- Set some default retries for url.yml in the install task `#279 <https://github.com/ansible-middleware/jws/pull/279>`_
 
 Bugfixes
 --------
