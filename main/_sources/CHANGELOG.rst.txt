@@ -9,6 +9,11 @@ This changelog describes changes after version 0.0.3.
 v2.1.1-devel
 ============
 
+Minor Changes
+-------------
+
+- AMW-339 JWS 5.8.0 release missing from README `#281 <https://github.com/ansible-middleware/jws/pull/281>`_
+
 Bugfixes
 --------
 
