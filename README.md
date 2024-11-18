@@ -89,9 +89,13 @@ To enable the collection to install JBoss Web Server from local archive files:
    | `native_zipfile`       | Specifies the name of the native archive file on your control node                                  |
    | `jws_offline_install`  | Indicates whether to execute a completely offline install                                           |
 
-> **Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
+<!--start no_native_upstream -->
 
-> **Note:** If you did not change the archive file names, you do not need to set the `zipfile_name` and `native_zipfile` variables. The collection uses the JBoss Web Server version to determine the default file names automatically.
+**Note:** By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the `jws_native` variable to `True`.
+
+<!--end no_native_upstream -->
+
+**Note:** If you did not change the archive file names, you do not need to set the `zipfile_name` and `native_zipfile` variables. The collection uses the JBoss Web Server version to determine the default file names automatically.
 
 4. If you also want to install the latest cumulative patches for the appropriate JBoss Web Server version, copy the archive files for the latest patch updates to your Ansible control node. Then set the `jws_apply_patches` variable to `True`:
 
