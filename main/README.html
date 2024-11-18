@@ -228,12 +228,10 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 </table>
 </li>
 </ol>
-<blockquote>
-<div><p><strong>Note:</strong> By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the <code class="docutils literal notranslate"><span class="pre">jws_native</span></code> variable to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
-</div></blockquote>
-<blockquote>
-<div><p><strong>Note:</strong> If you did not change the archive file names, you do not need to set the <code class="docutils literal notranslate"><span class="pre">zipfile_name</span></code> and <code class="docutils literal notranslate"><span class="pre">native_zipfile</span></code> variables. The collection uses the JBoss Web Server version to determine the default file names automatically.</p>
-</div></blockquote>
+<!--start no_native_upstream -->
+<p><strong>Note:</strong> By default, the collection installs the main application server archive only. If you also want to install the native archive, ensure that you copy the native archive file to your control node and set the <code class="docutils literal notranslate"><span class="pre">jws_native</span></code> variable to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<!--end no_native_upstream -->
+<p><strong>Note:</strong> If you did not change the archive file names, you do not need to set the <code class="docutils literal notranslate"><span class="pre">zipfile_name</span></code> and <code class="docutils literal notranslate"><span class="pre">native_zipfile</span></code> variables. The collection uses the JBoss Web Server version to determine the default file names automatically.</p>
 <ol class="arabic" start="4">
 <li><p>If you also want to install the latest cumulative patches for the appropriate JBoss Web Server version, copy the archive files for the latest patch updates to your Ansible control node. Then set the <code class="docutils literal notranslate"><span class="pre">jws_apply_patches</span></code> variable to <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> vars:
