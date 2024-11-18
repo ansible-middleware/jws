@@ -26,9 +26,8 @@ The plug-ins and modules that are within a collection might be tested with speci
     - Installs JBoss Web Server from product archive files or RPM packages
     - Assigns ownership of the JBoss Web Server directories to the appropriate user account and group
     - Deploys the `server.xml`, `web.xml`, and `context.xml` files
+- The [jws_validation](roles/jws/README.md) role contains a set of utility playbooks and tasks to validate that the server was properly installed on the target and is functionnal.
 <!--end role_content -->
-
-<!-- KIERAN:  Should this section also mention the jws_validation role? -->
 
 ## Collection setup
 
