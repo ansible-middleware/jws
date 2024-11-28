@@ -6,14 +6,31 @@
   ansible.builtin.include_tasks: download_from_rhn.yml
   when: not jws_offline_install
 
-- name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
-  ansible.builtin.set_fact:
-    patch_version: "{{ jws_patch_version }}"
-    patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
+- name: "Check patches when offline"
   when: jws_offline_install
+  block:
+    - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
+      ansible.builtin.set_fact:
+        patch_version: "{{ jws_patch_version }}"
+        patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
+
+    - name: "Check {{ jws_archive_repository }}/{{ patch_bundle }}"
+      ansible.builtin.stat:
+        path: "{{ jws_archive_repository }}/{{ patch_bundle }}"
+      register: offline_patch
+      delegate_to: localhost
+
+    - name: "Set patch installation"
+      ansible.builtin.set_fact:
+        patch_available_to_apply: "{{ offline_patch.stat.exists }}"
+
+    - name: "Set patch installation"
+      ansible.builtin.debug:
+        msg: "File not found: not installing patch {{ jws_archive_repository }}/{{ patch_bundle }}"
+      when: not patch_available_to_apply
 
 - name: Apply patch zipfile
-  when: jws_offline_install or (patch_available_to_apply is defined and patch_available_to_apply)
+  when: patch_available_to_apply is defined and patch_available_to_apply
   block:
     - name: "Verify that patch checksum, if provided, matches."
       ansible.builtin.include_tasks: checksum.yml
