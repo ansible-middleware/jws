@@ -21,4 +21,4 @@
 
     - name: Fail after priting the logfile
       ansible.builtin.fail:
-        msg: The system may not be provisioned according to the CMDB status.
+        msg: Service is not running or not enable
