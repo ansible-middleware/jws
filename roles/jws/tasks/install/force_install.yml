@@ -5,13 +5,13 @@
     ps --no-headers -u {{ jws.user }} | grep -v grep | awk '{print $1}'
   args:
     executable: /bin/bash
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   register: running_processes
   changed_when: False
 
 - name: "Terminate foreign processes"
   ansible.builtin.command: "kill -15 {{ running_processes.stdout_lines | join(' ') }}"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   when:
     - jws_force_install
     - running_processes.stdout_lines | length > 0
@@ -23,21 +23,21 @@
     ps --no-headers -u {{ jws.user }} | grep -v grep | awk '{print $1}'
   args:
     executable: /bin/bash
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   failed_when: running_processes.stderr_lines | length > 0
   changed_when: False
   register: running_processes
 
 - name: "Kill foreign processes"
   ansible.builtin.command: "kill -9 {{ running_processes.stdout_lines | join(' ') }}"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   when:
     - jws_force_install
     - running_processes.stdout_lines | length > 0
   changed_when: True
 
 - name: "Create group: {{ jws.group }}"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.group:
     name: "{{ jws.group }}"
     gid: "{{ jws.gid }}"
@@ -45,7 +45,7 @@
   when: jws_force_install
 
 - name: "Create user: {{ jws.user }}"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.user:
     name: "{{ jws.user }}"
     uid: "{{ jws.uid }}"

@@ -1,6 +1,6 @@
 ---
 - name: "Copy {{ jws.service.hr_name }} vault keystore from control node to remote"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.copy:
     src: "{{ jws.vault.keystore }}"
     dest: "{{ jws_home }}"
@@ -9,7 +9,7 @@
     mode: 0640
 
 - name: "Copy {{ jws.service.hr_name }} vault properties file from control node to remote"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.copy:
     src: "{{ jws.vault.properties }}"
     dest: "{{ jws_home }}/conf/"
@@ -18,7 +18,7 @@
     mode: 0640
 
 - name: "Copy {{ jws.service.hr_name }} vault data file from control node to remote"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.copy:
     src: "{{ jws.vault.data }}"
     dest: "{{ jws_home }}"

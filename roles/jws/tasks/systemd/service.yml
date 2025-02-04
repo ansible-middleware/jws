@@ -6,13 +6,13 @@
     quiet: true
 
 - name: "Enable jws.service"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.service:
     name: "{{ jws.service.name }}"
     enabled: True
 
 - name: "Start jws.service"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.service:
     name: "{{ jws.service.name }}"
     state: started

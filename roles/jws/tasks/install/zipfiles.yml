@@ -35,7 +35,7 @@
   notify: "Restart Tomcat service"
 
 - name: Configure custom jws_home
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   when:
     - jws_home != jws.install_dir + '/' + jws_zipfile_rootdir
     - unarchived_zipfiles.changed

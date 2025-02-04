@@ -10,7 +10,7 @@
           - "{{ assets_server }}/webserver/5.6.0/jws-5.6.0-application-server.zip"
 
     - name: "Deploy https certificate"
-      become: True
+      become: "{{ jws_install_requires_become | default(true) }}"
       ansible.builtin.copy:
         src: ./resources/keystore.jks
         dest: /etc/ssl/

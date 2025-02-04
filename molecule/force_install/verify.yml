@@ -6,6 +6,8 @@
     jws_java_version: 11
     jws_native: False
     jws_selinux_enabled: False
+  vars_files:
+    - ../../playbooks/vars.yml
   collections:
     - middleware_automation.jws
   roles:

@@ -12,7 +12,7 @@
 
   tasks:
     - name: "Prepare JDK for scenario"
-      become: True
+      become: "{{ jws_install_requires_become | default(true) }}"
       block:
         - name: "Download JDK from {{ jdk_url }}"
           ansible.builtin.unarchive:

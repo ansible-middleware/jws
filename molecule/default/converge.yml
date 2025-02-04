@@ -1,7 +1,7 @@
 ---
 - name: "Red Hat JBoss Web Server installation and configuration"
   hosts: all
-  become: true
+  become: "{{ jws_install_requires_become | default(true) }}"
   vars_files:
     - ../../playbooks/vars.yml
   collections:

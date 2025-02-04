@@ -17,7 +17,7 @@
   changed_when: restorecon.stdout_lines | length > 0
 
 - name: Reload Systemd
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.systemd:
     daemon_reload: True
   when:
@@ -43,7 +43,7 @@
   listen: "Stop Tomcat service"
 
 - name: "Restart {{ jws.service.hr_name }} service"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.service:
     name: "{{ jws.service.name }}"
     state: restarted

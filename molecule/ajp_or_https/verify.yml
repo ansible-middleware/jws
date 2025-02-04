@@ -5,6 +5,7 @@
     - middleware_automation.jws
   vars_files:
     - vars.yml
+    - ../../playbooks/vars.yml
   vars:
     jws_listen_https_port: 8443
     jws_listen_https_bind_address: localhost

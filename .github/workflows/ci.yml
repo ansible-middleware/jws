@@ -10,9 +10,10 @@ on:
 
 jobs:
   ci:
-    uses: ansible-middleware/github-actions/.github/workflows/ci.yml@main
+    uses: ansible-middleware/github-actions/.github/workflows/ci.yml@rootperm
     secrets: inherit
     with:
       fqcn: 'middleware_automation/jws'
+      root_permission_varname: 'jws_install_requires_become'
       molecule_tests: >-
         [ "default", "ajp_or_https", "force_install", "override_server_xml", "preinstalledjdk", "uninstall" ]

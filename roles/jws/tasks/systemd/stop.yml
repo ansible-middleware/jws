@@ -6,7 +6,7 @@
     quiet: true
 
 - name: "Stop jws.service"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.service:
     name: "{{ jws.service.name }}"
     state: stopped

@@ -1,6 +1,6 @@
 ---
 - name: "Check that user account {{ jws_user }} was properly created"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.user:
     name: "{{ jws_user }}"
     uid: "{{ jws_uid }}"
