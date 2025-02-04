@@ -5,3 +5,6 @@ jws_listen_http_bind_address: 127.0.0.1
 jws_systemd_enabled: True
 jws_service_systemd_type: forking
 jws_selinux_enabled: False
+jws_install_download_archive_require_privilege_escalation: "{{ jws_install_requires_become | default(true) }}"
+jws_install_unarchive_require_privilege_escalation: "{{ jws_install_requires_become | default(true) }}"
+jws_validation_read_catalina_privilege_escalation: "{{ jws_install_requires_become | default(true) }}"

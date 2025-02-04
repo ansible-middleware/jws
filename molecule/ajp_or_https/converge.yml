@@ -1,7 +1,7 @@
 ---
 - name: "Converge"
   hosts: all
-  become: true
+  become: "{{ jws_install_requires_become | default(true) }}"
   vars_files:
     - ../../playbooks/vars.yml
     - vars.yml

@@ -26,13 +26,13 @@
           - selinux-policy-devel
 
     - name: Check if archive contains a selinux policy
-      become: True
+      become: "{{ jws_install_requires_become | default(true) }}"
       ansible.builtin.stat:
         path: "{{ jws_home }}/selinux/jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.pp"
       register: policy_path_selinux
 
     - name: Update file contexts with home directory
-      become: True
+      become: "{{ jws_install_requires_become | default(true) }}"
       ansible.builtin.replace:
         path: "{{ jws_home }}/selinux/jws{{ jws_version.split('.')[0] | default('6') }}-tomcat.fc"
         regexp: '^@@CWD@@'

@@ -7,7 +7,7 @@
     quiet: True
 
 - name: "Load Version files"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.slurp:
     src: "{{ jws_home }}/../version.txt"
   register: install_jws_version

@@ -7,7 +7,7 @@
     - name: "Load data on downloaded file: {{ jws_install_dir }}/{{ patch_bundle }}."
       ansible.builtin.stat:
         path: "{{ jws_install_dir }}/{{ patch_bundle }}"
-      become: True
+      become: "{{ jws_install_requires_become | default(true) }}"
       register: downloaded_file_metadata
 
     - name: "Verify that file checksum {{ downloaded_file_metadata.stat.checksum }} with provided one: {{ patch_checksum }}."

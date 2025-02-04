@@ -39,13 +39,13 @@
     - dnf_command != "'groupinstall'"
 
 - name: "Load stat of {{ jws_rpm_root_dir }}/enable"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.stat:
     path: "{{ jws_rpm_root_dir }}/enable"
   register: jws_rpm_root_dir_enable_stat
 
 - name: "Perform {{ info_msg }}"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.command:
     cmd: "dnf {{ dnf_command | default('groupinstall') }} -y {{ jws.rpm }}"
     creates: "{{ jws_rpm_root_dir }}/enable"
@@ -61,7 +61,7 @@
     - jws_tomcat_vault_enabled is defined and jws_tomcat_vault_enabled
   block:
     - name: "Install package for tomcat_vault: {{ jws.vault.package_name }}"
-      become: True
+      become: "{{ jws_install_requires_become | default(true) }}"
       ansible.builtin.package:
         name: "{{ jws.vault.package_name }}"
         state: present

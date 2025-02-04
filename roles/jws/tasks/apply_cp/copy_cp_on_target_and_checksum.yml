@@ -12,7 +12,7 @@
     group: "{{ jws.group | default(omit) }}"
     mode: 0640
   register: new_version_downloaded
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   when:
     - patch_archive_path is defined
     - patch_archive_path.stat is defined
@@ -21,7 +21,7 @@
 - name: "Check deployed patch state"
   ansible.builtin.stat:
     path: "{{ jws_install_dir }}/{{ patch_bundle }}"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   register: patch_info
 
 - name: "Set patch checksum"
@@ -35,7 +35,7 @@
 - name: "Check {{ patch_checksum_file }} state"
   ansible.builtin.stat:
     path: "{{ patch_checksum_file }}"
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
   register: last_patch_status
 
 - name: "Print information message if patch has already been applied"

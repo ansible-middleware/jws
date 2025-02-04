@@ -7,6 +7,8 @@
     jws_listen_https_bind_address: localhost
     jvm_route: jvm_route_1
     jws_selinux_enabled: False
+  vars_files:
+    - ../../playbooks/vars.yml
   collections:
     - middleware_automation.jws
   roles:
@@ -17,7 +19,7 @@
         path_to_server_xml: "{{ jws_home }}/conf/server.xml"
 
     - name: "Read content of {{ path_to_server_xml }}"
-      become: True
+      become: "{{ jws_install_requires_become | default(true) }}"
       ansible.builtin.slurp:
         src: "{{ path_to_server_xml }}"
       register: slurped_server_xml

@@ -24,7 +24,7 @@
   ansible.builtin.stat:
     path: "{{ jws.listen.https.keystore.file }}"
   register: java_keystore_location
-  become: True
+  become: "{{ jws_install_requires_become | default(true) }}"
 
 - name: "Check that java_keystore location is valid and exist."
   ansible.builtin.assert:

@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: Read info on /opt subdirs
-      become: True
+      become: "{{ jws_install_requires_become | default(true) }}"
       ansible.builtin.find:
         paths: /opt
         file_type: directory

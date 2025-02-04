@@ -1,6 +1,8 @@
 ---
 - name: Verify
   hosts: all
+  vars_files:
+    - ../../playbooks/vars.yml
   collections:
     - middleware_automation.jws
   roles:
