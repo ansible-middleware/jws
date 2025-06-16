@@ -34,37 +34,29 @@
   when:
     - not jws_service_pidfile is defined
 
-- name: "Ensure service script is deployed"
+- name: "Escaladte privileges (if required)."
   become: "{{ jws_install_requires_become | default(true) }}"
-  ansible.builtin.template:
-    src: templates/systemd/service.sh.j2
-    dest: "{{ jws_service_script }}"
-    owner: "{{ jws.user }}"
-    group: "{{ jws.group }}"
-    mode: 0755
+  block:
+    - name: "Ensure service script is deployed"
+      ansible.builtin.template:
+        src: templates/systemd/service.sh.j2
+        dest: "{{ jws_service_script }}"
+        owner: "{{ jws.user }}"
+        group: "{{ jws.group }}"
+        mode: 0755
+        # TODO add selinux labels
 
-- name: "Ensure service configurations files is deployed: {{ jws_service_conf }}"
-  become: "{{ jws_install_requires_become | default(true) }}"
-  ansible.builtin.template:
-    src: templates/systemd/tomcat.conf.j2
-    dest: "{{ jws_service_conf }}"
-    owner: "{{ jws.user }}"
-    group: "{{ jws.group }}"
-    mode: 0644
-  vars:
-    jws_rpm_java_home: "{{ rpm_java_home if rpm_java_home is defined else '/usr/lib/jvm/java' }}"
-  notify:
-    - Systemd reload
-    - Ensure Tomcat runs under systemd
-
-- name: "Ensure systemd service is configured"
-  become: "{{ jws_install_requires_become | default(true) }}"
-  ansible.builtin.template:
-    src: templates/systemd/tomcat.service.j2
-    dest: "{{ jws.service.systemd }}"
-    owner: "{{ jws.user }}"
-    group: "{{ jws.group }}"
-    mode: 0644
-  notify:
-    - Systemd reload
-    - Ensure Tomcat runs under systemd
+    - name: "Ensure service configurations files is deployed: {{ jws_service_conf }}"
+      ansible.builtin.include_role:
+        name: common
+        tasks_from: systemd.yml
+      vars:
+        server_restart_handler_name: "Restart Tomcat service"
+        jws_rpm_java_home: "{{ rpm_java_home if rpm_java_home is defined else '/usr/lib/jvm/java' }}"
+        server_name: "{{ jws.service.name }}"
+        server_service_config_file_template: 'templates/systemd/tomcat.service.j2'
+        server_systemd_path_to_unit: "{{ jws.service.systemd }}"
+        service_systemd_env_file_template: 'templates/systemd/tomcat.conf.j2'
+        service_systemd_env_file: "{{ jws_service_conf }}"
+        server_systemd_group: "{{ jws.group }}"
+        server_systtemd_user: "{{ jws.user }}"

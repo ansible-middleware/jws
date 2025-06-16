@@ -1,3 +1,4 @@
 ---
 collections:
   - name: middleware_automation.common
+    version: '>=1.2.4'
