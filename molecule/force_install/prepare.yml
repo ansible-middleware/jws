@@ -28,3 +28,4 @@
   roles:
     - role: jws
       jws_native: False
+      jws_java_version: 17

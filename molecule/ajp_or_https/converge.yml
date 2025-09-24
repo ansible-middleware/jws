@@ -8,4 +8,5 @@
   collections:
     - middleware_automation.jws
   roles:
-    - jws
+    - role: jws
+      jws_java_version: 17
