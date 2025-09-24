@@ -6,7 +6,7 @@
   block:
     - name: "Add 'java-{{ jws_java_version }}-openjdk-headless' to dependencies list"
       ansible.builtin.set_fact:
-        jws_dependencies_list: "{{ jws_dependencies_list + ['java-{{ jws_java_version }}-openjdk-headless'] }}"
+        jws_dependencies_list: "{{ jws_dependencies_list + [ 'java-' ~ jws_java_version ~ '-openjdk-headless' ] }}"
 
     - name: "Determine JAVA_HOME for selected JVM RPM"
       ansible.builtin.set_fact:

@@ -6,7 +6,8 @@
   collections:
     - middleware_automation.jws
   roles:
-    - name: jws
+    - role: jws
+      jws_java_version: 17
 
 - name: "Red Hat JBoss Web Server uninstallation"
   hosts: all
