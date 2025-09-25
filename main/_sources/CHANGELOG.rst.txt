@@ -9,6 +9,11 @@ This changelog describes changes after version 0.0.3.
 v2.1.1-devel
 ============
 
+Major Changes
+-------------
+
+- AMW-426 Make jws collection compliant with ansible-core 2.19 `#295 <https://github.com/ansible-middleware/jws/pull/295>`_
+
 Minor Changes
 -------------
 
