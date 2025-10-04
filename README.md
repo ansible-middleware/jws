@@ -1,6 +1,6 @@
 # Ansible Collection - middleware_automation.jws
 <!--start build_status -->
-[![Build Status](https://github.com/ansible-middleware/jws/workflows/CI/badge.svg?branch=main)](https://github.com/ansible-middleware/jws/actions/workflows/ci.yml)
+[![Build Status](https://github.com/ansible-middleware/jws/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ansible-middleware/jws/actions/workflows/ci.yml)
 <!--end build_status -->
 
 This repository contains the Ansible roles and playbooks to set up an automated installation of [Red Hat JBoss Web Server (JWS)](https://www.redhat.com/en/technologies/jboss-middleware/web-server).
