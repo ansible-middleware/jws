@@ -3,8 +3,8 @@ middleware_automation.jws.jws
 
 This role contains the ansible playbook to set up JWS.
 
-
 Dependencies
+
 ------------
 
 The roles depends on:
@@ -53,7 +53,7 @@ Role Defaults
 | `jws_native`               | Install native bits; provide a zipfile path below with tomcat, while on JWS it will be interpolated from version | `True`                                                                                             |
 | `jws_native_zipfile`       | Tomcat native binaries archive filename                                                                          | `''`                                                                                               |
 | `jws_force_install`        | Whether to stop any running tomcat process and continue installation                                             | `false`                                                                                            |
-| `jws_archive_repository`   | Path local to controller for offline/download archive files                                                      | `{{ lookup('env', 'PWD') &#124; default('/opt') }}`                                                |
+| `jws_archive_repository`   | Path local to controller for offline/download archive files                                                      | `{{ lookup('env', 'PWD') | default('/opt') }}`                                                |
 | `jws_offline_install`      | Whether to perform a completely offline install                                                                  |`false`                                                                                             |
 | `jws_url_download_retries` | Number of retries in case a download fails                                                                       | `5`                                                                                                |
 | `jws_url_download_delay`   | Delay among two consequent download retries                                                                      | `10`                                                                                               |
@@ -146,20 +146,92 @@ Role Variables
 | `jws_java_home`    | Path to the JAVA\_HOME to be used by the server                                    |
 <!--end argument_specs-->
 
-NOTE: You need to provided either `jws_java_version` or `jws_java_home` value. `jws_java_version` value can be 11, 17.
+**NOTE:** You need to provide either `jws_java_version` or `jws_java_home` value. `jws_java_version` value can be 11 or 17.
 
 
 Example Playbook
 ----------------
-```
+
+### Basic Installation
+```yaml
 ---
-- hosts: all
+- name: Install JWS with basic configuration
+  hosts: all
   vars:
     jws_java_version: 17
     jws_listen_http_bind_address: 127.0.0.1
     jws_systemd_enabled: True
     jws_service_systemd_type: forking
     jws_selinux_enabled: False
+  roles:
+    - middleware_automation.jws.jws
+```
+
+### RPM Installation
+```yaml
+---
+- name: Install JWS using RPM method
+  hosts: webservers
+  vars:
+    jws_install_method: rpm
+    jws_java_version: 11
+    jws_systemd_enabled: True
+  roles:
+    - middleware_automation.jws.jws
+```
+
+### With HTTPS Enabled
+```yaml
+---
+- name: Configure JWS with HTTPS
+  hosts: jws_servers
+  vars:
+    jws_java_version: 17
+    jws_listen_https_enabled: True
+    jws_listen_https_port: 8443
+    jws_systemd_enabled: True
+  roles:
+    - middleware_automation.jws.jws
+```
+
+### With mod_cluster
+```yaml
+---
+- name: Configure JWS with mod_cluster
+  hosts: jws_cluster_nodes
+  vars:
+    jws_java_version: 17
+    jws_modcluster_enable: True
+    jws_modcluster_port: 6666
+    jws_systemd_enabled: True
+  roles:
+    - middleware_automation.jws.jws
+```
+
+### Offline Installation
+```yaml
+---
+- name: Offline JWS installation
+  hosts: all
+  vars:
+    jws_offline_install: True
+    jws_archive_repository: "/opt/jws-archives"
+    jws_java_home: "/usr/lib/jvm/java-11-openjdk"
+  roles:
+    - middleware_automation.jws.jws
+```
+
+### Advanced Configuration with Tomcat Vault
+```yaml
+---
+- name: JWS with Tomcat Vault and HTTPS
+  hosts: secure_servers
+  vars:
+    jws_java_version: 17
+    jws_listen_https_enabled: True
+    jws_tomcat_vault_enabled: True
+    jws_tomcat_vault_storepass: "my_secure_password"
+    jws_systemd_enabled: True
   roles:
     - middleware_automation.jws.jws
 ```
