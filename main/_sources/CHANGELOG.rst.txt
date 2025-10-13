@@ -24,6 +24,7 @@ Bugfixes
 --------
 
 - AMW-337 - Collection patching failing if native zips weren't released `#278 <https://github.com/ansible-middleware/jws/pull/278>`_
+- AMW-360 JWS collection GitHub action molecule pipelines are breaking because of sudo permission issue `#294 <https://github.com/ansible-middleware/jws/pull/294>`_
 - Determine if offline patch is available `#290 <https://github.com/ansible-middleware/jws/pull/290>`_
 - jws collection CI label is showing no status `#297 <https://github.com/ansible-middleware/jws/pull/297>`_
 
