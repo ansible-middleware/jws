@@ -154,7 +154,7 @@ To run the playbook:
 192.168.0.1      # Remote host to act on
 ~~~
 
-3. If you want the collection to install a supported OpenJDK version on your target hosts, set the `jws_java_version` variable to the appropriate value (for example, `1.8.0`, `11`, or `17`). The collection is not configured to install a JDK by default.
+3. If you want the collection to install a supported OpenJDK version on your target hosts, set the `jws_java_version` variable to the appropriate value (for example, `1.8.0`, `11`,`17` or `21` (for RHEL 10)). The collection is not configured to install a JDK by default.
 
 4. Set the `jws_listen_http_port` and `jws_listen_https_port` variables to specify which HTTP and HTTPS ports you want JBoss Web Server to listen on. The default HTTP port is 8080. The default HTTPS port is 8443.
 

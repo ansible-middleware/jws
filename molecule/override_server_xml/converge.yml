@@ -17,5 +17,5 @@
       jws_listen_ajp_enabled: False
       jws_systemd_enabled: True
       jws_service_systemd_type: forking
-      jws_java_version: 17
+      jws_java_version: 21
       jws_native: False

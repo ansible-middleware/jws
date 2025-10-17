@@ -8,5 +8,5 @@
     - middleware_automation.jws
   roles:
     - role: jws
-      jws_java_version: 17
+      jws_java_version: 21
 

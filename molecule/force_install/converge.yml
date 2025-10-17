@@ -22,5 +22,5 @@
       jws_systemd_enabled: True
       jws_service_systemd_type: forking
       jws_force_install: true
-      jws_java_version: 17
+      jws_java_version: 21
       jws_native: False

@@ -1,6 +1,6 @@
 ---
 jws_setup: true
-jws_java_version: 17
+jws_java_version: 21
 jws_listen_http_bind_address: 127.0.0.1
 jws_systemd_enabled: True
 jws_service_systemd_type: forking
