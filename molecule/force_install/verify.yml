@@ -3,7 +3,6 @@
   hosts: instance
   vars:
     jws_apply_patches: False
-    jws_java_version: 17
     jws_native: False
     jws_selinux_enabled: False
   vars_files:

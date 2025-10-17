@@ -1,7 +1,7 @@
 ---
 jdk_baseurl: 'https://download.java.net/java/GA'
-jdk_version: '17.0.2'
-jdk_sha_id: 'dfd4a8d0985749f896bed50d7138ee7f'
-jdk_url: "{{ jdk_baseurl }}/jdk{{ jdk_version }}/{{ jdk_sha_id }}/8/GPL/openjdk-{{ jdk_version }}_linux-x64_bin.tar.gz"
+jdk_version: '21.0.2'
+jdk_sha_id: 'f2283984656d49d69e91c558476027ac'
+jdk_url: "{{ jdk_baseurl }}/jdk{{ jdk_version }}/{{ jdk_sha_id }}/13/GPL/openjdk-{{ jdk_version }}_linux-x64_bin.tar.gz"
 jdk_install_dir: /opt
 jdk_home: "{{ jdk_install_dir }}/jdk-{{ jdk_version }}/"

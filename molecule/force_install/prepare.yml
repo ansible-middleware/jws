@@ -1,4 +1,7 @@
 ---
+- name: "Import RHEL 8 Python Bootstrap"
+  ansible.builtin.import_playbook: ../common_bootstrap_rhel8.yml
+
 - name: Prepare
   hosts: all
   tasks:
@@ -28,4 +31,3 @@
   roles:
     - role: jws
       jws_native: False
-      jws_java_version: 17
