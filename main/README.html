@@ -185,14 +185,14 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <li><p>Red Hat JBoss Web Server <em>X</em>.<em>Y</em>.0 Application Server <em>(the application server)</em></p></li>
 <li><p>Red Hat JBoss Web Server <em>X</em>.<em>Y</em>.0 Application Server for RHEL 8 x86_64 <em>(the native components)</em></p></li>
 </ul>
-<p>In the preceding file names, replace <em>X</em>.<em>Y</em>.0 with the JBoss Web Server version that you want to install (for example, 5.7.0 or 6.0.0).</p>
+<p>In the preceding file names, replace <em>X</em>.<em>Y</em>.0 with the JBoss Web Server version that you want to install (for example, 5.7.0 or 6.1.0).</p>
 </li>
 <li><p>Copy the archive files to your Ansible control node.</p></li>
 <li><p>On your Ansible control node, set the following variables, as appropriate:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> vars:
    ...
    jws_install_method: zipfiles
-   jws_version: 6.0.0
+   jws_version: 6.1.0
    jws_native: True
    zipfile_name: &lt;application_server_filename&gt;.zip
    native_zipfile: &lt;native_filename&gt;.zip
@@ -210,7 +210,7 @@ $ ansible-galaxy collection install middleware_automation-jws-*.tar.gz
 <td><p>Specifies the installation method (by default, <code class="docutils literal notranslate"><span class="pre">zipfiles</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jws_version</span></code></p></td>
-<td><p>Specifies the version of JBoss Web Server that you want to install (for example, <code class="docutils literal notranslate"><span class="pre">5.7.0</span></code> or <code class="docutils literal notranslate"><span class="pre">6.0.0</span></code>)</p></td>
+<td><p>Specifies the version of JBoss Web Server that you want to install (for example, <code class="docutils literal notranslate"><span class="pre">5.7.0</span></code> or <code class="docutils literal notranslate"><span class="pre">6.1.0</span></code>)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jws_native</span></code></p></td>
 <td><p>Indicates whether you also want to install the native archive file (by default, <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></td>

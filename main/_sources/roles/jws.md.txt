@@ -18,6 +18,7 @@ Versions
 
 | JWS VERSION | Release Date      | Tomcat Version | Native Version | Notes                                                                                                                                             |
 |:------------|:------------------|:---------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `6.1.0`     | April 07, 2025    | `10.1.36`      | `1.1.1`        | [Release Notes](https://docs.redhat.com/en/documentation/red_hat_jboss_web_server/6.1/html/red_hat_jboss_web_server_6.1_release_notes/index) |
 | `6.0.0`     | October 31, 2023  | `10.1.8`       | `1.2.36`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0/html/red_hat_jboss_web_server_6.0_release_notes/index) |
 | `5.8.0`     | May 7, 2024       | `9.0.87`       | `1.2.31`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.8/html/red_hat_jboss_web_server_5.8_release_notes/index) |
 | `5.7.0`     | November 2, 2022  | `9.0.62`       | `1.2.31`       | [Release Notes](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/5.7/html/red_hat_jboss_web_server_5.7_release_notes/index) |
@@ -42,7 +43,7 @@ Role Defaults
 | `jws_install_method`       | Installation method, allowed values: `['zipfiles','rpm']`                                                        | `zipfiles`                                                                                         |
 | `jws_install_dir`          | Installation path for JWS/tomcat                                                                                 | `/opt`                                                                                             |
 | `jws_rpm`                  | Installation RPM version                                                                                         | `jws6`                                                                                             |
-| `jws_version`              | Version of JWS to install                                                                                        | `6.0.0`                                                                                            |
+| `jws_version`              | Version of JWS to install                                                                                        | `6.1.0`                                                                                            |
 | `jws_apply_patches`        | Install JWS most recent cumulative patch for requested version                                                   | `False`                                                                                            |
 | `jws_selinux_enabled`      | Enable selinux policy enforcement for JWS                                                                        | `True`                                                                                             |
 | `jws_home`                 | Default installation path for JWS archives                                                                       | `{{ jws_install_dir }}/jws-{{ jws_version.split('.')[0] }}.{{ jws_version.split('.')[1] }}/tomcat` |
