@@ -13,6 +13,7 @@ Major Changes
 -------------
 
 - AMW-426 Make jws collection compliant with ansible-core 2.19 `#295 <https://github.com/ansible-middleware/jws/pull/295>`_
+- AMW-434 Ensure jws collection is compatible with RHEL 10 `#300 <https://github.com/ansible-middleware/jws/pull/300>`_
 
 Minor Changes
 -------------

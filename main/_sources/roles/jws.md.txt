@@ -146,7 +146,7 @@ Role Variables
 | `jws_java_home`    | Path to the JAVA\_HOME to be used by the server                                    |
 <!--end argument_specs-->
 
-**NOTE:** You need to provide either `jws_java_version` or `jws_java_home` value. `jws_java_version` value can be 11 or 17.
+**NOTE:** You need to provide either `jws_java_version` or `jws_java_home` value. `jws_java_version` value can be 11, 17 or 21 (for RHEL 10).
 
 
 Example Playbook
@@ -158,7 +158,7 @@ Example Playbook
 - name: Install JWS with basic configuration
   hosts: all
   vars:
-    jws_java_version: 17
+    jws_java_version: 21
     jws_listen_http_bind_address: 127.0.0.1
     jws_systemd_enabled: True
     jws_service_systemd_type: forking
@@ -174,7 +174,7 @@ Example Playbook
   hosts: webservers
   vars:
     jws_install_method: rpm
-    jws_java_version: 11
+    jws_java_version: 21
     jws_systemd_enabled: True
   roles:
     - middleware_automation.jws.jws
@@ -186,7 +186,7 @@ Example Playbook
 - name: Configure JWS with HTTPS
   hosts: jws_servers
   vars:
-    jws_java_version: 17
+    jws_java_version: 21
     jws_listen_https_enabled: True
     jws_listen_https_port: 8443
     jws_systemd_enabled: True
@@ -200,7 +200,7 @@ Example Playbook
 - name: Configure JWS with mod_cluster
   hosts: jws_cluster_nodes
   vars:
-    jws_java_version: 17
+    jws_java_version: 21
     jws_modcluster_enable: True
     jws_modcluster_port: 6666
     jws_systemd_enabled: True
@@ -227,7 +227,7 @@ Example Playbook
 - name: JWS with Tomcat Vault and HTTPS
   hosts: secure_servers
   vars:
-    jws_java_version: 17
+    jws_java_version: 21
     jws_listen_https_enabled: True
     jws_tomcat_vault_enabled: True
     jws_tomcat_vault_storepass: "my_secure_password"
