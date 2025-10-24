@@ -64,7 +64,7 @@ To enable the collection to install JBoss Web Server from local archive files:
     - Red Hat JBoss Web Server _X_._Y_.0 Application Server *(the application server)*
     - Red Hat JBoss Web Server _X_._Y_.0 Application Server for RHEL 8 x86_64 *(the native components)*
 
-   In the preceding file names, replace _X_._Y_.0 with the JBoss Web Server version that you want to install (for example, 5.7.0 or 6.0.0).
+   In the preceding file names, replace _X_._Y_.0 with the JBoss Web Server version that you want to install (for example, 5.7.0 or 6.1.0).
 
 2. Copy the archive files to your Ansible control node.
 
@@ -73,7 +73,7 @@ To enable the collection to install JBoss Web Server from local archive files:
         vars:
           ...
           jws_install_method: zipfiles
-          jws_version: 6.0.0
+          jws_version: 6.1.0
           jws_native: True
           zipfile_name: <application_server_filename>.zip
           native_zipfile: <native_filename>.zip
@@ -83,7 +83,7 @@ To enable the collection to install JBoss Web Server from local archive files:
    | Variable               | Details                                                                                             |
    |------------------------|-----------------------------------------------------------------------------------------------------|
    | `jws_install_method`   | Specifies the installation method (by default, `zipfiles`)                                          |
-   | `jws_version`          | Specifies the version of JBoss Web Server that you want to install (for example, `5.7.0` or `6.0.0`)|
+   | `jws_version`          | Specifies the version of JBoss Web Server that you want to install (for example, `5.7.0` or `6.1.0`)|
    | `jws_native`           | Indicates whether you also want to install the native archive file (by default, `False`)            |
    | `zipfile_name`         | Specifies the name of the application server archive file on your control node                      |
    | `native_zipfile`       | Specifies the name of the native archive file on your control node                                  |

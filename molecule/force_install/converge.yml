@@ -4,9 +4,9 @@
   pre_tasks:
     - name: "Set JWS version if resource available"
       ansible.builtin.set_fact:
-        jws_version: 5.7.0
+        jws_version: 6.1.0
       when:
-        - "(lookup('env', 'PWD') | default('/opt') + '/jws-5.7.0-application-server.zip') is exists"
+        - "(lookup('env', 'PWD') | default('/opt') + '/jws-6.1.0-application-server.zip') is exists"
         - jws_version is defined
   vars:
     jws_apply_patches: False

@@ -9,22 +9,22 @@
       ansible.builtin.include_tasks: ../common_prepare.yml
       vars:
         jws_molecule_assets:
-          - "{{ assets_server }}/webserver/5.5.0/jws-5.5.0-application-server.zip"
-          - "{{ assets_server }}/webserver/5.7.0/jws-5.7.0-application-server.zip"
+          - "{{ assets_server }}/webserver/6.0.0/jws-6.0.0-application-server.zip"
+          - "{{ assets_server }}/webserver/6.1.0/jws-6.1.0-application-server.zip"
 
 - name: "Older version installation"
   hosts: all
   vars:
     jws_apply_patches: False
-    tomcat_version: 9.0.80
+    tomcat_version: 10.1.13
   vars_files:
     - ../../playbooks/vars.yml
   pre_tasks:
     - name: "Set JWS version if resource available"
       ansible.builtin.set_fact:
-        jws_version: 5.5.0
+        jws_version: 6.0.0
       when:
-        - "(lookup('env', 'PWD') | default('/opt') + '/jws-5.5.0-application-server.zip') is exists"
+        - "(lookup('env', 'PWD') | default('/opt') + '/jws-6.0.0-application-server.zip') is exists"
         - jws_version is defined
   collections:
     - middleware_automation.jws
