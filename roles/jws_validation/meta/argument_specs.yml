@@ -78,7 +78,7 @@ argument_specs:
     downstream:
         options:
             jws_version:
-                default: "6.0.0"
+                default: "6.1.0"
                 description: "JWS version to install"
                 type: "str"
             jws_home:

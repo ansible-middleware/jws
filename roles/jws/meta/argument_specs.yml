@@ -449,7 +449,7 @@ argument_specs:
                 description: "Wheter or not to use JWS instead of uptream"
                 type: "bool"
             jws_version:
-                default: "6.0.0"
+                default: "6.1.0"
                 description: "JWS version to install"
                 type: "str"
             jws_patch_version:

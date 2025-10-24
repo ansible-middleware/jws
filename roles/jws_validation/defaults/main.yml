@@ -6,7 +6,7 @@ jws_gid: 53
 
 catalina_logfile: logs/catalina.out
 jws_validation_read_catalina_privilege_escalation: True
-tomcat_version: 10.1.13
+tomcat_version: 10.1.36
 jws_home: "/opt/apache-tomcat-{{ tomcat_version }}/"
 
 jws_service_name: tomcat
