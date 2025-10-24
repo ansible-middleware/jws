@@ -1,32 +1,12 @@
 ---
-driver:
-  name: docker
-platforms:
-  - name: instance
-    image: registry.access.redhat.com/ubi9/ubi-init:latest
-    command: "/usr/sbin/init"
-    pre_build_image: true
-    privileged: true
-    port_bindings:
-      - ${PORT_BINDING:-8080}:8080
-    published_ports:
-      - 0.0.0.0:${PORT_BINDING:-8080}:8080/TCP
 provisioner:
-  name: ansible
-  config_options:
-    defaults:
-      interpreter_python: auto_silent
-    ssh_connection:
-      pipelining: false
   playbooks:
     prepare: prepare.yml
     converge: converge.yml
     verify: verify.yml
   inventory:
-    host_vars:
-      localhost:
-        ansible_python_interpreter: "{{ ansible_playbook_python }}"
-      instance:
+    group_vars:
+      all:
         jws_listen_https_enabled: False
         jws_listen_ajp_enabled: False
   env:

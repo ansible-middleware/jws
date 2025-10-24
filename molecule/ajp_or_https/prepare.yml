@@ -1,4 +1,7 @@
 ---
+- name: "Import RHEL 8 Python Bootstrap"
+  ansible.builtin.import_playbook: ../common_bootstrap_rhel8.yml
+
 - name: Prepare
   hosts: all
   tasks:

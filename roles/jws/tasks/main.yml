@@ -39,7 +39,17 @@
   vars:
     packages_list: "{{ jws_dependencies_list }}"
 
-- name: "Ensure tomcatjss rpm is not installed"
+- name: "Ensure tomcatjss rpm is not installed (RHEL 8)"
+  become: "{{ jws_install_requires_become | default(true) }}"
+  ansible.builtin.command: "dnf remove -y tomcatjss"
+  register: _dnf_remove_rhel8
+  changed_when: "'Removed:' in _dnf_remove_rhel8.stdout"
+  when:
+    - jws.check_jws_ss_absent is defined
+    - jws.check_jws_ss_absent
+    - ansible_facts['distribution_major_version'] == '8'
+
+- name: "Ensure tomcatjss rpm is not installed (RHEL 9+)"
   become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.dnf:
     name: tomcatjss
@@ -47,6 +57,7 @@
   when:
     - jws.check_jws_ss_absent is defined
     - jws.check_jws_ss_absent
+    - ansible_facts['distribution_major_version'] != '8'
 
 - name: Check user/groups and whether force install needed
   become: "{{ jws_install_requires_become | default(true) }}"
