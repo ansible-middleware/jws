@@ -7,6 +7,7 @@ on:
 jobs:
   traffic:
     runs-on: ubuntu-latest
+    if: ${{ github.repository == 'ansible-middleware/jws' }}
     steps:
       - uses: actions/checkout@v2
         with:
