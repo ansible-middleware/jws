@@ -34,6 +34,15 @@
   when:
     - not jws_service_pidfile is defined
 
+- name: "Ensure service script directory exists"
+  become: "{{ jws_install_requires_become | default(true) }}"
+  ansible.builtin.file:
+    path: "{{ jws_service_script | dirname }}"
+    state: directory
+    owner: "{{ jws.user }}"
+    group: "{{ jws.group }}"
+    mode: 0750
+
 - name: "Ensure service script is deployed"
   become: "{{ jws_install_requires_become | default(true) }}"
   ansible.builtin.template:
@@ -42,6 +51,15 @@
     owner: "{{ jws.user }}"
     group: "{{ jws.group }}"
     mode: 0755
+
+- name: "Ensure service configuration directory exists"
+  become: "{{ jws_install_requires_become | default(true) }}"
+  ansible.builtin.file:
+    path: "{{ jws_service_conf | dirname }}"
+    state: directory
+    owner: "{{ jws.user }}"
+    group: "{{ jws.group }}"
+    mode: 0750
 
 - name: "Ensure service configurations files is deployed: {{ jws_service_conf }}"
   become: "{{ jws_install_requires_become | default(true) }}"

@@ -5,7 +5,7 @@
       - rhn_username is defined and rhn_username | length > 0
       - rhn_password is defined and rhn_password | length > 0
       - jws_version is defined and jws_version | length > 0
-      - rhn_product_id is defined and rhn_product_id | length > 0
+      - rhn_product_id is defined
       - rhn_product_path is defined and rhn_product_path | length > 0
     quiet: True
 
@@ -24,13 +24,20 @@
     quiet: True
     fail_msg: "Path for download product is not writeable on the Ansible controller: {{ rhn_product_path }}."
 
+- name: "Check if {{ rhn_product_path }} already exists"
+  ansible.builtin.stat:
+    path: "{{ rhn_product_path }}"
+  register: rhn_product_file
+  delegate_to: localhost
+  become: "{{ rhn_download_become | default(False) }}"
+
 - name: "Download Red Hat product into {{ rhn_product_path }} (rhn_download_become: {{ rhn_download_become }})"
   middleware_automation.common.product_download:  # noqa risky-file-permissions delegated, uses controller host user
     client_id: "{{ rhn_username }}"
     client_secret: "{{ rhn_password }}"
     product_id: "{{ rhn_product_id }}"
     dest: "{{ rhn_product_path }}"
+  when: not rhn_product_file.stat.exists
   no_log: "{{ omit_rhn_output | default(true) }}"
   delegate_to: localhost
-  run_once: True
   become: "{{ rhn_download_become | default(False) }}"
