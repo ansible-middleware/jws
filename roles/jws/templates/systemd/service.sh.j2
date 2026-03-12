@@ -13,9 +13,9 @@ readonly COMMAND=${1:-'status'}
 case "${COMMAND}" in
   status)
     if [ -e "{{ jws_service_pidfile }}" ]; then
-      echo "Tomcat has no PIDfile, service is not running."
-    else
       echo "Tomcat PID is $(cat {{ jws_service_pidfile }})."
+    else
+      echo "Tomcat has no PIDfile, service is not running."
     fi
     ;;
   start)
@@ -31,7 +31,18 @@ case "${COMMAND}" in
       options="${options} -Djava.security.manager -Djava.security.policy==${CATALINA_BASE}/conf/catalina.policy"
     fi
     {{ jws_home }}/bin/startup.sh
-    readonly PID=$(ps -F -ww| grep org.apache.catalina.startup.Bootstrap | grep -v grep | awk '{print $2}')
+    sleep 2
+    for i in {1..10}; do
+      PID=$(pgrep -f "org.apache.catalina.startup.Bootstrap" | head -1)
+      if [ -n "${PID}" ]; then
+        break
+      fi
+      sleep 1
+    done
+    if [ -z "${PID}" ]; then
+      echo "ERROR: Failed to detect Tomcat PID after startup" >&2
+      exit 1
+    fi
     echo "Tomcat runs with PID: ${PID}"
     echo "${PID}" > "{{ jws_service_pidfile }}"
     ;;
