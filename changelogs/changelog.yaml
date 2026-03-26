@@ -371,3 +371,9 @@ releases:
     - 300.yaml
     - 301.yaml
     release_date: '2026-03-26'
+  2.1.2:
+    changes:
+      release_summary: Internal release, documentation or test changes only.
+    fragments:
+    - v2.1.2-devel_summary.yaml
+    release_date: '2026-03-26'
