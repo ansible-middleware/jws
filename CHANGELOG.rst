@@ -1,10 +1,34 @@
-==============
-Release Notes
-==============
+========================================
+middleware\_automation.jws Release Notes
+========================================
 
 .. contents:: Topics
 
 This changelog describes changes after version 0.0.3.
+
+v2.1.1
+======
+
+Major Changes
+-------------
+
+- AMW-426 Make jws collection compliant with ansible-core 2.19 `#295 <https://github.com/ansible-middleware/jws/pull/295>`_
+- AMW-434 Ensure jws collection is compatible with RHEL 10 `#300 <https://github.com/ansible-middleware/jws/pull/300>`_
+- AMW-447 jws collection compatibility with jws_version 6.1.0 and tomcat_version 10.1.36 release `#301 <https://github.com/ansible-middleware/jws/pull/301>`_
+
+Minor Changes
+-------------
+
+- AMW-339 JWS 5.8.0 release missing from README `#281 <https://github.com/ansible-middleware/jws/pull/281>`_
+- Set some default retries for url.yml in the install task `#279 <https://github.com/ansible-middleware/jws/pull/279>`_
+
+Bugfixes
+--------
+
+- AMW-337 - Collection patching failing if native zips weren't released `#278 <https://github.com/ansible-middleware/jws/pull/278>`_
+- AMW-360 JWS collection GitHub action molecule pipelines are breaking because of sudo permission issue `#294 <https://github.com/ansible-middleware/jws/pull/294>`_
+- Determine if offline patch is available `#290 <https://github.com/ansible-middleware/jws/pull/290>`_
+- jws collection CI label is showing no status `#297 <https://github.com/ansible-middleware/jws/pull/297>`_
 
 v2.1.0
 ======
