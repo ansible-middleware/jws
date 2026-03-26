@@ -336,6 +336,9 @@ For example:
 
 Ensure that the playbook runs successfully without any errors.
 
+## Release and Upgrade Notes
+
+For details on changes between versions, please see [the changelog for this collection](https://github.com/ansible-middleware/jws/blob/main/CHANGELOG.rst).
 
 ## Support
 
