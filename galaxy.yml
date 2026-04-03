@@ -4,6 +4,7 @@ name: jws
 version: "2.1.3"
 readme: README.md
 authors:
+  - Ranabir Chakraborty <ranabir@ibm.com>
   - George Zaronikas <gzaronik@redhat.com>
   - Romain Pelisse <belaran@redhat.com>
   - Harsha Cherukuri <hcheruku@redhat.com>
