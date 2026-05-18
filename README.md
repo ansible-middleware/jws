@@ -336,19 +336,23 @@ For example:
 
 Ensure that the playbook runs successfully without any errors.
 
-## Release and Upgrade Notes
-
-For details on changes between versions, please see [the changelog for this collection](https://github.com/ansible-middleware/jws/blob/main/CHANGELOG.rst).
 
 ## Support
 
 <!--start support -->
+
 For Red Hat customers, this collection is released as the [Red Hat Ansible certified content collection for JBoss Web Server](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws) with [Production Support](https://access.redhat.com/support/offerings/production).
 
-If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
+If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an [issue](https://github.com/ansible-middleware/jws/issues).
 
 For more information about using this collection, see the [Product Documentation for Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0).
+
 <!--end support -->
+
+
+## Release and Upgrade Notes
+
+For details on changes between versions, please see [the changelog for this collection](https://github.com/ansible-middleware/jws/blob/main/CHANGELOG.rst)
 
 
 ## License
