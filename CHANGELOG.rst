@@ -6,6 +6,14 @@ middleware\_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v2.1.3
+======
+
+Major Changes
+-------------
+
+- AMW-540 Fix the upstream collection requirements with common v1.2.4 `#308 <https://github.com/ansible-middleware/jws/pull/308>`_
+
 v2.1.2
 ======
 

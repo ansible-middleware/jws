@@ -377,3 +377,13 @@ releases:
     fragments:
     - v2.1.2-devel_summary.yaml
     release_date: '2026-03-26'
+  2.1.3:
+    changes:
+      major_changes:
+      - 'AMW-540 Fix the upstream collection requirements with common v1.2.4 `#308
+        <https://github.com/ansible-middleware/jws/pull/308>`_
+
+        '
+    fragments:
+    - 308.yaml
+    release_date: '2026-05-26'
