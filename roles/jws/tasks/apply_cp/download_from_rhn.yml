@@ -16,7 +16,7 @@
 
     - name: Determine patch versions list
       ansible.builtin.set_fact:
-        filtered_versions: "{{ rhn_products.results | map(attribute='file_path') | \
+        filtered_versions: "{{ rhn_products.results | map(attribute='file_name') | \
                                select('match', '^[^/]*/jws-.*[0-9]*[.][0-9]*[.][0-9]*.*$') | \
                                map('regex_replace', '[^/]*/jws-([0-9]*[.][0-9]*[.][0-9]*)-.*', '\\1') | \
                                list | unique }}"
@@ -35,7 +35,7 @@
 
     - name: Determine install zipfile from search results
       ansible.builtin.set_fact:
-        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', \
+        rhn_filtered_products: "{{ rhn_products.results | selectattr('file_name', 'match', \
                                    '[^/]*/jws-' + jws_latest_version + archive_file_suffix + '$') }}"
         patch_bundle: "jws-{{ jws_latest_version }}{{ archive_file_suffix }}"
         patch_version: "{{ jws_latest_version }}"
@@ -51,7 +51,7 @@
       block:
         - name: "Determine selected patch from supplied version: {{ jws_patch_version }}"
           ansible.builtin.set_fact:
-            rhn_filtered_products: "{{ rhn_products.results | selectattr('file_path', 'match', \
+            rhn_filtered_products: "{{ rhn_products.results | selectattr('file_name', 'match', \
                                        '[^/]*/jws-' + jws_patch_version + archive_file_suffix + '$') }}"
             patch_bundle: "jws-{{ jws_patch_version }}{{ archive_file_suffix }}"
             patch_version: "{{ jws_patch_version }}"
