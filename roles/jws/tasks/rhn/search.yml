@@ -24,7 +24,7 @@
 
 - name: "Determine results matching the file suffix {{ rhn_file_suffix | default('') }}"
   ansible.builtin.set_fact:
-    filtered_results: "{{ rhn_products.results | default([]) | map(attribute='file_path') | \
+    filtered_results: "{{ rhn_products.results | default([]) | map(attribute='file_name') | \
                           select('match', '^[^/]*/jws-.*' + rhn_file_suffix | default('') + '.*$') | \
                           list | unique }}"
 
