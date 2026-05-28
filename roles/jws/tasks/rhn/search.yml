@@ -9,7 +9,7 @@
       - rhn_product_type == 'BUGFIX' or rhn_product_type == 'DISTRIBUTION'
     quiet: true
 
-- name: Retrieve product download using JBossNetwork API
+- name: Retrieve product download using Unified Downloads API
   middleware_automation.common.product_search:
     client_id: "{{ rhn_username }}"
     client_secret: "{{ rhn_password }}"
