@@ -10,6 +10,7 @@ on:
 
 jobs:
   docs:
+    if: ${{ github.repository == 'ansible-middleware/jws' }}
     uses: ansible-middleware/github-actions/.github/workflows/docs.yml@main
     secrets: inherit
     with:
