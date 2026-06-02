@@ -11,7 +11,7 @@ authors:
   - Guido Grazioli <ggraziol@redhat.com>
   - Coty Sutherland <csutherl@redhat.com>
 description: This collection contains the ansible playbook to setup JWS.
-license_file: "LICENSE"
+license: ["Apache-2.0"]
 tags:
   - java
   - tomcat
