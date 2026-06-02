@@ -355,4 +355,4 @@ For more information about using this collection, see the [Product Documentation
 
 Apache License v2.0 or later
 
-See [LICENSE](LICENSE) to view the full text.
+See [LICENSE](https://github.com/ansible-middleware/jws/blob/main/LICENSE) to view the full text.
