@@ -34,6 +34,9 @@ issues: https://github.com/ansible-middleware/jws/issues
 build_ignore:
   - molecule
   - .github
+  - .ansible-lint
+  - .yamllint
+  - .DS_Store
   - '*.tar.gz'
   - '*.zip'
   - .gitignore

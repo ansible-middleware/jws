@@ -9,7 +9,7 @@ This repository contains the Ansible roles and playbooks to set up an automated 
 ## Ansible version compatibility
 
 <!--start ansible_version -->
-This collection has been tested against Ansible versions 2.14.0 or later.
+This collection has been tested against following Ansible versions: **>=2.16.0**.
 
 The plug-ins and modules that are within a collection might be tested with specific Ansible versions only. A collection can contain metadata that identifies these Ansible versions.
 <!--end ansible_version -->
@@ -336,19 +336,23 @@ For example:
 
 Ensure that the playbook runs successfully without any errors.
 
-## Release and Upgrade Notes
-
-For details on changes between versions, please see [the changelog for this collection](https://github.com/ansible-middleware/jws/blob/main/CHANGELOG.rst).
 
 ## Support
 
 <!--start support -->
+
 For Red Hat customers, this collection is released as the [Red Hat Ansible certified content collection for JBoss Web Server](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/jws) with [Production Support](https://access.redhat.com/support/offerings/production).
 
-If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an issue at https://github.com/ansible-middleware/jws/issues.
+If you have any issues or questions related to this collection, please contact <Ansible-middleware-core@redhat.com> or open an [issue](https://github.com/ansible-middleware/jws/issues).
 
 For more information about using this collection, see the [Product Documentation for Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_web_server/6.0).
+
 <!--end support -->
+
+
+## Release and Upgrade Notes
+
+For details on changes between versions, please see the [CHANGELOG](https://github.com/ansible-middleware/jws/blob/main/CHANGELOG.rst) for this collection.
 
 
 ## License
