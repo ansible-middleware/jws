@@ -1,7 +1,7 @@
 ---
 namespace: middleware_automation
 name: jws
-version: "2.1.4"
+version: "2.1.5"
 readme: README.md
 authors:
   - Ranabir Chakraborty <ranabir@ibm.com>
