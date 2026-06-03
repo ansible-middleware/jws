@@ -1,4 +1,5 @@
 # .ansible-lint
+profile: production
 exclude_paths:
   - .cache/
   - .github/

@@ -19,14 +19,14 @@ The plug-ins and modules that are within a collection might be tested with speci
 
 ### Roles
 <!--start role_content -->
-- The [jws](roles/jws/README.md) role contains the Ansible playbook and handles the following automated tasks:
+- The [jws](https://github.com/ansible-middleware/jws/blob/main/roles/jws/README.md) role contains the Ansible playbook and handles the following automated tasks:
     - Ensures that a Java Development Kit (JDK) is installed on your target hosts
     - Installs the basic packages that a JBoss Web Server installation requires
     - Creates a JBoss Web Server user account and group
     - Installs JBoss Web Server from product archive files or RPM packages
     - Assigns ownership of the JBoss Web Server directories to the appropriate user account and group
     - Deploys the `server.xml`, `web.xml`, and `context.xml` files
-- The [jws_validation](roles/jws/README.md) role contains a set of utility playbooks and tasks to validate that the server was properly installed on the target and is functionnal.
+- The [jws_validation](https://github.com/ansible-middleware/jws/blob/main/roles/jws_validation/README.md) role contains a set of utility playbooks and tasks to validate that the server was properly installed on the target and is functionnal.
 <!--end role_content -->
 
 ## Collection setup

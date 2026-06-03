@@ -2,6 +2,7 @@
 *.tar.gz
 .tmp
 .cache
+.ansible
 docs/plugins/
 docs/roles/
 docs/_build/
