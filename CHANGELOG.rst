@@ -6,6 +6,17 @@ middleware\_automation.jws Release Notes
 
 This changelog describes changes after version 0.0.3.
 
+v2.1.4
+======
+
+Minor Changes
+-------------
+
+- Fix certification requirements for JWS `#307 <https://github.com/ansible-middleware/jws/pull/307>`_
+- Fix collections for AAH recommendations `#312 <https://github.com/ansible-middleware/jws/pull/312>`_
+- Fix licence for AAH `#311 <https://github.com/ansible-middleware/jws/pull/311>`_
+- Fixing common module usage `#310 <https://github.com/ansible-middleware/jws/pull/310>`_
+
 v2.1.3
 ======
 

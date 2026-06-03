@@ -387,3 +387,24 @@ releases:
     fragments:
     - 308.yaml
     release_date: '2026-05-26'
+  2.1.4:
+    changes:
+      minor_changes:
+      - 'Fix certification requirements for JWS `#307 <https://github.com/ansible-middleware/jws/pull/307>`_
+
+        '
+      - 'Fix collections for AAH recommendations `#312 <https://github.com/ansible-middleware/jws/pull/312>`_
+
+        '
+      - 'Fix licence for AAH `#311 <https://github.com/ansible-middleware/jws/pull/311>`_
+
+        '
+      - 'Fixing common module usage `#310 <https://github.com/ansible-middleware/jws/pull/310>`_
+
+        '
+    fragments:
+    - 307.yaml
+    - 310.yaml
+    - 311.yaml
+    - 312.yaml
+    release_date: '2026-06-03'
