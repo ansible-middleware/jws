@@ -150,7 +150,7 @@
         - webapps
         - bin
 
-    - name: "Ensure {{ jws_home }}/ files have the recommended priviliges, owner and group"
+    - name: "Ensure {{ jws_home }}/ files have the recommended privileges, owner and group"
       become: "{{ jws_install_requires_become | default(true) }}"
       ansible.builtin.file:
         path: "{{ jws_home }}/{{ item }}"

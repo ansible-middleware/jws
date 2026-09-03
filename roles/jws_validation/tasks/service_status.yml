@@ -19,6 +19,6 @@
       ansible.builtin.debug:
         var: catalina_out
 
-    - name: Fail after priting the logfile
+    - name: Fail after printing the logfile
       ansible.builtin.fail:
         msg: Service is not running or not enable

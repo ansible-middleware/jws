@@ -1,5 +1,5 @@
 ---
-- name: "Check prerequirements."
+- name: "Check prerequisites."
   ansible.builtin.include_tasks: prereqs.yml
 
 - name: "Download patches from RHN if requested."

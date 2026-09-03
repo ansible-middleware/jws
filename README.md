@@ -26,7 +26,7 @@ The plug-ins and modules that are within a collection might be tested with speci
     - Installs JBoss Web Server from product archive files or RPM packages
     - Assigns ownership of the JBoss Web Server directories to the appropriate user account and group
     - Deploys the `server.xml`, `web.xml`, and `context.xml` files
-- The [jws_validation](https://github.com/ansible-middleware/jws/blob/main/roles/jws_validation/README.md) role contains a set of utility playbooks and tasks to validate that the server was properly installed on the target and is functionnal.
+- The [jws_validation](https://github.com/ansible-middleware/jws/blob/main/roles/jws_validation/README.md) role contains a set of utility playbooks and tasks to validate that the server was properly installed on the target and is functional.
 <!--end role_content -->
 
 ## Collection setup

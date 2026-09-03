@@ -28,7 +28,7 @@
       ansible.builtin.set_fact:
         matches: "{{ slurped_server_xml['content'] | b64decode | regex_findall(jvm_route) }}"
 
-    - name: "Checks that occurence of {{ jvm_route }} was found."
+    - name: "Checks that occurrence of {{ jvm_route }} was found."
       ansible.builtin.assert:
         that:
           - matches is defined

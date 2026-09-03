@@ -1,0 +1,67 @@
+# JWS / Tomcat / Ansible domain-specific words
+# Only terms NOT covered by built-in dictionaries
+
+# Product names and projects
+Wildfly
+Infinispan
+jolokia
+
+# Java / Tomcat terms
+aspectj
+beanutils
+cglib
+dbcp
+easymock
+hamcrest
+jaspic
+jaxb
+jaxen
+jaxrpc
+jaxws
+jdom
+jndi
+JNDI
+JSSE
+jstl
+juli
+mbeans
+objenesis
+oraclepki
+tagsoup
+tomcatjss
+xerces
+xpowered
+osgi
+keepgenerated
+changeit
+Jsps
+mappedfile
+
+# Ansible terms
+fqcn
+FQCN
+unarchived
+
+# WildFly / JBoss terms
+modcluster
+
+# Linux / System terms
+firewalld
+procps
+restorecon
+semanage
+semodule
+seport
+
+# Molecule testing
+preinstalledjdk
+
+# CI / DevOps
+sangonzal
+rootperm
+
+# RST / Sphinx directives
+toctree
+
+# Miscellaneous
+subcomponents
