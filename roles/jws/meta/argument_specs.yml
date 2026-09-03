@@ -26,7 +26,7 @@ argument_specs:
                 type: "bool"
             jws_install_download_archive_require_privilege_escalation:
                 default: True
-                description: "Whether or not to become root to donwload the archive"
+                description: "Whether or not to become root to download the archive"
                 type: "bool"
             jws_install_unarchive_require_privilege_escalation:
                 default: True
@@ -353,7 +353,7 @@ argument_specs:
             jws_systemd_script_shebang:
                 # line 54 of jws/defaults/main.yml
                 default: "#!/bin/{{ jws_systemd_script_interpreter }}"
-                description: "Customize sysVinit script sheband"
+                description: "Customize sysVinit script shebang"
                 type: "str"
             jws_service_name:
                 # line 55 of jws/defaults/main.yml
@@ -424,7 +424,7 @@ argument_specs:
         options:
             jws_skip_delete_zipfile:
                 required: False
-                description: "Whether to skip deleteion of zipfile when uninstalling"
+                description: "Whether to skip deletion of zipfile when uninstalling"
                 type: "bool"
             jws_home:
                 default: "{{ jws_install_dir }}/{{ jws_zipfile_rootdir }}"
@@ -446,7 +446,7 @@ argument_specs:
         options:
             jws_enable:
                 default: True
-                description: "Wheter or not to use JWS instead of uptream"
+                description: "Whether or not to use JWS instead of upstream"
                 type: "bool"
             jws_version:
                 default: "6.1.0"
